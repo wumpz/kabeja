@@ -32,9 +32,7 @@ public class TextParser {
 		TextDocument doc = new TextDocument();
 		StringBuffer buf = new StringBuffer();
 		StringBuffer value = new StringBuffer();
-		StyledTextParagraph p = new StyledTextParagraph();
-		p.setFontHeight(text.getHeight());
-		p.setInsertPoint(text.getInsertPoint());
+		StyledTextParagraph p = createParagraphFromMText(text);
 
 		switch (text.getAlignment()) {
 		case MText.ATTACHMENT_TOP_LEFT:
@@ -93,6 +91,7 @@ public class TextParser {
 		boolean complete = true;
 		Stack paras = new Stack();
 		int linecount = 0;
+		int linePosition = 0;
 		String str = text.getText();
 		char key = ' ';
 
@@ -160,11 +159,16 @@ public class TextParser {
 						value.append(c);
 					} else {
 						// format change end
-						doc.addStyledParagraph(p);
-						p = createParagraphFromParent(p);
-
+						if (buf.length() > 0) {
+							p.setText(buf.toString());
+							doc.addStyledParagraph(p);
+							buf.delete(0, buf.length());
+						}
+						
 						if (paras.size() > 0) {
-							p = (StyledTextParagraph) paras.pop();
+							p = createParagraphFromParent((StyledTextParagraph) paras.pop());
+						} else {
+							p = createParagraphFromMText(text);
 						}
 					}
 				}
@@ -182,9 +186,14 @@ public class TextParser {
 						value.append(c);
 					} else {
 						// start format change
-						if (i != 0) {
+						if (linePosition != 0) {
+							p.setText(buf.toString());
+							if (buf.length() > 0) {
+								doc.addStyledParagraph(p);
+								buf.delete(0, buf.length());
+							}
 							paras.add(p);
-							p = new StyledTextParagraph();
+							p = createParagraphFromMText(text);
 						}
 					}
 				}
@@ -194,10 +203,12 @@ public class TextParser {
 			case 'O':
 
 				if (formatting && keyfollow) {
-					p.setText(buf.toString());
-					buf.delete(0, buf.length());
-					doc.addStyledParagraph(p);
-					p = createParagraphFromParent(p);
+					if (buf.length() > 0) {
+						p.setText(buf.toString());
+						buf.delete(0, buf.length());
+						doc.addStyledParagraph(p);
+						p = createParagraphFromParent(p);
+					}
 					p.setOverline(true);
 					formatting = false;
 					keyfollow = false;
@@ -214,10 +225,12 @@ public class TextParser {
 			case 'o':
 
 				if (formatting && keyfollow) {
-					p.setText(buf.toString());
-					buf.delete(0, buf.length());
-					doc.addStyledParagraph(p);
-					p = createParagraphFromParent(p);
+					if (buf.length() > 0) {
+						p.setText(buf.toString());
+						buf.delete(0, buf.length());
+						doc.addStyledParagraph(p);
+						p = createParagraphFromParent(p);
+					}
 					p.setOverline(false);
 					formatting = false;
 					keyfollow = false;
@@ -234,10 +247,12 @@ public class TextParser {
 			case 'u':
 
 				if (formatting && keyfollow) {
-					p.setText(buf.toString());
-					buf.delete(0, buf.length());
-					doc.addStyledParagraph(p);
-					p = createParagraphFromParent(p);
+					if (buf.length() > 0) {
+						p.setText(buf.toString());
+						buf.delete(0, buf.length());
+						doc.addStyledParagraph(p);
+						p = createParagraphFromParent(p);
+					}
 					p.setUnderline(false);
 					formatting = false;
 					keyfollow = false;
@@ -254,10 +269,12 @@ public class TextParser {
 			case 'L':
 
 				if (formatting && keyfollow) {
-					p.setText(buf.toString());
-					buf.delete(0, buf.length());
-					doc.addStyledParagraph(p);
-					p = createParagraphFromParent(p);
+					if (buf.length() > 0) {
+						p.setText(buf.toString());
+						buf.delete(0, buf.length());
+						doc.addStyledParagraph(p);
+						p = createParagraphFromParent(p);
+					}
 					p.setUnderline(true);
 					formatting = false;
 					keyfollow = false;
@@ -274,10 +291,12 @@ public class TextParser {
 			case 'l':
 
 				if (formatting && keyfollow) {
-					p.setText(buf.toString());
-					buf.delete(0, buf.length());
-					doc.addStyledParagraph(p);
-					p = createParagraphFromParent(p);
+					if (buf.length() > 0) {
+						p.setText(buf.toString());
+						buf.delete(0, buf.length());
+						doc.addStyledParagraph(p);
+						p = createParagraphFromParent(p);
+					}
 					p.setUnderline(false);
 					formatting = false;
 					keyfollow = false;
@@ -294,17 +313,20 @@ public class TextParser {
 			case 'P':
 
 				if (formatting && keyfollow) {
-					linecount++;
+					// end the current paragraph and set its newline flag
 					p.setText(buf.toString());
 					buf.delete(0, buf.length());
-
+					p.setNewline(true);
 					doc.addStyledParagraph(p);
+					linecount++;
+					
+					// start a new line
 					p = createParagraphFromParent(p);
-
+					p.setLineIndex(linecount);
+					
 					formatting = false;
 					keyfollow = false;
-					p.setLineIndex(linecount);
-					p.setNewline(true);
+					linePosition = 0;
 				} else {
 					if (formatting) {
 						value.append(c);
@@ -330,6 +352,8 @@ public class TextParser {
 
 				break;
 			}
+			
+			linePosition++;
 		}
 
 		if (formatting) {
@@ -346,6 +370,13 @@ public class TextParser {
 		}
 
 		return doc;
+	}
+
+	private static StyledTextParagraph createParagraphFromMText(MText text) {
+		StyledTextParagraph p = new StyledTextParagraph();
+		p.setFontHeight(text.getHeight());
+		p.setInsertPoint(text.getInsertPoint());
+		return p;
 	}
 
 	protected static StyledTextParagraph createParagraphFromParent(
