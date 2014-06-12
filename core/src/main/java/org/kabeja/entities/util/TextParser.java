@@ -623,6 +623,9 @@ public class TextParser {
 				if (Character.isWhitespace(c)) {
 					buf.append('^');
 				} else {
+					if (c == 'I') {
+						buf.append('\t');
+					}
 					// filtering acsii controls here
 				}
 
