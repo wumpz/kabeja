@@ -19,6 +19,7 @@ package org.kabeja.entities.util;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
+import org.kabeja.common.Color;
 import org.kabeja.entities.MText;
 import org.kabeja.entities.Text;
 
@@ -98,6 +99,9 @@ public class TextParser {
 		// parse the symbols
 		str = parseSymbols(str);
 
+		// http://www.cadforum.cz/cadforum_en/text-formatting-codes-in-mtext-objects-tip8640
+		
+		
 		// parse the style
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
@@ -391,6 +395,7 @@ public class TextParser {
 		p.setWidth(parent.getWidth());
 		p.setFontHeight(parent.getFontHeight());
 		p.setInsertPoint(parent.getInsertPoint());
+		p.setColor(parent.getColor());
 
 		return p;
 	}
@@ -562,11 +567,20 @@ public class TextParser {
 
 				// TODO handle
 				break;
+			
+			case 'C':
+				Integer colorCode = Integer.valueOf(value);
+				String rgbString = Color.getRGBString(colorCode);
+				para.setColor(rgbString);
+				
+				break;
 			}
 		}
 	}
 
 	public static void parseFontSettings(String value, StyledTextParagraph para) {
+		// e.g. \Fkroeger|b0|i0|c238|p10 - font Kroeger, non-bold, non-italic, codepage 238, pitch 10
+		
 		StringTokenizer st = new StringTokenizer(value, "|");
 		para.setFont(st.nextToken());
 
@@ -574,7 +588,7 @@ public class TextParser {
 			String option = st.nextToken();
 			char code = option.charAt(0);
 			int i = Integer.parseInt(option.substring(1));
-
+			
 			switch (code) {
 			case 'b':
 				para.setBold(i == 1);
@@ -588,12 +602,12 @@ public class TextParser {
 
 			case 'c':
 
-				// ??? color?
+				// codepage
 				break;
 
 			case 'p':
 
-				// ???
+				// pitch
 				break;
 			}
 		}

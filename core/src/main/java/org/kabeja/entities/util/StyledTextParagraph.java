@@ -43,6 +43,7 @@ public class StyledTextParagraph {
     private String fontFile = "";
     private int alignment = 1;
     private Point3D insertPoint = new Point3D();
+    private String color = null;
 
     /**
      * @return Returns the insertPoint.
@@ -281,4 +282,13 @@ public class StyledTextParagraph {
     public int getLength() {
         return text.length();
     }
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 }
