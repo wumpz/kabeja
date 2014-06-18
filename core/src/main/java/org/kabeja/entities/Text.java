@@ -329,7 +329,7 @@ public class Text extends Entity {
 
     public void setBackward(boolean backward) {
         if (backward) {
-            Utils.enableBit(textGenerationFlag, 3);
+            this.textGenerationFlag = Utils.enableBit(textGenerationFlag, 3);
         }
     }
 
@@ -339,7 +339,7 @@ public class Text extends Entity {
 
     public void setUpsideDown(boolean upsideDown) {
         if (upsideDown) {
-            Utils.enableBit(textGenerationFlag, 2);
+        	this.textGenerationFlag = Utils.enableBit(textGenerationFlag, 2);
         }
     }
 

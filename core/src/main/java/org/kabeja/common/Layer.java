@@ -227,7 +227,7 @@ public class Layer {
     }
 
     public void setLineType(LineType ltype) {
-         Utils.enableBit(this.bitField, BIT_PLOTTABLE);
+        this.bitField = Utils.enableBit(this.bitField, BIT_PLOTTABLE);
         this.ltype = ltype;
     }
 
@@ -318,7 +318,7 @@ public class Layer {
 	 * @param plottable the plottable to set
 	 */
 	public void setPlottable(boolean plottable) {
-	    Utils.enableBit(this.bitField,BIT_PLOTTABLE);
+	    this.bitField = Utils.enableBit(this.bitField,BIT_PLOTTABLE);
 	}
 	
 	
