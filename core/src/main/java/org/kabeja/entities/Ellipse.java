@@ -51,7 +51,8 @@ public class Ellipse extends Entity {
         center = new Point3D();
     }
 
-    public Bounds getBounds() {
+    @Override
+	public Bounds getBounds() {
         double alpha = this.getRotationAngle();
         Bounds bounds = new Bounds();
 
@@ -155,7 +156,8 @@ public class Ellipse extends Entity {
         }
     }
 
-    public Type<Ellipse> getType() {
+    @Override
+	public Type<Ellipse> getType() {
         return Type.TYPE_ELLIPSE;
     }
 
@@ -219,10 +221,11 @@ public class Ellipse extends Entity {
 
     public double getRotationAngle() {
         return MathUtils.getAngle(Constants.DEFAULT_X_AXIS_VECTOR,
-            majorAxisDirection);
+        		getExtrusion().getDirectionX()); // majorAxisDirection);
     }
 
-    public double getLength() {
+    @Override
+	public double getLength() {
         int n = INTEGRATION_STEPS;
         double h = (this.endParameter - this.startParameter) / n;
 
@@ -265,7 +268,8 @@ public class Ellipse extends Entity {
      * Not implemented yet
      */
     
-    public void transform(TransformContext context) {
+    @Override
+	public void transform(TransformContext context) {
      
     }
 }
