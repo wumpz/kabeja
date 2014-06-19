@@ -173,6 +173,7 @@ public abstract class Entity implements DraftEntity {
 		}
 
 		return new Extrusion() {
+			@Override
 			public void setX(double x) {
 				if (x != 0.0) {
 					this.addToContainer();
@@ -180,6 +181,7 @@ public abstract class Entity implements DraftEntity {
 				}
 			}
 
+			@Override
 			public void setY(double y) {
 				if (y != 0.0) {
 					this.addToContainer();
@@ -187,6 +189,7 @@ public abstract class Entity implements DraftEntity {
 				}
 			}
 
+			@Override
 			public void setZ(double z) {
 				if (z != 1.0) {
 					this.addToContainer();
@@ -222,7 +225,8 @@ public abstract class Entity implements DraftEntity {
 
 	public int getColor() {
 		if (this.lazyContainer.contains(LAZY_INDEX_COLOR)) {
-			return (int) ((byte[]) this.lazyContainer.get(LAZY_INDEX_COLOR))[0];
+			int color = ((byte[]) this.lazyContainer.get(LAZY_INDEX_COLOR))[0];
+			return color < 0 ? color + 256 : color;
 		} else {
 			return Constants.COLOR_VALUE_BY_LAYER;
 		}
