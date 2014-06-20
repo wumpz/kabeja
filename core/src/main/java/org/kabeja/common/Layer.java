@@ -56,9 +56,9 @@ public class Layer {
     
     private int bitField;
   
-    
-    
- 
+    public boolean isZero() {
+    	return "0".equals(name);
+    }
 
     /**
      * @return Returns the name.
