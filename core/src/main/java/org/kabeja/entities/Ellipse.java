@@ -220,8 +220,7 @@ public class Ellipse extends Entity {
     }
 
     public double getRotationAngle() {
-        return MathUtils.getAngle(Constants.DEFAULT_X_AXIS_VECTOR,
-        		getExtrusion().getDirectionX()); // majorAxisDirection);
+        return MathUtils.getAngle(Constants.DEFAULT_X_AXIS_VECTOR, majorAxisDirection);
     }
 
     @Override
