@@ -129,11 +129,11 @@ public class Ellipse extends Entity {
     }
 
     public void setEndParameter(double endParameter) {
-        if (endParameter < 0) {
-            this.endParameter = (Math.PI * 2) + endParameter;
-        } else {
+//        if (endParameter < 0) {
+//            this.endParameter = (Math.PI * 2) + endParameter;
+//        } else {
             this.endParameter = endParameter;
-        }
+//        }
     }
 
     public double getRatio() {
@@ -149,11 +149,11 @@ public class Ellipse extends Entity {
     }
 
     public void setStartParameter(double startParameter) {
-        if (startParameter < 0) {
-            this.startParameter = (Math.PI * 2) + startParameter;
-        } else {
+//        if (startParameter < 0) {
+//            this.startParameter = (Math.PI * 2) + startParameter;
+//        } else {
             this.startParameter = startParameter;
-        }
+//        }
     }
 
     @Override
