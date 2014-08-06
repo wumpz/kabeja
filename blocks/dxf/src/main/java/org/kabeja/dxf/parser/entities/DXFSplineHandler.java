@@ -245,5 +245,6 @@ public class DXFSplineHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         spline = new Spline();
+        spline.setDocument(doc);
     }
 }

@@ -74,6 +74,7 @@ public class DXFLineHandler extends AbstractEntityHandler {
 
     public void startDXFEntity() {
         line = new Line();
+        line.setDocument(doc);
         line.setStartPoint(new Point3D());
         line.setEndPoint(new Point3D());
     }

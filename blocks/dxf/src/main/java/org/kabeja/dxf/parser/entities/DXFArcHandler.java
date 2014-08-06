@@ -128,5 +128,6 @@ public class DXFArcHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         arc = new Arc();
+        arc.setDocument(doc);
     }
 }
