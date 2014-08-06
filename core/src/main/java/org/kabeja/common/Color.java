@@ -283,7 +283,7 @@ public class Color {
     };
 
     public static String getRGBString(int dxfColorCode) {
-        if ((dxfColorCode < 0) || (dxfColorCode > rgbs.length)) {
+        if ((dxfColorCode < 0) || (dxfColorCode >= rgbs.length)) {
             // default is white
             dxfColorCode = 7;
         }
