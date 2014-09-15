@@ -19,7 +19,10 @@ package org.kabeja.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.rmi.CORBA.Util;
+
 import org.kabeja.common.Block;
+import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
@@ -49,28 +52,29 @@ public class Insert extends Entity {
     public Insert() {
     }
 
-   
     public Bounds getBounds() {
+        return calculateBounds(getBlock().getBounds());
+    }
+
+    public Bounds getPlottableBounds() {
+    	return calculateBounds(getBlock().getPlottableBounds());
+    }
+    
+    private Bounds calculateBounds(Bounds blockBounds) {
         Bounds bounds = new Bounds();
-
-        // extrusion.calculateExtrusion();
-        // get the Block bounds
-        Block block = this.getBlock();
-        Bounds b = block.getBounds();
-
-        if (!b.isValid()) {
+        
+        if (!blockBounds.isValid()) {
             bounds.setValid(false);
-
             return bounds;
         }
 
-        Point3D blkPoint = block.getReferencePoint();
+        Point3D blkPoint = getBlock().getReferencePoint();
 
         // Translate to origin and scale
-        bounds.setMaximumX((b.getMaximumX() - blkPoint.getX()) * scale_x);
-        bounds.setMinimumX((b.getMinimumX() - blkPoint.getX()) * scale_x);
-        bounds.setMaximumY((b.getMaximumY() - blkPoint.getY()) * scale_y);
-        bounds.setMinimumY((b.getMinimumY() - blkPoint.getY()) * scale_y);
+        bounds.setMaximumX((blockBounds.getMaximumX() - blkPoint.getX()) * scale_x);
+        bounds.setMinimumX((blockBounds.getMinimumX() - blkPoint.getX()) * scale_x);
+        bounds.setMaximumY((blockBounds.getMaximumY() - blkPoint.getY()) * scale_y);
+        bounds.setMinimumY((blockBounds.getMinimumY() - blkPoint.getY()) * scale_y);
 
         // Rotate the Bounds
         if (rotate != 0) {
@@ -114,7 +118,6 @@ public class Insert extends Entity {
 
         return bounds;
     }
-
 
     /**
      * @return Returns the column_spacing.

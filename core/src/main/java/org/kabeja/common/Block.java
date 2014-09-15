@@ -52,25 +52,44 @@ public class Block {
      */
     public Block() {
         super();
-
     }
 
     public Bounds getBounds() {
-    
-        Bounds bounds = new Bounds();
-        if (this.entities.size()>0) {
-          for(DraftEntity entity:this.entities){
-                Bounds b = entity.getBounds();
-                if (b.isValid()) {
-                    bounds.addToBounds(b);
-                }
-            }
-        } else {
-            bounds.setValid(false);
-        }
-
-        return bounds;
+    	return calculateBoundsFromEntities(true);
     }
+
+    public Bounds getPlottableBounds() {
+    	return calculateBoundsFromEntities(false);
+    }
+
+	/**
+	 * Returns calculated bounds based on the entities that make up this Block.
+	 * 
+	 * This method optionally includes the bounds of entities on the DEFPOINTS layer. According to AutoCAD documentation,
+	 * entities on the DEFPOINTS layer are not visible when plotting/printing a drawing since the layer is intended to only
+	 * include dimension information.
+	 * 
+	 * @param includeDefPointsLayer Whether or not entities on the DEFPOINTS layer should be included in bounds calculation.
+	 * @return Calculated Block bounds.
+	 */
+	private Bounds calculateBoundsFromEntities(boolean includeDefPointsLayer) {
+		Bounds bounds = new Bounds();
+		if (this.entities.size() > 0) {
+			for (DraftEntity entity : this.entities) {
+				if (!includeDefPointsLayer && entity.getLayer() != null && "defpoints".equalsIgnoreCase(entity.getLayer().getName())) {
+					continue;
+				}
+				Bounds b = entity.getBounds();
+				if (b.isValid()) {
+					bounds.addToBounds(b);
+				}
+			}
+		} else {
+			bounds.setValid(false);
+		}
+		
+		return bounds;
+	}
 
     /**
      * @return Returns the description.
