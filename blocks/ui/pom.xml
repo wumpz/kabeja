@@ -43,6 +43,8 @@
             <groupId>de.miethxml</groupId>
             <artifactId>miethxml-ui</artifactId>
             <version>0.0.1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/legacy-lib/miethxml-ui.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
