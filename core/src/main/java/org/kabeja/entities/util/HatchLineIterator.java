@@ -40,7 +40,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
     protected double length;
     protected Vector v;
     protected Vector r;
-    protected List bounderyEdges;
+    protected List<ParametricLine> boundaryEdges;
     protected ParametricLine patternLine;
     protected double tmin = Double.POSITIVE_INFINITY;
     protected double tmax = Double.NEGATIVE_INFINITY;
@@ -53,14 +53,14 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
         this.hatchBounds = hatch.getBounds();
         this.length = pattern.getLength();
 
-        this.bounderyEdges = new ArrayList();
+        this.boundaryEdges = new ArrayList<ParametricLine>();
 
         // edge 0
         Point3D start = new Point3D(this.hatchBounds.getMinimumX(),
                 this.hatchBounds.getMaximumY(), 0);
         Point3D end = new Point3D(this.hatchBounds.getMinimumX(),
                 this.hatchBounds.getMinimumY(), 0);
-        this.bounderyEdges.add(new ParametricLine(start,
+        this.boundaryEdges.add(new ParametricLine(start,
                 MathUtils.getVector(start, end)));
 
         // edge 1
@@ -68,7 +68,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
                 this.hatchBounds.getMinimumY(), 0);
         end = new Point3D(this.hatchBounds.getMaximumX(),
                 this.hatchBounds.getMinimumY(), 0);
-        this.bounderyEdges.add(new ParametricLine(start,
+        this.boundaryEdges.add(new ParametricLine(start,
                 MathUtils.getVector(start, end)));
 
         // edge 2
@@ -76,7 +76,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
                 this.hatchBounds.getMinimumY(), 0);
         end = new Point3D(this.hatchBounds.getMaximumX(),
                 this.hatchBounds.getMaximumY(), 0);
-        this.bounderyEdges.add(new ParametricLine(start,
+        this.boundaryEdges.add(new ParametricLine(start,
                 MathUtils.getVector(start, end)));
 
         // edge 3
@@ -84,7 +84,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
                 this.hatchBounds.getMaximumY(), 0);
         end = new Point3D(this.hatchBounds.getMinimumX(),
                 this.hatchBounds.getMaximumY(), 0);
-        this.bounderyEdges.add(new ParametricLine(start,
+        this.boundaryEdges.add(new ParametricLine(start,
                 MathUtils.getVector(start, end)));
 
         this.pattern = pattern;
@@ -214,8 +214,8 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
         ParametricLine line = new ParametricLine(p, this.v);
 
         // get the next intersection of
-        Iterator i = this.bounderyEdges.iterator();
-        List points = new ArrayList();
+        Iterator<ParametricLine> i = this.boundaryEdges.iterator();
+        List<Point3D> points = new ArrayList<Point3D>();
 
         while (i.hasNext()) {
             ParametricLine edge = (ParametricLine) i.next();

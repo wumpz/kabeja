@@ -90,9 +90,10 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 	private ProcessingManager manager;
 	private SAXFilter saxfilter;
 	private AggregatorGenerator aggregator;
-	private Map properties;
+	private Map<String, Object> properties;
 	private ProcessPipeline pipeline;
 	private boolean config = false;
+	@SuppressWarnings("unused")
 	private boolean aggregate = false;
 	protected XMLPipeline xmlPipeline;
 	protected Attributes elementAtts;	
@@ -193,19 +194,19 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 	    
 		if (namespaceURI.equals(XMLNS_KABEJA_PROCESSING)) {
 			if (ELEMENT_SAXFILTER.equals(localName) && this.config) {
-				this.properties = new HashMap();	
-				SAXFilter saxFilter = (SAXFilter) createInstance(atts,new HashMap());
+				this.properties = new HashMap<String, Object>();	
+				SAXFilter saxFilter = (SAXFilter) createInstance(atts,new HashMap<String, String>());
 				this.manager.addSAXFilter(saxfilter, atts.getValue(ATTRIBUTE_NAME));
 				saxFilter.setProperties(this.properties);
 				
 			} else if (ELEMENT_SAXSERIALIZER.equals(localName)) {
-				this.properties = new HashMap();
-				SAXSerializer saxSerializer = (SAXSerializer) createInstance(atts,new HashMap());
+				this.properties = new HashMap<String, Object>();
+				SAXSerializer saxSerializer = (SAXSerializer) createInstance(atts,new HashMap<String, String>());
 				saxSerializer.setProperties(this.properties);
 				this.manager.addSAXSerializer(saxSerializer,  atts.getValue(ATTRIBUTE_NAME));
 			} else if (ELEMENT_POSTPROCESSOR.equals(localName)) {
-				this.properties = new HashMap();
-				PostProcessor pp = (PostProcessor) createInstance(atts,new HashMap());
+				this.properties = new HashMap<String, Object>();
+				PostProcessor pp = (PostProcessor) createInstance(atts,new HashMap<String, String>());
 				pp.setProperties(this.properties);
 				this.manager.addPostProcessor(pp, atts.getValue(ATTRIBUTE_NAME));
 			} else if (ELEMENT_PIPELINE.equals(localName)) {
@@ -219,12 +220,12 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 				this.manager.addProcessPipeline(this.pipeline);
 				
 			} else if (ELEMENT_SERIALIZE.equals(localName)) {
-				this.properties = new HashMap();
+				this.properties = new HashMap<String, Object>();
 				this.xmlPipeline.setSAXSerializer(this.manager.getSAXSerializer(atts.getValue(ATTRIBUTE_NAME)));
 				this.xmlPipeline.setSAXSerializerProperties(this.properties);
 				
 			} else if (ELEMENT_FILTER.equals(localName)) {
-				this.properties = new HashMap();
+				this.properties = new HashMap<String, Object>();
 				SAXFilterConfig config = new SAXFilterConfig(this.properties);
 				config.setFilterName(atts.getValue(ATTRIBUTE_NAME));
 				this.pipeline.addSAXFilterConfig(config);
@@ -233,7 +234,7 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 				this.properties.put(atts.getValue(ATTRIBUTE_NAME), atts
 						.getValue(ATTRIBUTE_VALUE));
 			} else if (ELEMENT_POSTPROCESS.equals(localName)) {
-				this.properties = new HashMap();
+				this.properties = new HashMap<String, Object>();
 				PostProcessorConfig config = new PostProcessorConfig(
 						this.properties);
 				config.setPostProcessorName(atts.getValue(ATTRIBUTE_NAME));
@@ -242,13 +243,14 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 			} else if (ELEMENT_CONFIGURATION.equals(localName)) {
 				this.config = true;
 			} else if (ELEMENT_GENERATOR.equals(localName)) {
-				this.properties = new HashMap();
+				this.properties = new HashMap<String, Object>();
+				@SuppressWarnings("unused")
 				String clazz = (atts.getValue(ATTRIBUTE_CLASS));
-				Generator generator = (Generator) createInstance(atts,new HashMap());
+				Generator generator = (Generator) createInstance(atts,new HashMap<String, String>());
 				this.manager.addGenerator(generator,atts.getValue(ATTRIBUTE_NAME));
 				
 			} else if (ELEMENT_GENERATE.equals(localName)) {
-				this.properties = new HashMap();
+				this.properties = new HashMap<String, Object>();
 				this.pipeline.setGenerator(this.manager.getGenerator(atts.getValue(ATTRIBUTE_NAME)));
 			    this.pipeline.setGeneratorProperties(this.properties);
 			
@@ -257,8 +259,8 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 				this.aggregator = new AggregatorGenerator();
 				this.xmlPipeline.setSAXGenerator(this.aggregator);
 			}else if(ELEMENT_SAXGENERATOR.equals(localName)){
-				this.properties = new HashMap();
-				Object obj =createInstance(atts,new HashMap());
+				this.properties = new HashMap<String, Object>();
+				Object obj =createInstance(atts,new HashMap<String, String>());
 				if(obj instanceof SAXGenerator){
 					SAXGenerator gen = (SAXGenerator)obj;
 					gen.setProperties(this.properties);
@@ -267,7 +269,7 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 				
 			}else if(ELEMENT_SAXGENERATE.equals(localName)){
 				
-			    this.properties = new HashMap();
+			    this.properties = new HashMap<String, Object>();
 				this.xmlPipeline = new XMLPipeline();
 				this.xmlPipeline.setProperties(this.properties);
 				this.xmlPipeline.setSAXGenerator(this.manager.getSAXGenerator(atts.getValue(ATTRIBUTE_NAME)));
@@ -275,7 +277,7 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 				
 			}else if(ELEMENT_PARSER.equals(localName)){
 				String name = atts.getValue(ATTRIBUTE_NAME);
-				Object obj =createInstance(atts,new HashMap());
+				Object obj =createInstance(atts,new HashMap<String, String>());
 					if(obj instanceof Parser){
 						this.manager.addParser((Parser)obj, name);
 						System.out.println("Parser:"+name+" instance:"+this.manager.getParsers().get(name));
@@ -300,7 +302,7 @@ public class SAXProcessingManagerBuilder implements ContentHandler {
 		return this.manager;
 	}
 
-	protected Object createInstance(Attributes atts,Map properties) {
+	protected Object createInstance(Attributes atts, Map<String, String> properties) {
 		try {
 		    String clazz = atts.getValue(ATTRIBUTE_CLASS);
             String factory = atts.getValue(ATTRIBUTE_FACTORY);

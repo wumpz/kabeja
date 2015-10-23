@@ -34,7 +34,7 @@ import org.kabeja.math.Bounds;
 public class BoundsDebugger extends AbstractPostProcessor {
 	public static final String LAYER_NAME = "kabeja_bounds_debug";
 
-	public void process(DraftDocument doc, Map context)
+	public void process(DraftDocument doc, Map<String, Object> context)
 			throws ProcessorException {
 
 		// get or create the debug layer
@@ -167,6 +167,7 @@ public class BoundsDebugger extends AbstractPostProcessor {
 	 * 
 	 * @see org.kabeja.tools.PostProcessor#setProperties(java.util.Map)
 	 */
-	public void setProperties(Map properties) {
+	public void setProperties(Map<String, Object> properties) {
+		// FIXME ???
 	}
 }

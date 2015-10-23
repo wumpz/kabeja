@@ -22,7 +22,9 @@ package org.kabeja.processing;
  *
  */
 public class ProcessorException extends Exception {
-    public ProcessorException() {
+	private static final long serialVersionUID = 2114593648679518639L;
+
+	public ProcessorException() {
     }
 
     public ProcessorException(Exception e) {

@@ -57,8 +57,8 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
     private String dtd;
     private int indent = 0;
     private boolean parent = false;
-    private ArrayList textContentList = new ArrayList();
-    protected HashMap rootxmlns = new HashMap();
+    private ArrayList<Boolean> textContentList = new ArrayList<Boolean>();
+    protected HashMap<String, String> rootxmlns = new HashMap<String, String>();
     protected boolean gzip = false;
 
     public SAXPrettyOutputter(OutputStream output, String encoding) {
@@ -197,7 +197,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
                 //attributes
                 this.indentOutput(1);
 
-                String uri = atts.getURI(i);
+                //String uri = atts.getURI(i);
                 String qname = atts.getQName(i);
 
                 // if (uri.length() > 0) {
@@ -326,7 +326,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
      *
      * @see org.kabeja.xml.SAXSerializer#setProperties(java.util.Map)
      */
-    public void setProperties(Map properties) {
+    public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
 
         if (properties.containsKey(PROPERTY_ENCODING)) {

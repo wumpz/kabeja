@@ -58,7 +58,7 @@ public class VisibilityFilter extends AbstractPostProcessor {
 		}
 	}
 
-	public void setProperties(Map<String,String> properties) {
+	public void setProperties(Map<String,Object> properties) {
 
 	}
 }

@@ -118,7 +118,7 @@ public class Utils {
     }
 
     public static void reversePolyline(Polyline pline) {
-        ArrayList list = new ArrayList();
+        ArrayList<Vertex> list = new ArrayList<Vertex>();
         double bulge = 0;
         int size = pline.getVertexCount();
 

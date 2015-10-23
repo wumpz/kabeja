@@ -37,10 +37,10 @@ import org.kabeja.util.Constants;
 
 public class PolylineConverter extends AbstractPostProcessor {
     public final static String PROPERTY_POINT_DISTANCE = "point.distance";
-    private List queues;
+    private List<PolylineQueue> queues;
     private double radius = Constants.POINT_CONNECTION_RADIUS;
 
-    public void process(DraftDocument doc, Map context) throws ProcessorException {
+    public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
      for(Layer layer:doc.getLayers()){
             processLayer(layer);
         }
@@ -48,7 +48,7 @@ public class PolylineConverter extends AbstractPostProcessor {
         // TODO process the blocks too
     }
 
-    public void setProperties(Map properties) {
+    public void setProperties(Map<String, Object> properties) {
         if (properties.containsKey(PROPERTY_POINT_DISTANCE)) {
             this.radius = Double.parseDouble((String) properties.get(
                         PROPERTY_POINT_DISTANCE));
@@ -56,7 +56,7 @@ public class PolylineConverter extends AbstractPostProcessor {
     }
 
     protected void processLayer(Layer layer) {
-        this.queues = new ArrayList();
+        this.queues = new ArrayList<PolylineQueue>();
 
         // check the lines
         if (layer.hasEntities(Type.TYPE_LINE)) {
@@ -119,7 +119,7 @@ public class PolylineConverter extends AbstractPostProcessor {
     }
 
     protected void checkEntity(DraftEntity e, Point3D start, Point3D end) {
-        Iterator i = this.queues.iterator();
+        Iterator<PolylineQueue> i = this.queues.iterator();
 
         while (i.hasNext()) {
             PolylineQueue queue = (PolylineQueue) i.next();
@@ -136,7 +136,7 @@ public class PolylineConverter extends AbstractPostProcessor {
     }
 
     protected void cleanUp(Layer layer) {
-        Iterator i = this.queues.iterator();
+        Iterator<PolylineQueue> i = this.queues.iterator();
 
         while (i.hasNext()) {
             PolylineQueue queue = (PolylineQueue) i.next();

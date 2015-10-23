@@ -32,7 +32,7 @@ import org.kabeja.util.Constants;
 
 
 public class PolylineQueue {
-    private List elements = new ArrayList();
+    private List<DraftEntity> elements = new ArrayList<DraftEntity>();
     private Point3D startPoint;
     private Point3D endPoint;
     private double radius = Constants.POINT_CONNECTION_RADIUS;
@@ -94,7 +94,7 @@ public class PolylineQueue {
         return this.endPoint;
     }
 
-    public Iterator getElementIterator() {
+    public Iterator<DraftEntity> getElementIterator() {
         return this.elements.iterator();
     }
 
@@ -131,7 +131,7 @@ public class PolylineQueue {
         Vertex first = new Vertex(this.startPoint);
         pline.addVertex(first);
 
-        Iterator i = this.elements.iterator();
+        Iterator<DraftEntity> i = this.elements.iterator();
 
         while (i.hasNext()) {
             DraftEntity e = (DraftEntity) i.next();
@@ -229,7 +229,7 @@ public class PolylineQueue {
     public void insertBefore(PolylineQueue queue) {
         this.startPoint = queue.getStartPoint();
 
-        Iterator i = queue.getElementIterator();
+        Iterator<DraftEntity> i = queue.getElementIterator();
         int x = 0;
 
         while (i.hasNext()) {
@@ -247,7 +247,7 @@ public class PolylineQueue {
     public void add(PolylineQueue queue) {
         this.endPoint = queue.getEndPoint();
 
-        Iterator i = queue.getElementIterator();
+        Iterator<DraftEntity> i = queue.getElementIterator();
 
         while (i.hasNext()) {
             DraftEntity e = (DraftEntity) i.next();

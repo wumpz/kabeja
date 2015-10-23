@@ -35,9 +35,9 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
 
     protected DraftDocument doc;
 
-    protected Map nsHandlers = new HashMap();
+    protected Map<String, Map<String, XMLHandler>> nsHandlers = new HashMap<String, Map<String, XMLHandler>>();
 
-    protected Map noNSHandlers = new HashMap();
+    protected Map<String, XMLHandler> noNSHandlers = new HashMap<String, XMLHandler>();
 
     protected XMLHandler currentHandler;
     protected boolean throughXMLHandler = false;
@@ -48,15 +48,15 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
 
     public void addHandler(XMLHandler xmlHandler) {
 
-        Map elementHandlers = null;
+        Map<String, XMLHandler> elementHandlers = null;
 
         if (xmlHandler.getNamespaceHandle().length() == 0) {
             elementHandlers = noNSHandlers;
         } else if (this.nsHandlers.containsKey(xmlHandler.getNamespaceHandle())) {
-            elementHandlers = (Map) this.nsHandlers.get(xmlHandler
+            elementHandlers = (Map<String, XMLHandler>) this.nsHandlers.get(xmlHandler
                     .getNamespaceHandle());
         } else {
-            elementHandlers = new HashMap();
+            elementHandlers = new HashMap<String, XMLHandler>();
             this.nsHandlers.put(xmlHandler.getNamespaceHandle(),
                     elementHandlers);
 
@@ -75,7 +75,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
      * @see org.kabeja.parser.Parser#parse(java.io.InputStream,
      * java.lang.String)
      */
-    public void parse(InputStream input,DraftDocument doc, Map properties) throws ParseException {
+    public void parse(InputStream input, DraftDocument doc, Map<String, Object> properties) throws ParseException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             factory.setNamespaceAware(true);
@@ -98,7 +98,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
     /* (non-Javadoc)
 	 * @see org.kabeja.parser.Parser#parse(java.io.InputStream, java.util.Map)
 	 */
-	public DraftDocument parse(InputStream in, Map properties)
+	public DraftDocument parse(InputStream in, Map<String, Object> properties)
 			throws ParseException {
 		parse(in, new DraftDocument(), properties);
 		return this.doc;
@@ -144,7 +144,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
             }
             
         }else if (nsHandlers.containsKey(uri)) {
-            Map handlers = (Map) nsHandlers.get(uri);
+        	Map<String, XMLHandler> handlers = nsHandlers.get(uri);
             if (handlers.containsKey(localName)) {
                 this.currentHandler = (XMLHandler) handlers.get(localName);
                 this.currentHandler.endParseElement(uri, localName, context);
@@ -174,7 +174,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
                 }
             } else {
                 if (this.nsHandlers.containsKey(uri)) {
-                    Map handlers = (Map) nsHandlers.get(uri);
+                	Map<String, XMLHandler> handlers = nsHandlers.get(uri);
                     if (handlers.containsKey(localName)) {
                         this.currentHandler = (XMLHandler) handlers
                                 .get(localName);

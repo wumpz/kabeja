@@ -100,7 +100,7 @@ public class Polyline extends Entity {
         // remove and check the constantwidth
         constantWidth = true;
 
-        Iterator i = vertices.iterator();
+        Iterator<Vertex> i = vertices.iterator();
 
         while (i.hasNext()) {
             Vertex v = (Vertex) i.next();
@@ -252,7 +252,7 @@ public class Polyline extends Entity {
         } else {
             this.constantWidth = true;
 
-            Iterator i = vertices.iterator();
+            Iterator<Vertex> i = vertices.iterator();
 
             while (i.hasNext()) {
                 Vertex vertex = (Vertex) i.next();
@@ -426,7 +426,7 @@ public class Polyline extends Entity {
     }
 
     public Vertex getPolyFaceMeshVertex(int index) {
-        Iterator i = this.vertices.iterator();
+        Iterator<Vertex> i = this.vertices.iterator();
         int count = 1;
 
         while (i.hasNext()) {
@@ -605,7 +605,7 @@ public class Polyline extends Entity {
 
         if (isSimpleMesh()) {
             Vertex[][] points = new Vertex[this.rows][this.columns];
-            Iterator it = this.vertices.iterator();
+            Iterator<Vertex> it = this.vertices.iterator();
 
             // create a line for each row
             for (int i = 0; i < this.rows; i++) {
@@ -641,8 +641,8 @@ public class Polyline extends Entity {
             }
         } else {
             Vertex[][] points = new Vertex[this.surefaceDensityRows][this.surefaceDensityColumns];
-            Iterator vi = this.vertices.iterator();
-            List appVertices = new ArrayList();
+            Iterator<Vertex> vi = this.vertices.iterator();
+            List<Vertex> appVertices = new ArrayList<Vertex>();
 
             while (vi.hasNext()) {
                 Vertex v = (Vertex) vi.next();
@@ -652,7 +652,7 @@ public class Polyline extends Entity {
                 }
             }
 
-            Iterator it = appVertices.iterator();
+            Iterator<Vertex> it = appVertices.iterator();
 
             // create a line for each row
             for (int i = 0; i < this.surefaceDensityRows; i++) {
@@ -717,7 +717,7 @@ public class Polyline extends Entity {
 	public void setDocument(DraftDocument doc) {
 		
 		super.setDocument(doc);
-		Iterator i = this.vertices.iterator();
+		Iterator<Vertex> i = this.vertices.iterator();
 		while(i.hasNext()){
 			((Vertex)i.next()).setDocument(doc);
 		}

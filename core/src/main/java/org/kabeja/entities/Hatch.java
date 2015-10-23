@@ -45,6 +45,7 @@ import org.kabeja.math.TransformContext;
  */
 public class Hatch extends Entity {
 	private String name = "";
+	@SuppressWarnings("unused")
 	private boolean solid = false;
 	private int associativityFlag = 0;
 	private int boundaryPathCount = 0;

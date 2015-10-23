@@ -28,9 +28,12 @@ public class LineType {
     private String descritpion = "";
     private double totalPatternLength = 0.0;
     private double[] pattern=new double[]{};
-    private int elementCount = 0;
-    private int[] offsetX;
-    private int[] offsetY;
+    @SuppressWarnings("unused")
+	private int elementCount = 0;
+    @SuppressWarnings("unused")
+	private int[] offsetX;
+    @SuppressWarnings("unused")
+	private int[] offsetY;
     private int alignment=65;
     protected double scale = 1.0;
     protected int flags=0;

@@ -43,7 +43,7 @@ public interface Parser{
 	 * @throws ParseException
 	 */
 	
-    public abstract DraftDocument parse(InputStream in,Map<String,Object> properties) throws ParseException;
+    public abstract DraftDocument parse(InputStream in, Map<String,Object> properties) throws ParseException;
 
     
     
@@ -53,7 +53,7 @@ public interface Parser{
      * @param encoding
      * @throws ParseException
      */
-    public abstract void parse(InputStream input, DraftDocument doc,Map<String,Object> properties)
+    public abstract void parse(InputStream input, DraftDocument doc, Map<String,Object> properties)
         throws ParseException;
     
    

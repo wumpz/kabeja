@@ -35,7 +35,9 @@ public class CLIApplication implements Application{
 	private String sourceFile;
 	private String destinationFile;
 
+	@SuppressWarnings("unused")
 	private boolean process = false;
+	@SuppressWarnings("unused")
 	private boolean directoryMode = true;
 	private ProcessingManager processorManager;
 	private String pipeline;
@@ -44,7 +46,7 @@ public class CLIApplication implements Application{
 	
 	
 	
-    public void start(Map properties) {
+    public void start(Map<String, String> properties) {
     	//setup application
     	if(properties.containsKey("pp")){
     		try {
@@ -153,7 +155,7 @@ public class CLIApplication implements Application{
             if(index >-1&& index+1<extension.length()){
             	extension = extension.substring(index+1);
             }
-		    this.processorManager.process(new FileInputStream(f), extension, new HashMap(), pipeline, new FileOutputStream(output));
+		    this.processorManager.process(new FileInputStream(f), extension, new HashMap<String, Object>(), pipeline, new FileOutputStream(output));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -174,7 +176,7 @@ public class CLIApplication implements Application{
 
 
 	public void printPipelines() {
-		Iterator i = this.processorManager.getProcessPipelines().keySet()
+		Iterator<String> i = this.processorManager.getProcessPipelines().keySet()
 				.iterator();
 		System.out.println("\n Available pipelines:\n----------\n");
 

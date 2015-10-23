@@ -22,14 +22,14 @@ import java.util.Map;
 public abstract class AbstractXMLHandler implements XMLHandler{
 	
 	
-	protected Map properties = new HashMap();
+	protected Map<String, String> properties = new HashMap<String, String>();
 	
 
 
     /* (non-Javadoc)
      * @see org.kabeja.parser.xml.XMLHandler#setProperties(java.util.Map)
      */
-    public void setProperties(Map properties) {
+    public void setProperties(Map<String, String> properties) {
        this.properties = properties;
         
     }

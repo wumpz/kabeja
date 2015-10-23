@@ -74,7 +74,8 @@ public class Ellipse extends Entity {
             double h = (this.endParameter - this.startParameter) / n;
 
             double start = this.startParameter;
-            double major = this.getHalfMajorAxisLength();
+            @SuppressWarnings("unused")
+			double major = this.getHalfMajorAxisLength();
     
 
             Vector minorAxis = MathUtils.crossProduct(this.getExtrusion()

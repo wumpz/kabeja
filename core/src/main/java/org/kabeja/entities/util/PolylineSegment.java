@@ -36,8 +36,10 @@ public class PolylineSegment {
     private Point3D point4 = new Point3D();
     private double radius;
     private double bulgeHeight;
-    private double innerRadius;
-    private double outerRadius;
+    @SuppressWarnings("unused")
+	private double innerRadius;
+    @SuppressWarnings("unused")
+	private double outerRadius;
     private Vertex start;
     private Polyline p;
 
@@ -174,7 +176,8 @@ public class PolylineSegment {
 
         double h = Math.abs(start.getBulge() * length) / 2;
         double r = p.getRadius(start.getBulge(), length);
-        boolean right = false;
+        @SuppressWarnings("unused")
+		boolean right = false;
 
         if (start.getBulge() > 0.0) {
             double t = h - r;

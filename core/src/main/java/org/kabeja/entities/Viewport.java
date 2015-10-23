@@ -542,7 +542,8 @@ public class Viewport extends Entity {
         // the half of width and height
         double modelH = (this.height / this.getZoomXPFactor()) / 2;
         double modelW = (f * modelH);
-        double wf = modelW / modelH;
+        @SuppressWarnings("unused")
+		double wf = modelW / modelH;
         Vector directionX = null;
 
         if ((this.viewDirectionVector.getX() == 0.0) &&

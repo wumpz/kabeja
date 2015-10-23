@@ -39,7 +39,7 @@ public class DXFGenerator implements Generator {
 
 	protected DXFGenerationContext generationContext;
 
-	protected Map properties = new HashMap();
+	protected Map<String, Object> properties = new HashMap();
 
 	public DXFGenerator(DXFGenerationContext context) {
 		this.generationContext = context;
@@ -140,8 +140,8 @@ public class DXFGenerator implements Generator {
 	 * 
 	 * @see org.kabeja.io.Generator#setProperties(java.util.Map)
 	 */
-	public void setProperties(Map<String, String> properties) {
-		for (Map.Entry<String, String> entry : properties.entrySet()) {
+	public void setProperties(Map<String, Object> properties) {
+		for (Map.Entry<String, Object> entry : properties.entrySet()) {
 			this.generationContext.addAttribute(entry.getKey(), entry
 					.getValue());
 		}

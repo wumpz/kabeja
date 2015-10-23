@@ -90,7 +90,7 @@ public class TextParser {
 		boolean formatting = false;
 		boolean keyfollow = false;
 		boolean complete = true;
-		Stack paras = new Stack();
+		Stack<StyledTextParagraph> paras = new Stack<StyledTextParagraph>();
 		int linecount = 0;
 		int linePosition = 0;
 		String str = text.getText();

@@ -21,8 +21,8 @@ import java.util.Comparator;
 import org.kabeja.objects.MLineStyleElement;
 
 
-public class MLineStyleElementDistanceComparator implements Comparator {
-    public int compare(Object arg0, Object arg1) {
+public class MLineStyleElementDistanceComparator implements Comparator<MLineStyleElement> {
+    public int compare(MLineStyleElement arg0, MLineStyleElement arg1) {
         MLineStyleElement el1 = (MLineStyleElement) arg0;
         MLineStyleElement el2 = (MLineStyleElement) arg1;
 

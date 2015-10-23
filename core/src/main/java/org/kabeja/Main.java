@@ -38,7 +38,7 @@ public class Main {
 	public static void main(String[] args) {
 			
 		Main main = new Main();
-        Map settings = main.parseParameters(args);
+        Map<String, String> settings = main.parseParameters(args);
         String launchClass = null;
         if(settings.containsKey("cli")){
         	launchClass = CLI_APP;
@@ -59,8 +59,8 @@ public class Main {
 	}
 	
 	
-	   protected Map parseParameters(String[] args){
-	    	Map parameters = new HashMap();
+	   protected Map<String, String> parseParameters(String[] args){
+	    	Map<String, String> parameters = new HashMap<String, String>();
 	    	String key = null;
 	    	for(int i=0;i<args.length;i++){
 	    		if(args[i].startsWith("-")|| args[i].startsWith("--")){

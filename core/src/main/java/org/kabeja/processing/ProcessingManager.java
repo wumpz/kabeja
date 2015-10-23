@@ -39,13 +39,13 @@ import org.kabeja.xml.SAXSerializer;
  */
 public class ProcessingManager {
 	
-    private Map saxfilters = new HashMap();
-    private Map saxserializers = new HashMap();
-    private Map postprocessors = new HashMap();
-    private Map pipelines = new HashMap();
-    private Map saxgenerators = new HashMap();
-    private Map parsers = new HashMap();
-    private Map generators = new HashMap();
+    private Map<String, SAXFilter> saxfilters = new HashMap<String, SAXFilter>();
+    private Map<String, SAXSerializer> saxserializers = new HashMap<String, SAXSerializer>();
+    private Map<String, PostProcessor> postprocessors = new HashMap<String, PostProcessor>();
+    private Map<String, ProcessPipeline> pipelines = new HashMap<String, ProcessPipeline>();
+    private Map<String, SAXGenerator> saxgenerators = new HashMap<String, SAXGenerator>();
+    private Map<String, Parser> parsers = new HashMap<String, Parser>();
+    private Map<String, Generator> generators = new HashMap<String, Generator>();
   
     
 
@@ -57,7 +57,7 @@ public class ProcessingManager {
         return (SAXFilter) this.saxfilters.get(name);
     }
 
-    public Map getSAXFilters() {
+    public Map<String, SAXFilter> getSAXFilters() {
         return this.saxfilters;
     }
 
@@ -69,7 +69,7 @@ public class ProcessingManager {
         return (SAXSerializer) this.saxserializers.get(name);
     }
 
-    public Map getSAXSerializers() {
+    public Map<String, SAXSerializer> getSAXSerializers() {
         return this.saxserializers;
     }
 
@@ -81,12 +81,12 @@ public class ProcessingManager {
         this.parsers.put(name,parser);
     }
 
-    public Map getParsers() {
+    public Map<String, Parser> getParsers() {
         return this.parsers;
     }
 
     public Parser getParser(String extension) {
-        Iterator i = this.parsers.values().iterator();
+        Iterator<Parser> i = this.parsers.values().iterator();
 
         while (i.hasNext()) {
             Parser parser = (Parser) i.next();
@@ -103,7 +103,7 @@ public class ProcessingManager {
         return (PostProcessor) this.postprocessors.get(name);
     }
 
-    public Map getPostProcessors() {
+    public Map<String, PostProcessor> getPostProcessors() {
         return this.postprocessors;
     }
 
@@ -116,17 +116,17 @@ public class ProcessingManager {
         return (ProcessPipeline) this.pipelines.get(name);
     }
 
-    public Map getProcessPipelines() {
+    public Map<String, ProcessPipeline> getProcessPipelines() {
         return this.pipelines;
     }
 
-    public void process(InputStream stream, String extension, Map context,
+    public void process(InputStream stream, String extension, Map<String, Object> context,
         String pipeline, OutputStream out) throws ProcessorException {
         Parser parser = this.getParser(extension);
 
         if (parser != null) {
             try {
-                DraftDocument doc = parser.parse(stream, new HashMap());
+                DraftDocument doc = parser.parse(stream, new HashMap<String, Object>());
                 this.process(doc, context, pipeline, out);
             } catch (ParseException e) {
                 throw new ProcessorException(e);
@@ -134,7 +134,7 @@ public class ProcessingManager {
         }
     }
 
-    public void process(DraftDocument doc, Map context, String pipeline,
+    public void process(DraftDocument doc, Map<String, Object> context, String pipeline,
         OutputStream out) throws ProcessorException {
         if (this.pipelines.containsKey(pipeline)) {
             ProcessPipeline pp = (ProcessPipeline) this.pipelines.get(pipeline);
@@ -146,7 +146,7 @@ public class ProcessingManager {
         }
     }
 
-    public void process(DraftDocument doc, Map context, String pipeline,
+    public void process(DraftDocument doc, Map<String, Object> context, String pipeline,
         String sourceFile) throws ProcessorException {
         if (this.pipelines.containsKey(pipeline)) {
             try {
@@ -173,7 +173,7 @@ public class ProcessingManager {
         return (SAXGenerator) this.saxgenerators.get(name);
     }
 
-    public Map getGenerators() {
+    public Map<String, Generator> getGenerators() {
         return this.generators;
     }
     

@@ -32,7 +32,7 @@ public class BoundsFilter extends AbstractPostProcessor {
 	public final static String PROPERTY_HEIGHT = "boundsfilter.height";
 	public final static String PROPERTY_PROCESS = "boundsfilter.process";
 
-	public void process(DraftDocument doc, Map context)
+	public void process(DraftDocument doc, Map<String, Object> context)
 			throws ProcessorException {
 		if (this.properties.containsKey(PROPERTY_PROCESS)
 				&& Boolean.valueOf(

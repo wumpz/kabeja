@@ -34,30 +34,28 @@ import org.xml.sax.SAXException;
 
 public class XMLPipeline implements Generator {
 
-	private Map serializerProperties = new HashMap();
+	private Map<String, Object> serializerProperties = new HashMap<String, Object>();
 
 	private SAXSerializer serializer;
 
 	private SAXGenerator generator;
-	private List saxFilterConfigs = new ArrayList();
+	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<SAXFilterConfig>();
 	private ProcessingManager manager;
-	private Map properties = new HashMap();
+	private Map<String, Object> properties = new HashMap<String, Object>();
 	
-
-	public void generate(DraftDocument doc, Map context, OutputStream out)
+	public void generate(DraftDocument doc, Map<String, Object> context, OutputStream out)
 			throws GenerationException {
 		
 		
 		ContentHandler handler = null;
-		List saxFilterProperties = new ArrayList();
+		List<Map<String, Object>> saxFilterProperties = new ArrayList<Map<String, Object>>();
 
 		// setup saxfilters
 		if (this.saxFilterConfigs.size() > 0) {
-			Iterator i = saxFilterConfigs.iterator();
+			Iterator<SAXFilterConfig> i = saxFilterConfigs.iterator();
 			SAXFilterConfig sc = (SAXFilterConfig) i.next();
 			SAXFilter first = this.manager.getSAXFilter(sc.getFilterName());
-			saxFilterProperties
-					.add(new MergeMap(first.getProperties(), context));
+			saxFilterProperties.add(new MergeMap<String, Object>(first.getProperties(), context));
 
 			handler = first;
 			first.setProperties(sc.getProperties());
@@ -76,16 +74,16 @@ public class XMLPipeline implements Generator {
 			handler = this.serializer;
 		}
 
-		Map oldProbs = this.serializer.getProperties();
+		Map<String, Object> oldProbs = this.serializer.getProperties();
 
-		this.serializer.setProperties(new MergeMap(oldProbs, new MergeMap(
+		this.serializer.setProperties(new MergeMap<String, Object>(oldProbs, new MergeMap<String, Object>(
 				this.serializerProperties, context)));
 
 		// invoke the filter and serializer
 		this.serializer.setOutput(out);
 
 		try {
-			Map oldGenProps = this.generator.getProperties();
+			Map<String, Object> oldGenProps = this.generator.getProperties();
 			this.generator.setProperties(this.properties);
 			this.generator.generate(doc, handler, context);
 			// restore the old props
@@ -101,7 +99,7 @@ public class XMLPipeline implements Generator {
 		for (int x = 0; x < saxFilterProperties.size(); x++) {
 			SAXFilterConfig sc = (SAXFilterConfig) saxFilterConfigs.get(x);
 			this.manager.getSAXFilter(sc.getFilterName()).setProperties(
-					(Map) saxFilterProperties.get(x));
+					(Map<String, Object>) saxFilterProperties.get(x));
 		}
 
 	}
@@ -114,8 +112,8 @@ public class XMLPipeline implements Generator {
 		return this.serializer.getSuffix();
 	}
 
-	public void setProperties(Map properties) {
-
+	public void setProperties(Map<String, Object> properties) {
+		// FIXME Why is this not implemented?
 	}
 
 	/**
@@ -142,7 +140,7 @@ public class XMLPipeline implements Generator {
 	/**
 	 * @return Returns the serializerProperties.
 	 */
-	public Map getSerializerProperties() {
+	public Map<String, Object> getSerializerProperties() {
 		return serializerProperties;
 	}
 
@@ -150,7 +148,7 @@ public class XMLPipeline implements Generator {
 	 * @param serializerProperties
 	 *            The serializerProperties to set.
 	 */
-	public void setSAXSerializerProperties(Map serializerProperties) {
+	public void setSAXSerializerProperties(Map<String, Object> serializerProperties) {
 		this.serializerProperties = serializerProperties;
 	}
 

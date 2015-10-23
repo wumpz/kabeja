@@ -16,6 +16,7 @@
 package org.kabeja.io;
 
 public class DraftGenerationException extends Exception {
+	private static final long serialVersionUID = -6736237740535658115L;
 
 	public DraftGenerationException() {
 		

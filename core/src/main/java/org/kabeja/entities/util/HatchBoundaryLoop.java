@@ -48,7 +48,7 @@ public class HatchBoundaryLoop {
         this.outermost = outermost;
     }
 
-    public Iterator getBoundaryEdgesIterator() {
+    public Iterator<DraftEntity> getBoundaryEdgesIterator() {
         return edges.iterator();
     }
 
@@ -65,7 +65,7 @@ public class HatchBoundaryLoop {
 
         // System.out.println("edges="+edges.size());
         if (edges.size() > 0) {
-            Iterator i = edges.iterator();
+            Iterator<DraftEntity> i = edges.iterator();
 
             while (i.hasNext()) {
                 Entity entity = (Entity) i.next();

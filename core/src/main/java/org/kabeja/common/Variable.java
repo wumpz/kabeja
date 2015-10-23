@@ -27,7 +27,7 @@ import java.util.Iterator;
  *
  */
 public class Variable {
-    private Hashtable values = new Hashtable();
+    private Hashtable<String, String> values = new Hashtable<String, String>();
     private String name = "";
 
     public Variable(String name) {
@@ -62,7 +62,7 @@ public class Variable {
      *
      * @return a iterator over all keys of this Value
      */
-    public Iterator getValueKeyIterator() {
+    public Iterator<String> getValueKeyIterator() {
         return values.keySet().iterator();
     }
 }

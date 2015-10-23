@@ -39,7 +39,7 @@ public class LayerFilter extends AbstractPostProcessor {
 
 	protected Set<String> removableLayers = new HashSet<String>();
 
-	public void setProperties(Map properties) {
+	public void setProperties(Map<String, Object> properties) {
 		super.setProperties(properties);
 
 		if (properties.containsKey(PROPERTY_MERGE_LAYERS)) {
@@ -65,7 +65,7 @@ public class LayerFilter extends AbstractPostProcessor {
 		}
 	}
 
-	public void process(DraftDocument doc, Map context) throws ProcessorException {
+	public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
 		Layer mergeLayer = null;
 
 		if (this.merge) {
@@ -88,10 +88,8 @@ public class LayerFilter extends AbstractPostProcessor {
 
 		// iterate over all layers
 		Iterator<Layer> i = doc.getLayers().iterator();
-		int count = 0;
 		while (i.hasNext()) {
 			Layer layer = (Layer) i.next();
-			count++;
 
 			if (this.removableLayers.contains(layer.getName())) {
 				i.remove();

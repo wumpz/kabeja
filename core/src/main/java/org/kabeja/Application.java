@@ -34,7 +34,7 @@ public interface Application extends Component{
      * Starts the application.
      * @param properties 
      */
-    public void start(Map properties);
+    public void start(Map<String, String> properties);
 
     /**
      * Stops the application

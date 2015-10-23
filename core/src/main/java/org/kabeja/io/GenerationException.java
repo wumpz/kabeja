@@ -17,6 +17,7 @@
 package org.kabeja.io;
 
 public class GenerationException extends Exception {
+	private static final long serialVersionUID = -4073488892452905127L;
 
 	public GenerationException() {
 		

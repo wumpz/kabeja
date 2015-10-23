@@ -34,19 +34,19 @@ import org.kabeja.processing.xml.SAXFilterConfig;
 public class ProcessPipeline {
 	
 	private ProcessingManager manager;
-	private List postProcessorConfigs = new ArrayList();
-	private List saxFilterConfigs = new ArrayList();
+	private List<PostProcessorConfig> postProcessorConfigs = new ArrayList<PostProcessorConfig>();
+	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<SAXFilterConfig>();
 	private Generator generator;
-	private Map generatorProperties = new HashMap();
+	private Map<String, Object> generatorProperties = new HashMap<String, Object>();
 	private String name;
 	private String description = "";
 
-	public void process(DraftDocument doc, Map context, OutputStream out)
+	public void process(DraftDocument doc, Map<String, Object> context, OutputStream out)
 			throws ProcessorException {
 		
 
 		// postprocess
-		Iterator i = this.postProcessorConfigs.iterator();
+		Iterator<PostProcessorConfig> i = this.postProcessorConfigs.iterator();
 
 		while (i.hasNext()) {
 			PostProcessorConfig ppc = (PostProcessorConfig) i.next();
@@ -54,9 +54,9 @@ public class ProcessPipeline {
 					.getPostProcessorName());
 
 			// backup the default props
-			Map oldProps = pp.getProperties();
+			Map<String, Object> oldProps = pp.getProperties();
 			// setup the pipepine props
-			pp.setProperties(new MergeMap(ppc.getProperties(), context));
+			pp.setProperties(new MergeMap<String, Object>(ppc.getProperties(), context));
 			pp.process(doc, context);
 			// restore the default props
 			pp.setProperties(oldProps);
@@ -97,7 +97,7 @@ public class ProcessPipeline {
 	public void prepare() {
 	}
 
-	public List getPostProcessorConfigs() {
+	public List<PostProcessorConfig> getPostProcessorConfigs() {
 		return this.postProcessorConfigs;
 	}
 
@@ -110,11 +110,11 @@ public class ProcessPipeline {
 	}
 
 
-	public void setGeneratorProperties(Map generatorProperties) {
+	public void setGeneratorProperties(Map<String, Object> generatorProperties) {
 		this.generatorProperties = generatorProperties;
 	}
 
-	public Map getSAXGeneratorProperties(Map generatorProperties) {
+	public Map<String, Object> getSAXGeneratorProperties(Map<String, Object> generatorProperties) {
 		return this.generatorProperties;
 	}
 

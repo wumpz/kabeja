@@ -31,8 +31,8 @@ import org.kabeja.parser.util.ParsingValidator;
 public class ParsingContext {
 
      
-    protected List  validatorList = new ArrayList();
-    protected Map properties = new HashMap();
+    protected List<ParsingValidator> validatorList = new ArrayList<ParsingValidator>();
+    protected Map<String, String> properties = new HashMap<String, String>();
     
     protected Layer currentLayer;
     protected DraftDocument doc;
@@ -51,7 +51,7 @@ public class ParsingContext {
     }
     
     
-    public void setProperty(String key,String value){
+    public void setProperty(String key, String value){
         this.properties.put(key, value);
     }
     
@@ -65,7 +65,7 @@ public class ParsingContext {
     
     public void addEntity(Entity entity){
        
-        Iterator i = this.validatorList.iterator();
+        Iterator<ParsingValidator> i = this.validatorList.iterator();
         boolean add=true;
         while(i.hasNext()&& add){
             add = ((ParsingValidator)i.next()).isValid(entity);

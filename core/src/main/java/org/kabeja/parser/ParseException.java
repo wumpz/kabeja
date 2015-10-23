@@ -23,7 +23,9 @@ package org.kabeja.parser;
  *
  */
 public class ParseException extends Exception {
-    public ParseException(String s) {
+	private static final long serialVersionUID = 6504595874577464078L;
+
+	public ParseException(String s) {
         super(s);
     }
 

@@ -402,7 +402,7 @@ public class Constants {
     public static final String BLOCK_ENTRY="BLOCK";
     public static final String BLOCK_ENTRY_END="ENDBLK";
     
-    public static final Type[] TYPES_ARC=new Type[]{Type.TYPE_ENTITY,Type.TYPE_CIRCLE,Type.TYPE_ARC};
+    public static final Type<?>[] TYPES_ARC=new Type[]{Type.TYPE_ENTITY,Type.TYPE_CIRCLE,Type.TYPE_ARC};
   
 
 }

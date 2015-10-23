@@ -25,7 +25,7 @@ import org.kabeja.util.Constants;
 
 
 public class MLineStyle extends DraftObject {
-    protected List lines = new ArrayList();
+    protected List<MLineStyleElement> lines = new ArrayList<MLineStyleElement>();
     protected String name = "";
     protected String descrition = "";
     protected int fillColor = 256;
@@ -53,7 +53,7 @@ public class MLineStyle extends DraftObject {
         return this.lines.size();
     }
 
-    public void sortMLineStyleElements(Comparator comp) {
+    public void sortMLineStyleElements(Comparator<MLineStyleElement> comp) {
         Collections.sort(this.lines, comp);
     }
 

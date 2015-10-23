@@ -47,7 +47,7 @@ import org.kabeja.objects.ImageDefObject;
  */
 public class ImageFilter extends AbstractPostProcessor {
 
-    public void process(DraftDocument doc, Map context) throws ProcessorException {
+    public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
      for(Layer l :doc.getLayers()){
 
             if (l.hasEntities(Type.TYPE_IMAGE)) {

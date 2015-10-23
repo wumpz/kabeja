@@ -33,7 +33,7 @@ public class PointParserTest {
         parser.setCoordinateType(PointParser.COORDINATE_FORMAT_3D);
         parser.appendPointString(pointString);
 
-        Iterator i = parser.getPointIterator();
+        Iterator<Point3D> i = parser.getPointIterator();
         Point3D p = (Point3D) i.next();
 
         assertEquals(10.00, p.getX(), DELTA);
@@ -51,7 +51,7 @@ public class PointParserTest {
         parser.setNumberGrouping('!');
         parser.appendPointString(pointString);
 
-        Iterator i = parser.getPointIterator();
+        Iterator<Point3D> i = parser.getPointIterator();
         Point3D p = (Point3D) i.next();
 
         assertEquals(10.00, p.getX(), DELTA);
@@ -73,7 +73,7 @@ public class PointParserTest {
         parser.setCoordinateType(PointParser.COORDINATE_FORMAT_2D);
         parser.appendPointString(pointString);
 
-        Iterator i = parser.getPointIterator();
+        Iterator<Point3D> i = parser.getPointIterator();
         Point3D p = (Point3D) i.next();
 
         assertEquals(10.00, p.getX(), DELTA);
@@ -97,7 +97,7 @@ public class PointParserTest {
         PointParser parser = new PointParser();
         parser.appendPointString(pointString);
 
-        Iterator i = parser.getPointIterator();
+        Iterator<Point3D> i = parser.getPointIterator();
         Point3D p = (Point3D) i.next();
 
         assertEquals(1515530.44513354, p.getX(), DELTA);

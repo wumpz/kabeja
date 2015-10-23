@@ -42,7 +42,7 @@ public class Loader {
     public static final String OPTION_CLASSES_FOLDER="-classes";
     public String mainClass = "org.kabeja.Main";
 
-    private Set classpathEntries = new HashSet();
+    private Set<String> classpathEntries = new HashSet<String>();
     
     
     
@@ -79,9 +79,9 @@ public class Loader {
     }
 
     protected URL[] getClasspath() {
-        List urls = new ArrayList();
+        List<URL> urls = new ArrayList<URL>();
 
-         Iterator i = this.classpathEntries.iterator();
+         Iterator<String> i = this.classpathEntries.iterator();
          while(i.hasNext()){
             File f = new File((String)i.next());
 
@@ -93,12 +93,12 @@ public class Loader {
                         String name = files[x].getName().toLowerCase();
 
                         if (name.endsWith(".jar") || name.endsWith(".zip")) {
-                            urls.add(files[x].toURL());
+                            urls.add(files[x].toURI().toURL());
                         }
                     }
                 }
 
-                urls.add(f.toURL());
+                urls.add(f.toURI().toURL());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -108,7 +108,7 @@ public class Loader {
     }
 
     protected String[] parseMainClass(String[] args) {
-        List list = new ArrayList();
+        List<String> list = new ArrayList<String>();
 
         for (int i = 0; i < args.length; i++) {
             if (OPTION_MAIN_CLASS.equals(args[i]) && ((i + 1) < args.length)) {

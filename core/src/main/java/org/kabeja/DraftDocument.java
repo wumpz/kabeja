@@ -19,7 +19,6 @@ package org.kabeja;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -62,8 +61,8 @@ public class DraftDocument {
 
 	private Map<String, Style> textStyles = new HashMap<String, Style>();
 
-	// the user coordinate systems
-	private Hashtable ucs = new Hashtable();
+	// the user coordinate systems (not used?)
+	//private Hashtable ucs = new Hashtable();
 
 	private Map<String,String> properties = new HashMap<String,String>();
 
@@ -395,9 +394,9 @@ public class DraftDocument {
 		this.rootDictionary = root;
 	}
 
-	public List<Object> getObjectsByType(String type) {
-		HashMap objecttypes = (HashMap) this.objects.get(type);
-		List list = new ArrayList(objecttypes.values());
+	public List<DraftObject> getObjectsByType(String type) {
+		Map<Long, DraftObject> objecttypes = this.objects.get(type);
+		List<DraftObject> list = new ArrayList<DraftObject>(objecttypes.values());
 
 		return list;
 	}

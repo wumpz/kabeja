@@ -37,7 +37,7 @@ import org.kabeja.io.GenerationException;
  *@author <a href="mailto:simon.mieth@gmx.de">Simon Mieth</a>
  */
 public interface Generator {
-    public void setProperties(Map<String,String> properties);
+    public void setProperties(Map<String,Object> properties);
 
     public String getSuffix();
 

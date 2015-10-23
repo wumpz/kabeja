@@ -19,10 +19,7 @@ package org.kabeja.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.rmi.CORBA.Util;
-
 import org.kabeja.common.Block;
-import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;

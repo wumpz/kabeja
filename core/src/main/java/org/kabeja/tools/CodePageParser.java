@@ -37,8 +37,10 @@ public class CodePageParser {
 
         try {
             String line = null;
-            String code;
-            String value;
+            @SuppressWarnings("unused")
+			String code;
+            @SuppressWarnings("unused")
+			String value;
             boolean next = true;
             boolean codepage = false;
             boolean key = true;

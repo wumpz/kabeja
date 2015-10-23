@@ -30,7 +30,7 @@ import org.kabeja.util.Constants;
  */
 public class Header {
 
-	private Hashtable variables = new Hashtable();
+	private Hashtable<String, Variable> variables = new Hashtable<String, Variable>();
 	private long lastID = -1;
 	private Variable idHolder = null;
 
@@ -53,7 +53,7 @@ public class Header {
 		return (Variable) variables.get(name);
 	}
 
-	public Iterator getVarialbeIterator() {
+	public Iterator<Variable> getVarialbeIterator() {
 		return variables.values().iterator();
 	}
 

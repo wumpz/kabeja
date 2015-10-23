@@ -154,25 +154,24 @@ public class SVGGenerator extends AbstractSAXGenerator {
 
         // the margin
         if (this.properties.containsKey(PROPERTY_MARGIN)) {
-            this.marginSettings =  this.properties.get(PROPERTY_MARGIN);
+        	// FIXME: properties should not be Objects. see AbstractConfigurable
+            this.marginSettings = (String) this.properties.get(PROPERTY_MARGIN);
         }
 
         if (this.properties.containsKey(PROPERTY_OVERFLOW)) {
             this.overflow = Boolean.valueOf(
-                    this.properties.get(PROPERTY_OVERFLOW))
+                    (String)this.properties.get(PROPERTY_OVERFLOW))
                     .booleanValue();
         }
 
         // parse the line width property
         if (this.properties.containsKey(PROPERTY_STROKE_WIDTH)) {
             LineWidth lw = new LineWidth();
-            String strokeWidth =  this.properties
-                    .get(PROPERTY_STROKE_WIDTH);
+            String strokeWidth = (String) this.properties.get(PROPERTY_STROKE_WIDTH);
 
             lw.setValue(Double.parseDouble(strokeWidth));
 
-            String linewidthType = this.properties
-                    .get(PROPERTY_STROKE_WIDTH_TYPE);
+            String linewidthType = (String)this.properties.get(PROPERTY_STROKE_WIDTH_TYPE);
             if (PROPERTY_STROKE_WIDTH_TYPE_VALUE_PERCENT.equals(linewidthType)) {
                 lw.setType(LineWidth.TYPE_PERCENT);
 
