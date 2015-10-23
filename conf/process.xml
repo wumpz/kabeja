@@ -50,15 +50,18 @@
 	    +-->
 	
 	<pipelines>
-	  <pipeline name="test">
-	  	  <saxgenerate name="svg">
+		<pipeline name="svg" description="Converts the draft to SVG">
+			<generate name="svg"/>
+			<serialize name="svg"/>
+		</pipeline>
+		<pipeline name="test">
+			<saxgenerate name="svg">
 			<property name="stroke-width" value="22"/>
 			<serialize name="jpeg">
-			   <property name="width" value="1024"/>
-			   <property name="height" value="768"/>
+				<property name="width" value="1024"/>
+				<property name="height" value="768"/>
 			</serialize>
 		  </saxgenerate>	
-	  </pipeline>
-	
+		</pipeline>
 	</pipelines>
 </processing>
