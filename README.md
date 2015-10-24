@@ -1,11 +1,10 @@
 # Kabeja
 
-### Library for parsing DXF files converting the same to SVG
+### Library for parsing DXF files and conversion to SVG
 
 It is licensed under the Apache Software License 2.0.
 
-Current state: The original Kabeja project was abandoned around 2010 amidst a refactoring effort in preparation for version 0.5.
-Unfortunately this has left the library in a partially broken state. Don't expect it to work flawlessly. One of the refactoring efforts was to switch the old Ant build system to Maven. This is mostly complete but the _GUI and the CLI are currently broken_ as a result.
+Current state: The original Kabeja project has not been updated since 2010. Third parties have since worked on the library. Most importantly the build system was changed from Ant to Maven. Unfortunately this left parts of the program in a partially broken state. The library part itself works but the _GUI and the CLI are currently broken_.
 
 ## Limitations
 Not all DXF entities are supported yet. Text entities are still problematic.
