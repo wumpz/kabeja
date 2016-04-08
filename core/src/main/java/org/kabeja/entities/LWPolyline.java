@@ -47,13 +47,6 @@ public class LWPolyline extends Entity{
 	
     protected static final double QUARTER_CIRCLE_ANGLE = Math.tan(0.39269908169872414D);
     protected List<LW2DVertex> vertices = new ArrayList<LW2DVertex>();
-   
-    
-    
-   
- 
-   
-  
 
     public LWPolyline() {
     }

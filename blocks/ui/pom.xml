@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.kabeja</groupId>
         <artifactId>kabeja</artifactId>
-        <version>0.5.0-SNAPSHOT-20151023</version>
+        <version>0.5.1-SNAPSHOT</version>
     </parent>
    
     <build>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.kabeja</groupId>
             <artifactId>kabeja-core</artifactId>
-            <version>0.5.0-SNAPSHOT-20151023</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>de.miethxml</groupId>

@@ -12,14 +12,14 @@
     <parent>
         <groupId>org.kabeja</groupId>
         <artifactId>kabeja</artifactId>
-        <version>0.5.0-SNAPSHOT-20151023</version>
+        <version>0.5.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>org.kabeja</groupId>
             <artifactId>kabeja-svg</artifactId>
-            <version>0.5.0-SNAPSHOT-20151023</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
