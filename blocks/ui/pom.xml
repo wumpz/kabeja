@@ -5,14 +5,14 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>kabeja-ui</artifactId>
+    <artifactId>tfly-kabeja-ui</artifactId>
     <name>Kabeja UI module</name>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>org.kabeja</groupId>
-        <artifactId>kabeja</artifactId>
-        <version>0.5.2-SNAPSHOT</version>
+        <artifactId>tfly-kabeja</artifactId>
+        <version>0.5.2</version>
     </parent>
    
     <build>
@@ -36,7 +36,7 @@
     <dependencies>
         <dependency>
             <groupId>org.kabeja</groupId>
-            <artifactId>kabeja-core</artifactId>
+            <artifactId>tfly-kabeja-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
