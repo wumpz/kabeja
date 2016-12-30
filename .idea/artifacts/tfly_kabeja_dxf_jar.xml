@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="tfly-kabeja-dxf:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/tfly_kabeja_dxf_jar</output-path>
+    <root id="archive" name="tfly-kabeja-dxf.jar">
+      <element id="module-output" name="tfly-kabeja-dxf" />
+      <element id="module-output" name="tfly-kabeja-core" />
+    </root>
+  </artifact>
+</component>
