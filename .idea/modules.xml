@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tfly-kabeja.iml" filepath="$PROJECT_DIR$/tfly-kabeja.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/tfly-kabeja-core.iml" filepath="$PROJECT_DIR$/core/tfly-kabeja-core.iml" />
+    </modules>
+  </component>
+</project>
