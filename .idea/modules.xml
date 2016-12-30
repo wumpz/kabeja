@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/tfly-kabeja.iml" filepath="$PROJECT_DIR$/tfly-kabeja.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/tfly-kabeja-core.iml" filepath="$PROJECT_DIR$/core/tfly-kabeja-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blocks/dxf/tfly-kabeja-dxf.iml" filepath="$PROJECT_DIR$/blocks/dxf/tfly-kabeja-dxf.iml" />
     </modules>
   </component>
 </project>

@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tfly-kabeja-core" />
+        <module name="tfly-kabeja-dxf" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="tfly-kabeja" target="1.5" />
       <module name="tfly-kabeja-core" target="1.5" />
+      <module name="tfly-kabeja-dxf" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
