@@ -25,12 +25,12 @@ to jpeg, tiff, png and pdf are included.
         <profile>
             <id>blocks</id>
             <modules>
-                <module>blocks/acis</module>
+                <!--<module>blocks/acis</module>-->
                 <module>blocks/dxf</module>
-                <module>blocks/ui</module>
+                <!--<module>blocks/ui</module>
                 <module>blocks/inkscape</module>
                 <module>blocks/svg</module>
-                <module>blocks/xslt</module>
+                <module>blocks/xslt</module>-->
                 <!-- module>blocks/cocoon</module -->
             </modules>
         </profile>
