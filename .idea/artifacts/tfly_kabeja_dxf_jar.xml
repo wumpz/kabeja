@@ -4,6 +4,9 @@
     <root id="archive" name="tfly-kabeja-dxf.jar">
       <element id="module-output" name="tfly-kabeja-dxf" />
       <element id="module-output" name="tfly-kabeja-core" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>
