@@ -135,7 +135,7 @@ public abstract class Entity implements DraftEntity {
 	}
 
 	/**
-	 * @param visibile
+	 * @param visible
 	 *            The visibile to set.
 	 */
 	public void setVisibile(boolean visible) {
