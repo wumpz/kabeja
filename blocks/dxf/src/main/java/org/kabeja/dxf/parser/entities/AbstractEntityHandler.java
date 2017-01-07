@@ -55,6 +55,9 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
 	public final static int GROUPCODE_ROTATION_ANGLE = 50;
 	public final static int GROUPCODE_MODELSPACE = 67;
 
+	public final static int XDATA_STRING = 1000;
+	public final static int XDATA_APPLICATION_NAME = 1001;
+
 	public final static int GROUPCODE_OWNER = 330;
 	protected DraftDocument doc;
 
@@ -173,6 +176,14 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
 
 		case GROUPCODE_OWNER:
 			entity.setOwnerID(Utils.parseIDString(value.getValue()));
+			break;
+
+		case XDATA_STRING:
+			entity.setXDataString(value.getValue());
+			break;
+
+		case XDATA_APPLICATION_NAME:
+			entity.addXData(value.getValue());
 			break;
 		}
 	}
