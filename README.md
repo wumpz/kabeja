@@ -6,6 +6,8 @@ It is licensed under the Apache Software License 2.0.
 
 Current state: The original Kabeja project has not been updated since 2010. Third parties have since worked on the library. Most importantly the build system was changed from Ant to Maven. Unfortunately this left parts of the program in a partially broken state. The library part itself works but the _GUI and the CLI are currently broken_.
 
+**The *accu:rate* fork adds limited XData support.**
+
 ## Limitations
 Not all DXF entities are supported yet. Text entities are still problematic.
 
@@ -30,6 +32,7 @@ Not all DXF entities are supported yet. Text entities are still problematic.
 * Hatch
 * Spline
 * MLine
+* **In this fork: XData (limited support)**
 
 
 ## CLI
