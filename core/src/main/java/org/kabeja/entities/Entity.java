@@ -28,6 +28,9 @@ import org.kabeja.math.TransformContext;
 import org.kabeja.tools.LazyContainer;
 import org.kabeja.util.Constants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
  * 
@@ -58,6 +61,8 @@ public abstract class Entity implements DraftEntity {
 	protected final static int BOOLEAN_BIT_MODELSPACE = 2;
 	protected final static int BOOLEAN_BIT_OWN_LINETYPE = 3;
 	protected int entityFlags;
+
+	protected List<XData> xDataList = new ArrayList<XData>();
 
 	public Entity() {
 		init();
@@ -130,7 +135,7 @@ public abstract class Entity implements DraftEntity {
 	}
 
 	/**
-	 * @param visibile
+	 * @param visible
 	 *            The visibile to set.
 	 */
 	public void setVisibile(boolean visible) {
@@ -394,4 +399,17 @@ public abstract class Entity implements DraftEntity {
 
 	public abstract void transform(TransformContext context);
 
+	public void addXData(String applicationName) {
+		xDataList.add(new XData(applicationName));
+	}
+
+	public void setXDataString(String xDataString) {
+		if (!xDataList.isEmpty()) {
+			xDataList.get(xDataList.size() - 1).setxDataString(xDataString);
+		}
+	}
+
+	public List<XData> getXDataList() {
+		return xDataList;
+	}
 }
