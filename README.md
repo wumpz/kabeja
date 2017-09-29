@@ -3,16 +3,16 @@
 ### How to make a build in IntelliJ IDEA
 
 * Open the project in IntelliJ IDEA
-* Right-click `pom.xml` and select *Add as Maven Project*
-* Right-click `pom.xml` and select *Maven* > *Reimport*
-* Open *View* > *Tool Windows *> *Maven Projects*
-* Activate *Profiles* > *blocks*, in the popup choose *Enable Auto-Import*
-* Go to *File* > *Project Structure*
-    * Under *Project* set your SDK
-    * Under *Artifacts* select *+* > *JAR* > *From modules with dependencies...*
-    * Select your desired module, e.g. *tfly-kabeja-dxf* and press *Ok*, *Ok*
-* Now you can build your *jar* by choosing *Build* > *Build Artifacts...* > *tfly-kabeja-dxf:jar* > *Build* 
-    * Your *jar* is now at `out/artifacts/tfly_kabeja_dxf_jar/tfly-kabeja-dxf.jar`
+* Right-click `pom.xml` and select **Add as Maven Project**
+* Right-click `pom.xml` and select **Maven** > **Reimport**
+* Open **View** > **Tool Windows** > **Maven Projects**
+* Activate **Profiles** > **blocks**, in the popup choose **Enable Auto-Import**
+* Go to **File** > **Project Structure**
+    * Under **Project** set your SDK
+    * Under **Artifacts** select **+** > **JAR** > **From modules with dependencies...**
+    * Select your desired module, e.g. **tfly-kabeja-dxf** and press **Ok**, **Ok**
+* Now you can build your **jar** by choosing **Build** > **Build Artifacts...** > **tfly-kabeja-dxf:jar** > **Build** 
+    * Your **jar** is now at `out/artifacts/tfly_kabeja_dxf_jar/tfly-kabeja-dxf.jar`
 
 ### Library for parsing DXF files and conversion to SVG
 
