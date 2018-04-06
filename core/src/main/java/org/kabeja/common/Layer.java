@@ -44,6 +44,7 @@ public class Layer {
     private String id="";
     
     private int color = 0;
+    private byte[] colorRGB = new byte[0];
     private DraftDocument doc;
     private LineType ltype;
     private int flags = 0;
@@ -224,6 +225,15 @@ public class Layer {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+
+    public byte[] getColorRGB() {
+        return colorRGB;
+    }
+
+    public void setColorRGB(byte[] colorRGB) {
+        this.colorRGB = colorRGB;
     }
 
     public void setLineType(LineType ltype) {

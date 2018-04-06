@@ -34,6 +34,7 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
     public final static int GROUPCODE_LAYER_PLOTTINGFLAG = 290;
     public final static int GROUPCODE_LAYER_LINEWEIGHT = 370;
     public final static int GROUPCODE_LAYER_PLOTSTYLENAME = 390;
+    public final static int GROUPCODE_LAYER_COLOR_24BIT = 420;
     private Layer layer;
 
     /*
@@ -59,6 +60,17 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
 
         case GROUPCODE_LAYER_COLORNUMBER:
             layer.setColor(value.getIntegerValue());
+            break;
+
+        case GROUPCODE_LAYER_COLOR_24BIT:
+            String hexString = Integer.toHexString(value.getIntegerValue());
+            if (hexString.length() == 6) {
+                byte[] b = new byte[3];
+                b[0] = (byte) Integer.parseInt(hexString.substring(0, 2), 16);
+                b[1] = (byte) Integer.parseInt(hexString.substring(2, 4), 16);
+                b[2] = (byte) Integer.parseInt(hexString.substring(4, 6), 16);
+                layer.setColorRGB(b);
+            }
             break;
 
         case GROUPCODE_LAYER_LINETYPE:
