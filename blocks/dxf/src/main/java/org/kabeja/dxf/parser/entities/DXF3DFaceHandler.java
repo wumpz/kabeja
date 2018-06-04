@@ -33,5 +33,6 @@ public class DXF3DFaceHandler extends DXFSolidHandler {
 
     public void startDXFEntity() {
         solid = new Face3D();
+        solid.setDocument(doc);
     }
 }

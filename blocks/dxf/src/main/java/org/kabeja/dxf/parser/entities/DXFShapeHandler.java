@@ -101,5 +101,6 @@ public class DXFShapeHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         shape = new Shape();
+        shape.setDocument(doc);
     }
 }

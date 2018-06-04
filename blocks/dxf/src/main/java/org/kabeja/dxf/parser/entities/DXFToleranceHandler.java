@@ -102,5 +102,6 @@ public class DXFToleranceHandler extends AbstractEntityHandler {
 
     public void startDXFEntity() {
         tolerance = new Tolerance();
+        tolerance.setDocument(doc);
     }
 }

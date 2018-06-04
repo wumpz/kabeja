@@ -182,6 +182,7 @@ public class DXFMTextHandler extends AbstractEntityHandler {
 
     public void startDXFEntity() {
         mtext = new MText();
+        mtext.setDocument(doc);
         insert = 0;
     }
 }

@@ -338,5 +338,6 @@ public class DXFViewportHandler extends AbstractEntityHandler {
     public void startDXFEntity() {
         this.viewport = new Viewport();
         this.viewport.setModelSpace(false);
+        this.viewport.setDocument(doc);
     }
 }

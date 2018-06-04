@@ -34,5 +34,6 @@ public class DXF3DSolidHandler extends DXFRegionHandler {
 
     public void startDXFEntity() {
         region = new Solid3D();
+        region.setDocument(doc);
     }
 }
