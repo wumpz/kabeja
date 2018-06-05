@@ -61,6 +61,7 @@ public class DXFLeaderHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         leader = new Leader();
+        leader.setDocument(doc);
     }
 
     /* (non-Javadoc)

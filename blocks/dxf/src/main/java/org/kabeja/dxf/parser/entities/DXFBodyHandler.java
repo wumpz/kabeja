@@ -33,5 +33,6 @@ public class DXFBodyHandler extends DXFRegionHandler {
 
     public void startDXFEntity() {
         region = new Body();
+        region.setDocument(doc);
     }
 }
