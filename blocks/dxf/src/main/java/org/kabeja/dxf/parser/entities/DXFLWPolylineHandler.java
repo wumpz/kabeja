@@ -152,6 +152,7 @@ public class DXFLWPolylineHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         lwpolyline = new LWPolyline();
+        lwpolyline.setDocument(doc);
     }
 
     private void createVertex() {

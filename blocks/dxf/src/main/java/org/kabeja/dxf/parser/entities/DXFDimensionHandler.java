@@ -243,5 +243,6 @@ public class DXFDimensionHandler extends AbstractEntityHandler {
 
     public void startDXFEntity() {
         dimension = new Dimension();
+        dimension.setDocument(doc);
     }
 }

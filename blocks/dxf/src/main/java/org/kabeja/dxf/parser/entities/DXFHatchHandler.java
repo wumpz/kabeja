@@ -408,6 +408,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
     public void startDXFEntity() {
         this.hatch = new Hatch();
         this.pattern = new HatchPattern();
+        this.hatch.setDocument(doc);
 
         this.pattern.setHatch(this.hatch);
         this.doc.addHatchPattern(pattern);

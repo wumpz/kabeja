@@ -31,5 +31,6 @@ public class DXFTraceHandler extends DXFSolidHandler {
 
     public void startDXFEntity() {
         solid = new Trace();
+        solid.setDocument(doc);
     }
 }

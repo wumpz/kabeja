@@ -193,5 +193,6 @@ public class DXFMLineHandler extends AbstractEntityHandler {
 
     public void startDXFEntity() {
         this.mLine = new MLine();
+        mLine.setDocument(doc);
     }
 }

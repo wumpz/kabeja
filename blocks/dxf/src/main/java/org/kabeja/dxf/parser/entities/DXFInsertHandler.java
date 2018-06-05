@@ -181,6 +181,7 @@ public class DXFInsertHandler extends AbstractEntityHandler {
 
 	public void startDXFEntity() {
 		insert = new Insert();
+		insert.setDocument(doc);
 	}
 
 	protected void addParsedAttribute() {

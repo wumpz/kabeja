@@ -74,6 +74,7 @@ public class DXFPointHandler extends AbstractEntityHandler {
 
     public void startDXFEntity() {
         point = new Point();
+        point.setDocument(doc);
 
     }
 

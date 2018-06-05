@@ -236,6 +236,7 @@ public class DXFPolylineHandler extends AbstractEntityHandler {
         follow = true;
         parse_vertex = false;
         polyline = new Polyline();
+        polyline.setDocument(doc);
         
     }
 }

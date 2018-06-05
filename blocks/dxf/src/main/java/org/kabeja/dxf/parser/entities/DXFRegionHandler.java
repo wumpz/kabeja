@@ -49,6 +49,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         region = new Region();
+        region.setDocument(doc);
     }
 
     /*

@@ -138,5 +138,6 @@ public class DXFSolidHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         solid = new Solid();
+        solid.setDocument(doc);
     }
 }

@@ -114,5 +114,6 @@ public class DXFRayHandler extends AbstractEntityHandler {
      */
     public void startDXFEntity() {
         this.ray = new Ray();
+        ray.setDocument(doc);
     }
 }

@@ -33,5 +33,6 @@ public class DXFXLineHandler extends DXFRayHandler {
  
     public void startDXFEntity() {
         this.ray = new XLine();
+        this.ray.setDocument(doc);
     }
 }
