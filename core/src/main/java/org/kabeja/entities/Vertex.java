@@ -17,9 +17,7 @@
 package org.kabeja.entities;
 
 import org.kabeja.common.Type;
-import org.kabeja.math.Bounds;
-import org.kabeja.math.Point3D;
-import org.kabeja.math.TransformContext;
+import org.kabeja.math.*;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -292,6 +290,23 @@ public class Vertex extends Entity{
       this.p = context.transform(this.p);
        
     }
+
+	/**
+	 * Transforms the arcs coordinates from OCS to WCS.
+	 * Does not simply translate the coordinates, but "reverts" the arbitrary
+	 * axis algorithm's effects.
+	 * Should only ever be called after the whole arc has been constructed
+	 * i.e. when the entity's block has ended.
+	 */
+    public void transformToWcs(Extrusion e) {
+		boolean hasDefaultExtrusion = e.getNormal().equals(new Vector(0,0,1));
+		//32: 3d polyline vertex; 64: 3d polygon mesh
+		boolean is3D = flags == 32 || flags == 64;
+    	if (hasDefaultExtrusion || is3D) {
+    		return;
+		}
+    	p = e.transformOcsToWcs(p);
+	}
 
 
 	

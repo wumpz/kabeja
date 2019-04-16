@@ -70,6 +70,7 @@ public class DXFPolylineHandler extends AbstractEntityHandler {
     }
 
     public void endDXFEntity() {
+        polyline.transformToWcs();
     }
 
  
