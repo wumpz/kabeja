@@ -732,7 +732,7 @@ public class Polyline extends Entity {
      * Does not simply translate the coordinates, but "reverts" the arbitrary
      * axis algorithm's effects.
      * Should only ever be called after the whole polyline has been constructed
-     * i.e. when the entity's block has ended.
+     * i.e. when the entity's group has ended.
      */
     public void transformToWcs() {
         Extrusion e = this.getExtrusion();
