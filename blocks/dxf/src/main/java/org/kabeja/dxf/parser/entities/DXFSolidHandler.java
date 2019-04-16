@@ -41,7 +41,7 @@ public class DXFSolidHandler extends AbstractEntityHandler {
 
   
     public void endDXFEntity() {
-        // TODO Auto-generated method stub
+        solid.transformToWcs();
     }
 
    

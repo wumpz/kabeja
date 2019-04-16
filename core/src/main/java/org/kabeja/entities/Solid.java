@@ -17,11 +17,7 @@
 package org.kabeja.entities;
 
 import org.kabeja.common.Type;
-import org.kabeja.math.Bounds;
-import org.kabeja.math.MathUtils;
-import org.kabeja.math.ParametricPlane;
-import org.kabeja.math.Point3D;
-import org.kabeja.math.TransformContext;
+import org.kabeja.math.*;
 
 
 /**
@@ -121,8 +117,25 @@ public class Solid extends Entity {
 
         return length;
     }
-    
-    
+
+    /**
+     * Transforms the arcs coordinates from OCS to WCS.
+     * Does not simply translate the coordinates, but "reverts" the arbitrary
+     * axis algorithm's effects.
+     * Should only ever be called after the whole solid has been constructed
+     * i.e. when the entity's block has ended
+     */
+    public void transformToWcs() {
+        Extrusion e = this.getExtrusion();
+        if (e.getNormal().equals(new Vector(0,0,1))) {
+            return;
+        }
+
+        point1 = e.transformOcsToWcs(point1);
+        point2 = e.transformOcsToWcs(point2);
+        point3 = e.transformOcsToWcs(point3);
+        point4 = e.transformOcsToWcs(point4);
+    }
 
     
     public void transform(TransformContext context) {
