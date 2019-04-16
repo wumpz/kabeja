@@ -20,11 +20,7 @@
 package org.kabeja.entities;
 
 import org.kabeja.common.Type;
-import org.kabeja.math.Bounds;
-import org.kabeja.math.MathUtils;
-import org.kabeja.math.ParametricPlane;
-import org.kabeja.math.Point3D;
-import org.kabeja.math.TransformContext;
+import org.kabeja.math.*;
 
 
 /**
@@ -182,7 +178,7 @@ public class Arc extends Entity {
      *
      * @param angle
      *            in degree
-     * @return Point on the circle
+     * @return Point on the arc in WCS-coordinates
      */
     public Point3D getPointAt(double angle) {
         // the local part
@@ -190,11 +186,28 @@ public class Arc extends Entity {
         double y = radius * Math.sin(Math.toRadians(angle));
 
         // the wcs part
-        ParametricPlane plane = new ParametricPlane(this.getExtrusion());
+        ParametricPlane plane = new ParametricPlane(this.center,
+                this.getExtrusion().getDirectionX(),
+                this.getExtrusion().getDirectionY(),
+                this.getExtrusion().getNormal());
+
         Point3D p = plane.getPoint(x + this.center.getX(), y +
                 this.center.getY());
 
         return p;
+    }
+
+    /**
+     * @param angle of the point on the arc
+     *              in degree
+     * @return the point on the arc in OCS-coordinates
+     */
+    private Point3D getPointInOcs(double angle) {
+        double x = this.radius * Math.cos(Math.toRadians(angle));
+        double y = radius * Math.sin(Math.toRadians(angle));
+        double z = this.center.getZ();
+
+        return new Point3D(x,y,z);
     }
 
     /**
@@ -240,5 +253,50 @@ public class Arc extends Entity {
     
     public void transform(TransformContext context) {
       this.center = context.transform(this.center);
+    }
+
+    /**
+     * Transforms the arcs coordinates from OCS to WCS.
+     * Does not simply translate the coordinates, but "reverts" the arbitrary
+     * axis algorithm's effects.
+     * Should only ever be called after the whole arc has been constructed
+     * i.e. when the entity's block has ended.
+     */
+    public void transformToWcs() {
+        Extrusion e = this.getExtrusion();
+        if (getExtrusion().getNormal().equals(new Vector(0,0,1))) {
+            return;
+        }
+        Point3D transformedStart = e.transformOcsToWcs(getPointInOcs(this.start_angle));
+        Point3D transformedEnd = e.transformOcsToWcs(getPointInOcs(this.end_angle));
+        this.center = e.transformOcsToWcs(this.center);
+
+        Extrusion newE = new Extrusion();
+        newE.setX(0);
+        newE.setY(0);
+        newE.setZ(1);
+
+        transformedStart = newE.wcsToOcs(transformedStart);
+        transformedEnd = newE.wcsToOcs(transformedEnd);
+        this.start_angle = getAngleAtPoint(transformedStart);
+        this.end_angle = getAngleAtPoint(transformedEnd);
+
+        // @ToDo is this the general criterium?
+        if (e.getZ() < 0) {
+            counterclockwise = !counterclockwise;
+        }
+    }
+
+    /**
+     *
+     * @param p Point in OCS, should be on the arc
+     * @return angle of p in degree
+     */
+    public double getAngleAtPoint(Point3D p) {
+        double angle = Math.toDegrees(Math.acos(p.getX() / radius));
+        if (p.getY() >= 0) {
+            return angle;
+        }
+        return -angle;
     }
 }
