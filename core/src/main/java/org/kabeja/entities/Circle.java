@@ -31,10 +31,7 @@
 package org.kabeja.entities;
 
 import org.kabeja.common.Type;
-import org.kabeja.math.Bounds;
-import org.kabeja.math.ParametricPlane;
-import org.kabeja.math.Point3D;
-import org.kabeja.math.TransformContext;
+import org.kabeja.math.*;
 
 
 /**
@@ -114,6 +111,21 @@ public class Circle extends Entity {
          //handle scale  in the right way
         // scaleX != scaleY != scaleZ --> ellipse
        
+    }
+
+    /**
+     * Transforms the circles coordinates from OCS to WCS.
+     * Does not simply translate the coordinates, but "reverts" the arbitrary
+     * axis algorithm's effects.
+     * Should only ever be called after the whole circle has been constructed
+     * i.e. when the entity's group has ended.
+     */
+    public void transformToOcs() {
+        Extrusion e = this.getExtrusion();
+        if (e.getNormal().equals(new Vector(0,0,1))) {
+            return;
+        }
+        center = e.transformOcsToWcs(center);
     }
     
 }
