@@ -25,11 +25,7 @@ import java.util.List;
 
 import org.kabeja.DraftDocument;
 import org.kabeja.common.Type;
-import org.kabeja.math.Bounds;
-import org.kabeja.math.MathUtils;
-import org.kabeja.math.Point3D;
-import org.kabeja.math.TransformContext;
-import org.kabeja.math.Vector;
+import org.kabeja.math.*;
 
 
 /**
@@ -452,5 +448,17 @@ public class LWPolyline extends Entity{
     
     public void transform(TransformContext context) {
       
+    }
+
+    @Override
+    public LWPolyline toWcs() {
+        Extrusion e = this.getExtrusion();
+        if (e.getNormal().equals(new Vector(0,0,1))) {
+            return this;
+        }
+        for (LW2DVertex v : vertices) {
+            v.transformToWcs(e);
+        }
+        return this;
     }
 }

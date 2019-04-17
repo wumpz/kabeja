@@ -727,25 +727,20 @@ public class Polyline extends Entity {
       
     }
 
-    /**
-     * Transforms the polylines coordinates from OCS to WCS.
-     * Does not simply translate the coordinates, but "reverts" the arbitrary
-     * axis algorithm's effects.
-     * Should only ever be called after the whole polyline has been constructed
-     * i.e. when the entity's group has ended.
-     */
-    public void transformToWcs() {
+    @Override
+    public Polyline toWcs() {
         Extrusion e = this.getExtrusion();
 
         boolean hasDefaultExtrusion = e.getNormal().equals(new Vector(0,0,1));
         //8: 3d polyline; 16: 3d polygon mesh
         boolean is3D = flags == 8 || flags == 16;
         if (hasDefaultExtrusion || is3D) {
-            return;
+            return this;
         }
 
         for (Vertex v : vertices) {
             v.transformToWcs(this.getExtrusion());
         }
+        return this;
     }
 }

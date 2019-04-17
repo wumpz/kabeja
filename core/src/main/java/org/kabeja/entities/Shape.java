@@ -147,4 +147,15 @@ public class Shape extends Entity {
        this.setInsertPoint(context.transform(this.getInsertPoint()));
        
     }
+
+    /**
+     * @ToDo: implement this method
+     *
+     * This is a planar entity, therefore this method should be implemented,
+     * otherwise OCS-coordinates will be used regardless of calling this method.
+     */
+    @Override
+    public Shape toWcs() {
+        return this;
+    }
 }

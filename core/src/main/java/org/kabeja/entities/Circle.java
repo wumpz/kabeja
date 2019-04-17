@@ -113,19 +113,14 @@ public class Circle extends Entity {
        
     }
 
-    /**
-     * Transforms the circles coordinates from OCS to WCS.
-     * Does not simply translate the coordinates, but "reverts" the arbitrary
-     * axis algorithm's effects.
-     * Should only ever be called after the whole circle has been constructed
-     * i.e. when the entity's group has ended.
-     */
-    public void transformToOcs() {
+   @Override
+    public Circle toWcs() {
         Extrusion e = this.getExtrusion();
         if (e.getNormal().equals(new Vector(0,0,1))) {
-            return;
+            return this;
         }
         center = e.transformOcsToWcs(center);
+        return this;
     }
     
 }

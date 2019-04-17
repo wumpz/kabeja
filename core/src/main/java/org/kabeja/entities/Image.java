@@ -258,4 +258,15 @@ public class Image extends Entity {
     public void transform(TransformContext context) {
        
     }
+
+    /**
+     * @ToDo: implement this method
+     *
+     * This is a planar entity, therefore this method should be implemented,
+     * otherwise OCS-coordinates will be used regardless of calling this method.
+     */
+    @Override
+    public Image toWcs() {
+        return this;
+    }
 }

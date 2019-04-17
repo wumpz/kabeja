@@ -66,4 +66,26 @@ public interface DraftEntity {
 
 	public abstract double getLength();
 
+	/**
+	 * Ensures that the DraftEntity's coordinates are in WCS rather than OCS.
+	 * Should only ever be called on completely built entities, i.e. after
+	 * the entity's group has benn parsed entirely.
+	 *
+	 * Implementing this method is necessary only for planar entities
+	 * (circle, arc, solid, trace,text, attrib, attdef, shape, insert, 2Dpolyline,
+	 * 2D vertex, lwpolyline, hatch, image),
+	 * since their coordinates get stored in the OCS.
+	 *
+	 * In this case the method does not simply translate the coordinates, but
+	 * "reverts" the arbitrary axis algorithm's effects.
+	 *
+	 * 3D-Entities
+	 * (line, point, 3dface, 3Dpolyline, 3D vertex, 3D mesh, 3D meshvertex)
+	 * can leave this method's body empty, since their coordinates are already
+	 * in WCS. For them this method should do nothing.
+	 *
+	 * @return the DraftEntity with its coordinates in WCS
+	 */
+	public abstract DraftEntity toWcs();
+
 }

@@ -47,7 +47,7 @@ public class DXFArcHandler extends AbstractEntityHandler {
      * @see org.dxf2svg.parser.entities.DXFEntityHandler#endDXFEntity()
      */
     public void endDXFEntity() {
-        arc.transformToWcs();
+
     }
 
     /*

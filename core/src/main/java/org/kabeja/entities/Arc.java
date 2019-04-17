@@ -255,17 +255,11 @@ public class Arc extends Entity {
       this.center = context.transform(this.center);
     }
 
-    /**
-     * Transforms the arcs coordinates from OCS to WCS.
-     * Does not simply translate the coordinates, but "reverts" the arbitrary
-     * axis algorithm's effects.
-     * Should only ever be called after the whole arc has been constructed
-     * i.e. when the entity's group has ended.
-     */
-    public void transformToWcs() {
+    @Override
+    public Arc toWcs() {
         Extrusion e = this.getExtrusion();
         if (getExtrusion().getNormal().equals(new Vector(0,0,1))) {
-            return;
+            return this;
         }
         Point3D transformedStart = e.transformOcsToWcs(getPointInOcs(this.start_angle));
         Point3D transformedEnd = e.transformOcsToWcs(getPointInOcs(this.end_angle));
@@ -285,6 +279,7 @@ public class Arc extends Entity {
         if (e.getZ() < 0) {
             counterclockwise = !counterclockwise;
         }
+        return this;
     }
 
     /**

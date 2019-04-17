@@ -118,23 +118,18 @@ public class Solid extends Entity {
         return length;
     }
 
-    /**
-     * Transforms the arcs coordinates from OCS to WCS.
-     * Does not simply translate the coordinates, but "reverts" the arbitrary
-     * axis algorithm's effects.
-     * Should only ever be called after the whole solid has been constructed
-     * i.e. when the entity's group has ended
-     */
-    public void transformToWcs() {
+    @Override
+    public Solid toWcs() {
         Extrusion e = this.getExtrusion();
         if (e.getNormal().equals(new Vector(0,0,1))) {
-            return;
+            return this;
         }
 
         point1 = e.transformOcsToWcs(point1);
         point2 = e.transformOcsToWcs(point2);
         point3 = e.transformOcsToWcs(point3);
         point4 = e.transformOcsToWcs(point4);
+        return this;
     }
 
     

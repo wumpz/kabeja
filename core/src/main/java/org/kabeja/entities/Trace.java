@@ -29,4 +29,15 @@ public class Trace extends Solid {
     public Type<? extends DraftEntity> getType() {
         return Type.TYPE_TRACE;
     }
+
+    /**
+     * @ToDo: implement this method
+     *
+     * This is a planar entity, therefore this method should be implemented,
+     * otherwise OCS-coordinates will be used regardless of calling this method.
+     */
+    @Override
+    public Trace toWcs() {
+        return this;
+    }
 }
