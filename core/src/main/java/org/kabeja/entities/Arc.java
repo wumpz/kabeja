@@ -20,7 +20,13 @@
 package org.kabeja.entities;
 
 import org.kabeja.common.Type;
-import org.kabeja.math.*;
+import org.kabeja.math.Bounds;
+import org.kabeja.math.Extrusion;
+import org.kabeja.math.MathUtils;
+import org.kabeja.math.ParametricPlane;
+import org.kabeja.math.Point3D;
+import org.kabeja.math.TransformContext;
+import org.kabeja.math.Vector;
 
 
 /**
