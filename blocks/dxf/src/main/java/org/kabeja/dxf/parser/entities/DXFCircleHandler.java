@@ -83,6 +83,7 @@ public class DXFCircleHandler extends AbstractEntityHandler {
 
 
     public void endDXFEntity() {
-
+   
+        
     }
 }

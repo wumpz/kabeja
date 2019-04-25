@@ -302,10 +302,10 @@ public class Vertex extends Entity{
 		boolean hasDefaultExtrusion = e.getNormal().equals(new Vector(0,0,1));
 		//32: 3d polyline vertex; 64: 3d polygon mesh
 		boolean is3D = flags == 32 || flags == 64;
-    	if (hasDefaultExtrusion || is3D) {
-    		return;
+		if (hasDefaultExtrusion || is3D) {
+			return;
 		}
-    	p = e.transformOcsToWcs(p);
+		p = e.transformOcsToWcs(p);
 	}
 
 

@@ -54,7 +54,6 @@ public class DXFLWPolylineHandler extends AbstractEntityHandler {
      * @see org.dxf2svg.parser.entities.EntityHandler#endParsing()
      */
     public void endDXFEntity() {
-
     }
 
     /*

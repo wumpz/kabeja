@@ -16,7 +16,6 @@
 
 package org.kabeja.objects;
 
-import org.kabeja.entities.Image;
 import org.kabeja.util.Constants;
 
 
