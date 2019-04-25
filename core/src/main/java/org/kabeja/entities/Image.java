@@ -266,7 +266,5 @@ public class Image extends Entity {
      * otherwise OCS-coordinates will be used regardless of calling this method.
      */
     @Override
-    public Image toWcs() {
-        return this;
-    }
+    public void toWcs() {}
 }

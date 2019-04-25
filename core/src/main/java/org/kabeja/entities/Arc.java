@@ -256,10 +256,10 @@ public class Arc extends Entity {
     }
 
     @Override
-    public Arc toWcs() {
+    public void toWcs() {
         Extrusion e = this.getExtrusion();
         if (getExtrusion().getNormal().equals(new Vector(0,0,1))) {
-            return this;
+            return;
         }
         Point3D transformedStart = e.transformOcsToWcs(getPointInOcs(this.start_angle));
         Point3D transformedEnd = e.transformOcsToWcs(getPointInOcs(this.end_angle));
@@ -279,7 +279,6 @@ public class Arc extends Entity {
         if (e.getZ() < 0) {
             counterclockwise = !counterclockwise;
         }
-        return this;
     }
 
     /**

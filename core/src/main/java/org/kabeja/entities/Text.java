@@ -481,9 +481,7 @@ public class Text extends Entity {
      * otherwise OCS-coordinates will be used regardless of calling this method.
      */
     @Override
-    public Text toWcs() {
-        return this;
-    }
+    public void toWcs(){}
     
     
 }

@@ -114,13 +114,12 @@ public class Circle extends Entity {
     }
 
    @Override
-    public Circle toWcs() {
+    public void toWcs() {
         Extrusion e = this.getExtrusion();
         if (e.getNormal().equals(new Vector(0,0,1))) {
-            return this;
+            return;
         }
         center = e.transformOcsToWcs(center);
-        return this;
     }
     
 }

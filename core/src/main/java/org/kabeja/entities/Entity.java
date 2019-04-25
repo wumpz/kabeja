@@ -433,5 +433,5 @@ public abstract class Entity implements DraftEntity {
 	 * @return the Entity with its coordinates in WCS
 	 */
 	@Override
-	public Entity toWcs(){return this;}
+	public void toWcs(){}
 }

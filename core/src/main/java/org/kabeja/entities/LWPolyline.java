@@ -451,14 +451,13 @@ public class LWPolyline extends Entity{
     }
 
     @Override
-    public LWPolyline toWcs() {
+    public void toWcs() {
         Extrusion e = this.getExtrusion();
         if (e.getNormal().equals(new Vector(0,0,1))) {
-            return this;
+            return;
         }
         for (LW2DVertex v : vertices) {
             v.transformToWcs(e);
         }
-        return this;
     }
 }

@@ -86,6 +86,6 @@ public interface DraftEntity {
 	 *
 	 * @return the DraftEntity with its coordinates in WCS
 	 */
-	public abstract DraftEntity toWcs();
+	public abstract void toWcs();
 
 }

@@ -37,7 +37,5 @@ public class Trace extends Solid {
      * otherwise OCS-coordinates will be used regardless of calling this method.
      */
     @Override
-    public Trace toWcs() {
-        return this;
-    }
+    public void toWcs() {}
 }

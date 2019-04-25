@@ -390,7 +390,5 @@ public class Hatch extends Entity {
 	 * otherwise OCS-coordinates will be used regardless of calling this method.
 	 */
 	@Override
-	public Hatch toWcs() {
-		return this;
-	}
+	public void toWcs() { }
 }

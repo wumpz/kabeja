@@ -104,8 +104,6 @@ public class Attrib extends Text {
 	 * otherwise OCS-coordinates will be used regardless of calling this method.
 	 */
 	@Override
-	public Attrib toWcs() {
-		return this;
-	}
+	public void toWcs() {}
 
 }

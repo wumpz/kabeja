@@ -77,9 +77,7 @@ public class AttribDefinition extends Attrib implements Cloneable{
 	 * otherwise OCS-coordinates will be used regardless of calling this method.
 	 */
 	@Override
-	public AttribDefinition toWcs() {
-		return this;
-	}
+	public void toWcs() {}
 
 
 	

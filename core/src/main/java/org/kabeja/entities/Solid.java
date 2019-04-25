@@ -119,17 +119,16 @@ public class Solid extends Entity {
     }
 
     @Override
-    public Solid toWcs() {
+    public void toWcs() {
         Extrusion e = this.getExtrusion();
         if (e.getNormal().equals(new Vector(0,0,1))) {
-            return this;
+            return;
         }
 
         point1 = e.transformOcsToWcs(point1);
         point2 = e.transformOcsToWcs(point2);
         point3 = e.transformOcsToWcs(point3);
         point4 = e.transformOcsToWcs(point4);
-        return this;
     }
 
     
