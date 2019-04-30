@@ -304,7 +304,7 @@ public class Vertex extends Entity{
 	 * i.e. when the entity's block has ended.
 	 */
     public void transformToWcs(Extrusion e) {
-		boolean hasDefaultExtrusion = e.getNormal().equals(new Vector(0,0,1));
+		boolean hasDefaultExtrusion = e.compareToNormalVector(0,0,1);
 		//32: 3d polyline vertex; 64: 3d polygon mesh
 		boolean is3D = flags == 32 || flags == 64;
 		if (hasDefaultExtrusion || is3D) {

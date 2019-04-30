@@ -153,4 +153,16 @@ public class Extrusion {
 
         return new Point3D(x,y,z);
     }
+
+    public boolean compareToNormalVector(Vector vector) {
+        if (vector == null) {
+            return false;
+        } else {
+            return this.getNormal().equals(vector);
+        }
+    }
+
+    public boolean compareToNormalVector(double x, double y, double z) {
+        return this.getNormal().equals(new Vector(x,y,z));
+    }
 }

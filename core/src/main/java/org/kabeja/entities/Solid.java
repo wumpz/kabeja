@@ -127,7 +127,7 @@ public class Solid extends Entity {
     @Override
     public void toWcs() {
         Extrusion e = this.getExtrusion();
-        if (e.getNormal().equals(new Vector(0,0,1))) {
+        if (e.compareToNormalVector(0,0,1)) {
             return;
         }
 

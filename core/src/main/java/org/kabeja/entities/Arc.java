@@ -26,7 +26,6 @@ import org.kabeja.math.MathUtils;
 import org.kabeja.math.ParametricPlane;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
-import org.kabeja.math.Vector;
 
 
 /**
@@ -264,7 +263,7 @@ public class Arc extends Entity {
     @Override
     public void toWcs() {
         Extrusion e = this.getExtrusion();
-        if (e.getNormal().equals(new Vector(0,0,1))) {
+        if (e.compareToNormalVector(0,0,1)) {
             return;
         }
         Point3D transformedStart = e.transformOcsToWcs(getPointInOcs(this.start_angle));

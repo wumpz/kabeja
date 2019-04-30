@@ -736,7 +736,7 @@ public class Polyline extends Entity {
     public void toWcs() {
         Extrusion e = this.getExtrusion();
 
-        boolean hasDefaultExtrusion = e.getNormal().equals(new Vector(0,0,1));
+        boolean hasDefaultExtrusion = e.compareToNormalVector(0,0,1);
         //8: 3d polyline; 16: 3d polygon mesh
         boolean is3D = flags == 8 || flags == 16;
         if (hasDefaultExtrusion || is3D) {
