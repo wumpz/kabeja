@@ -89,4 +89,12 @@ public class Line extends Entity {
         this.setStartPoint(context.transform(this.getStartPoint()));
         this.setEndPoint(context.transform(this.getEndPoint()));
     }
+
+    /**
+     * Does not need to be implemented, as Line is a non-planar entity.
+     */
+    @Override
+    public void toWcs() {
+        super.toWcs();
+    }
 }

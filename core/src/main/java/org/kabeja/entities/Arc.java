@@ -264,7 +264,7 @@ public class Arc extends Entity {
     @Override
     public void toWcs() {
         Extrusion e = this.getExtrusion();
-        if (getExtrusion().getNormal().equals(new Vector(0,0,1))) {
+        if (e.getNormal().equals(new Vector(0,0,1))) {
             return;
         }
         Point3D transformedStart = e.transformOcsToWcs(getPointInOcs(this.start_angle));

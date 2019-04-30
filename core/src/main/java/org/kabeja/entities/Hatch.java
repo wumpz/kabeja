@@ -38,6 +38,7 @@ import org.kabeja.entities.util.HatchBoundaryLoop;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -390,5 +391,7 @@ public class Hatch extends Entity {
 	 * otherwise OCS-coordinates will be used regardless of calling this method.
 	 */
 	@Override
-	public void toWcs() { }
+	public void toWcs() {
+		throw new NotImplementedException();
+	}
 }

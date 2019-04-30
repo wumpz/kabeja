@@ -18,6 +18,7 @@ package org.kabeja.entities;
 
 import org.kabeja.common.Type;
 import org.kabeja.util.Constants;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -104,6 +105,8 @@ public class Attrib extends Text {
 	 * otherwise OCS-coordinates will be used regardless of calling this method.
 	 */
 	@Override
-	public void toWcs() {}
+	public void toWcs() {
+		throw new NotImplementedException();
+	}
 
 }

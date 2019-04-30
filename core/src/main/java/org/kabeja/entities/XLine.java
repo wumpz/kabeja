@@ -41,4 +41,12 @@ public class XLine extends Ray {
     public  Type<? extends DraftEntity> getType() {
         return Type.TYPE_XLINE;
     }
+
+    /**
+     * Does not need to be implemented, as XLine is a non-planar entity.
+     */
+    @Override
+    public void toWcs() {
+        super.toWcs();
+    }
 }

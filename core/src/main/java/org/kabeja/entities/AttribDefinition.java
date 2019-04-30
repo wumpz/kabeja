@@ -18,6 +18,7 @@ package org.kabeja.entities;
 
 import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class AttribDefinition extends Attrib implements Cloneable{
 
@@ -77,7 +78,9 @@ public class AttribDefinition extends Attrib implements Cloneable{
 	 * otherwise OCS-coordinates will be used regardless of calling this method.
 	 */
 	@Override
-	public void toWcs() {}
+	public void toWcs() {
+		throw new NotImplementedException();
+	}
 
 
 	
