@@ -86,4 +86,12 @@ public class Ray extends Entity {
     public void transform(TransformContext context) {
         
     }
+
+    /**
+     * Does not need to be implemented, as XLine is a non-planar entity.
+     */
+    @Override
+    public void toWcs() {
+        super.toWcs();
+    }
 }

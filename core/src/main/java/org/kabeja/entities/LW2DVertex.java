@@ -19,6 +19,7 @@
  */
 package org.kabeja.entities;
 
+import org.kabeja.math.Extrusion;
 import org.kabeja.math.Point3D;
 
 public class LW2DVertex {
@@ -179,6 +180,23 @@ public class LW2DVertex {
 			this.bulge = bulge;
 		}
 
+	}
+
+	/**
+	 * Transforms the vertex' coordinates from OCS to WCS.
+	 *
+	 * Does not simply translate the coordinates, but "reverts" the arbitrary
+	 * axis algorithm's effects. This means that an Entity
+	 * with Extrusion != (0,0,1), that might have appeared "flipped" without the
+	 * transformation, will be "unflipped".
+	 *
+	 * Should only ever be called after the whole vertex has been constructed
+	 * i.e. when the entity's group has ended.
+	 */
+	public void transformToWcs(Extrusion e) {
+		Point3D p = e.transformOcsToWcs(new Point3D(this.x, this.y, 0));
+		this.x = p.getX();
+		this.y = p.getY();
 	}
 
 }

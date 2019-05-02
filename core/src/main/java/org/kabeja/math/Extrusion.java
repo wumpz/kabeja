@@ -116,4 +116,53 @@ public class Extrusion {
     public Vector getDirectionZ() {
         return n;
     }
+
+    /**
+     * Transforms a point from WCS to OCS.
+     * Relies on the arbitrary axis algorithm to determine the OCS.
+     * @param p point in WCS
+     * @return point in OCS
+     */
+    public Point3D wcsToOcs(Point3D p) {
+        Vector ox = getDirectionX();
+        Vector oy = getDirectionY();
+        Vector oz = n;
+
+        double x = p.x * ox.x + p.y * ox.y + p.z * ox.z;
+        double y = p.x * oy.x + p.y * oy.y + p.z * oy.z;
+        double z = p.x * oz.x + p.y * oz.y + p.z * oz.z;
+
+        return new Point3D(x,y,z);
+    }
+
+    /**
+     * Transforms a point from OCS to WCS.
+     * Does not simply translate the coordinates, but "reverts" the
+     * arbitrary axis algorithm's effects.
+     * @param p
+     * @return
+     */
+    public Point3D transformOcsToWcs(Point3D p) {
+        Point3D wx = wcsToOcs(new Point3D(1,0,0));
+        Point3D wy = wcsToOcs(new Point3D(0,1,0));
+        Point3D wz = wcsToOcs(new Point3D(0,0,1));
+
+        double x = p.x * wx.x + p.y * wx.y + p.z * wx.z;
+        double y = p.x * wy.x + p.y * wy.y + p.z * wy.z;
+        double z = p.x * wz.x + p.y * wz.y + p.z * wz.z;
+
+        return new Point3D(x,y,z);
+    }
+
+    public boolean compareToNormalVector(Vector vector) {
+        if (vector == null) {
+            return false;
+        } else {
+            return this.getNormal().equals(vector);
+        }
+    }
+
+    public boolean compareToNormalVector(double x, double y, double z) {
+        return this.getNormal().equals(new Vector(x,y,z));
+    }
 }

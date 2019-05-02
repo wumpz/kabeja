@@ -26,6 +26,7 @@ import org.kabeja.entities.util.DimensionStyle;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 /**
@@ -378,5 +379,17 @@ public class Dimension extends Entity {
     
     public void transform(TransformContext context) {
       
+    }
+
+    /**
+     * @ToDo: implement this method
+     *
+     * This entity partially operates with OCS-coordinates,
+     * therefore this method should be implemented, otherwise OCS-coordinates
+     * will be used regardless of calling this method.
+     */
+    @Override
+    public void toWcs() {
+        throw new NotImplementedException();
     }
 }

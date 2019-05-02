@@ -18,6 +18,7 @@ package org.kabeja.entities;
 
 import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class AttribDefinition extends Attrib implements Cloneable{
 
@@ -69,6 +70,17 @@ public class AttribDefinition extends Attrib implements Cloneable{
     public void setTextFieldLength(int textLength) {
         this.textLength = textLength;
     }
+
+	/**
+	 * @ToDo: implement this method
+	 *
+	 * This is a planar entity, therefore this method should be implemented,
+	 * otherwise OCS-coordinates will be used regardless of calling this method.
+	 */
+	@Override
+	public void toWcs() {
+		throw new NotImplementedException();
+	}
 
 
 	

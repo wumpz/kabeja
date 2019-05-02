@@ -32,9 +32,11 @@ package org.kabeja.entities;
 
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
+import org.kabeja.math.Extrusion;
 import org.kabeja.math.ParametricPlane;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
+import org.kabeja.math.Vector;
 
 
 /**
@@ -114,6 +116,15 @@ public class Circle extends Entity {
          //handle scale  in the right way
         // scaleX != scaleY != scaleZ --> ellipse
        
+    }
+
+   @Override
+    public void toWcs() {
+        Extrusion e = this.getExtrusion();
+        if (e.compareToNormalVector(0,0,1)) {
+            return;
+        }
+        center = e.transformOcsToWcs(center);
     }
     
 }

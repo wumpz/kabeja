@@ -26,6 +26,7 @@ import java.util.List;
 import org.kabeja.DraftDocument;
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
+import org.kabeja.math.Extrusion;
 import org.kabeja.math.MathUtils;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
@@ -729,5 +730,23 @@ public class Polyline extends Entity {
     
     public void transform(TransformContext context) {
       
+    }
+
+    @Override
+    public void toWcs() {
+        Extrusion e = this.getExtrusion();
+        boolean hasDefaultExtrusion = e.compareToNormalVector(0,0,1);
+        if (hasDefaultExtrusion || is3D()) {
+            return;
+        }
+
+        for (Vertex v : vertices) {
+            v.transformToWcs(this.getExtrusion());
+        }
+    }
+
+    private boolean is3D() {
+        //8: 3d polyline; 16: 3d polygon mesh
+        return ((flags & 8) == 8) || ((flags & 16) == 16);
     }
 }

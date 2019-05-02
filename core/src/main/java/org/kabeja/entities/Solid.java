@@ -18,10 +18,12 @@ package org.kabeja.entities;
 
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
+import org.kabeja.math.Extrusion;
 import org.kabeja.math.MathUtils;
 import org.kabeja.math.ParametricPlane;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
+import org.kabeja.math.Vector;
 
 
 /**
@@ -121,8 +123,19 @@ public class Solid extends Entity {
 
         return length;
     }
-    
-    
+
+    @Override
+    public void toWcs() {
+        Extrusion e = this.getExtrusion();
+        if (e.compareToNormalVector(0,0,1)) {
+            return;
+        }
+
+        point1 = e.transformOcsToWcs(point1);
+        point2 = e.transformOcsToWcs(point2);
+        point3 = e.transformOcsToWcs(point3);
+        point4 = e.transformOcsToWcs(point4);
+    }
 
     
     public void transform(TransformContext context) {
