@@ -309,14 +309,16 @@ public class Vertex extends Entity{
 	 */
     public void transformToWcs(Extrusion e) {
 		boolean hasDefaultExtrusion = e.compareToNormalVector(0,0,1);
-		//32: 3d polyline vertex; 64: 3d polygon mesh
-		boolean is3D = flags == 32 || flags == 64;
-		if (hasDefaultExtrusion || is3D) {
+		if (hasDefaultExtrusion || is3D()) {
 			return;
 		}
 		p = e.transformOcsToWcs(p);
 	}
 
+	private boolean is3D() {
+		//32: 3d polyline vertex; 64: 3d polygon mesh
+    	return ((flags & 32) == 32) || ((flags & 64) == 64);
+	}
 
 	
 }
