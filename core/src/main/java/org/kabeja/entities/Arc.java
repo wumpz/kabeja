@@ -207,8 +207,8 @@ public class Arc extends Entity {
      *              in degree
      * @return the point on the arc in OCS-coordinates
      */
-    private Point3D getPointInOcs(double angle) {
-        double x = this.radius * Math.cos(Math.toRadians(angle));
+    private Point3D getPointRelativeToCenter(double angle) {
+        double x = radius * Math.cos(Math.toRadians(angle));
         double y = radius * Math.sin(Math.toRadians(angle));
         double z = this.center.getZ();
 
@@ -266,8 +266,8 @@ public class Arc extends Entity {
         if (e.compareToNormalVector(0,0,1)) {
             return;
         }
-        Point3D transformedStart = e.transformOcsToWcs(getPointInOcs(this.start_angle));
-        Point3D transformedEnd = e.transformOcsToWcs(getPointInOcs(this.end_angle));
+        Point3D transformedStart = e.transformOcsToWcs(getPointRelativeToCenter(this.start_angle));
+        Point3D transformedEnd = e.transformOcsToWcs(getPointRelativeToCenter(this.end_angle));
         this.center = e.transformOcsToWcs(this.center);
 
         Extrusion newE = new Extrusion();
@@ -288,14 +288,28 @@ public class Arc extends Entity {
 
     /**
      *
-     * @param p Point in OCS, should be on the arc
+     * @param p Point in OCS, must be on the circle
      * @return angle of p in degree
+     * @throws IllegalArgumentException if p is not on the arc
      */
     public double getAngleAtPoint(Point3D p) {
+        if (!isOnCircle(p)) {
+            throw new IllegalArgumentException("Point p must be on the circle");
+        }
         double angle = Math.toDegrees(Math.acos(p.getX() / radius));
         if (p.getY() >= 0) {
             return angle;
         }
         return -angle;
+    }
+
+    /**
+     * @param p relative to the center of the circle
+     * @return whether the point is on the circle
+     */
+    private boolean isOnCircle(Point3D p) {
+        double distanceFromCenter = Math.sqrt(Math.pow(p.getX(), 2)
+                                                + Math.pow(p.getY(), 2));
+        return (Math.abs((distanceFromCenter - radius)) <= MathUtils.DISTANCE_DELTA);
     }
 }
