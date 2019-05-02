@@ -297,9 +297,13 @@ public class Vertex extends Entity{
     }
 
 	/**
-	 * Transforms the arcs coordinates from OCS to WCS.
+	 * Transforms the vertex' coordinates from OCS to WCS.
+	 *
 	 * Does not simply translate the coordinates, but "reverts" the arbitrary
-	 * axis algorithm's effects.
+	 * axis algorithm's effects. This means that an Entity
+	 * with Extrusion != (0,0,1), that might have appeared "flipped" without the
+	 * transformation, will be "unflipped".
+	 *
 	 * Should only ever be called after the whole arc has been constructed
 	 * i.e. when the entity's block has ended.
 	 */

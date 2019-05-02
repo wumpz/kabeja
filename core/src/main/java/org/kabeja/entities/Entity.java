@@ -424,7 +424,9 @@ public abstract class Entity implements DraftEntity {
 	 * since their coordinates get stored in the OCS.
 	 *
 	 * In this case the method does not simply translate the coordinates, but
-	 * "reverts" the arbitrary axis algorithm's effects.
+	 * "reverts" the arbitrary axis algorithm's effects. This means that an Entity
+	 * with Extrusion != (0,0,1), that might have appeared "flipped" without the
+	 * transformation, will be "unflipped".
 	 *
 	 * 3D-Entities
 	 * (line, point, 3dface, 3Dpolyline, 3D mesh, 3D meshvertex, Ellipse)

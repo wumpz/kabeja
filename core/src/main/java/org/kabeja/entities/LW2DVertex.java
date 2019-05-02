@@ -184,8 +184,12 @@ public class LW2DVertex {
 
 	/**
 	 * Transforms the vertex' coordinates from OCS to WCS.
+	 *
 	 * Does not simply translate the coordinates, but "reverts" the arbitrary
-	 * axis algorithm's effects.
+	 * axis algorithm's effects. This means that an Entity
+	 * with Extrusion != (0,0,1), that might have appeared "flipped" without the
+	 * transformation, will be "unflipped".
+	 *
 	 * Should only ever be called after the whole vertex has been constructed
 	 * i.e. when the entity's group has ended.
 	 */
