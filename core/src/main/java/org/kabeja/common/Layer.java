@@ -107,6 +107,10 @@ public class Layer {
     */
     
     public void setDocument(DraftDocument doc) {
+        if (this.doc != null && this.doc.equals(doc)) {
+            return;
+        }
+
         this.doc = doc;
         //add to all entities
         for(List<DraftEntity> list:entities.values()){
