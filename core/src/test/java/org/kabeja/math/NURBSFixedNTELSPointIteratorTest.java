@@ -77,7 +77,6 @@ public class NURBSFixedNTELSPointIteratorTest {
                 verticesOnCorner++;
             }
         }
-
         assertEquals("There needs to be exactly one Point on the corner",1, verticesOnCorner);
     }
 

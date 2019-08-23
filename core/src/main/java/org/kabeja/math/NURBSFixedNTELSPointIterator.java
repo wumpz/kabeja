@@ -28,6 +28,7 @@ public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
     private double t = 0;
     private int interval;
     private int lastInterval;
+    private boolean onLastNode = false;
 
     /**
      *
@@ -81,6 +82,12 @@ public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
             this.nextInterval();
 
             return hasNext();
+        } else if (!onLastNode && this.interval == this.lastInterval) {
+            // Make one last point at the end node. This could lead to duplicating the last point, but that's better
+            // than missing it.
+            onLastNode = true;
+            this.t = this.nurbs.getKnots()[this.interval];
+            return true;
         }
 
         return false;
@@ -109,18 +116,13 @@ public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
             this.interval++;
         }
 
-        // we want to make sure we create a point exactly at each knot
-        if ((this.t > this.nurbs.getKnots()[this.interval])) {
-            this.t = this.interval;
-        }
-
         double length = this.nurbs.getKnots()[this.interval] - this.t;
         this.dt = length / this.ntels;
 
         // To prevent numerical issues, we want to make sure that we definitely change t when calculating t=t+dt.
         double maxUlp = Math.max(Math.ulp(nurbs.getKnots()[this.interval]),
-                                 Math.ulp(nurbs.getKnots()[this.interval - 1]));
-        if (maxUlp > this.dt) {
+                Math.ulp(nurbs.getKnots()[this.interval - 1]));
+        if (maxUlp * 2 > this.dt) {
             this.dt = maxUlp * 2;
         }
     }
