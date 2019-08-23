@@ -21,6 +21,7 @@ import java.util.Iterator;
 
 
 public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
+    private static final double TOLERANCE = 1e-6;
     private NURBS nurbs;
     private int ntels;
     private double dt = 0;
@@ -89,6 +90,7 @@ public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
         Point3D p = this.nurbs.getPointAt(this.interval - 1, t);
         //		System.out.println("t="+t);
         //		Point p = this.nurbs.getPointAt(t);
+        assert Math.ulp(this.t) < this.dt : "increment too small";
         this.t += this.dt;
 
         return p;
@@ -101,12 +103,25 @@ public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
     protected void nextInterval() {
         this.interval++;
 
-        while ((this.t > this.nurbs.getKnots()[this.interval]) &&
-                (this.interval < this.lastInterval)) {
+        // if we have multiple knots on the same spot, ignore all but the first to make sure we don't create multiple, equal points
+        while (Math.abs(this.nurbs.getKnots()[this.interval - 1] - this.nurbs.getKnots()[this.interval]) < TOLERANCE
+                && (this.interval < this.lastInterval)) {
             this.interval++;
+        }
+
+        // we want to make sure we create a point exactly at each knot
+        if ((this.t > this.nurbs.getKnots()[this.interval])) {
+            this.t = this.interval;
         }
 
         double length = this.nurbs.getKnots()[this.interval] - this.t;
         this.dt = length / this.ntels;
+
+        // To prevent numerical issues, we want to make sure that we definitely change t when calculating t=t+dt.
+        double maxUlp = Math.max(Math.ulp(nurbs.getKnots()[this.interval]),
+                                 Math.ulp(nurbs.getKnots()[this.interval - 1]));
+        if (maxUlp > this.dt) {
+            this.dt = maxUlp * 2;
+        }
     }
 }
