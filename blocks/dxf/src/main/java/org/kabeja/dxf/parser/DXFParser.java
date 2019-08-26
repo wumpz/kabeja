@@ -134,8 +134,9 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
 
             key = true;
             sectionstarts = false;
-            DXFValue value= new DXFValue();
+            DXFValue value;
             while ((line = in.readLine()) != null) {
+                value = new DXFValue();
                 linecount++;
                 if (key) {
                     currentKey = line;
