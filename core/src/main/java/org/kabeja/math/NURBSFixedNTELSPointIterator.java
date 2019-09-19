@@ -110,9 +110,8 @@ public class NURBSFixedNTELSPointIterator implements Iterator <Point3D>{
     protected void nextInterval() {
         this.interval++;
 
-        // if we have multiple knots on the same spot, ignore all but the first to make sure we don't create multiple, equal points
-        while (Math.abs(this.nurbs.getKnots()[this.interval - 1] - this.nurbs.getKnots()[this.interval]) < TOLERANCE
-                && (this.interval < this.lastInterval)) {
+        while ((this.t > this.nurbs.getKnots()[this.interval]) &&
+                (this.interval < this.lastInterval)) {
             this.interval++;
         }
 
