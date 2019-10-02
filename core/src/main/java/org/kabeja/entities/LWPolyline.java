@@ -464,5 +464,10 @@ public class LWPolyline extends Entity{
         for (LW2DVertex v : vertices) {
             v.transformToWcs(e);
         }
+        Extrusion newE = new Extrusion();
+        newE.setX(0);
+        newE.setY(0);
+        newE.setZ(1);
+        this.setExtrusion(newE);
     }
 }

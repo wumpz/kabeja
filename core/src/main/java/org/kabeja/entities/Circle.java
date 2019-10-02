@@ -125,6 +125,11 @@ public class Circle extends Entity {
             return;
         }
         center = e.transformOcsToWcs(center);
+       Extrusion newE = new Extrusion();
+       newE.setX(0);
+       newE.setY(0);
+       newE.setZ(1);
+       this.setExtrusion(newE);
     }
     
 }

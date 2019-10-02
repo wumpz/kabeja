@@ -22,6 +22,7 @@ import java.util.List;
 import org.kabeja.common.Block;
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
+import org.kabeja.math.Extrusion;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -352,7 +353,13 @@ public class Insert extends Entity {
      */
     @Override
     public void toWcs() {
-        throw new NotImplementedException();
+        Extrusion e = this.getExtrusion();
+        insertPoint = e.transformOcsToWcs(insertPoint);
+        Extrusion newE = new Extrusion();
+        newE.setX(0);
+        newE.setY(0);
+        newE.setZ(1);
+        this.setExtrusion(newE);
     }
     
 }
