@@ -135,6 +135,11 @@ public class Solid extends Entity {
         point2 = e.transformOcsToWcs(point2);
         point3 = e.transformOcsToWcs(point3);
         point4 = e.transformOcsToWcs(point4);
+        Extrusion newE = new Extrusion();
+        newE.setX(0);
+        newE.setY(0);
+        newE.setZ(1);
+        this.setExtrusion(newE);
     }
 
     

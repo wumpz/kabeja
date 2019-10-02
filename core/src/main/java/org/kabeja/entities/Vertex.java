@@ -313,6 +313,11 @@ public class Vertex extends Entity{
 			return;
 		}
 		p = e.transformOcsToWcs(p);
+		Extrusion newE = new Extrusion();
+		newE.setX(0);
+		newE.setY(0);
+		newE.setZ(1);
+		this.setExtrusion(newE);
 	}
 
 	private boolean is3D() {

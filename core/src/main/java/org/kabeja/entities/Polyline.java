@@ -743,6 +743,11 @@ public class Polyline extends Entity {
         for (Vertex v : vertices) {
             v.transformToWcs(this.getExtrusion());
         }
+        Extrusion newE = new Extrusion();
+        newE.setX(0);
+        newE.setY(0);
+        newE.setZ(1);
+        this.setExtrusion(newE);
     }
 
     private boolean is3D() {

@@ -275,6 +275,7 @@ public class Arc extends Entity {
         newE.setY(0);
         newE.setZ(1);
 
+        this.setExtrusion(newE);
         transformedStart = newE.wcsToOcs(transformedStart);
         transformedEnd = newE.wcsToOcs(transformedEnd);
         this.start_angle = getAngleAtPoint(transformedStart);
@@ -309,7 +310,8 @@ public class Arc extends Entity {
      */
     private boolean isOnCircle(Point3D p) {
         double distanceFromCenter = Math.sqrt(Math.pow(p.getX(), 2)
-                                                + Math.pow(p.getY(), 2));
+                + Math.pow(p.getY(), 2)
+                + Math.pow(p.getZ(), 2));
         return (Math.abs((distanceFromCenter - radius)) <= MathUtils.DISTANCE_DELTA);
     }
 }

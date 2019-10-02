@@ -168,7 +168,7 @@ public abstract class Entity implements DraftEntity {
 	}
 
 	public void setExtrusion(Extrusion extrusion) {
-		this.lazyContainer.set(extrusion, LAZY_INDEX_LAYER);
+		this.lazyContainer.set(extrusion, LAZY_INDEX_EXTRUSION);
 	}
 
 	public Extrusion getExtrusion() {
