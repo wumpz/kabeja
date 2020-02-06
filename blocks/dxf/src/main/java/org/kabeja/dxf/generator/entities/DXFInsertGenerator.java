@@ -81,22 +81,22 @@ public class DXFInsertGenerator extends AbstractDXFEntityGenerator {
 				out.output(43, insert.getScaleZ());
 				break;
 			case 44:
-				out.output(44, insert.getColumnSpacing());
+//				out.output(44, insert.getColumnSpacing());
 				break;
 			case 45:
-				out.output(45, insert.getRowSpacing());
+//				out.output(45, insert.getRowSpacing());
 				break;
 			case 50:
 				out.output(50, insert.getRotate());
 				break;
 			case 66:
-				out.output(66, insert.hasAttributes() ? 1 : 0);
+//				out.output(66, insert.hasAttributes() ? 1 : 0);
 				break;
 			case 70:
-				out.output(70, insert.getColumns());
+//				out.output(70, insert.getColumns());
 				break;
 			case 71:
-				out.output(71, insert.getRows());
+//				out.output(71, insert.getRows());
 				break;
 
 			}
