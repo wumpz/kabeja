@@ -24,6 +24,7 @@ import org.kabeja.dxf.generator.DXFSectionGenerator;
 import org.kabeja.dxf.generator.DXFTableGenerator;
 import org.kabeja.dxf.generator.conf.DXFProfile;
 import org.kabeja.dxf.generator.conf.DXFSubType;
+import org.kabeja.entities.util.Utils;
 import org.kabeja.io.GenerationException;
 import org.kabeja.util.Constants;
 
@@ -64,7 +65,7 @@ public class DXFTablesSectionGenerator implements DXFSectionGenerator {
 								break;
 
 							case 5:
-								// handle
+								output.output(5, Utils.generateNewID(doc));
 								break;
 
 							case 70:

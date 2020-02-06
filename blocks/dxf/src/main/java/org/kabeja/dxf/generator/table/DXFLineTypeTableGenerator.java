@@ -38,8 +38,8 @@ public class DXFLineTypeTableGenerator implements DXFTableGenerator {
 
 	public void output(DraftDocument doc, DXFOutput output, DXFGenerationContext context, DXFProfile type) throws GenerationException {
 
-		if (type.hasDXFType(Constants.TABLE_KEY_LAYER)) {
-			DXFType tableType = type.getDXFType(Constants.TABLE_KEY_LAYER);
+		if (type.hasDXFType(Constants.TABLE_KEY_LTYPE)) {
+			DXFType tableType = type.getDXFType(Constants.TABLE_KEY_LTYPE);
 			this.tableID = Utils.generateNewID(doc);
 			for (DXFSubType subType : tableType.getDXFSubTypes()) {
 				if (subType.getName().equals("AcDbLTypeEntry")) {
