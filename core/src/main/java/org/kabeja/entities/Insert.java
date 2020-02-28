@@ -354,7 +354,10 @@ public class Insert extends Entity {
     @Override
     public void toWcs() {
         Extrusion e = this.getExtrusion();
-        insertPoint = e.transformOcsToWcs(insertPoint);
+        Point3D refPoint = getBlock().getReferencePoint();
+        insertPoint = e.transformOcsToWcs(new Point3D(insertPoint.getX() - refPoint.getX(),
+                insertPoint.getY() - refPoint.getY(),
+                insertPoint.getZ() - refPoint.getZ()));
         Extrusion newE = new Extrusion();
         newE.setX(0);
         newE.setY(0);
