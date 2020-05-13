@@ -91,7 +91,13 @@ public class MText extends Text {
     public void setText(String text) {
         this.text = text;
 
-        this.textDoc = TextParser.parseMText(this);
+        try {
+            this.textDoc = TextParser.parseMText(this);
+        } catch (NumberFormatException e) {
+            System.err.println("Could not parse entity " + this.getID());
+            System.err.println("Entity type: " + this.getType().getName());
+            System.err.println("Failed to apply formatting.");
+        }
     }
 
     public int getAlignment() {
