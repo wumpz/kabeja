@@ -371,7 +371,7 @@ public class Constants {
     
     public static final int GROUPCODE_HANDLE=5;
     
-   
+
     public static final String SUBCLASS_MARKER_ENTITY="AcDbEntity";
     public static final String SUBCLASS_MARKER_ENTITY_3DFACE="AcDbFace";
     public static final String SUBCLASS_MARKER_ENTITY_ARC="AcDbArc";
@@ -380,14 +380,13 @@ public class Constants {
     public static final String SUBCLASS_MARKER_ENTITY_ELLIPSE="AcDbEllipse";
     public static final String SUBCLASS_MARKER_ENTITY_LINE="AcDbLine";
     public static final String SUBCLASS_MARKER_ENTITY_LWPOLYLINE="AcDbPolyline";
-    
-    
+
     public static final String SUBCLASS_MARKER_ENTITY_TEXT="AcDbText";
     public static final String SUBCLASS_MARKER_ENTITY_ATTRIB_DEF="AcDbAttributeDefinition";
     public static final String SUBCLASS_MARKER_ENTITY_INSERT="AcDbBlockReference";
     public static final String SUBCLASS_MARKER_ENTITY_MTEXT="AcDbMText";
     public static final String SUBCLASS_MARKER_ENTITY_POINT = "AcDbPoint";
-    public static final String SUBCLASS_MARKER_ENTITY_SOLID = "AcDbTrace";
+    public static final String SUBCLASS_MARKER_ENTITY_SOLID = "AcDbSolid";
     public static final String SUBCLASS_MARKER_ENTITY_TRACE="AcDbTrace";
     public static final String SUBCLASS_MARKER_ENTITY_VERTEX="AcDbVertex";
     public static final String SUBCLASS_MARKER_ENTITY_VERTEX_2D="AcDb2dVertex";

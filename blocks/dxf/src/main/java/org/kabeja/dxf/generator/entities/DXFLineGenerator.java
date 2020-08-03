@@ -34,31 +34,37 @@ public class DXFLineGenerator extends AbstractDXFEntityGenerator {
 		Line line = (Line) entity;
 		for (int groupCode : subtype.getGroupCodes()) {
 			switch (groupCode) {
-			case 10:
-				out.output(10, line.getStartPoint().getX());
-				break;
-			case 20:
-				out.output(20, line.getStartPoint().getY());
-				break;
-			case 30:
-				out.output(30, line.getStartPoint().getZ());
-				break;
-			case 11:
-				out.output(11, line.getEndPoint().getX());
-				break;
-			case 21:
-				out.output(21, line.getEndPoint().getY());
-				break;
-			case 31:
-				out.output(31, line.getEndPoint().getZ());
-				break;
-			case 39:
-				out.output(39, line.getThickness());
-				break;
-			case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
-				out.output(100, Constants.SUBCLASS_MARKER_ENTITY_LINE);
-				break;
+				case 10:
+					out.output(10, line.getStartPoint().getX());
+					break;
+				case 20:
+					out.output(20, line.getStartPoint().getY());
+					break;
+				case 30:
+					out.output(30, line.getStartPoint().getZ());
+					break;
+				case 11:
+					out.output(11, line.getEndPoint().getX());
+					break;
+				case 21:
+					out.output(21, line.getEndPoint().getY());
+					break;
+				case 31:
+					out.output(31, line.getEndPoint().getZ());
+					break;
+				case 39:
+					out.output(39, line.getThickness());
+					break;
+				case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
+					out.output(100, Constants.SUBCLASS_MARKER_ENTITY_LINE);
+					break;
+				case 62:
+					out.output(62, line.getColor());
+					break;
 
+				default:
+					super.outputCommonGroupCode(groupCode, line, out);
+					break;
 			}
 		}
 	}

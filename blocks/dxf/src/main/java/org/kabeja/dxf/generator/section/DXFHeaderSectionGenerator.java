@@ -76,7 +76,7 @@ public class DXFHeaderSectionGenerator implements DXFSectionGenerator {
 
 		prepare();
 		Header header = doc.getHeader();
-		List varList = new ArrayList();
+		ArrayList<String> varList = new ArrayList<String>();
 
 		// filter out the variable to omit
 		for (int i = 0; i < variableList.length; i++) {
@@ -85,16 +85,30 @@ public class DXFHeaderSectionGenerator implements DXFSectionGenerator {
 			}
 		}
 
-		Iterator i = varList.iterator();
-		while (i.hasNext()) {
-			String varName = (String) i.next();
-			if (predefined.containsKey(varName)) {
-				Variable var = (Variable) predefined.get(varName);
-				outputDXFVariable(var, output);
-			} else if (header.hasVariable(varName)) {
-				Variable var = header.getVariable(varName);
-				outputDXFVariable(var, output);
+		final List<String> headerVariables = (List<String>) dxfContext.getAttribute(PROPERTY_HEADER_VARIABLE_LIST);
+
+		if (headerVariables != null) {
+			for (String o : headerVariables) {
+				if (!omit.contains(o)) {
+					varList.add(o);
+				}
 			}
+		}
+
+		final HashMap<String, Variable> map = new HashMap<>();
+
+		for (String varName : varList) {
+			if (header.hasVariable(varName)) {
+				Variable var = header.getVariable(varName);
+				map.put(varName, var);
+			} else if (predefined.containsKey(varName)) {
+				Variable var = (Variable) predefined.get(varName);
+				map.put(varName, var);
+			}
+		}
+
+		for (Variable var : map.values()) {
+			outputDXFVariable(var, output);
 		}
 
 	}

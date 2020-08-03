@@ -81,6 +81,9 @@ public class DXFSolidGenerator extends AbstractDXFEntityGenerator {
 			case 39:
 				out.output(39, solid.getThickness());
 				break;
+			default:
+				outputCommonGroupCode(groupCode, entity, out);
+				break;
 			}
 		  }
 		}

@@ -19,22 +19,13 @@ to jpeg, tiff, png and pdf are included.
 
     <modules>
         <module>core</module>
+        <module>blocks/acis</module>
+        <module>blocks/dxf</module>
+        <module>blocks/ui</module>
+        <module>blocks/inkscape</module>
+        <module>blocks/svg</module>
+        <module>blocks/xslt</module>
     </modules>
-
-    <profiles>
-        <profile>
-            <id>blocks</id>
-            <modules>
-                <module>blocks/acis</module>
-                <module>blocks/dxf</module>
-                <module>blocks/ui</module>
-                <module>blocks/inkscape</module>
-                <module>blocks/svg</module>
-                <module>blocks/xslt</module>
-                <!-- module>blocks/cocoon</module -->
-            </modules>
-        </profile>
-    </profiles>
 
     <issueManagement>
         <system>Bugzilla</system>

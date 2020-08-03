@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,12 +27,9 @@ import org.kabeja.processing.InstanceFactory;
 
 public class DXFGeneratorFactory  implements InstanceFactory{
 
-	private String DEFAULT_PROFILES_FILE="blocks/dxf/conf/profiles.xml";
+	private String DEFAULT_PROFILES_FILE="/conf/profiles.xml";
 
-	
-   
-    
-    protected static DXFGenerationContext getDXFGenerationContext(
+	protected static DXFGenerationContext getDXFGenerationContext(
             InputStream in) {
         SAXDXFGenerationContextBuilder builder = new SAXDXFGenerationContextBuilder();
         return builder.buildDXFGenerationContext(in);
@@ -47,24 +44,25 @@ public class DXFGeneratorFactory  implements InstanceFactory{
         return generator;
     }
 
-
 	public Object createInstance(Map properties) {
-		  InputStream in = null;
-	        File f = new File(DEFAULT_PROFILES_FILE);
-	        try {
-	            if (f.exists()) {
-	                in = new FileInputStream(f);
-	            
-	            } else {
-	                in = DXFGeneratorFactory.class.getResourceAsStream("/"
-	                        + DEFAULT_PROFILES_FILE);
-	            }
-	        } catch (FileNotFoundException e) {
+		final InputStream in;
+		File f = new File(DEFAULT_PROFILES_FILE);
 
-	            e.printStackTrace();
-	        }
+		try {
+			if (f.exists()) {
+				in = new FileInputStream(f);
+			} else {
+				in = DXFGeneratorFactory.class.getResourceAsStream(DEFAULT_PROFILES_FILE);
+			}
 
-	        return createStreamGenerator(in);
+			final Generator streamGenerator = createStreamGenerator(in);
+			streamGenerator.setProperties(properties);
+
+			return streamGenerator;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
