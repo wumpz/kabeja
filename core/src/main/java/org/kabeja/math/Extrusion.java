@@ -82,7 +82,7 @@ public class Extrusion {
      * @return
      */
     public Vector getDirectionX() {
-        if ((Math.abs(n.getX()) < v) && (Math.abs(n.getY()) < v)) {
+        if (normalIsCloseToWorldZ()) {
             return MathUtils.crossProduct(Constants.DEFAULT_Y_AXIS_VECTOR, n);
         } else {
             return MathUtils.crossProduct(Constants.DEFAULT_Z_AXIS_VECTOR, n);
@@ -115,6 +115,15 @@ public class Extrusion {
      */
     public Vector getDirectionZ() {
         return n;
+    }
+
+
+    /**
+     * This method is used to determine if the normal is close to the WCS Z-Axis,
+     * according to the  arbitrary axis algorithm.
+     */
+    public boolean normalIsCloseToWorldZ() {
+        return (Math.abs(n.getX()) < v) && (Math.abs(n.getY()) < v);
     }
 
     /**
