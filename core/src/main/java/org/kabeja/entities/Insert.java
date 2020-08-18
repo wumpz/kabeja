@@ -16,12 +16,15 @@
 
 package org.kabeja.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.kabeja.common.Block;
 import org.kabeja.common.Type;
-import org.kabeja.math.*;
+import org.kabeja.math.Bounds;
+import org.kabeja.math.Extrusion;
+import org.kabeja.math.Point3D;
+import org.kabeja.math.TransformContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -348,19 +351,21 @@ public class Insert extends Entity {
     @Override
     public void toWcs() {
         Extrusion e = this.getExtrusion();
-        if (getExtrusion().getNormal().equals(new Vector(0, 0, 1))) {
+        if (e.compareToNormalVector(0, 0, 1)) {
             return;
         }
-        Point3D refPoint = getBlock().getReferencePoint();
-        insertPoint = e.transformOcsToWcs(new Point3D(insertPoint.getX() - refPoint.getX(),
-                insertPoint.getY() - refPoint.getY(),
-                insertPoint.getZ() - refPoint.getZ()));
+        insertPoint = e.transformOcsToWcs(insertPoint);
         Extrusion newE = new Extrusion();
         newE.setX(0);
         newE.setY(0);
         newE.setZ(1);
-        insertPoint = newE.wcsToOcs(insertPoint);
-        rotate *= e.getZ();
+        if (e.normalIsCloseToWorldZ()) { //Entities need to be flipped
+            rotate = 180 - rotate;
+            Point3D transformedScale = e.transformOcsToWcs(new Point3D(-scale_x, -scale_y, -scale_z));
+            scale_x = transformedScale.getX();
+            scale_y = transformedScale.getY();
+            scale_z = transformedScale.getZ();
+        }
         this.setExtrusion(newE);
     }
     
