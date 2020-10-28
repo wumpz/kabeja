@@ -65,6 +65,9 @@ public class DXFArcGenerator extends AbstractDXFEntityGenerator {
 			case 51:
 				out.output(51, arc.getEndAngle());
 				break;
+			case 62:
+				out.output(62, arc.getColor());
+				break;
 			case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
 				out.output(100, Constants.SUBCLASS_MARKER_ENTITY_ARC);
 				break;
