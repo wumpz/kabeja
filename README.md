@@ -15,6 +15,12 @@
     
     * Your **jar** is now at `out` or `classes` > `/artifacts/tfly_kabeja_dxf_jar/tfly-kabeja-dxf.jar`
 
+### How to debug
+* As the initial kabeja project is discontinued, there arise issues with new DXF-versions from time to time
+* The class `org.kabeja.dxf.Main` can be used to test new implementations and bugfixes
+* Inserts `org.kabeja.entities.Insert` and the method `toWcs()` in `org.kabeja.entities.Entity` frequently turned out to be the root of the problem
+* For further information see the most current [DXF specification](https://documentation.help/AutoCAD-DXF/). For issues regarding rotated entities, check out the sections about the *Object Coordinate Systems (OCS)* and the *Arbitrary Axis Algorithm*
+
 ### Library for parsing DXF files and conversion to SVG
 
 It is licensed under the Apache Software License 2.0.
