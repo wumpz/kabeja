@@ -61,6 +61,9 @@ public class DXFLineGenerator extends AbstractDXFEntityGenerator {
 				case 62:
 					out.output(62, line.getColor());
 					break;
+				case 370:
+					out.output(370, line.getLineWeight());
+					break;
 
 				default:
 					super.outputCommonGroupCode(groupCode, line, out);

@@ -35,7 +35,7 @@
 
 			<type name="LINE">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbline" name="AcDbLine" groupCodes="10,20,30,11,21,31,62,48" />
+				<subtype id="acdbline" name="AcDbLine" groupCodes="10,20,30,11,21,31,62,48,370" />
 			</type>
 
 			<type name="CIRCLE">
