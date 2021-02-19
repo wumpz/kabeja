@@ -385,7 +385,7 @@ public abstract class Entity implements DraftEntity {
 		// visibility to true
 		this.entityFlags = Utils.enableBit(this.entityFlags, 0);
 		// modelspace to true
-		this.entityFlags = Utils.enableBit(this.entityFlags, 6);
+		setModelSpace(true);
 
 	}
 
