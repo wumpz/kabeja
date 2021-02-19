@@ -198,15 +198,15 @@ public class Utils {
 
         return flags | v;
     }
-    
-    public static int setBit(int bitmask,int bit,boolean enabled){
-    	if(enabled){
-    		  int v = (int) Math.pow(2, bit);
-    	      return bitmask| v;
-    	      
-    	}else{
-    		return  bitmask & ~bit;
-    	}
+
+    public static int setBit(int bitmask, int bit, boolean enabled) {
+        int v = (int) Math.pow(2, bit);
+        if (enabled) {
+            return bitmask | v;
+
+        } else {
+            return bitmask & ~v;
+        }
     }
     
     public static boolean isBitEnabled(int flags, int bitPosition) {
