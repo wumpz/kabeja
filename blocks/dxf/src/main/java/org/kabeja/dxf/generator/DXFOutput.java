@@ -33,7 +33,8 @@ public class DXFOutput {
 	public void output(int groupCode, int value) throws GenerationException {
 		try {
 			this.outputGroupCode(groupCode);
-			this.out.write(Integer.toString(value).getBytes(encoding));
+			final int safeValue = Double.isNaN(value) ? 0 : value;
+			this.out.write(Integer.toString(safeValue).getBytes(encoding));
 			this.newLine();
 		} catch (Exception e) {
 			throw new GenerationException("Error on groupCode:" + groupCode
@@ -45,7 +46,8 @@ public class DXFOutput {
 			throws GenerationException {
 		try {
 			this.outputGroupCode(groupCode);
-			this.out.write(Double.toString(value).getBytes(encoding));
+			final double safeValue = Double.isNaN(value) ? 0.0 : value;
+			this.out.write(Double.toString(safeValue).getBytes(encoding));
 			this.newLine();
 		} catch (Exception e) {
 			throw new GenerationException("Error on groupCode:" + groupCode
