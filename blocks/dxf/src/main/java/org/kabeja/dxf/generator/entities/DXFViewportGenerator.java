@@ -29,7 +29,7 @@ public class DXFViewportGenerator implements DXFTableGenerator {
                         out.output(2, viewport.getViewportID());
                         break;
                     case 10: // Center point X in WCS
-                        out.output(10, 0);
+                        out.output(10, viewport.getCenterPoint().getX());
                         break;
                     case 11:
                         out.output(11, bounds.getMaximumX());
@@ -53,7 +53,7 @@ public class DXFViewportGenerator implements DXFTableGenerator {
                         out.output(17, viewport.getViewTargetPoint().getX());
                         break;
                     case 20: // Center point Y in WCS
-                        out.output(20, 0);
+                        out.output(20, viewport.getCenterPoint().getY());
                         break;
                     case 21:
                         out.output(21, bounds.getMaximumY());
