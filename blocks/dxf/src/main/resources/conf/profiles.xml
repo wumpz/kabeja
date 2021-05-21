@@ -51,7 +51,7 @@
 
 			<type name="TEXT">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbtext" name="AcDbText" groupCodes="62,48,10,20,30,40,1,50" />
+				<subtype id="acdbtext" name="AcDbText" groupCodes="62,48,7,10,20,30,40,1,50" />
 			</type>
 
 			<type name="SOLID">
@@ -96,6 +96,10 @@
 				<subtype id="acdbviewport" name="AcDbViewPort" groupCodes="2,10,11,12,13,14,15,16,17,20,21,22,23,24,25,26,27,36,37,40,41,42,43,44,50,51,70,71,72,73,74,75,76,77,78"/>
 			</type>
 
+			<type name="STYLE">
+				<subtype id="acdbstyle" name="AcDbStyle" groupCodes="0,2,40,41,50,71,70,42,3,4"/>
+			</type>
+
 			<type name="LTYPE">
 			     <subtype id="acdbltypeentry" name="AcDbLTypeEntry" groupCodes="0,2,70,3,72,73,40,30000"/>
 			</type>
@@ -126,6 +130,7 @@
        <typehandler name="TABLES" 		class="org.kabeja.dxf.generator.section.DXFTablesSectionGenerator" />  
  	   <typehandler name="LAYER"        class="org.kabeja.dxf.generator.table.DXFLayerTableGenerator"/>
  	   <typehandler name="LTYPE"        class="org.kabeja.dxf.generator.table.DXFLineTypeTableGenerator" />
+		<typehandler name="STYLE"    	class="org.kabeja.dxf.generator.table.DXFStyleTableGenerator"/>
 		<typehandler name="VPORT"    class="org.kabeja.dxf.generator.entities.DXFViewportGenerator"/>
 	</typehandlers>
 </config>
