@@ -62,7 +62,10 @@ public class DXFLineGenerator extends AbstractDXFEntityGenerator {
 					out.output(62, line.getColor());
 					break;
 				case 370:
-					out.output(370, line.getLineWeight());
+					int lineWeight = line.getLineWeight();
+					if (lineWeight != 0) {
+						out.output(370, lineWeight);
+					}
 					break;
 
 				default:
