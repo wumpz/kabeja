@@ -134,6 +134,10 @@ public class Extrusion {
     /**
      * Transforms a point from WCS to OCS.
      * Relies on the arbitrary axis algorithm to determine the OCS.
+     * <p>
+     * Edit: <a href="https://ezdxf.readthedocs.io/en/stable/concepts/ocs.html">This</a> may be the source for both this method and also for {@link #transformOcsToWcs(Point3D)}.
+     * Our code is very similar to the code examples I found there.
+     *
      * @param p point in WCS
      * @return point in OCS
      */
