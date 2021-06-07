@@ -82,11 +82,14 @@ public class Extrusion {
      * @return
      */
     public Vector getDirectionX() {
+        Vector directionX;
         if (normalIsCloseToWorldZ()) {
-            return MathUtils.crossProduct(Constants.DEFAULT_Y_AXIS_VECTOR, n);
+            directionX = MathUtils.crossProduct(Constants.DEFAULT_Y_AXIS_VECTOR, n);
         } else {
-            return MathUtils.crossProduct(Constants.DEFAULT_Z_AXIS_VECTOR, n);
+            directionX = MathUtils.crossProduct(Constants.DEFAULT_Z_AXIS_VECTOR, n);
         }
+        directionX.normalize();
+        return directionX;
     }
 
     /**
@@ -94,7 +97,9 @@ public class Extrusion {
      * @return the calculate y direction
      */
     public Vector getDirectionY() {
-        return MathUtils.crossProduct(n, getDirectionX());
+        Vector directionY = MathUtils.crossProduct(n, getDirectionX());
+        directionY.normalize();
+        return directionY;
     }
 
     public Point3D extrudePoint(Point3D basePoint, double elevation) {
