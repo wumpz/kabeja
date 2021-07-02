@@ -101,6 +101,12 @@ public class DXFTextGenerator extends AbstractDXFEntityGenerator {
 					case 73:
 						output.output(73, text.getValign());
 						break;
+					case 370:
+						int lineWeight = text.getLineWeight();
+						if (lineWeight != 0) {
+							output.output(370, lineWeight);
+						}
+						break;
 
 					default:
 						super.outputCommonGroupCode(groupCode, text, output);

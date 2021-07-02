@@ -65,6 +65,12 @@ public class DXFEllipseGenerator extends AbstractDXFEntityGenerator {
 			case 42:
 				out.output(42, ellipse.getEndParameter());
 				break;
+			case 370:
+				int lineWeight = ellipse.getLineWeight();
+				if (lineWeight != 0) {
+					out.output(370, lineWeight);
+				}
+			break;
 
 			}
 		}

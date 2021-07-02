@@ -71,6 +71,12 @@ public class DXFPolylineGenerator extends AbstractDXFEntityGenerator {
 						output.output(75, 0);
 					}
 					break;
+				case 370:
+					int lineWeight = pline.getLineWeight();
+					if (lineWeight != 0) {
+						output.output(370, lineWeight);
+					}
+				break;
 				default:
 					super.outputCommonGroupCode(groupCode, pline, output);
 				}
@@ -100,6 +106,12 @@ public class DXFPolylineGenerator extends AbstractDXFEntityGenerator {
 					case 42:
 						output.output(42, vertex.getBulge());
 						break;
+					case 370:
+						int lineWeight = vertex.getLineWeight();
+						if (lineWeight != 0) {
+							output.output(370, lineWeight);
+						}
+					break;
 					case  100:
 						output.output(100, Constants.SUBCLASS_MARKER_ENTITY_VERTEX);
 					default:

@@ -66,6 +66,12 @@ public class DXFPointGenerator extends AbstractDXFEntityGenerator {
 			case 50:
 				out.output(50, point.getAngle());
 				break;
+			case 370:
+				int lineWeight = point.getLineWeight();
+				if (lineWeight != 0) {
+					out.output(370, lineWeight);
+				}
+			break;
 
 			}
 		}
