@@ -68,6 +68,12 @@ public class DXFArcGenerator extends AbstractDXFEntityGenerator {
 			case 62:
 				out.output(62, arc.getColor());
 				break;
+			case 370:
+				int lineWeight = arc.getLineWeight();
+				if (lineWeight != 0) {
+					out.output(370, lineWeight);
+				}
+			break;
 			case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
 				out.output(100, Constants.SUBCLASS_MARKER_ENTITY_ARC);
 				break;

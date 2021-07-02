@@ -49,6 +49,12 @@ public class DXFCircleGenerator extends AbstractDXFEntityGenerator {
 			case 40:
 				out.output(40, circle.getRadius());
 				break;
+			case 370:
+				int lineWeight = circle.getLineWeight();
+				if (lineWeight != 0) {
+					out.output(370, lineWeight);
+				}
+			break;
 			case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
 				out.output(100, Constants.SUBCLASS_MARKER_ENTITY_CIRCLE);
 				break;

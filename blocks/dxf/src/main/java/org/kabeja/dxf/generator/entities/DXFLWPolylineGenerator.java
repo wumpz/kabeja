@@ -36,7 +36,13 @@ public class DXFLWPolylineGenerator extends AbstractDXFEntityGenerator {
 					break;			
 				case 90:
 					output.output(90,lw.getVertexCount());
-					break;	
+					break;
+				case 370:
+					int lineWeight = lw.getLineWeight();
+					if (lineWeight != 0) {
+						output.output(370, lineWeight);
+					}
+				break;
 					
 				default:
 					super.outputCommonGroupCode(groupCode, lw, output);

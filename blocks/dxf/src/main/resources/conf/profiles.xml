@@ -19,7 +19,7 @@
 
 		  	<type name="ARC">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbarc" name="AcDbArc" groupCodes="62,48,39,10,20,30,40,50,51,210,220,230" />
+				<subtype id="acdbarc" name="AcDbArc" groupCodes="62,48,39,10,20,30,40,50,51,210,220,230,370" />
 			</type>
 
 			<type name="ATTRIB">
@@ -30,7 +30,7 @@
 		    <type name="LWPOLYLINE">
 				<subtype ref-id="acdbentity" />
 				<subtype id="acdbpolyline" name="AcDbPolyline" groupCodes="90,70" />
-				<subtype id="acdbvertex" name="AcDbVertex" groupCodes="62,48,62,10,20,30,42" />
+				<subtype id="acdbvertex" name="AcDbVertex" groupCodes="62,48,62,10,20,30,42,370" />
 			</type>
 
 			<type name="LINE">
@@ -40,7 +40,7 @@
 
 			<type name="CIRCLE">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbcircle" name="AcDbCircle" groupCodes="62,48,39,10,20,30,40,210,220,230" />
+				<subtype id="acdbcircle" name="AcDbCircle" groupCodes="62,48,39,10,20,30,40,210,220,230,370" />
 			</type>
 
 			<type name="INSERT">
@@ -51,7 +51,7 @@
 
 			<type name="TEXT">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbtext" name="AcDbText" groupCodes="62,48,7,10,20,30,40,1,50" />
+				<subtype id="acdbtext" name="AcDbText" groupCodes="62,48,7,10,20,30,40,1,50,370" />
 			</type>
 
 			<type name="SOLID">
@@ -66,8 +66,8 @@
 
 			<type name="POLYLINE">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbpolyline" name="AcDbPolyline" groupCodes="62,48,62,66,10,20,30,70" />
-				<subtype id="acdbvertex" name="AcDbVertex" groupCodes="0,8,6,67,62,48,60,62,10,20,30,42" />
+				<subtype id="acdbpolyline" name="AcDbPolyline" groupCodes="62,48,62,66,10,20,30,70,370" />
+				<subtype id="acdbvertex" name="AcDbVertex" groupCodes="0,8,6,67,62,48,60,62,10,20,30,42,370" />
 			</type>
 			<!--+
 			    | all section types which should be generated

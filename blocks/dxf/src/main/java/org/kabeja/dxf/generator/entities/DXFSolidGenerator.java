@@ -81,6 +81,12 @@ public class DXFSolidGenerator extends AbstractDXFEntityGenerator {
 			case 39:
 				out.output(39, solid.getThickness());
 				break;
+			case 370:
+				int lineWeight = solid.getLineWeight();
+				if (lineWeight != 0) {
+					out.output(370, lineWeight);
+				}
+			break;
 			default:
 				outputCommonGroupCode(groupCode, entity, out);
 				break;
