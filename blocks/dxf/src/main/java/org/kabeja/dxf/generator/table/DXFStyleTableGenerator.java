@@ -51,11 +51,8 @@ public class DXFStyleTableGenerator implements DXFTableGenerator {
 			case 3:
 				out.output(3, style.getFontFile());
 				break;
-			case 4:
-				out.output(4, "");
-				break;
 			case 70:
-				out.output(70, "3");
+				out.output(70, "64");
 				break;
 			case 40:
 				out.output(40, "0");
