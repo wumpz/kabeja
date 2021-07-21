@@ -131,6 +131,7 @@
  	   <typehandler name="LAYER"        class="org.kabeja.dxf.generator.table.DXFLayerTableGenerator"/>
  	   <typehandler name="LTYPE"        class="org.kabeja.dxf.generator.table.DXFLineTypeTableGenerator" />
 		<typehandler name="STYLE"    	class="org.kabeja.dxf.generator.table.DXFStyleTableGenerator"/>
-		<typehandler name="VPORT"    class="org.kabeja.dxf.generator.entities.DXFViewportGenerator"/>
+<!--		FIXME: VPORT was causing problems on AutoCAD 2014, this is a workaround		-->
+<!--		<typehandler name="VPORT"    class="org.kabeja.dxf.generator.entities.DXFViewportGenerator"/>-->
 	</typehandlers>
 </config>
