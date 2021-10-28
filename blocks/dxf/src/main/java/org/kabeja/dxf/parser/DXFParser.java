@@ -30,26 +30,13 @@
  */
 package org.kabeja.dxf.parser;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.kabeja.DraftDocument;
 import org.kabeja.dxf.parser.filter.DXFStreamFilter;
 import org.kabeja.parser.ParseException;
 import org.kabeja.parser.Parser;
-import org.kabeja.tools.CodePageParser;
-import org.kabeja.tools.IOUtils;
+
+import java.io.*;
+import java.util.*;
 
 
 /**
@@ -64,7 +51,8 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
     private final static String SECTION_END = "ENDSEC";
     private final static String END_STREAM = "EOF";
     private final static int COMMAND_CODE = 0;
-    public static final String DEFAULT_ENCODING = "";
+    public static final String UTF_8_ENCODING = "UTF-8";
+    public static final String DEFAULT_ENCODING = UTF_8_ENCODING;
     protected DraftDocument doc;
     protected Map<String,DXFSectionHandler> handlers = new HashMap<String,DXFSectionHandler>();
     protected DXFSectionHandler currentHandler;
@@ -98,40 +86,18 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         parse = false;
 
         //initialize 
-       String encoding = null;
-       if(properties.containsKey(DraftDocument.PROPERTY_ENCODING)){
-    	   encoding = (String)properties.get(DraftDocument.PROPERTY_ENCODING);
-       }else{
-    	   encoding = DEFAULT_ENCODING;
-       }
+        String encoding;
+        if (properties.containsKey(DraftDocument.PROPERTY_ENCODING)) {
+            encoding = (String) properties.get(DraftDocument.PROPERTY_ENCODING);
+        } else {
+            encoding = UTF_8_ENCODING;
+        }
         
         doc.setProperty(DraftDocument.PROPERTY_ENCODING, encoding);
         //the StreamFilters
         this.buildFilterChain();
 
-        BufferedReader in = null;
-
-        try {
-            if ("".equals(encoding)) {
-                BufferedInputStream buf = new BufferedInputStream(input);
-                buf.mark(9000);
-
-                try {
-                    BufferedReader r = new BufferedReader(new InputStreamReader(
-                                buf));
-                    CodePageParser p = new CodePageParser();
-                    encoding = p.parseEncoding(r);
-                    buf.reset();
-
-                    in = new BufferedReader(new InputStreamReader(buf, encoding));
-                } catch (IOException e1) {
-                    buf.reset();
-                    in = new BufferedReader(new InputStreamReader(buf));
-                }
-            } else {
-                in = new BufferedReader(new InputStreamReader(input, encoding));
-            }
-
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(input, encoding))) {
             key = true;
             sectionstarts = false;
             DXFValue value;
@@ -159,12 +125,6 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
             throw new ParseException(e.toString());
         } catch (IOException ioe) {
             throw new ParseException(ioe.toString());
-        } finally {
-            try {
-                in.close();
-            } catch (IOException ex) {
-                // Nothing to do
-            }
         }
     }
 
