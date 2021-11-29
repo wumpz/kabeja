@@ -53,6 +53,8 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
     private final static int COMMAND_CODE = 0;
     public static final String UTF_8_ENCODING = "UTF-8";
     public static final String DEFAULT_ENCODING = UTF_8_ENCODING;
+    public static final int CHAR_BUFFER_SIZE = 81920; // Experimental value. Works fine on Windows 10 and Windows Server
+
     protected DraftDocument doc;
     protected Map<String,DXFSectionHandler> handlers = new HashMap<String,DXFSectionHandler>();
     protected DXFSectionHandler currentHandler;
@@ -97,7 +99,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         //the StreamFilters
         this.buildFilterChain();
 
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(input, encoding))) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(input, encoding), CHAR_BUFFER_SIZE)) {
             key = true;
             sectionstarts = false;
             DXFValue value;
