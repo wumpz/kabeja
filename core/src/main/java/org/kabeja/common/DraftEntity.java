@@ -15,7 +15,9 @@
  ******************************************************************************/
 package org.kabeja.common;
 
+import java.util.List;
 import org.kabeja.DraftDocument;
+import org.kabeja.entities.XData;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Extrusion;
 
@@ -90,4 +92,5 @@ public interface DraftEntity {
 	 */
 	public abstract void toWcs();
 
+    List<XData> getXDataList();
 }

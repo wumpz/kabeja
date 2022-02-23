@@ -19,8 +19,10 @@ package org.kabeja;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.kabeja.common.Block;
@@ -60,6 +62,8 @@ public class DraftDocument {
 	private Map<String, DimensionStyle> dimensionStyles = new HashMap<String, DimensionStyle>();
 
 	private Map<String, Style> textStyles = new HashMap<String, Style>();
+    
+    private Set<String> registeredAppIDs = new HashSet<>();
 
 	// the user coordinate systems (not used?)
 	//private Hashtable ucs = new Hashtable();
@@ -475,4 +479,8 @@ public class DraftDocument {
 	public HatchPattern getHatchPattern(String id) {
 		return (HatchPattern) this.patterns.get(id);
 	}
+    
+    public Set<String> appIDs() {
+        return registeredAppIDs;
+    }
 }
