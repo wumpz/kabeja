@@ -12,8 +12,7 @@
     <parent>
         <groupId>org.kabeja</groupId>
         <artifactId>tfly-kabeja</artifactId>
-        <version>0.5.4</version>
-        <relativePath>../../pom.xml</relativePath>
+        <version>0.5.7</version>
     </parent>
 
     <dependencies>
