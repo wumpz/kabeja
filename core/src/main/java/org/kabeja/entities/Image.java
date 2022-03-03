@@ -27,7 +27,6 @@ import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
 import org.kabeja.objects.ImageDefObject;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 /**
@@ -268,6 +267,6 @@ public class Image extends Entity {
      */
     @Override
     public void toWcs() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

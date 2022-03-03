@@ -38,7 +38,6 @@ import org.kabeja.entities.util.HatchBoundaryLoop;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -392,6 +391,6 @@ public class Hatch extends Entity {
 	 */
 	@Override
 	public void toWcs() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 }

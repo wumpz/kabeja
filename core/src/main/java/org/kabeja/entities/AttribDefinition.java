@@ -18,7 +18,6 @@ package org.kabeja.entities;
 
 import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class AttribDefinition extends Attrib implements Cloneable{
 
@@ -79,7 +78,7 @@ public class AttribDefinition extends Attrib implements Cloneable{
 	 */
 	@Override
 	public void toWcs() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 

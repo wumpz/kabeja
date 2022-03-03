@@ -18,7 +18,6 @@ package org.kabeja.entities;
 
 import org.kabeja.common.Type;
 import org.kabeja.util.Constants;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -106,7 +105,7 @@ public class Attrib extends Text {
 	 */
 	@Override
 	public void toWcs() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 }
