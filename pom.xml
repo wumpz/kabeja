@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                         http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -11,9 +11,9 @@
     <version>0.5.8-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Kabeja is a java library for parsing DXF and converting to SVG
-(dxf2svg). The library supports the SAX-api and can integrated
-into other applications (Cocoon,Batik). Tools for converting svg
-to jpeg, tiff, png and pdf are included.
+        (dxf2svg). The library supports the SAX-api and can integrated
+        into other applications (Cocoon,Batik). Tools for converting svg
+        to jpeg, tiff, png and pdf are included.
     </description>
     <url>http://kabeja.sourceforge.net/</url>
 
@@ -90,11 +90,10 @@ to jpeg, tiff, png and pdf are included.
                     <fork>true</fork>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <optimize>false</optimize>
-                    <compilerVersion>1.6</compilerVersion>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
-                <version>2.3.2</version>
+                <version>3.8.1</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
