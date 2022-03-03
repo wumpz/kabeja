@@ -1,5 +1,10 @@
 # Kabeja
 
+### How to build in Netbeans
+
+* open project in Netbeans
+* do a clean and build 
+
 ### How to make a build in IntelliJ IDEA
 
 * Open the project in IntelliJ IDEA
@@ -53,7 +58,7 @@ Not all DXF entities are supported yet. Text entities are still problematic.
 * Hatch
 * Spline
 * MLine
-* **In this fork: XData (limited support)**
+* **In this fork: XData (limited support)**  (extracting XData, generate XData (including APPID table))
 
 
 ## CLI
