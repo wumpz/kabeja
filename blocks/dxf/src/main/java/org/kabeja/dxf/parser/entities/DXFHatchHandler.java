@@ -302,6 +302,10 @@ public class DXFHatchHandler extends AbstractEntityHandler {
             // This should be the end of a boundary entity
             break;
 
+        case GROUPCODE_PATTERN_ANGLE:
+            this.hatch.setPatternAngle(value.getDoubleValue());
+            break;
+            
         case GROUPCODE_PATTERN_LINE_ANGLE:
             // set the previus parsed line data
             this.parseBoundary = false;
