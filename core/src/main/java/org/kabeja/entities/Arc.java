@@ -196,8 +196,7 @@ public class Arc extends Entity {
                 this.getExtrusion().getDirectionY(),
                 this.getExtrusion().getNormal());
 
-        Point3D p = plane.getPoint(x + this.center.getX(), y +
-                this.center.getY());
+        Point3D p = plane.getPoint(x, y);
 
         return p;
     }
