@@ -281,28 +281,14 @@ public class Color {
                       /* 255 */ {255, 255, 255}
     };
     
-    private static int[][] rgbs = KABEJA_COLOR_TABLE;
-
-    public static void setColorTable(int[][] colortable) {
-        rgbs = colortable;
-    }
+    private final static ColorTable KABEJA_DEFAULT_COLOR = new ColorTable(KABEJA_COLOR_TABLE);
     
     public static String getRGBString(int dxfColorCode) {
-        if ((dxfColorCode < 0) || (dxfColorCode >= rgbs.length)) {
-            // default is white
-            dxfColorCode = 7;
-        }
-
-        return String.format("rgb(%d,%d,%d)", rgbs[dxfColorCode][0], rgbs[dxfColorCode][1], rgbs[dxfColorCode][2]);
+        return KABEJA_DEFAULT_COLOR.getRGBString(dxfColorCode);
     }
     
     public static String getRGBHexString(int dxfColorCode) {
-        if ((dxfColorCode < 0) || (dxfColorCode >= rgbs.length)) {
-            // default is white
-            dxfColorCode = 7;
-        }
-
-        return String.format("%02x%02x%02x", rgbs[dxfColorCode][0], rgbs[dxfColorCode][1], rgbs[dxfColorCode][2]);
+        return KABEJA_DEFAULT_COLOR.getRGBHexString(dxfColorCode);
     }
 
     public static String getRGBString(byte[] b) {
