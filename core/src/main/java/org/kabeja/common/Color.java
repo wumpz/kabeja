@@ -21,9 +21,8 @@ package org.kabeja.common;
  *
  * taken from http://www.isctex.com/acadcolors.php
  */
-public class Color {
-
-    private static final int[][] rgbs = {
+public class Color {  
+    private final static int[][] KABEJA_COLOR_TABLE = {
         /* 0 */{0, 0, 0},
                       /* 1 */ {255, 0, 0},
                       /* 2 */ {255, 255, 0},
@@ -281,7 +280,13 @@ public class Color {
                       /* 254 */ {190, 190, 190},
                       /* 255 */ {255, 255, 255}
     };
+    
+    private static int[][] rgbs = KABEJA_COLOR_TABLE;
 
+    public static void setColorTable(int[][] colortable) {
+        rgbs = colortable;
+    }
+    
     public static String getRGBString(int dxfColorCode) {
         if ((dxfColorCode < 0) || (dxfColorCode >= rgbs.length)) {
             // default is white
