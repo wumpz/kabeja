@@ -281,7 +281,11 @@ public class Color {
                       /* 255 */ {255, 255, 255}
     };
     
-    private final static ColorTable KABEJA_DEFAULT_COLOR = new ColorTable(KABEJA_COLOR_TABLE);
+    private static ColorTable KABEJA_DEFAULT_COLOR = new ColorTable(KABEJA_COLOR_TABLE);
+    
+    public static void withColortable(ColorTable colorTable) {
+        KABEJA_DEFAULT_COLOR = colorTable;
+    }
     
     public static String getRGBString(int dxfColorCode) {
         return KABEJA_DEFAULT_COLOR.getRGBString(dxfColorCode);
