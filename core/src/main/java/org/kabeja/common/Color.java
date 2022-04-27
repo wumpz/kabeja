@@ -22,7 +22,7 @@ package org.kabeja.common;
  * taken from http://www.isctex.com/acadcolors.php
  */
 public class Color {  
-    public final static int[][] KABEJA_COLOR_TABLE = {
+    private final static int[][] KABEJA_COLOR_TABLE = {
         /* 0 */{0, 0, 0},
                       /* 1 */ {255, 0, 0},
                       /* 2 */ {255, 255, 0},
@@ -281,7 +281,7 @@ public class Color {
                       /* 255 */ {255, 255, 255}
     };
     
-    private static ColorTable KABEJA_DEFAULT_COLOR = new ColorTable(KABEJA_COLOR_TABLE);
+    public static ColorTable KABEJA_DEFAULT_COLOR = new ColorTable(KABEJA_COLOR_TABLE);
     
     public static void withColortable(ColorTable colorTable) {
         KABEJA_DEFAULT_COLOR = colorTable;
