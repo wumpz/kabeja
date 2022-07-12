@@ -294,7 +294,7 @@ public class Color {
     public static String getRGBHexString(int dxfColorCode) {
         return KABEJA_DEFAULT_COLOR.getRGBHexString(dxfColorCode);
     }
-
+    
     public static String getRGBString(byte[] b) {
         StringBuilder buf = new StringBuilder("rgb(");
         buf.append((int) b[0]);
