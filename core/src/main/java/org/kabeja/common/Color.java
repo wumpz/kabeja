@@ -21,7 +21,8 @@ package org.kabeja.common;
  *
  * taken from http://www.isctex.com/acadcolors.php
  */
-public class Color {  
+public class Color {
+
     private final static int[][] KABEJA_COLOR_TABLE = {
         /* 0 */{0, 0, 0},
                       /* 1 */ {255, 0, 0},
@@ -280,21 +281,29 @@ public class Color {
                       /* 254 */ {190, 190, 190},
                       /* 255 */ {255, 255, 255}
     };
-    
+
     public static ColorTable KABEJA_DEFAULT_COLOR = new ColorTable(KABEJA_COLOR_TABLE);
-    
+
     public static void withColortable(ColorTable colorTable) {
         KABEJA_DEFAULT_COLOR = colorTable;
     }
-    
+
     public static String getRGBString(int dxfColorCode) {
         return KABEJA_DEFAULT_COLOR.getRGBString(dxfColorCode);
     }
-    
+
     public static String getRGBHexString(int dxfColorCode) {
         return KABEJA_DEFAULT_COLOR.getRGBHexString(dxfColorCode);
     }
-    
+
+    public static int findClosestColorIndex(int r, int g, int b) {
+        return KABEJA_DEFAULT_COLOR.findClosestColorIndex(r, g, b);
+    }
+
+    public static int findClosestColorIndex(java.awt.Color color) {
+        return KABEJA_DEFAULT_COLOR.findClosestColorIndex(color.getRed(), color.getGreen(), color.getBlue());
+    }
+
     public static String getRGBString(byte[] b) {
         StringBuilder buf = new StringBuilder("rgb(");
         buf.append((int) b[0]);

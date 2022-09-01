@@ -27,13 +27,6 @@
         <module>blocks/xslt</module>
     </modules>
 
-    <issueManagement>
-        <system>Bugzilla</system>
-        <url>
-            http://sourceforge.net/tracker/?group_id=152775&amp;atid=785363
-        </url>
-    </issueManagement>
-
     <inceptionYear>2005</inceptionYear>
 
     <developers>
@@ -70,17 +63,6 @@
             <distribution>manual</distribution>
         </license>
     </licenses>
-    <scm>
-        <connection>
-            scm:cvs:pserver:anonymous@${project.artifactId}.cvs.sourceforge.net:/cvsroot/${project.artifactId}:${project.artifactId}/
-        </connection>
-        <developerConnection>
-            scm:cvs:ext:developername@${project.artifactId}.cvs.sourceforge.net:/cvsroot/${project.artifactId}:${project.artifactId}/
-        </developerConnection>
-        <url>
-            http://${project.artifactId}.cvs.sourceforge.net/${project.artifactId}/${project.artifactId}/
-        </url>
-    </scm>
     <build>
         <plugins>
             <plugin>
