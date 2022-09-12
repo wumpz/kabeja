@@ -25,7 +25,7 @@ import org.kabeja.util.Constants;
 
 
 public class MLineStyle extends DraftObject {
-    protected List<MLineStyleElement> lines = new ArrayList<MLineStyleElement>();
+    protected List<MLineStyleElement> lines = new ArrayList<>();
     protected String name = "";
     protected String descrition = "";
     protected int fillColor = 256;
@@ -33,6 +33,7 @@ public class MLineStyle extends DraftObject {
     protected double startAngle = 0;
     protected double endAngle = 0;
 
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_MLINESTYLE;
     }

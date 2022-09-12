@@ -115,7 +115,7 @@ public class DimensionStyle {
     public static final String PROPERTY_DIMTVP = "145";
     public static final String PROPERTY_DIMTZIN = "284";
     public static final String PROPERTY_DIMZIN = "78";
-    private HashMap<String, String> properties = new HashMap<String, String>();
+    private HashMap<String, String> properties = new HashMap<>();
     private int flags = 0;
     private String name = "";
 

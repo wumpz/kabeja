@@ -60,26 +60,22 @@ public class Main {
 	
 	
 	   protected Map<String, String> parseParameters(String[] args){
-	    	Map<String, String> parameters = new HashMap<String, String>();
+	    	Map<String, String> parameters = new HashMap<>();
 	    	String key = null;
-	    	for(int i=0;i<args.length;i++){
-	    		if(args[i].startsWith("-")|| args[i].startsWith("--")){
-	    			if(key!=null){
-	    				//option set before
-	    			    parameters.put(key, "true");	
-	    			 	
-	    			}
-	    			key=args[i].replaceAll("^-+", "");
-	    			
-	    			
-	    		}else{
-	    			//value for key
-	    			parameters.put(key,args[i]);
-	    			key=null;
-	    			
-	    		}
-	    		
-	    	}
+        for (String arg : args) {
+            if (arg.startsWith("-") || arg.startsWith("--")) {
+                if(key!=null){
+                    //option set before
+                    parameters.put(key, "true");
+                    
+                }
+                key = arg.replaceAll("^-+", "");
+            } else {
+                //value for key
+                parameters.put(key, arg);
+                key=null;
+            }
+        }
 	    	
 	    	return parameters;
 	    	

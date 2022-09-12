@@ -29,10 +29,12 @@ import org.kabeja.util.Constants;
 
 public class DXFEntitiesSectionGenerator implements DXFSectionGenerator {
 
+    @Override
 	public String getSectionName() {
 		return Constants.SECTION_ENTITIES;
 	}
 
+    @Override
 	public void generate(DXFOutput output, DraftDocument doc,
 			DXFGenerationContext dxfContext, DXFProfile profile)
 			throws GenerationException {

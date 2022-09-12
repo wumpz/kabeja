@@ -30,6 +30,7 @@ import org.kabeja.util.Constants;
 
 public class DXFCircleGenerator extends AbstractDXFEntityGenerator {
 
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Circle circle = (Circle) entity;
 		for (int groupCode : subtype.getGroupCodes()) {

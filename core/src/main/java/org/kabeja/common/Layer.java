@@ -39,7 +39,7 @@ public class Layer {
 	
 	
   
-	private Map<Type<?>,List<DraftEntity>> entities = new HashMap<Type<?>,List<DraftEntity>>();
+	private Map<Type<?>,List<DraftEntity>> entities = new HashMap<>();
     private String name = "";
     private String id="";
     
@@ -83,7 +83,7 @@ public class Layer {
         if (entities.containsKey(entity.getType())) {
            entities.get(entity.getType()).add(entity);
         } else {
-            List<DraftEntity> list = new ArrayList<DraftEntity>();
+            List<DraftEntity> list = new ArrayList<>();
             list.add(entity);
             entities.put(entity.getType(), list);
         }
@@ -150,19 +150,14 @@ public class Layer {
      
         Bounds bounds = new Bounds();
 
-        Iterator<List<DraftEntity>> typeIterator = this.entities.values().iterator();
-
-        while (typeIterator.hasNext()) {
-            List<DraftEntity> list = typeIterator.next();
-
-
+        for (List<DraftEntity> list : this.entities.values()) {
             Iterator<DraftEntity> i = list.iterator();
 
             while (i.hasNext()) {
                 DraftEntity entity = i.next();
 
                 if ((onModelspace && entity.isModelSpace()) ||
-                        (!onModelspace && !entity.isModelSpace())) {
+                    (!onModelspace && !entity.isModelSpace())) {
                     Bounds b = entity.getBounds();
 
                     if (b.isValid()) {
@@ -186,7 +181,7 @@ public class Layer {
             return (List<T>)entities.get(type);
         }
 
-        return new ArrayList<T>(0);
+        return new ArrayList<>(0);
     }
 
     public <T extends DraftEntity> boolean hasEntities(Type<T> type) {
@@ -209,11 +204,7 @@ public class Layer {
         Iterator<List<DraftEntity>> i = this.entities.values().iterator();
 
         while (i.hasNext()) {
-            Iterator<DraftEntity> entityIterator = (i.next()).iterator();
-
-            while (entityIterator.hasNext()) {
-                DraftEntity e = entityIterator.next();
-
+            for (DraftEntity e : (i.next())) {
                 if (e.getID() == id) {
                     return e;
                 }

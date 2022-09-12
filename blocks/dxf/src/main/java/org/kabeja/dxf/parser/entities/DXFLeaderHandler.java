@@ -52,6 +52,7 @@ public class DXFLeaderHandler extends AbstractEntityHandler {
     /* (non-Javadoc)
      * @see org.kabeja.parser.entities.AbstractEntityHandler#getDXFEntityName()
      */
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_LEADER;
     }
@@ -59,6 +60,7 @@ public class DXFLeaderHandler extends AbstractEntityHandler {
     /* (non-Javadoc)
      * @see org.kabeja.parser.entities.DXFEntityHandler#startDXFEntity()
      */
+    @Override
     public void startDXFEntity() {
         leader = new Leader();
         leader.setDocument(doc);
@@ -67,6 +69,7 @@ public class DXFLeaderHandler extends AbstractEntityHandler {
     /* (non-Javadoc)
      * @see org.kabeja.parser.entities.DXFEntityHandler#parseGroup(int, org.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_START_X:
@@ -189,6 +192,7 @@ public class DXFLeaderHandler extends AbstractEntityHandler {
     /* (non-Javadoc)
      * @see org.kabeja.parser.entities.DXFEntityHandler#getDXFEntity()
      */
+    @Override
     public Entity getDXFEntity() {
         return leader;
     }
@@ -196,12 +200,14 @@ public class DXFLeaderHandler extends AbstractEntityHandler {
     /* (non-Javadoc)
      * @see org.kabeja.parser.entities.DXFEntityHandler#endDXFEntity()
      */
+    @Override
     public void endDXFEntity() {
     }
 
     /* (non-Javadoc)
      * @see org.kabeja.parser.entities.DXFEntityHandler#isFollowSequence()
      */
+    @Override
     public boolean isFollowSequence() {
         return false;
     }

@@ -34,10 +34,10 @@ import org.kabeja.processing.xml.SAXFilterConfig;
 public class ProcessPipeline {
 	
 	private ProcessingManager manager;
-	private List<PostProcessorConfig> postProcessorConfigs = new ArrayList<PostProcessorConfig>();
-	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<SAXFilterConfig>();
+	private List<PostProcessorConfig> postProcessorConfigs = new ArrayList<>();
+	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<>();
 	private Generator generator;
-	private Map<String, Object> generatorProperties = new HashMap<String, Object>();
+	private Map<String, Object> generatorProperties = new HashMap<>();
 	private String name;
 	private String description = "";
 
@@ -56,7 +56,7 @@ public class ProcessPipeline {
 			// backup the default props
 			Map<String, Object> oldProps = pp.getProperties();
 			// setup the pipepine props
-			pp.setProperties(new MergeMap<String, Object>(ppc.getProperties(), context));
+			pp.setProperties(new MergeMap<>(ppc.getProperties(), context));
 			pp.process(doc, context);
 			// restore the default props
 			pp.setProperties(oldProps);

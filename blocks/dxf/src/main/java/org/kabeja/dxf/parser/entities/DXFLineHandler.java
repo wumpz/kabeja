@@ -32,10 +32,12 @@ public class DXFLineHandler extends AbstractEntityHandler {
     protected  Line line;
    
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_LINE;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_START_X:
@@ -67,11 +69,13 @@ public class DXFLineHandler extends AbstractEntityHandler {
     }
 
  
+    @Override
     public Entity getDXFEntity() {
         return line;
     }
 
 
+    @Override
     public void startDXFEntity() {
         line = new Line();
         line.setDocument(doc);
@@ -80,11 +84,13 @@ public class DXFLineHandler extends AbstractEntityHandler {
     }
 
  
+    @Override
     public void endDXFEntity() {
     }
 
  
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }

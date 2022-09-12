@@ -35,6 +35,7 @@ public class ViewFilter extends AbstractPostProcessor {
     public static final String CONTEXT_OPTION_VIEW_NAME = "view.name";
 
 
+    @Override
     public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
         // get the active viewport
         View view = null;
@@ -92,6 +93,7 @@ public class ViewFilter extends AbstractPostProcessor {
     /* (non-Javadoc)
          * @see org.kabeja.tools.PostProcessor#setProperties(java.util.Map)
          */
+    @Override
     public void setProperties(Map<String, Object> properties) {
         // TODO Auto-generated method stub
     }

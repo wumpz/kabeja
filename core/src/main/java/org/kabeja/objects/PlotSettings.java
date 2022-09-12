@@ -57,6 +57,7 @@ public class PlotSettings extends DraftObject {
     protected double customScaleNumerator = 1.0;
     protected double customScaleDenominator = 1.0;
 
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_PLOTSETTINGS;
     }

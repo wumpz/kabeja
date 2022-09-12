@@ -39,7 +39,7 @@ public class Block {
 
     private String description = "";
 
-    private List<DraftEntity> entities = new ArrayList<DraftEntity>();
+    private List<DraftEntity> entities = new ArrayList<>();
 
     private long id;
 

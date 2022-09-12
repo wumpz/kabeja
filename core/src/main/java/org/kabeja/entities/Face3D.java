@@ -29,10 +29,12 @@ import org.kabeja.math.MathUtils;
  */
 public class Face3D extends Solid {
 	
+    @Override
     public Type<?> getType() {
         return Type.TYPE_3DFACE;
     }
 
+    @Override
     public double getLength() {
         double length = 0.0;
         int flag = this.getFlags();

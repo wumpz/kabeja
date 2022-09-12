@@ -91,6 +91,7 @@ public class Arc extends Entity {
 
 
     
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         Point3D start = this.getStartPoint();
@@ -217,10 +218,12 @@ public class Arc extends Entity {
     /**
      *
      */
+    @Override
     public Type<Arc> getType() {
         return Type.TYPE_ARC;
     }
 
+    @Override
     public double getLength() {
         double alpha = this.getTotalAngle();
 
@@ -255,6 +258,7 @@ public class Arc extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       this.center = context.transform(this.center);
     }

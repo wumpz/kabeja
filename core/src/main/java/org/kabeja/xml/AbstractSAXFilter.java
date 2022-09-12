@@ -27,17 +27,19 @@ import org.xml.sax.helpers.XMLFilterImpl;
  */
 public abstract class AbstractSAXFilter extends XMLFilterImpl implements
 		SAXFilter {
-	protected Map<String, Object> properties = new HashMap<String, Object>();
+	protected Map<String, Object> properties = new HashMap<>();
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kabeja.xml.SAXFilter#setProperties(java.util.Map)
 	 */
+    @Override
 	public void setProperties(Map<String, Object> properties) {
 		this.properties = properties;
 	}
 
+    @Override
 	public Map<String, Object> getProperties() {
 		return this.properties;
 	}

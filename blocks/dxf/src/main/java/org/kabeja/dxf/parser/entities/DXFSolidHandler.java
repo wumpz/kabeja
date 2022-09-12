@@ -40,26 +40,31 @@ public class DXFSolidHandler extends AbstractEntityHandler {
     protected Solid solid;
 
   
+    @Override
     public void endDXFEntity() {
         // TODO Auto-generated method stub
     }
 
    
+    @Override
     public Entity getDXFEntity() {
         return solid;
     }
 
  
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_SOLID;
     }
 
+    @Override
     public boolean isFollowSequence() {
         // TODO Auto-generated method stub
         return false;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         //point 1
@@ -136,6 +141,7 @@ public class DXFSolidHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#startDXFEntity()
      */
+    @Override
     public void startDXFEntity() {
         solid = new Solid();
         solid.setDocument(doc);

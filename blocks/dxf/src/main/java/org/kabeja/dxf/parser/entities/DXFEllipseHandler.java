@@ -36,21 +36,26 @@ public class DXFEllipseHandler extends AbstractEntityHandler {
     public static final int COUNTERCLOCKWISE = 73;
     private Ellipse ellipse;
 
+    @Override
     public void endDXFEntity() {
     }
 
+    @Override
     public Entity getDXFEntity() {
         return ellipse;
     }
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_ELLIPSE;
     }
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
      
         switch (groupCode) {
@@ -111,6 +116,7 @@ public class DXFEllipseHandler extends AbstractEntityHandler {
         }
     }
 
+    @Override
     public void startDXFEntity() {
       
         ellipse = new Ellipse();

@@ -26,11 +26,13 @@ import org.kabeja.util.Constants;
  */
 public class DXFXLineHandler extends DXFRayHandler {
  
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_XLINE;
     }
 
  
+    @Override
     public void startDXFEntity() {
         this.ray = new XLine();
         this.ray.setDocument(doc);

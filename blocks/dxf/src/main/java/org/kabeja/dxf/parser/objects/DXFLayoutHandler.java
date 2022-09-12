@@ -67,17 +67,21 @@ public class DXFLayoutHandler extends DXFPlotsettingsHandler {
     public final static int GROUPCODE_UCS_BASE_ID = 346;
     protected Layout layout;
 
+    @Override
     public void endObject() {
     }
 
+    @Override
     public DraftObject getDXFObject() {
         return this.layout;
     }
 
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_LAYOUT;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_ELEVATION:
@@ -225,6 +229,7 @@ public class DXFLayoutHandler extends DXFPlotsettingsHandler {
         }
     }
 
+    @Override
     public void startObject() {
         this.layout = new Layout();
         this.plotSettings = this.layout;

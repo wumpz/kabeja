@@ -31,6 +31,7 @@ public class Attrib extends Text {
 	
 	private static final int LAZY_INDEX_PROMPT=10;
 	
+    @Override
 	public Type<?> getType() {
 		return Type.TYPE_ATTRIB;
 	}
@@ -78,6 +79,7 @@ public class Attrib extends Text {
 		this.tag = tag;
 	}
 
+    @Override
 	public boolean isVisibile() {
 
 		if (this.isBlockEntity()) {

@@ -28,7 +28,7 @@ import org.kabeja.DraftDocument;
  *
  */
 public class PostProcessManager {
-    private ArrayList<PostProcessor> processors = new ArrayList<PostProcessor>();
+    private ArrayList<PostProcessor> processors = new ArrayList<>();
 
     public void addPostProcessor(PostProcessor pp) {
         processors.add(pp);
@@ -40,16 +40,10 @@ public class PostProcessManager {
                                                    .loadClass(classname)
                                                    .newInstance();
             addPostProcessor(pp);
-        } catch (InstantiationException e) {
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        } 
     }
 
     public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {

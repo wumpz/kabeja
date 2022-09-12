@@ -25,6 +25,7 @@ public class AttribDefinition extends Attrib implements Cloneable{
 	protected int textLength=200;
 	
 	
+    @Override
 	public Type<? extends DraftEntity> getType() {
 		return Type.TYPE_ATTDEF;
 	}

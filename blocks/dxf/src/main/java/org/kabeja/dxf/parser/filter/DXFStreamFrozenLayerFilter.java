@@ -31,6 +31,7 @@ public class DXFStreamFrozenLayerFilter extends DXFStreamLayerFilter {
     }
 
 
+    @Override
     protected void startEntity(String type) throws ParseException {
         super.startEntity(type);
 

@@ -64,6 +64,7 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
 	private static Layer lastLayer;
 	private boolean lastLayerPresent;
 
+    @Override
 	public void setDocument(DraftDocument doc) {
 		this.doc = doc;
 	}
@@ -193,6 +194,7 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
 	 * 
 	 * @see org.dxf2svg.parser.entities.EntityHandler#getEntityName()
 	 */
+    @Override
 	public abstract String getDXFEntityType();
 
 	/*
@@ -200,6 +202,7 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
 	 * 
 	 * @see de.miethxml.kabeja.parser.Handler#releaseDXFDocument()
 	 */
+    @Override
 	public void releaseDocument() {
 		this.doc = null;
 	}

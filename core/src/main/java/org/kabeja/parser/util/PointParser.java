@@ -45,7 +45,7 @@ public class PointParser {
 	private char numberSeparator='.';
 	private  char separator=' ';
 	private char numberGrouping=',';
-    private List<Point3D> points = new ArrayList<Point3D>();
+    private List<Point3D> points = new ArrayList<>();
 	private Point3D currentPoint=new Point3D();
 	 
 	

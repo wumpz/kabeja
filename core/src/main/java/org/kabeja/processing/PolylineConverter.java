@@ -40,6 +40,7 @@ public class PolylineConverter extends AbstractPostProcessor {
     private List<PolylineQueue> queues;
     private double radius = Constants.POINT_CONNECTION_RADIUS;
 
+    @Override
     public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
      for(Layer layer:doc.getLayers()){
             processLayer(layer);
@@ -48,6 +49,7 @@ public class PolylineConverter extends AbstractPostProcessor {
         // TODO process the blocks too
     }
 
+    @Override
     public void setProperties(Map<String, Object> properties) {
         if (properties.containsKey(PROPERTY_POINT_DISTANCE)) {
             this.radius = Double.parseDouble((String) properties.get(
@@ -56,7 +58,7 @@ public class PolylineConverter extends AbstractPostProcessor {
     }
 
     protected void processLayer(Layer layer) {
-        this.queues = new ArrayList<PolylineQueue>();
+        this.queues = new ArrayList<>();
 
         // check the lines
         if (layer.hasEntities(Type.TYPE_LINE)) {

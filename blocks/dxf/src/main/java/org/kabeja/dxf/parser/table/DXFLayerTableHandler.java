@@ -42,6 +42,7 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
      *
      * @see org.dxf2svg.parser.table.TableHandler#getTableKey()
      */
+    @Override
     public String getTableType() {
         return TABLE_KEY;
     }
@@ -52,6 +53,7 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
      * @see org.dxf2svg.parser.table.TableHandler#parseGroup(int,
      *      java.lang.String)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_LAYER_NAME:
@@ -111,6 +113,7 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
      *
      * @see org.dxf2svg.parser.table.TableHandler#endParsing()
      */
+    @Override
     public void endParsing() {
         this.doc.addLayer(layer);
     }
@@ -120,6 +123,7 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
      *
      * @see org.dxf2svg.parser.table.TableHandler#startParsing()
      */
+    @Override
     public void startParsing() {
         layer = new Layer();
         layer.setDocument(this.doc);

@@ -105,11 +105,13 @@ public class Text extends Entity {
 
 
 
+    @Override
     public void setDocument(DraftDocument doc) {
         super.setDocument(doc);
     }
 
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
 
@@ -343,6 +345,7 @@ public class Text extends Entity {
         }
     }
 
+    @Override
     public Type<? extends DraftEntity> getType() {
         return Type.TYPE_TEXT;
     }
@@ -437,10 +440,12 @@ public class Text extends Entity {
         return aPoint;
     }
 
+    @Override
     public boolean isOmitLineType() {
         return true;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -465,6 +470,7 @@ public class Text extends Entity {
      * @throws CloneNotSupportedException 
      */
     
+    @Override
     public void transform(TransformContext context) {
 
             this.setInsertPoint(context.transform(this.getInsertPoint()));

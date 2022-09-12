@@ -62,7 +62,7 @@ public abstract class Entity implements DraftEntity {
 	protected final static int BOOLEAN_BIT_OWN_LINETYPE = 3;
 	protected int entityFlags;
 
-	protected List<XData> xDataList = new ArrayList<XData>();
+	protected List<XData> xDataList = new ArrayList<>();
 
 	public Entity() {
 		init();
@@ -74,6 +74,7 @@ public abstract class Entity implements DraftEntity {
 	 * @param doc
 	 */
 
+    @Override
 	public void setDocument(DraftDocument doc) {
 		this.doc = doc;
 	}
@@ -84,6 +85,7 @@ public abstract class Entity implements DraftEntity {
 	 * @return
 	 */
 
+    @Override
 	public DraftDocument getDocument() {
 		return this.doc;
 	}
@@ -93,6 +95,7 @@ public abstract class Entity implements DraftEntity {
 	 * 
 	 * @return
 	 */
+    @Override
 	public Layer getLayer() {
 		if (this.lazyContainer.contains(LAZY_INDEX_LAYER)) {
 			return ((Layer) this.lazyContainer.get(LAZY_INDEX_LAYER));
@@ -105,12 +108,15 @@ public abstract class Entity implements DraftEntity {
 	 * 
 	 * @param layer
 	 */
+    @Override
 	public void setLayer(Layer layer) {
 		this.lazyContainer.set(layer, LAZY_INDEX_LAYER);
 	}
 
+    @Override
 	public abstract Bounds getBounds();
 
+    @Override
 	public LineType getLineType() {
 		if (this.lazyContainer.contains(LAZY_INDEX_LINETYPE)) {
 			return (LineType) this.lazyContainer.get(LAZY_INDEX_LINETYPE);
@@ -122,6 +128,7 @@ public abstract class Entity implements DraftEntity {
 		this.lazyContainer.set(ltype, LAZY_INDEX_LINETYPE);
 	}
 
+    @Override
 	public boolean hasLineType() {
 		return this.lazyContainer.contains(LAZY_INDEX_LINETYPE);
 	}
@@ -129,6 +136,7 @@ public abstract class Entity implements DraftEntity {
 	/**
 	 * @return Returns the visibile.
 	 */
+    @Override
 	public boolean isVisibile() {
 		return Utils.isBitEnabled(this.entityFlags, BOOLEAN_BIT_VISIBILITY);
 
@@ -138,6 +146,7 @@ public abstract class Entity implements DraftEntity {
 	 * @param visible
 	 *            The visibile to set.
 	 */
+    @Override
 	public void setVisibile(boolean visible) {
 		this.entityFlags = Utils.setBit(this.entityFlags,
 				BOOLEAN_BIT_VISIBILITY, visible);
@@ -146,6 +155,7 @@ public abstract class Entity implements DraftEntity {
 	/**
 	 * @return Returns the flags.
 	 */
+    @Override
 	public int getFlags() {
 		return flags;
 	}
@@ -171,6 +181,7 @@ public abstract class Entity implements DraftEntity {
 		this.lazyContainer.set(extrusion, LAZY_INDEX_EXTRUSION);
 	}
 
+    @Override
 	public Extrusion getExtrusion() {
 
 		if (this.lazyContainer.contains(LAZY_INDEX_EXTRUSION)) {
@@ -212,10 +223,10 @@ public abstract class Entity implements DraftEntity {
 
 	}
 
+    @Override
 	public double getLinetypeScaleFactor() {
 		if (this.lazyContainer.contains(LAZY_INDEX_LINETYPE_SCALE)) {
-			return ((Double) this.lazyContainer.get(LAZY_INDEX_LINETYPE_SCALE))
-					.doubleValue();
+			return ((Double) this.lazyContainer.get(LAZY_INDEX_LINETYPE_SCALE));
 		} else {
 			return 1.0;
 		}
@@ -223,11 +234,12 @@ public abstract class Entity implements DraftEntity {
 	}
 
 	public void setLinetypeScaleFactor(double linetypeScaleFactor) {
-		this.lazyContainer.set(new Double(linetypeScaleFactor),
+		this.lazyContainer.set(linetypeScaleFactor,
 				LAZY_INDEX_LINETYPE_SCALE);
 
 	}
 
+    @Override
 	public int getColor() {
 		if (this.lazyContainer.contains(LAZY_INDEX_COLOR)) {
 			int color = ((byte[]) this.lazyContainer.get(LAZY_INDEX_COLOR))[0];
@@ -237,6 +249,7 @@ public abstract class Entity implements DraftEntity {
 		}
 	}
 
+    @Override
 	public void setColor(int color) {
 		if (this.lazyContainer.contains(LAZY_INDEX_COLOR)
 				|| color != Constants.COLOR_VALUE_BY_LAYER) {
@@ -245,6 +258,7 @@ public abstract class Entity implements DraftEntity {
 		}
 	}
 
+    @Override
 	public byte[] getColorRGB() {
 		if (this.lazyContainer.contains(LAZY_INDEX_COLOR)) {
 			return ((byte[]) this.lazyContainer.get(LAZY_INDEX_COLOR));
@@ -260,25 +274,24 @@ public abstract class Entity implements DraftEntity {
 
 	}
 
+    @Override
 	public int getLineWeight() {
 		if (this.lazyContainer.contains(LAZY_INDEX_LINEWEIGHT)) {
-			return ((Integer) this.lazyContainer.get(LAZY_INDEX_LINEWEIGHT))
-					.intValue();
+			return ((Integer) this.lazyContainer.get(LAZY_INDEX_LINEWEIGHT));
 		}
 		return 0;
 	}
 
 	public void setLineWeight(int lineWeight) {
 		if (this.lazyContainer.contains(LAZY_INDEX_LINETYPE) || lineWeight != 0) {
-			this.lazyContainer.set(new Integer(lineWeight),
+			this.lazyContainer.set(lineWeight,
 					LAZY_INDEX_LINEWEIGHT);
 		}
 	}
 
 	public double getTransparency() {
 		if (this.lazyContainer.contains(LAZY_INDEX_TRANSPARENCY)) {
-			return ((Double) this.lazyContainer.get(LAZY_INDEX_TRANSPARENCY))
-					.doubleValue();
+			return ((Double) this.lazyContainer.get(LAZY_INDEX_TRANSPARENCY));
 		} else {
 			return 0.0;
 		}
@@ -287,7 +300,7 @@ public abstract class Entity implements DraftEntity {
 	public void setTransparency(double transparency) {
 		if (this.lazyContainer.contains(LAZY_INDEX_TRANSPARENCY)
 				|| transparency != 0.0) {
-			this.lazyContainer.set(new Double(transparency),
+			this.lazyContainer.set(transparency,
 					LAZY_INDEX_TRANSPARENCY);
 		}
 
@@ -304,6 +317,7 @@ public abstract class Entity implements DraftEntity {
 	 * @see org.kabeja.entities.EntityType#getID()
 	 */
 
+    @Override
 	public long getID() {
 		return this.id;
 	}
@@ -314,6 +328,7 @@ public abstract class Entity implements DraftEntity {
 	 * @see org.kabeja.entities.EntityType#getType()
 	 */
 
+    @Override
 	public abstract Type<?> getType();
 
 	/**
@@ -324,8 +339,7 @@ public abstract class Entity implements DraftEntity {
 	 */
 	public double getThickness() {
 		if (this.lazyContainer.contains(LAZY_INDEX_THICKNESS)) {
-			return ((Double) this.lazyContainer.get(LAZY_INDEX_THICKNESS))
-					.doubleValue();
+			return ((Double) this.lazyContainer.get(LAZY_INDEX_THICKNESS));
 		} else {
 			return 0.0;
 		}
@@ -338,11 +352,12 @@ public abstract class Entity implements DraftEntity {
 	public void setThickness(double thickness) {
 		if (this.lazyContainer.contains(LAZY_INDEX_THICKNESS)
 				|| thickness != 0.0) {
-			this.lazyContainer.set(new Double(thickness), LAZY_INDEX_THICKNESS);
+			this.lazyContainer.set(thickness, LAZY_INDEX_THICKNESS);
 		}
 
 	}
 
+    @Override
 	public boolean isOmitLineType() {
 		return false;
 	}
@@ -350,6 +365,7 @@ public abstract class Entity implements DraftEntity {
 	/**
 	 * @return Returns the modelSpace.
 	 */
+    @Override
 	public boolean isModelSpace() {
 		return Utils.isBitEnabled(this.entityFlags, BOOLEAN_BIT_MODELSPACE);
 	}
@@ -368,8 +384,10 @@ public abstract class Entity implements DraftEntity {
 	 * 
 	 * @return
 	 */
+    @Override
 	public abstract double getLength();
 
+    @Override
 	public long getOwnerID() {
 		return ownerID;
 	}
@@ -409,6 +427,7 @@ public abstract class Entity implements DraftEntity {
 		}
 	}
 
+    @Override
 	public List<XData> getXDataList() {
 		return xDataList;
 	}

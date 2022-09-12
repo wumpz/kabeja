@@ -67,23 +67,25 @@ public class DXFHeaderSectionGenerator implements DXFSectionGenerator {
 		predefined.put(var.getName(), var);
 	}
 
+    @Override
 	public String getSectionName() {
 
 		return Constants.SECTION_HEADER;
 	}
 
+    @Override
 	public void generate(DXFOutput output, DraftDocument doc, DXFGenerationContext dxfContext, DXFProfile profile) throws GenerationException {
 
 		prepare();
 		Header header = doc.getHeader();
-		ArrayList<String> varList = new ArrayList<String>();
+		ArrayList<String> varList = new ArrayList<>();
 
-		// filter out the variable to omit
-		for (int i = 0; i < variableList.length; i++) {
-			if (!omit.contains(variableList[i])) {
-				varList.add(variableList[i]);
-			}
-		}
+        // filter out the variable to omit
+        for (String variableList1 : variableList) {
+            if (!omit.contains(variableList1)) {
+                varList.add(variableList1);
+            }
+        }
 
 		final List<String> headerVariables = (List<String>) dxfContext.getAttribute(PROPERTY_HEADER_VARIABLE_LIST);
 

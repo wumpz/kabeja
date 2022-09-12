@@ -34,28 +34,29 @@ import org.xml.sax.SAXException;
 
 public class XMLPipeline implements Generator {
 
-	private Map<String, Object> serializerProperties = new HashMap<String, Object>();
+	private Map<String, Object> serializerProperties = new HashMap<>();
 
 	private SAXSerializer serializer;
 
 	private SAXGenerator generator;
-	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<SAXFilterConfig>();
+	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<>();
 	private ProcessingManager manager;
-	private Map<String, Object> properties = new HashMap<String, Object>();
+	private Map<String, Object> properties = new HashMap<>();
 	
+    @Override
 	public void generate(DraftDocument doc, Map<String, Object> context, OutputStream out)
 			throws GenerationException {
 		
 		
 		ContentHandler handler = null;
-		List<Map<String, Object>> saxFilterProperties = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> saxFilterProperties = new ArrayList<>();
 
 		// setup saxfilters
 		if (this.saxFilterConfigs.size() > 0) {
 			Iterator<SAXFilterConfig> i = saxFilterConfigs.iterator();
 			SAXFilterConfig sc = (SAXFilterConfig) i.next();
 			SAXFilter first = this.manager.getSAXFilter(sc.getFilterName());
-			saxFilterProperties.add(new MergeMap<String, Object>(first.getProperties(), context));
+			saxFilterProperties.add(new MergeMap<>(first.getProperties(), context));
 
 			handler = first;
 			first.setProperties(sc.getProperties());
@@ -76,7 +77,7 @@ public class XMLPipeline implements Generator {
 
 		Map<String, Object> oldProbs = this.serializer.getProperties();
 
-		this.serializer.setProperties(new MergeMap<String, Object>(oldProbs, new MergeMap<String, Object>(
+		this.serializer.setProperties(new MergeMap<>(oldProbs, new MergeMap<>(
 				this.serializerProperties, context)));
 
 		// invoke the filter and serializer
@@ -104,14 +105,17 @@ public class XMLPipeline implements Generator {
 
 	}
 
+    @Override
 	public String getMimeType() {
 		return this.serializer.getMimeType();
 	}
 
+    @Override
 	public String getSuffix() {	
 		return this.serializer.getSuffix();
 	}
 
+    @Override
 	public void setProperties(Map<String, Object> properties) {
 		// FIXME Why is this not implemented?
 	}

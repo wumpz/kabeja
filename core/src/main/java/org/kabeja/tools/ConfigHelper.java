@@ -48,9 +48,7 @@ public class ConfigHelper {
 
             @SuppressWarnings("unused")
 			XMLReader r = XMLReaderFactory.createXMLReader(parser);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             e.printStackTrace();
         }
         return parser;
@@ -66,7 +64,7 @@ public class ConfigHelper {
                 e.printStackTrace();
             }
         }
-        Map<String,String> map = new HashMap<String,String>();
+        Map<String,String> map = new HashMap<>();
         for(Map.Entry<Object,Object> e:properties.entrySet()){
         	map.put(e.getKey().toString(), e.getValue().toString());
         }

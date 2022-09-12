@@ -27,10 +27,12 @@ import org.kabeja.util.Constants;
 public class DXF3DFaceHandler extends DXFSolidHandler {
   
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_3DFACE;
     }
 
+    @Override
     public void startDXFEntity() {
         solid = new Face3D();
         solid.setDocument(doc);

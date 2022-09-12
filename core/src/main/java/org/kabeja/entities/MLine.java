@@ -37,36 +37,39 @@ public class MLine extends Entity {
     public final static int JUSTIFICATION_BOTTOM = 2;
     protected double scale = 1.0;
     protected Point3D startPoint = new Point3D();
-    protected List<MLineSegment> mlineSegments = new ArrayList<MLineSegment>();
+    protected List<MLineSegment> mlineSegments = new ArrayList<>();
     protected int lineCount = 0;
     protected int justification = 0;
     protected long mLineStyleID =-1;
     protected String mLineStyleName = "";
 
 
+    @Override
     public Bounds getBounds() {
         Bounds b = new Bounds();
         Polyline[] pl = this.toPolylines();
 
-        for (int i = 0; i < pl.length; i++) {
-            b.addToBounds(pl[i].getBounds());
+        for (Polyline pl1 : pl) {
+            b.addToBounds(pl1.getBounds());
         }
 
         // b.setValid(false);
         return b;
     }
 
+    @Override
     public Type<MLine> getType() {
         return Type.TYPE_MLINE;
     }
 
+    @Override
     public double getLength() {
         //TODO convert  mline -> polyline only  after changes
         Polyline[] pl = toPolylines();
         double l = 0;
 
-        for (int i = 0; i < pl.length; i++) {
-            l += pl[i].getLength();
+        for (Polyline pl1 : pl) {
+            l += pl1.getLength();
         }
 
         return l;
@@ -144,6 +147,7 @@ public class MLine extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
        
     }

@@ -35,7 +35,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
     implements DXFSectionHandler, DXFHandlerManager {
     private static String SECTION_KEY = "ENTITIES";
     public static final int ENTITY_START = 0;
-    protected Map<String,DXFHandler> handlers = new TreeMap<String,DXFHandler>();
+    protected Map<String,DXFHandler> handlers = new TreeMap<>();
     protected DXFEntityHandler handler = null;
     protected boolean parseEntity = false;
 
@@ -47,6 +47,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
      *
      * @see org.dxf2svg.parser.SectionHandler#getSectionKey()
      */
+    @Override
     public String getSectionKey() {
         return SECTION_KEY;
     }
@@ -56,6 +57,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
      *
      * @see org.dxf2svg.parser.SectionHandler#parseGroup(int, java.lang.String)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) throws ParseException {
         if (groupCode == ENTITY_START) {
             if (parseEntity) {
@@ -95,6 +97,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
      *
      * @see org.dxf2svg.parser.SectionHandler#setDXFDocument(org.dxf2svg.xml.DXFDocument)
      */
+    @Override
     public void setDocument(DraftDocument doc) {
         this.doc = doc;
     }
@@ -104,6 +107,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
      *
      * @see org.dxf2svg.parser.SectionHandler#endParsing()
      */
+    @Override
     public void endSection() {
         endEntity();
     }
@@ -113,6 +117,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
      *
      * @see org.dxf2svg.parser.SectionHandler#startParsing()
      */
+    @Override
     public void startSection() {
         parseEntity = false;
     }
@@ -130,6 +135,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
         handlers.put(handler.getDXFEntityType(), handler);
     }
 
+    @Override
     public void addHandler(DXFHandler handler) {
         addDXFEntityHandler((DXFEntityHandler) handler);
     }
@@ -137,13 +143,11 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
     /* (non-Javadoc)
          * @see de.miethxml.kabeja.parser.Handler#releaseDXFDocument()
          */
+    @Override
     public void releaseDocument() {
         this.doc = null;
 
-        Iterator i = handlers.values().iterator();
-
-        while (i.hasNext()) {
-            DXFHandler handler = (DXFHandler) i.next();
+        for (DXFHandler handler : handlers.values()) {
             handler.releaseDocument();
         }
     }

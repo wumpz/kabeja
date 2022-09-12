@@ -52,7 +52,7 @@ public class DraftDocument {
 
     public static final double DEFAULT_MARGIN = 5;
 
-    private Map<String, Layer> layers = new TreeMap<String, Layer>();
+    private Map<String, Layer> layers = new TreeMap<>();
 
     /*
      * Look into https://ezdxf.readthedocs.io/en/stable/dxfinternals/block_management.html.
@@ -60,31 +60,31 @@ public class DraftDocument {
      * > Block names has to be unique and they are case insensitive (“Test” == “TEST”).
      *
      */
-    private Map<String, Block> blocks = new TreeMap<String, Block>(String.CASE_INSENSITIVE_ORDER);
+    private Map<String, Block> blocks = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
-    private Map<String, LineType> lineTypes = new TreeMap<String, LineType>();
+    private Map<String, LineType> lineTypes = new TreeMap<>();
 
-    private Map<String, DimensionStyle> dimensionStyles = new HashMap<String, DimensionStyle>();
+    private Map<String, DimensionStyle> dimensionStyles = new HashMap<>();
 
-    private Map<String, Style> textStyles = new HashMap<String, Style>();
+    private Map<String, Style> textStyles = new HashMap<>();
 
     private Set<String> registeredAppIDs = new HashSet<>();
 
     // the user coordinate systems (not used?)
     //private Hashtable ucs = new Hashtable();
-    private Map<String, String> properties = new HashMap<String, String>();
+    private Map<String, String> properties = new HashMap<>();
 
-    private List<Viewport> viewports = new ArrayList<Viewport>();
+    private List<Viewport> viewports = new ArrayList<>();
 
     private Bounds bounds = new Bounds();
 
     private Header header = new Header();
 
-    private HashMap<String, Map<Long, DraftObject>> objects = new HashMap<String, Map<Long, DraftObject>>();
+    private HashMap<String, Map<Long, DraftObject>> objects = new HashMap<>();
 
-    private HashMap<String, HatchPattern> patterns = new HashMap<String, HatchPattern>();
+    private HashMap<String, HatchPattern> patterns = new HashMap<>();
 
-    private List<View> views = new ArrayList<View>();
+    private List<View> views = new ArrayList<>();
 
     private Dictionary rootDictionary = new Dictionary();
 
@@ -386,7 +386,7 @@ public class DraftDocument {
             if (this.objects.containsKey(obj.getObjectType())) {
                 type = objects.get(obj.getObjectType());
             } else {
-                type = new HashMap<Long, DraftObject>();
+                type = new HashMap<>();
                 this.objects.put(obj.getObjectType(), type);
             }
 
@@ -413,7 +413,7 @@ public class DraftDocument {
 
     public List<DraftObject> getObjectsByType(String type) {
         Map<Long, DraftObject> objecttypes = this.objects.get(type);
-        List<DraftObject> list = new ArrayList<DraftObject>(objecttypes.values());
+        List<DraftObject> list = new ArrayList<>(objecttypes.values());
 
         return list;
     }

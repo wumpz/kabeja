@@ -69,24 +69,29 @@ public class DXFPolylineHandler extends AbstractEntityHandler {
       
     }
 
+    @Override
     public void endDXFEntity() {
     }
 
  
+    @Override
     public Entity getDXFEntity() {
         return polyline;
     }
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_POLYLINE;
     }
 
    
+    @Override
     public boolean isFollowSequence() {
         return follow;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         if ((groupCode == END_SEQUENCE_CODE) ||
                Constants.END_SEQUENCE.equals(value.getValue())) {
@@ -232,6 +237,7 @@ public class DXFPolylineHandler extends AbstractEntityHandler {
      *
      * @see org.dxf2svg.parser.entities.EntityHandler#startParsing()
      */
+    @Override
     public void startDXFEntity() {
         follow = true;
         parse_vertex = false;

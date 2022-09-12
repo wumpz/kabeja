@@ -27,7 +27,7 @@ import java.util.Iterator;
  *
  */
 public class Variable {
-    private Hashtable<String, String> values = new Hashtable<String, String>();
+    private Hashtable<String, String> values = new Hashtable<>();
     private String name = "";
 
     public Variable(String name) {

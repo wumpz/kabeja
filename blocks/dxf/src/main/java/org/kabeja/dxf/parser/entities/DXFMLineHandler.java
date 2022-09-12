@@ -51,21 +51,26 @@ public class DXFMLineHandler extends AbstractEntityHandler {
     protected MLineSegmentElement el;
     protected int index = 0;
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_MLINE;
     }
 
+    @Override
     public void endDXFEntity() {
     }
 
+    @Override
     public Entity getDXFEntity() {
         return this.mLine;
     }
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_MLINE_VERTEX_X:
@@ -191,6 +196,7 @@ public class DXFMLineHandler extends AbstractEntityHandler {
         }
     }
 
+    @Override
     public void startDXFEntity() {
         this.mLine = new MLine();
         mLine.setDocument(doc);

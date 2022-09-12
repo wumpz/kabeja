@@ -25,7 +25,7 @@ import java.util.Map;
  *
  */
 public class SAXSerializerConfig {
-    private Map<String, String> properties = new HashMap<String, String>();
+    private Map<String, String> properties = new HashMap<>();
     private String saxSerializerName;
 
     public Map<String, String> getProperties() {

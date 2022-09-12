@@ -30,6 +30,7 @@ import org.kabeja.util.Constants;
 
 public class DXFLineGenerator extends AbstractDXFEntityGenerator {
 
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Line line = (Line) entity;
 		for (int groupCode : subtype.getGroupCodes()) {

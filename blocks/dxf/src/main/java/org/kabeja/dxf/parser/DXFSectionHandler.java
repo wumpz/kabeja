@@ -37,6 +37,7 @@ import org.kabeja.DraftDocument;
 public interface DXFSectionHandler extends DXFHandler {
     public String getSectionKey();
 
+    @Override
     public void setDocument(DraftDocument doc);
 
     public void startSection();

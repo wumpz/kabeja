@@ -42,6 +42,7 @@ public class DXFLineTypeTableHandler extends AbstractTableHandler {
      *
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#endParsing()
      */
+    @Override
     public void endParsing() {
         ltype.setPattern(pattern);
         doc.addLineType(ltype);
@@ -52,6 +53,7 @@ public class DXFLineTypeTableHandler extends AbstractTableHandler {
      *
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#getTableKey()
      */
+    @Override
     public String getTableType() {
         // TODO Auto-generated method stub
         return TABLE_KEY;
@@ -63,6 +65,7 @@ public class DXFLineTypeTableHandler extends AbstractTableHandler {
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#parseGroup(int,
      *      de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         
@@ -112,6 +115,7 @@ public class DXFLineTypeTableHandler extends AbstractTableHandler {
      *
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#startParsing()
      */
+    @Override
     public void startParsing() {
         ltype = new LineType();
         segmentCount = 0;

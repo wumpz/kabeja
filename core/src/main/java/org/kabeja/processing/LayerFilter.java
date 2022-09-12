@@ -37,15 +37,15 @@ public class LayerFilter extends AbstractPostProcessor {
 	protected boolean merge = false;
 	protected boolean removeEmptyLayer = false;
 
-	protected Set<String> removableLayers = new HashSet<String>();
+	protected Set<String> removableLayers = new HashSet<>();
 
+    @Override
 	public void setProperties(Map<String, Object> properties) {
 		super.setProperties(properties);
 
 		if (properties.containsKey(PROPERTY_MERGE_LAYERS)) {
 			this.merge = Boolean.valueOf(
-					(String) properties.get(PROPERTY_MERGE_LAYERS))
-					.booleanValue();
+                    (String) properties.get(PROPERTY_MERGE_LAYERS));
 		}
 
 		if (properties.containsKey(PROPERTY_REMOVE_LAYERS)) {
@@ -60,11 +60,11 @@ public class LayerFilter extends AbstractPostProcessor {
 		}
 		if (properties.containsKey(PROPERTY_REMOVE_EMPTY_LAYERS)) {
 			this.removeEmptyLayer = Boolean.valueOf(
-					(String) properties.get(PROPERTY_REMOVE_EMPTY_LAYERS))
-					.booleanValue();
+                    (String) properties.get(PROPERTY_REMOVE_EMPTY_LAYERS));
 		}
 	}
 
+    @Override
 	public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
 		Layer mergeLayer = null;
 
@@ -79,7 +79,7 @@ public class LayerFilter extends AbstractPostProcessor {
 		}
 		// check if the remove layer
 
-		Set<String> blockLayer = new HashSet<String>();
+		Set<String> blockLayer = new HashSet<>();
 	for(Block block :doc.getBlocks()){
 		for(DraftEntity e:block.getEntities()){
 				blockLayer.add(e.getLayer().getName());

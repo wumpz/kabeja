@@ -40,6 +40,7 @@ import org.kabeja.common.Layer;
  */
 public class LayerComparator implements Comparator<Layer>{
 
+    @Override
 	public int compare(Layer layer1, Layer layer2) {
 
 		if(layer1.getZIndex()<layer2.getZIndex()){

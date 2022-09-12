@@ -35,16 +35,19 @@ public class DXFCircleHandler extends AbstractEntityHandler {
 
 
 
+    @Override
     public Entity getDXFEntity() {
         return circle;
     }
 
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_CIRCLE;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_START_X:
@@ -70,6 +73,7 @@ public class DXFCircleHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void startDXFEntity() {
         circle = new Circle();
         circle.setCenterPoint(new Point3D());
@@ -77,11 +81,13 @@ public class DXFCircleHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
 
+    @Override
     public void endDXFEntity() {
    
         

@@ -33,25 +33,30 @@ public class DXFToleranceHandler extends AbstractEntityHandler {
     protected Tolerance tolerance;
 
  
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_TOLERANCE;
     }
 
    
+    @Override
     public void endDXFEntity() {
     }
 
     
+    @Override
     public Entity getDXFEntity() {
         return tolerance;
     }
 
    
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
    
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_START_X:
@@ -100,6 +105,7 @@ public class DXFToleranceHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void startDXFEntity() {
         tolerance = new Tolerance();
         tolerance.setDocument(doc);

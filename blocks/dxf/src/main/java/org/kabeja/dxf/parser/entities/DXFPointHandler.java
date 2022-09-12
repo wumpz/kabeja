@@ -28,25 +28,30 @@ public class DXFPointHandler extends AbstractEntityHandler {
 
     protected Point point;
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_POINT;
     }
 
+    @Override
     public void endDXFEntity() {
          
     }
 
+    @Override
     public Entity getDXFEntity() {
         Point p = point;
         point = null;
         return p;
     }
 
+    @Override
     public boolean isFollowSequence() {
 
         return false;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case 10:
@@ -72,6 +77,7 @@ public class DXFPointHandler extends AbstractEntityHandler {
 
     }
 
+    @Override
     public void startDXFEntity() {
         point = new Point();
         point.setDocument(doc);

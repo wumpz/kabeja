@@ -38,17 +38,21 @@ public class DXFMLineStyleHandler extends AbstractDXFObjectHandler {
     protected MLineStyleElement element;
     protected boolean processLineElement = false;
 
+    @Override
     public void endObject() {
     }
 
+    @Override
     public DraftObject getDXFObject() {
         return this.style;
     }
 
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_MLINESTYLE;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_MLINE_STYLE_ELEMENT_OFFSET:
@@ -104,6 +108,7 @@ public class DXFMLineStyleHandler extends AbstractDXFObjectHandler {
         }
     }
 
+    @Override
     public void startObject() {
         this.style = new MLineStyle();
         this.processLineElement = false;

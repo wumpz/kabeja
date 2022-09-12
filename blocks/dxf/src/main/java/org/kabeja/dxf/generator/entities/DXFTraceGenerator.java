@@ -30,6 +30,7 @@ import org.kabeja.util.Constants;
 
 public class DXFTraceGenerator extends DXFSolidGenerator {
 
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Trace trace = (Trace) entity;
 		for (int groupCode : subtype.getGroupCodes()) {
@@ -43,6 +44,7 @@ public class DXFTraceGenerator extends DXFSolidGenerator {
 		}
 	}
 
+    @Override
 	public String getDXFEntityType() {
 		return Constants.ENTITY_TYPE_TRACE;
 	}

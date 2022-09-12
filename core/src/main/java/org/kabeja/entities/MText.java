@@ -60,10 +60,12 @@ public class MText extends Text {
         return this.refheight;
     }
 
+    @Override
     public Type<MText> getType() {
         return Type.TYPE_MTEXT;
     }
 
+    @Override
     public double getRotation() {
         if (rotation != 0.0) {
             return rotation;
@@ -76,10 +78,12 @@ public class MText extends Text {
         return rotation;
     }
 
+    @Override
     public TextDocument getTextDocument() {
         return this.textDoc;
     }
 
+    @Override
     public void setText(String text) {
         this.text = text;
 
@@ -96,10 +100,12 @@ public class MText extends Text {
         return attachmentpointLocation;
     }
 
+    @Override
     public boolean isOmitLineType() {
         return true;
     }
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         int l = this.textDoc.getMaximumLineLength();

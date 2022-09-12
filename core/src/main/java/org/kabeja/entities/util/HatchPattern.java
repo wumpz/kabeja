@@ -46,7 +46,7 @@ import org.kabeja.entities.Hatch;
 public class HatchPattern {
     private static int idCount = 0;
     private String id = null;
-    private List<HatchLineFamily> patterns = new ArrayList<HatchLineFamily>();
+    private List<HatchLineFamily> patterns = new ArrayList<>();
     private Hatch hatch;
 
     /**

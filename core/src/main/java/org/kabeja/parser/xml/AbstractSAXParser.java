@@ -35,9 +35,9 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
 
     protected DraftDocument doc;
 
-    protected Map<String, Map<String, XMLHandler>> nsHandlers = new HashMap<String, Map<String, XMLHandler>>();
+    protected Map<String, Map<String, XMLHandler>> nsHandlers = new HashMap<>();
 
-    protected Map<String, XMLHandler> noNSHandlers = new HashMap<String, XMLHandler>();
+    protected Map<String, XMLHandler> noNSHandlers = new HashMap<>();
 
     protected XMLHandler currentHandler;
     protected boolean throughXMLHandler = false;
@@ -56,7 +56,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
             elementHandlers = (Map<String, XMLHandler>) this.nsHandlers.get(xmlHandler
                     .getNamespaceHandle());
         } else {
-            elementHandlers = new HashMap<String, XMLHandler>();
+            elementHandlers = new HashMap<>();
             this.nsHandlers.put(xmlHandler.getNamespaceHandle(),
                     elementHandlers);
 
@@ -75,6 +75,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
      * @see org.kabeja.parser.Parser#parse(java.io.InputStream,
      * java.lang.String)
      */
+    @Override
     public void parse(InputStream input, DraftDocument doc, Map<String, Object> properties) throws ParseException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
@@ -98,6 +99,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
     /* (non-Javadoc)
 	 * @see org.kabeja.parser.Parser#parse(java.io.InputStream, java.util.Map)
 	 */
+    @Override
 	public DraftDocument parse(InputStream in, Map<String, Object> properties)
 			throws ParseException {
 		parse(in, new DraftDocument(), properties);
@@ -113,6 +115,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
      * 
      * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
      */
+    @Override
     public void characters(char[] ch, int start, int length)
             throws SAXException {
         if (this.throughXMLHandler) {
@@ -126,6 +129,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
      * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
      * java.lang.String, java.lang.String)
      */
+    @Override
     public void endElement(String uri, String localName, String name)
             throws SAXException {
         if (this.captureEvent) {
@@ -160,6 +164,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
      * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
      * java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
+    @Override
     public void startElement(String uri, String localName, String name,
             Attributes attributes) throws SAXException {
 
@@ -194,6 +199,7 @@ public abstract class AbstractSAXParser extends DefaultHandler implements
     
     
 
+    @Override
     public void startDocument() throws SAXException {
         this.context = new ParsingContext(this.doc);
     }

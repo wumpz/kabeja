@@ -29,13 +29,14 @@ import org.kabeja.math.TransformContext;
  *
  */
 public class Region extends Entity {
-    protected List<String> acisData = new ArrayList<String>();
+    protected List<String> acisData = new ArrayList<>();
 
     /**
      *
      *
      * @return always invalid bounds
      */
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         bounds.setValid(false);
@@ -48,6 +49,7 @@ public class Region extends Entity {
      *
      * @see org.kabeja.entities.Entity#getType()
      */
+    @Override
     public Type<?> getType() {
         return Type.TYPE_REGION;
     }
@@ -70,6 +72,7 @@ public class Region extends Entity {
      *
      * @return always 0
      */
+    @Override
     public double getLength() {
         return 0;
     }
@@ -79,6 +82,7 @@ public class Region extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
         
     }

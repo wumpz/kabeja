@@ -34,10 +34,12 @@ import org.kabeja.util.Constants;
 
 public class DXFBlocksSectionGenerator implements DXFSectionGenerator {
 
+    @Override
 	public String getSectionName() {
 		return Constants.SECTION_BLOCKS;
 	}
 
+    @Override
 	public void generate(DXFOutput output, DraftDocument doc, DXFGenerationContext dxfContext, DXFProfile profile) throws GenerationException {
 		for (Block block : doc.getBlocks()) {
 			DXFType type = profile.getDXFType(Constants.SECTION_BLOCKS);

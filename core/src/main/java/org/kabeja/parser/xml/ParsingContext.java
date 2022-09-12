@@ -31,8 +31,8 @@ import org.kabeja.parser.util.ParsingValidator;
 public class ParsingContext {
 
      
-    protected List<ParsingValidator> validatorList = new ArrayList<ParsingValidator>();
-    protected Map<String, String> properties = new HashMap<String, String>();
+    protected List<ParsingValidator> validatorList = new ArrayList<>();
+    protected Map<String, String> properties = new HashMap<>();
     
     protected Layer currentLayer;
     protected DraftDocument doc;

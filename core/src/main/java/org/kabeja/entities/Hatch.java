@@ -62,7 +62,7 @@ public class Hatch extends Entity {
 	private int degenerateBoundaryPathCount = 0;
 	private boolean gradientHatch = false;
 	private Point3D elevationPoint = new Point3D();
-	private List<HatchBoundaryLoop> boundaries = new ArrayList<HatchBoundaryLoop>();
+	private List<HatchBoundaryLoop> boundaries = new ArrayList<>();
 	private String patternID = "";
 	private double patternScale;
 
@@ -317,6 +317,7 @@ public class Hatch extends Entity {
 		return this.boundaries;
 	}
 
+    @Override
 	public Bounds getBounds() {
 		Bounds bounds = new Bounds();
 
@@ -344,6 +345,7 @@ public class Hatch extends Entity {
 		this.elevationPoint = elevationPoint;
 	}
 
+    @Override
 	public Type<Hatch> getType() {
 		return Type.TYPE_HATCH;
 	}
@@ -363,6 +365,7 @@ public class Hatch extends Entity {
 		this.patternID = patternID;
 	}
 
+    @Override
 	public double getLength() {
 		return 0;
 	}
@@ -379,6 +382,7 @@ public class Hatch extends Entity {
 	 * Not implemented yet
 	 */
 
+    @Override
 	public void transform(TransformContext context) {
 
 	}

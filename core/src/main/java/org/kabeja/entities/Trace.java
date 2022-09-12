@@ -26,6 +26,7 @@ import org.kabeja.common.Type;
  */
 public class Trace extends Solid {
 
+    @Override
     public Type<? extends DraftEntity> getType() {
         return Type.TYPE_TRACE;
     }

@@ -30,11 +30,13 @@ public class DXFAttribDefGenerator extends DXFTextGenerator {
 
 	protected AttribDefinition attribDef;
 
+    @Override
 	public String getDXFEntityType() {
 
 		return Constants.ENTITY_TYPE_ATTDEF;
 	}
 
+    @Override
 	protected void outputGroupCode(int groupCode, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		switch (groupCode) {
 		case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER_1:

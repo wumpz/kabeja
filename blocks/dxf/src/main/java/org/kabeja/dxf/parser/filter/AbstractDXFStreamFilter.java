@@ -26,22 +26,26 @@ public abstract class AbstractDXFStreamFilter implements DXFStreamFilter {
     protected Map properties;
     protected DXFHandler handler;
 
+    @Override
     public void setProperties(Map properties) {
         this.properties = properties;
     }
 
+    @Override
     public void setDXFHandler(DXFHandler handler) {
         this.handler = handler;
     }
     
 
 
+    @Override
     public void releaseDocument() {
        
         
     }
 
 
+    @Override
     public void setDocument(DraftDocument doc) {
         
         

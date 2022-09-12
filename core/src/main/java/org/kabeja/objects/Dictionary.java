@@ -39,8 +39,9 @@ import org.kabeja.util.Constants;
 
 
 public class Dictionary extends DraftObject {
-    protected ArrayList<DictionaryRecord> records = new ArrayList<DictionaryRecord>();
+    protected ArrayList<DictionaryRecord> records = new ArrayList<>();
 
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_DICTIONARY;
     }
@@ -131,7 +132,7 @@ public class Dictionary extends DraftObject {
      * @return the dictionary or null
      */
     public Dictionary getDictionaryForID(long id) {
-        Set<Dictionary> dictionaries = new HashSet<Dictionary>();
+        Set<Dictionary> dictionaries = new HashSet<>();
         DraftObject obj = null;
 
         for (int i = 0; i < this.records.size(); i++) {
@@ -146,10 +147,7 @@ public class Dictionary extends DraftObject {
             }
         }
 
-        Iterator<Dictionary> ie = dictionaries.iterator();
-
-        while (ie.hasNext()) {
-            Dictionary dic =ie.next();
+        for (Dictionary dic : dictionaries) {
             Dictionary d = dic.getDictionaryForID(id);
 
             if (d != null) {
@@ -168,14 +166,17 @@ public class Dictionary extends DraftObject {
         Iterator<DraftObject> i = new Iterator<DraftObject>() {
                 int count = 0;
 
+                @Override
                 public boolean hasNext() {
                     return count < records.size();
                 }
 
+                @Override
                 public DraftObject next() {
                     return ((DictionaryRecord) records.get(count++)).getObject();
                 }
 
+                @Override
                 public void remove() {
                     records.remove(count - 1);
                 }

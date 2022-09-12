@@ -36,7 +36,7 @@ public class Leader extends Entity {
     protected double scaleFactor;
     protected double textWidth;
     protected double textHeight;
-    protected List<Point3D> coordinates = new ArrayList<Point3D>();
+    protected List<Point3D> coordinates = new ArrayList<>();
     protected int pathType = 0;
     protected int creationType = 0;
     protected int hooklineDirecton = 0;
@@ -63,6 +63,7 @@ public class Leader extends Entity {
     }
 
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         bounds.setValid(false);
@@ -71,6 +72,7 @@ public class Leader extends Entity {
     }
 
 
+    @Override
     public Type<Leader> getType() {
         return Type.TYPE_LEADER;
     }
@@ -305,6 +307,7 @@ public class Leader extends Entity {
         return this.pathType == 1;
     }
 
+    @Override
     public double getLength() {
          return 0;
     }
@@ -313,6 +316,7 @@ public class Leader extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
        
     }

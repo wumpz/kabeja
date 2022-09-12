@@ -22,6 +22,7 @@ import org.kabeja.objects.MLineStyleElement;
 
 
 public class MLineStyleElementDistanceComparator implements Comparator<MLineStyleElement> {
+    @Override
     public int compare(MLineStyleElement arg0, MLineStyleElement arg1) {
         MLineStyleElement el1 = (MLineStyleElement) arg0;
         MLineStyleElement el2 = (MLineStyleElement) arg1;

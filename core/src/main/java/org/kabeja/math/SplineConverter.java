@@ -55,7 +55,7 @@ public class SplineConverter {
 
     public static NURBS toNurbs(Spline spline) {
     
-        ArrayList<Point3D> list = new ArrayList<Point3D>();
+        ArrayList<Point3D> list = new ArrayList<>();
 
        for(SplinePoint sp:spline.getSplinePoints()){
             if (sp.isControlPoint()) {

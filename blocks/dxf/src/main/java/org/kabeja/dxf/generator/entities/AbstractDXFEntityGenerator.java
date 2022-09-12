@@ -88,6 +88,7 @@ public abstract class AbstractDXFEntityGenerator implements DXFEntityGenerator {
 
     protected abstract void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput output, DXFGenerationContext context) throws GenerationException;
 
+    @Override
     public void generate(DXFOutput output, DraftEntity entity, DXFGenerationContext context, DXFType type) throws GenerationException {
 
         for (DXFSubType subtype : type.getDXFSubTypes()) {

@@ -24,7 +24,7 @@ import java.util.List;
 
 public class DXFType {
 
-    protected List<DXFSubType> subtypes = new ArrayList<DXFSubType> ();
+    protected List<DXFSubType> subtypes = new ArrayList<> ();
     protected String name="";
     
     

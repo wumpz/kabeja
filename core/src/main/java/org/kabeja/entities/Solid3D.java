@@ -25,6 +25,7 @@ import org.kabeja.common.Type;
  */
 public class Solid3D extends Region {
  
+    @Override
     public Type<?> getType() {
        
         return Type.TYPE_3DSOLID;

@@ -23,6 +23,7 @@ import org.kabeja.util.Constants;
 
 public class DXFAttribGenerator extends DXFTextGenerator {
 
+    @Override
 	public String getDXFEntityType() {
 		return Constants.ENTITY_TYPE_ATTRIB;
 	}

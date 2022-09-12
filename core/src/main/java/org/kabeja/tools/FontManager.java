@@ -31,7 +31,7 @@ import java.util.Hashtable;
 public class FontManager {
     private static FontManager instance = new FontManager();
     private String fontDescription = "conf/font.properties";
-    private Hashtable<String, String> fontProperties = new Hashtable<String, String>();
+    private Hashtable<String, String> fontProperties = new Hashtable<>();
 
     private FontManager() {
         loadFontDescription();
@@ -57,21 +57,21 @@ public class FontManager {
             }
 
             if (stream != null) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                            stream));
-                String line = null;
-
-                while ((line = in.readLine()) != null) {
-                    int index = line.indexOf("=");
-
-                    if (index >= 0) {
-                        String font = line.substring(0, index).trim()
-                                          .toLowerCase();
-                        String svgFont = line.substring(index + 1).trim();
-                        fontProperties.put(font, svgFont);
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(
+                        stream))) {
+                    String line = null;
+                    
+                    while ((line = in.readLine()) != null) {
+                        int index = line.indexOf("=");
+                        
+                        if (index >= 0) {
+                            String font = line.substring(0, index).trim()
+                                    .toLowerCase();
+                            String svgFont = line.substring(index + 1).trim();
+                            fontProperties.put(font, svgFont);
+                        }
                     }
                 }
-                in.close();
             } 
         } catch (Exception e) {
             e.printStackTrace();

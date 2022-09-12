@@ -30,6 +30,7 @@ import org.kabeja.util.Constants;
 
 public class DXFEllipseGenerator extends AbstractDXFEntityGenerator {
 
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Ellipse ellipse = (Ellipse) entity;
 		for (int groupCode : subtype.getGroupCodes()) {

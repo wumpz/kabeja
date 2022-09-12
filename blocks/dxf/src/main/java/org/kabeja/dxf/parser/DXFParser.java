@@ -56,10 +56,10 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
     public static final int CHAR_BUFFER_SIZE = 81920; // Experimental value. Works fine on Windows 10 and Windows Server
 
     protected DraftDocument doc;
-    protected Map<String,DXFSectionHandler> handlers = new HashMap<String,DXFSectionHandler>();
+    protected Map<String,DXFSectionHandler> handlers = new HashMap<>();
     protected DXFSectionHandler currentHandler;
     private String line;
-    protected List<DXFStreamFilter> streamFilters = new ArrayList<DXFStreamFilter>();
+    protected List<DXFStreamFilter> streamFilters = new ArrayList<>();
     protected DXFHandler filter;
 
     // some parse flags
@@ -71,6 +71,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
 
 
 
+    @Override
 	public DraftDocument parse(InputStream in, Map properties)
 			throws ParseException {
 		
@@ -79,6 +80,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
 	}
 
 
+    @Override
     public void parse(InputStream input, DraftDocument doc,Map properties)
         throws ParseException {
     	this.doc=doc;
@@ -130,6 +132,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         }
     }
 
+    @Override
     public void parseGroup(int keyCode, DXFValue value)
         throws ParseException {
         try {
@@ -177,6 +180,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         handlers.put(handler.getSectionKey(), handler);
     }
 
+    @Override
     public void addHandler(DXFHandler handler) {
         addDXFSectionHandler((DXFSectionHandler) handler);
     }
@@ -186,18 +190,17 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
      *
      * @see org.kabeja.parser.Parser#releaseDXFDocument()
      */
+    @Override
     public void releaseDocument() {
         this.doc = null;
 
-        Iterator i = handlers.values().iterator();
-
-        while (i.hasNext()) {
-            DXFHandler handler = (DXFHandler) i.next();
+        for (DXFHandler handler : handlers.values()) {
             handler.releaseDocument();
         }
     }
 
 
+    @Override
     public boolean supportedExtension(String extension) {
         return extension.toLowerCase().equals(EXTENSION);
     }
@@ -227,12 +230,14 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         this.filter = handler;
     }
 
+    @Override
     public String getName() {
         return PARSER_NAME;
     }
 
 
 
+    @Override
 	public void setDocument(DraftDocument doc) {
 		this.doc = doc;
 		

@@ -326,6 +326,7 @@ public class Dimension extends Entity {
         this.dimensionArea = dimensionArea;
     }
 
+    @Override
     public Bounds getBounds() {
         // TODO add real bounds
         Bounds bounds = new Bounds();
@@ -364,10 +365,12 @@ public class Dimension extends Entity {
         return doc.getDimensionStyle(getDimensionStyleID());
     }
 
+    @Override
     public Type<Dimension> getType() {
         return Type.TYPE_DIMENSTION;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -376,6 +379,7 @@ public class Dimension extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       
     }

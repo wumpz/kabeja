@@ -34,6 +34,7 @@ public class Tolerance extends Entity {
     protected Vector xaxisDirection = new Vector();
 
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         bounds.setValid(false);
@@ -42,6 +43,7 @@ public class Tolerance extends Entity {
     }
 
 
+    @Override
     public Type<Tolerance> getType() {
       
         return Type.TYPE_TOLERANCE;
@@ -103,6 +105,7 @@ public class Tolerance extends Entity {
         this.xaxisDirection = xaxisDirection;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -111,6 +114,7 @@ public class Tolerance extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       
     }

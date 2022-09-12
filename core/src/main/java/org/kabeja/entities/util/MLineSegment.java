@@ -27,7 +27,7 @@ public class MLineSegment {
     protected Point3D startPoint = new Point3D();
     protected Vector direction = new Vector();
     protected Vector miterDirection = new Vector();
-    protected List<MLineSegmentElement> elements = new ArrayList<MLineSegmentElement>();
+    protected List<MLineSegmentElement> elements = new ArrayList<>();
 
     public Point3D getStartPoint() {
         return startPoint;

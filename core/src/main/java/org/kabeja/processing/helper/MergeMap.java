@@ -40,9 +40,11 @@ public class MergeMap<K,V> implements Map<K,V>, Cloneable, Serializable {
         this.override = override;
     }
 
+    @Override
     public void clear() {
     }
 
+    @Override
     public boolean containsKey(Object key) {
         if (this.override.containsKey(key)) {
             return true;
@@ -51,6 +53,7 @@ public class MergeMap<K,V> implements Map<K,V>, Cloneable, Serializable {
         }
     }
 
+    @Override
     public boolean containsValue(Object value) {
         if (this.override.containsValue(value)) {
             return true;
@@ -59,13 +62,15 @@ public class MergeMap<K,V> implements Map<K,V>, Cloneable, Serializable {
         }
     }
 
+    @Override
     public Set<Map.Entry<K, V>> entrySet() {
-    	Set<Map.Entry<K, V>> set = new HashSet<Map.Entry<K, V>>(this.base.entrySet());
+    	Set<Map.Entry<K, V>> set = new HashSet<>(this.base.entrySet());
     	set.addAll(this.override.entrySet());
         return set;
         
     }
 
+    @Override
     public V get(Object key) {
     	
     	if(this.override.containsKey(key)){
@@ -75,6 +80,7 @@ public class MergeMap<K,V> implements Map<K,V>, Cloneable, Serializable {
         }
     }
 
+    @Override
     public boolean isEmpty() {
         if (this.override.isEmpty()) {
             return true;
@@ -83,27 +89,33 @@ public class MergeMap<K,V> implements Map<K,V>, Cloneable, Serializable {
         }
     }
 
+    @Override
     public Set<K> keySet() {
-    	Set<K> set = new HashSet<K>(this.base.keySet());
+    	Set<K> set = new HashSet<>(this.base.keySet());
     	set.addAll(this.override.keySet());
         return set;
     }
 
+    @Override
     public V put(Object arg0, Object arg1) {
         return null;
     }
 
+    @Override
     public void putAll(Map<? extends K, ? extends V> m) {
     }
 
+    @Override
     public V remove(Object key) {
         return null;
     }
 
+    @Override
     public int size() {
         return this.base.size();
     }
 
+    @Override
     public Collection<V> values() {
         return null;
     }

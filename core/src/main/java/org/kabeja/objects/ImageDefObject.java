@@ -28,6 +28,7 @@ public class ImageDefObject extends DraftObject {
 	protected String imageURI;
 
  
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_IMAGEDEF;
     }

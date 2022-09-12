@@ -51,25 +51,30 @@ public class DXFImageHandler extends AbstractEntityHandler {
     protected Point3D clippingPoint;
 
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_IMAGE;
     }
 
 
+    @Override
     public void endDXFEntity() {
     }
 
 
+    @Override
     public Entity getDXFEntity() {
         return image;
     }
 
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_START_X:
@@ -180,6 +185,7 @@ public class DXFImageHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void startDXFEntity() {
         image = new Image();
         image.setDocument(doc);

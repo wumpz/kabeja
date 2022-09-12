@@ -23,12 +23,14 @@ import java.util.Map;
 public abstract class AbstractConfigurable implements Configurable {
 	// FIXME: properties should not map to Object...
 	// Used to be unparametrized in the original Kabeja
-    protected Map<String,Object>  properties = new HashMap<String,Object> ();
+    protected Map<String,Object>  properties = new HashMap<> ();
 
+    @Override
     public void setProperties(Map<String,Object> properties) {
         this.properties = properties;
     }
 
+    @Override
     public Map<String,Object>  getProperties() {
         return this.properties;
     }
