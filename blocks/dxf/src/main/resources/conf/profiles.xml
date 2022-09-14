@@ -69,6 +69,12 @@
 				<subtype id="acdbpolyline" name="AcDbPolyline" groupCodes="62,48,62,66,10,20,30,70,370" />
 				<subtype id="acdbvertex" name="AcDbVertex" groupCodes="0,8,6,67,62,48,60,62,10,20,30,42,370" />
 			</type>
+            
+            <type name="HATCH">
+				<subtype ref-id="acdbentity" />
+				<subtype id="acdbhatch" name="AcDbHatch" groupCodes="10,20,30,70,91," />
+			</type>
+            
 			<!--+
 			    | all section types which should be generated
 			    | for this profile
@@ -102,7 +108,7 @@
 
 			<type name="LTYPE">
 			     <subtype id="acdbltypeentry" name="AcDbLTypeEntry" groupCodes="0,2,70,3,72,73,40,30000"/>
-			</type>
+			</type>           
 
 			<type name="ENTITIES"/>
 		</profile>
@@ -121,6 +127,7 @@
         <typehandler name="MTEXT"       class="org.kabeja.dxf.generator.entities.DXFMTextGenerator" />
         <typehandler name="POINT" 		class="org.kabeja.dxf.generator.entities.DXFPointGenerator" />
         <typehandler name="POLYLINE" 	class="org.kabeja.dxf.generator.entities.DXFPolylineGenerator" />
+        <typehandler name="HATCH"    	class="org.kabeja.dxf.generator.entities.DXFHatchGenerator" />
         <typehandler name="SOLID" 		class="org.kabeja.dxf.generator.entities.DXFSolidGenerator" />
         <typehandler name="TEXT" 		class="org.kabeja.dxf.generator.entities.DXFTextGenerator" />
         <typehandler name="TRACE" 		class="org.kabeja.dxf.generator.entities.DXFTraceGenerator" />

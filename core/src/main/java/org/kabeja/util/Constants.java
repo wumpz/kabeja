@@ -376,6 +376,7 @@ public class Constants {
     public static final String SUBCLASS_MARKER_ENTITY_3DFACE="AcDbFace";
     public static final String SUBCLASS_MARKER_ENTITY_ARC="AcDbArc";
     public static final String SUBCLASS_MARKER_ENTITY_POLYLINE="AcDbPolyline";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH="AcDbHatch";
     public static final String SUBCLASS_MARKER_ENTITY_CIRCLE="AcDbCircle";
     public static final String SUBCLASS_MARKER_ENTITY_ELLIPSE="AcDbEllipse";
     public static final String SUBCLASS_MARKER_ENTITY_LINE="AcDbLine";
