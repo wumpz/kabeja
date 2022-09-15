@@ -72,7 +72,13 @@
             
             <type name="HATCH">
 				<subtype ref-id="acdbentity" />
-				<subtype id="acdbhatch" name="AcDbHatch" groupCodes="10,20,30,70,91," />
+				<subtype id="acdbhatch" name="AcDbHatch" groupCodes="10,20,30,210,220,230,2,70,63,71,91,75,76,52,41,73,77,78,47,98,11,99,450,451,452,453,460," />
+                <subtype id="acdbhatchboundary" name="AcDbHatchBoundary" groupCodes="92,93,72,97,330" />  <!-- normal boundary --> 
+                <subtype id="acdbhatchedgepolyline" name="AcDbHatchBoundaryPolyline" groupCodes="92,97,330,72,73,93,10,20,42" />   <!-- polyline boundary -->
+                <subtype id="acdbhatchedgeline" name="AcDbHatchEdgeLine" groupCodes="10,20,11,21" />
+                <subtype id="acdbhatchedgearc" name="AcDbHatchEdgeArc" groupCodes="10,20,40,50,51,73" />
+                <subtype id="acdbhatchedgeellipse" name="AcDbHatchEdgeEllipse" groupCodes="10,20,11,21,40,50,51,73" />
+                <subtype id="acdbhatchedgespline" name="AcDbHatchEdgeSpline" groupCodes="95,73,74,95,96,40,10,20,42" />
 			</type>
             
 			<!--+
