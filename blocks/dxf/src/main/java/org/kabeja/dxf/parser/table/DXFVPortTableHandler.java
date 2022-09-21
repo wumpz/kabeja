@@ -42,6 +42,7 @@ public class DXFVPortTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#endParsing()
      */
+    @Override
     public void endParsing() {
         doc.addViewport(viewport);
     }
@@ -49,6 +50,7 @@ public class DXFVPortTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#getTableKey()
      */
+    @Override
     public String getTableType() {
         return Constants.TABLE_KEY_VPORT;
     }
@@ -56,6 +58,7 @@ public class DXFVPortTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#parseGroup(int, de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_VPORT_NAME:
@@ -102,6 +105,7 @@ public class DXFVPortTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#startParsing()
      */
+    @Override
     public void startParsing() {
         viewport = new Viewport();
     }

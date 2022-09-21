@@ -26,11 +26,13 @@ import org.kabeja.util.Constants;
  */
 public class DXFBodyHandler extends DXFRegionHandler {
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_BODY;
     }
 
 
+    @Override
     public void startDXFEntity() {
         region = new Body();
         region.setDocument(doc);

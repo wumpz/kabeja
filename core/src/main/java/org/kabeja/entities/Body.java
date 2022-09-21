@@ -25,6 +25,7 @@ import org.kabeja.common.Type;
  */
 public class Body extends Region {
 
+    @Override
     public Type<?> getType() {
         return Type.TYPE_BODY;
     }

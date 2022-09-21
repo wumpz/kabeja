@@ -25,10 +25,12 @@ import org.kabeja.util.Constants;
  *
  */
 public class DXFTraceHandler extends DXFSolidHandler {
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_TRACE;
     }
 
+    @Override
     public void startDXFEntity() {
         solid = new Trace();
         solid.setDocument(doc);

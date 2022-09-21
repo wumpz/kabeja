@@ -22,6 +22,7 @@ import org.kabeja.util.Constants;
 
 public class DXFAttribDefinitionHandler extends DXFAttribHandler {
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_ATTRIB_TEXT_LENGTH:
@@ -32,10 +33,12 @@ public class DXFAttribDefinitionHandler extends DXFAttribHandler {
         
     }
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_ATTDEF;
     }
 
+    @Override
     public void startDXFEntity() {
         this.attrib = new AttribDefinition();
         this.text = this.attrib;

@@ -42,6 +42,7 @@ public class DefaultDXFGenerationContext implements DXFGenerationContext {
     
 
     
+    @Override
     public void addAttribute(String key,Object value){
         this.properties.put(key,value);
     }
@@ -50,6 +51,7 @@ public class DefaultDXFGenerationContext implements DXFGenerationContext {
     
 
 
+    @Override
     public Object getAttribute(String key) {
       return this.properties.get(key);
     }
@@ -57,6 +59,7 @@ public class DefaultDXFGenerationContext implements DXFGenerationContext {
     /* (non-Javadoc)
      * @see org.kabeja.dxf.generator.DXFGenerationContext#getDXFGeneratorManager()
      */
+    @Override
     public DXFGeneratorManager getDXFGeneratorManager() {
         return this.manager;
     }
@@ -64,6 +67,7 @@ public class DefaultDXFGenerationContext implements DXFGenerationContext {
     /* (non-Javadoc)
      * @see org.kabeja.dxf.generator.DXFGenerationContext#hasAttribute(java.lang.String)
      */
+    @Override
     public boolean hasAttribute(String key) {
         return this.properties.containsKey(key);
     }

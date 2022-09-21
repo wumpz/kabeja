@@ -54,27 +54,32 @@ public class DXFMTextHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void endDXFEntity() {
         mtext.setText(buf.toString());
         buf.delete(0, buf.length());
     }
 
 
+    @Override
     public Entity getDXFEntity() {
         return mtext;
     }
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_MTEXT;
     }
 
 
+    @Override
     public boolean isFollowSequence() {
        
         return false;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case TEXT_VALUE:
@@ -180,6 +185,7 @@ public class DXFMTextHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void startDXFEntity() {
         mtext = new MText();
         mtext.setDocument(doc);

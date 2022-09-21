@@ -37,6 +37,7 @@ public class DXFStreamLayerFilter extends DXFStreamEntityFilter {
     protected String layer = "";
     boolean findLayer = true;
 
+    @Override
     public void setProperties(Map properties) {
         if (properties.containsKey(PROPERTY_LAYERS_INCLUDE)) {
             this.include.clear();
@@ -63,6 +64,7 @@ public class DXFStreamLayerFilter extends DXFStreamEntityFilter {
         }
     }
 
+    @Override
     protected void endEntity() throws ParseException {
         if (include.contains(this.layer)) {
             this.outputEntity();
@@ -79,11 +81,13 @@ public class DXFStreamLayerFilter extends DXFStreamEntityFilter {
         }
     }
 
+    @Override
     protected void startEntity(String type) throws ParseException {
         this.parseValues.clear();
         this.findLayer = true;
     }
 
+    @Override
     public void parseEntity(int groupCode, DXFValue value)
         throws ParseException {
         if (this.findLayer && (groupCode == LAYER_NAME)) {

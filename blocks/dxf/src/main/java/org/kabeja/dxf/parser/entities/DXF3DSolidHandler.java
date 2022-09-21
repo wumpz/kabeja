@@ -26,12 +26,14 @@ import org.kabeja.util.Constants;
  */
 public class DXF3DSolidHandler extends DXFRegionHandler {
 
+    @Override
     public String getDXFEntityType() {
       
         return Constants.ENTITY_TYPE_3DSOLID;
     }
 
 
+    @Override
     public void startDXFEntity() {
         region = new Solid3D();
         region.setDocument(doc);

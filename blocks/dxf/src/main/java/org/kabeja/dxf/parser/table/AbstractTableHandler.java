@@ -29,6 +29,7 @@ public abstract class AbstractTableHandler implements DXFTableHandler {
     /* (non-Javadoc)
      * @see org.dxf2svg.parser.table.TableHandler#setDXFDocument(org.dxf2svg.xml.DXFDocument)
      */
+    @Override
     public void setDocument(DraftDocument doc) {
         this.doc = doc;
     }
@@ -36,6 +37,7 @@ public abstract class AbstractTableHandler implements DXFTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.Handler#releaseDXFDocument()
      */
+    @Override
     public void releaseDocument() {
         this.doc = null;
     }

@@ -30,7 +30,7 @@ import org.kabeja.util.Constants;
  */
 public class Header {
 
-	private Hashtable<String, Variable> variables = new Hashtable<String, Variable>();
+	private Hashtable<String, Variable> variables = new Hashtable<>();
 	private long lastID = -1;
 	private Variable idHolder = null;
 

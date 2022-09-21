@@ -79,6 +79,7 @@ public class DXFViewportHandler extends AbstractEntityHandler {
     private boolean convertXDATA = false;
     private int pos = 0;
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         //check for XDATA
         if (convertXDATA && (pos < xDataConvert.length)) {
@@ -319,22 +320,27 @@ public class DXFViewportHandler extends AbstractEntityHandler {
         }
     }
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_VIEWPORT;
     }
 
+    @Override
     public void endDXFEntity() {
         // nothing to do
     }
 
+    @Override
     public Entity getDXFEntity() {
         return this.viewport;
     }
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
+    @Override
     public void startDXFEntity() {
         this.viewport = new Viewport();
         this.viewport.setModelSpace(false);

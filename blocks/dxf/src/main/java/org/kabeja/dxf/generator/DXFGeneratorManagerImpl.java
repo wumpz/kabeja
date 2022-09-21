@@ -31,18 +31,22 @@ public class DXFGeneratorManagerImpl implements DXFGeneratorManager {
 	
 	
 	
+    @Override
 	public DXFEntityGenerator getDXFEntityGenerator(String entityType) {
 		return (DXFEntityGenerator)this.entityGenerators.get(entityType);
 	}
 
+    @Override
 	public DXFSectionGenerator getDXFSectionGenerator(String section) {	
 		return (DXFSectionGenerator)this.sectionGenerators.get(section);
 	}
 
+    @Override
 	public boolean hasDXFEntityGenerator(String entityType) {
 		return this.entityGenerators.containsKey(entityType);
 	}
 
+    @Override
 	public boolean hasDXFSectionGenerator(String section) {
 		return this.sectionGenerators.containsKey(section);
 	}
@@ -53,6 +57,7 @@ public class DXFGeneratorManagerImpl implements DXFGeneratorManager {
 	/* (non-Javadoc)
 	 * @see org.kabeja.dxf.generator.DXFGeneratorManager#hasDXFTableGenerator(java.lang.String)
 	 */
+    @Override
 	public boolean hasDXFTableGenerator(String tableType) {
 		return this.tableGenerators.containsKey(tableType);
 	}
@@ -60,6 +65,7 @@ public class DXFGeneratorManagerImpl implements DXFGeneratorManager {
 	/* (non-Javadoc)
 	 * @see org.kabeja.dxf.generator.DXFGeneratorManager#getDXFTableGenerator(java.lang.String)
 	 */
+    @Override
 	public DXFTableGenerator getDXFTableGenerator(String tableType) {
 		return (DXFTableGenerator)this.tableGenerators.get(tableType);
 	}
@@ -79,7 +85,8 @@ public class DXFGeneratorManagerImpl implements DXFGeneratorManager {
 /* (non-Javadoc)
  * @see org.kabeja.dxf.generator.DXFGeneratorManager#getDXFProfile(java.lang.String)
  */
-public DXFProfile getDXFProfile(String name) {
+    @Override
+    public DXFProfile getDXFProfile(String name) {
 	   return (DXFProfile) this.profiles.get(name);
 }
 	
@@ -95,7 +102,8 @@ public Set getDXFProfileNames() {
         return this.profiles.keySet();
 }
 
-public boolean hasDXFProfile(String name){
+    @Override
+    public boolean hasDXFProfile(String name){
 	return this.profiles.containsKey(name);
 }
    

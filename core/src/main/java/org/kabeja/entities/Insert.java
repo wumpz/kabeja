@@ -42,7 +42,7 @@ public class Insert extends Entity {
     private double row_spacing = 0;
     private double column_spacing = 0;
     private String blockName = "";
-    private List<Attrib> attributes = new ArrayList<Attrib>();
+    private List<Attrib> attributes = new ArrayList<>();
 
     /**
      *
@@ -50,6 +50,7 @@ public class Insert extends Entity {
     public Insert() {
     }
 
+    @Override
     public Bounds getBounds() {
         return calculateBounds(getBlock().getBounds());
     }
@@ -252,10 +253,12 @@ public class Insert extends Entity {
         return point;
     }
 
+    @Override
     public Type<Insert> getType() {
         return Type.TYPE_INSERT;
     }
 
+    @Override
     public double getLength() {
         return this.doc.getBlock(this.blockName).getLength();
     }
@@ -338,6 +341,7 @@ public class Insert extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       
         this.setInsertPoint(context.transform(this.getInsertPoint()));

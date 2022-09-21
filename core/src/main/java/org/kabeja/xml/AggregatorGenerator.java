@@ -31,9 +31,10 @@ public class AggregatorGenerator extends AbstractSAXFilter
     implements SAXGenerator {
     public final static String ROOT_ELEMENT = "aggregate";
     public final static String NAMESPACE = "http://kabeja.org/aggregate";
-    protected List<SAXGenerator> generators = new ArrayList<SAXGenerator>();
+    protected List<SAXGenerator> generators = new ArrayList<>();
     protected DraftDocument doc;
 
+    @Override
     public void generate(DraftDocument doc, ContentHandler handler, Map<String, Object> context)
         throws SAXException {
         this.setContentHandler(handler);
@@ -62,10 +63,12 @@ public class AggregatorGenerator extends AbstractSAXFilter
         }
     }
 
+    @Override
     public void endDocument() throws SAXException {
         // ignore
     }
 
+    @Override
     public void startDocument() throws SAXException {
         // ignore
     }
@@ -74,6 +77,7 @@ public class AggregatorGenerator extends AbstractSAXFilter
         this.generators.add(generator);
     }
 
+    @Override
     public Map<String, Object> getProperties() {
         return this.properties;
     }

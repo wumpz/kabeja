@@ -33,25 +33,30 @@ public class DXFShapeHandler extends AbstractEntityHandler {
     public final static int GROUPCODE_OBLIQUE_ANGLE = 51;
     protected Shape shape;
 
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_SHAPE;
     }
 
 
+    @Override
     public void endDXFEntity() {
     }
 
 
+    @Override
     public Entity getDXFEntity() {
         return shape;
     }
 
+    @Override
     public boolean isFollowSequence() {
         // TODO Auto-generated method stub
         return false;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_START_X:
@@ -99,6 +104,7 @@ public class DXFShapeHandler extends AbstractEntityHandler {
      *
      * @see org.kabeja.parser.entities.DXFEntityHandler#startDXFEntity()
      */
+    @Override
     public void startDXFEntity() {
         shape = new Shape();
         shape.setDocument(doc);

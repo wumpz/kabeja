@@ -55,6 +55,7 @@ public class DXFGenerator implements Generator {
 	 * @see org.kabeja.io.Generator#generate(org.kabeja.dxf.DXFDocument,
 	 * java.io.OutputStream)
 	 */
+    @Override
 	public void generate(DraftDocument doc, Map<String, Object> context,
 			OutputStream out) throws GenerationException {
 
@@ -121,6 +122,7 @@ public class DXFGenerator implements Generator {
 	 * 
 	 * @see org.kabeja.io.Generator#getMimeType()
 	 */
+    @Override
 	public String getMimeType() {
 		return MIME_TYPE;
 	}
@@ -130,6 +132,7 @@ public class DXFGenerator implements Generator {
 	 * 
 	 * @see org.kabeja.io.Generator#getSuffix()
 	 */
+    @Override
 	public String getSuffix() {
 
 		return DXF_SUFFIX;
@@ -140,6 +143,7 @@ public class DXFGenerator implements Generator {
 	 * 
 	 * @see org.kabeja.io.Generator#setProperties(java.util.Map)
 	 */
+    @Override
 	public void setProperties(Map<String, Object> properties) {
 		for (Map.Entry<String, Object> entry : properties.entrySet()) {
 			this.generationContext.addAttribute(entry.getKey(), entry

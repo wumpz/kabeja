@@ -54,22 +54,27 @@ public class DXFInsertHandler extends AbstractEntityHandler {
 		super();
 	}
 
+    @Override
 	public void endDXFEntity() {
 	}
 
+    @Override
 	public Entity getDXFEntity() {
 		return insert;
 	}
 
+    @Override
 	public String getDXFEntityType() {
 		return Constants.ENTITY_TYPE_INSERT;
 	}
 
+    @Override
 	public boolean isFollowSequence() {
 		return this.attributesFollow;
 		//return false;
 	}
 
+    @Override
 	public void parseGroup(int groupCode, DXFValue value) throws ParseException {
 		
 		if ((groupCode == Constants.END_SEQUENCE_CODE)
@@ -179,6 +184,7 @@ public class DXFInsertHandler extends AbstractEntityHandler {
 		}
 	}
 
+    @Override
 	public void startDXFEntity() {
 		insert = new Insert();
 		insert.setDocument(doc);

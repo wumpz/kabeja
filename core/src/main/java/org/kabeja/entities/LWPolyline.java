@@ -47,25 +47,26 @@ public class LWPolyline extends Entity{
 	private final static int BOOLEAN_BIT_CONSTANTWIDTH=10;
 	
     protected static final double QUARTER_CIRCLE_ANGLE = Math.tan(0.39269908169872414D);
-    protected List<LW2DVertex> vertices = new ArrayList<LW2DVertex>();
+    protected List<LW2DVertex> vertices = new ArrayList<>();
 
     public LWPolyline() {
     }
 
     public void setConstantWidth(double width) {
     	if(width != 0.0){
-          this.lazyContainer.set(new Double(width), LAZY_INDEX_CONSTANTWIDTH);
+          this.lazyContainer.set(width, LAZY_INDEX_CONSTANTWIDTH);
     	}
     }
 
     public double getContstantWidth() {
     	if(this.lazyContainer.contains(LAZY_INDEX_CONSTANTWIDTH)){
-    		return ((Double)this.lazyContainer.get(LAZY_INDEX_CONSTANTWIDTH)).doubleValue();
+    		return ((Double)this.lazyContainer.get(LAZY_INDEX_CONSTANTWIDTH));
     	}
         return 0.0;
     }
 
 
+    @Override
     public Type<LWPolyline>getType() {
         return Type.TYPE_LWPOLYLINE;
     }
@@ -73,6 +74,7 @@ public class LWPolyline extends Entity{
 
 
   
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
 
@@ -169,7 +171,7 @@ public class LWPolyline extends Entity{
      */
     public double getEndWidth() {
     	if(this.lazyContainer.contains(LAZY_INDEX_ENDWIDTH)){
-    		return ((Double)this.lazyContainer.get(LAZY_INDEX_ENDWIDTH)).doubleValue();
+    		return ((Double)this.lazyContainer.get(LAZY_INDEX_ENDWIDTH));
     	}
         return 0.0;
     }
@@ -180,7 +182,7 @@ public class LWPolyline extends Entity{
      */
     public void setEndWidth(double endWidth) {
     	if(endWidth!=0.0){
-         this.lazyContainer.set(new Double(endWidth),LAZY_INDEX_ENDWIDTH);
+         this.lazyContainer.set(endWidth,LAZY_INDEX_ENDWIDTH);
     	}
     }
 
@@ -189,7 +191,7 @@ public class LWPolyline extends Entity{
      */
     public double getStartWidth() {
           if(this.lazyContainer.contains(LAZY_INDEX_STARTWIDTH)){
-        	  return ((Double)this.lazyContainer.get(LAZY_INDEX_STARTWIDTH)).doubleValue();
+        	  return ((Double)this.lazyContainer.get(LAZY_INDEX_STARTWIDTH));
           }
           return 0.0;
     }
@@ -200,7 +202,7 @@ public class LWPolyline extends Entity{
      */
     public void setStartWidth(double startWidth) {
     	if(startWidth!=0.0){
-            this.lazyContainer.set(new Double(startWidth),LAZY_INDEX_STARTWIDTH);
+            this.lazyContainer.set(startWidth,LAZY_INDEX_STARTWIDTH);
        	}
     }
 
@@ -219,14 +221,10 @@ public class LWPolyline extends Entity{
         } else {
            setBit(BOOLEAN_BIT_CONSTANTWIDTH, true);
 
-            Iterator<LW2DVertex> i = vertices.iterator();
-
-            while (i.hasNext()) {
-                LW2DVertex vertex = i.next();
-
+            for (LW2DVertex vertex : vertices) {
                 if (!vertex.isConstantWidth()) {
-                	 setBit(BOOLEAN_BIT_CONSTANTWIDTH, false);
-
+                    setBit(BOOLEAN_BIT_CONSTANTWIDTH, false);
+                    
                     return  isBitEnabled(BOOLEAN_BIT_CONSTANTWIDTH);
                 }
             }
@@ -353,6 +351,7 @@ public class LWPolyline extends Entity{
 
 
 
+    @Override
     public double getLength() {
         double length = 0.0;
 
@@ -410,16 +409,19 @@ public class LWPolyline extends Entity{
 		}
 
 		return new Point3D() {
+            @Override
 			public void setX(double x) {
 				this.addToContainer();
 				super.setX(x);
 			}
 
+            @Override
 			public void setY(double y) {
 				this.addToContainer();
 				super.setY(y);
 			}
 
+            @Override
 			public void setZ(double z) {
 				this.addToContainer();
 				super.setZ(z);
@@ -443,6 +445,7 @@ public class LWPolyline extends Entity{
     }
 
 
+    @Override
     public void setDocument(DraftDocument doc) {
         super.setDocument(doc);
     }
@@ -451,6 +454,7 @@ public class LWPolyline extends Entity{
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       
     }

@@ -37,6 +37,7 @@ public class DXFDimensionGenerator extends AbstractDXFEntityGenerator {
 	 * (int, org.kabeja.dxf.generator.DXFOutput,
 	 * org.kabeja.dxf.generator.DXFGenerationContext)
 	 */
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Dimension dimension = (Dimension) entity;
 		for (int groupCode : subtype.getGroupCodes()) {

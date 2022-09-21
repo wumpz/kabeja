@@ -52,12 +52,13 @@ public class Spline extends Entity {
     protected int fitPointSize;
     protected double[] knots;
     protected double[] weights;
-    protected List<SplinePoint> points = new ArrayList<SplinePoint>();
+    protected List<SplinePoint> points = new ArrayList<>();
     protected double fitTolerance;
     protected double knotsTolerance;
     protected double controlPointTolerance;
     Polyline polyline;
 
+    @Override
     public Bounds getBounds() {
 
         //more correct bounds
@@ -68,6 +69,7 @@ public class Spline extends Entity {
         return this.polyline.getBounds();
     }
 
+    @Override
     public Type<Spline> getType() {
         return Type.TYPE_SPLINE;
     }
@@ -241,6 +243,7 @@ public class Spline extends Entity {
         this.knotsTolerance = knotsTolerance;
     }
 
+    @Override
     public double getLength() {
         if (this.polyline == null) {
             this.polyline = toPolyline();
@@ -257,6 +260,7 @@ public class Spline extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
         
     }

@@ -55,7 +55,7 @@ public class Vertex extends Entity{
 	 */
 	public double getEndWidth() {
 		if (this.lazyContainer.contains(LAZY_INDEX_ENDWIDTH)) {
-			return ((Double)this.lazyContainer.get(LAZY_INDEX_ENDWIDTH)).doubleValue();
+			return ((Double)this.lazyContainer.get(LAZY_INDEX_ENDWIDTH));
 		}
 		return 0.0;
 	}
@@ -66,7 +66,7 @@ public class Vertex extends Entity{
 	 */
 	public void setEndWidth(double endWidth) {
 		    if(this.lazyContainer.contains(LAZY_INDEX_ENDWIDTH) || endWidth != 0.0){
-		    	this.lazyContainer.set(new Double(endWidth),LAZY_INDEX_ENDWIDTH);
+		    	this.lazyContainer.set(endWidth,LAZY_INDEX_ENDWIDTH);
 		    }
 	}
 
@@ -75,7 +75,7 @@ public class Vertex extends Entity{
 	 */
 	public double getStartWidth() {
 		if (this.lazyContainer.contains(LAZY_INDEX_STARTWIDTH)) {
-			return ((Double)this.lazyContainer.get(LAZY_INDEX_STARTWIDTH)).doubleValue();
+			return ((Double)this.lazyContainer.get(LAZY_INDEX_STARTWIDTH));
 		}
 		return 0.0;
 	}
@@ -86,12 +86,13 @@ public class Vertex extends Entity{
 	 */
 	public void setStartWidth(double startWidth) {
 	    if(this.lazyContainer.contains(LAZY_INDEX_STARTWIDTH) || startWidth != 0.0){
-	    	this.lazyContainer.set(new Double(startWidth),LAZY_INDEX_STARTWIDTH);
+	    	this.lazyContainer.set(startWidth,LAZY_INDEX_STARTWIDTH);
 	    }
 	}
 
 
 
+    @Override
 	public Bounds getBounds() {
 		Bounds bounds = new Bounds();
         bounds.addToBounds(this.p);
@@ -105,7 +106,7 @@ public class Vertex extends Entity{
 	 */
 	public double getBulge() {
 		if (this.lazyContainer.contains(LAZY_INDEX_BULGE)) {
-			return ((Double)this.lazyContainer.get(LAZY_INDEX_BULGE)).doubleValue();
+			return ((Double)this.lazyContainer.get(LAZY_INDEX_BULGE));
 		}
 		return 0.0;
 
@@ -117,12 +118,13 @@ public class Vertex extends Entity{
 	 */
 	public void setBulge(double bulge) {
 	    if(this.lazyContainer.contains(LAZY_INDEX_BULGE) || bulge != 0.0){
-	    	this.lazyContainer.set(new Double(bulge),LAZY_INDEX_BULGE);
+	    	this.lazyContainer.set(bulge,LAZY_INDEX_BULGE);
 	    }
 
 	}
 
 
+    @Override
 	public Type<Vertex> getType() {
 		return Type.TYPE_VERTEX;
 	}
@@ -169,7 +171,7 @@ public class Vertex extends Entity{
 	 */
 	public int getPolyFaceMeshVertex0() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_0)) {
-			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_0)).intValue());
+			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_0)));
 		} else {
 			return 0;
 		}
@@ -180,7 +182,7 @@ public class Vertex extends Entity{
 	 *            The polyFaceMeshVertex0 to set.
 	 */
 	public void setPolyFaceMeshVertex0(int polyFaceMeshVertex0) {
-	    	this.lazyContainer.set(new Integer(polyFaceMeshVertex0),LAZY_INDEX_POLYFACEMESHVERTEX_0);    
+	    	this.lazyContainer.set(polyFaceMeshVertex0,LAZY_INDEX_POLYFACEMESHVERTEX_0);    
 	}
 
 	/**
@@ -188,7 +190,7 @@ public class Vertex extends Entity{
 	 */
 	public int getPolyFaceMeshVertex1() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_1)) {
-			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_1)).intValue());
+			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_1)));
 		} else {
 			return 0;
 		}
@@ -200,7 +202,7 @@ public class Vertex extends Entity{
 	 *            The polyFaceMeshVertex1 to set.
 	 */
 	public void setPolyFaceMeshVertex1(int polyFaceMeshVertex1) {
-		this.lazyContainer.set(new Integer(polyFaceMeshVertex1),LAZY_INDEX_POLYFACEMESHVERTEX_1);   
+		this.lazyContainer.set(polyFaceMeshVertex1,LAZY_INDEX_POLYFACEMESHVERTEX_1);   
 
 	}
 
@@ -209,7 +211,7 @@ public class Vertex extends Entity{
 	 */
 	public int getPolyFaceMeshVertex2() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_2)) {
-			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_2)).intValue());
+			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_2)));
 		} else {
 			return 0;
 		}
@@ -221,7 +223,7 @@ public class Vertex extends Entity{
 	 *            The polyFaceMeshVertex2 to set.
 	 */
 	public void setPolyFaceMeshVertex2(int polyFaceMeshVertex2) {
-		this.lazyContainer.set(new Integer(polyFaceMeshVertex2),LAZY_INDEX_POLYFACEMESHVERTEX_2);   
+		this.lazyContainer.set(polyFaceMeshVertex2,LAZY_INDEX_POLYFACEMESHVERTEX_2);   
 	}
 
 	/**
@@ -229,7 +231,7 @@ public class Vertex extends Entity{
 	 */
 	public int getPolyFaceMeshVertex3() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_3)) {
-			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_3)).intValue());
+			return Math.abs(((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_3)));
 		} else {
 			return 0;
 		}
@@ -241,12 +243,12 @@ public class Vertex extends Entity{
 	 *            The polyFaceMeshVertex3 to set.
 	 */
 	public void setPolyFaceMeshVertex3(int polyFaceMeshVertex3) {
-		this.lazyContainer.set(new Integer(polyFaceMeshVertex3),LAZY_INDEX_POLYFACEMESHVERTEX_3);   
+		this.lazyContainer.set(polyFaceMeshVertex3,LAZY_INDEX_POLYFACEMESHVERTEX_3);   
 	}
 
 	public boolean isPolyFaceEdge0Visible() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_0)) {
-			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_0)).intValue()>0;
+			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_0))>0;
 		} else {
 			return false;
 		}
@@ -254,7 +256,7 @@ public class Vertex extends Entity{
 
 	public boolean isPolyFaceEdge1Visible() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_1)) {
-			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_1)).intValue()>0;
+			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_1))>0;
 		} else {
 			return false;
 		}
@@ -263,7 +265,7 @@ public class Vertex extends Entity{
 
 	public boolean isPolyFaceEdge2Visible() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_2)) {
-			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_2)).intValue()>0;
+			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_2))>0;
 		} else {
 			return false;
 		}
@@ -272,12 +274,13 @@ public class Vertex extends Entity{
 
 	public boolean isPolyFaceEdge3Visible() {
 		if (this.lazyContainer.contains(LAZY_INDEX_POLYFACEMESHVERTEX_3)) {
-			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_3)).intValue()>0;
+			return ((Integer)this.lazyContainer.get(LAZY_INDEX_POLYFACEMESHVERTEX_3))>0;
 		} else {
 			return false;
 		}
 	}
 
+    @Override
     public double getLength(){
         return 0.0;
     }
@@ -291,6 +294,7 @@ public class Vertex extends Entity{
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       this.p = context.transform(this.p);
        

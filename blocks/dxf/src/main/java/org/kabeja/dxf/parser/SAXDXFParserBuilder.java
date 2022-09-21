@@ -108,6 +108,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#characters(char[], int, int)
      */
+    @Override
     public void characters(char[] ch, int start, int length)
         throws SAXException {
         // TODO Auto-generated method stub
@@ -118,6 +119,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#endDocument()
      */
+    @Override
     public void endDocument() throws SAXException {
         // TODO Auto-generated method stub
     }
@@ -128,6 +130,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      * @see org.xml.sax.ContentHandler#endElement(java.lang.String,
      *      java.lang.String, java.lang.String)
      */
+    @Override
     public void endElement(String namespaceURI, String localName, String qName)
         throws SAXException {
         if (localName.equals(ELEMENT_HANDLERS) &&
@@ -141,6 +144,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)
      */
+    @Override
     public void endPrefixMapping(String prefix) throws SAXException {
         // TODO Auto-generated method stub
     }
@@ -150,6 +154,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
      */
+    @Override
     public void ignorableWhitespace(char[] ch, int start, int length)
         throws SAXException {
         // TODO Auto-generated method stub
@@ -161,6 +166,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String,
      *      java.lang.String)
      */
+    @Override
     public void processingInstruction(String target, String data)
         throws SAXException {
         // TODO Auto-generated method stub
@@ -171,6 +177,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)
      */
+    @Override
     public void setDocumentLocator(Locator locator) {
         // TODO Auto-generated method stub
     }
@@ -180,6 +187,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)
      */
+    @Override
     public void skippedEntity(String name) throws SAXException {
     }
 
@@ -188,6 +196,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      *
      * @see org.xml.sax.ContentHandler#startDocument()
      */
+    @Override
     public void startDocument() throws SAXException {
     }
 
@@ -197,6 +206,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      * @see org.xml.sax.ContentHandler#startElement(java.lang.String,
      *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
+    @Override
     public void startElement(String namespaceURI, String localName,
         String qName, Attributes atts) throws SAXException {
         if (namespaceURI.equals(XMLNS_KABEJA_PARSER)) {
@@ -208,11 +218,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
                     Class c = this.getClass().getClassLoader().loadClass(clazz);
                     handler = (DXFHandler) c.newInstance();
                     currentHandlerManager.addHandler(handler);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             } else if (localName.equals(ELEMENT_HANDLERS)) {
@@ -231,11 +237,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
                     }
 
                     this.stack = new Stack();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
@@ -248,6 +250,7 @@ public class SAXDXFParserBuilder implements ContentHandler {
      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String,
      *      java.lang.String)
      */
+    @Override
     public void startPrefixMapping(String prefix, String uri)
         throws SAXException {
         // TODO Auto-generated method stub

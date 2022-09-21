@@ -47,6 +47,7 @@ public class DXFPointGenerator extends AbstractDXFEntityGenerator {
 		return Constants.SUBCLASS_MARKER_ENTITY_POINT;
 	}
 
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Point point = (Point) entity;
 		for (int groupCode : subtype.getGroupCodes()) {

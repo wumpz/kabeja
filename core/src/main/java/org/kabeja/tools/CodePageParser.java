@@ -80,9 +80,9 @@ public class CodePageParser {
     public String translateCodePage(String cp) {
         String c = cp.toLowerCase();
 
-        for (int i = 0; i < prefix.length; i++) {
-            if (c.startsWith(prefix[i])) {
-                return javaPrefix + cp.substring(prefix[i].length());
+        for (String prefix1 : prefix) {
+            if (c.startsWith(prefix1)) {
+                return javaPrefix + cp.substring(prefix1.length());
             }
         }
 

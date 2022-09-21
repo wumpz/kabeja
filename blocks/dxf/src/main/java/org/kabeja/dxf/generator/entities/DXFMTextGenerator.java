@@ -31,6 +31,7 @@ public class DXFMTextGenerator extends DXFTextGenerator {
 	protected MText mtext;
 
 
+    @Override
 	protected void outputGroupCode(int groupCode, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		switch (groupCode) {
 
@@ -53,6 +54,7 @@ public class DXFMTextGenerator extends DXFTextGenerator {
 
 
 
+    @Override
 	public String getDXFEntityType() {
 
 		return Constants.ENTITY_TYPE_MTEXT;

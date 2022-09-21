@@ -124,13 +124,14 @@
         <typehandler name="SOLID" 		class="org.kabeja.dxf.generator.entities.DXFSolidGenerator" />
         <typehandler name="TEXT" 		class="org.kabeja.dxf.generator.entities.DXFTextGenerator" />
         <typehandler name="TRACE" 		class="org.kabeja.dxf.generator.entities.DXFTraceGenerator" />
-       <typehandler name="ENTITIES" 	class="org.kabeja.dxf.generator.section.DXFEntitiesSectionGenerator" />
-       <typehandler name="BLOCKS" 		class="org.kabeja.dxf.generator.section.DXFBlocksSectionGenerator" />
-       <typehandler name="HEADER" 		class="org.kabeja.dxf.generator.section.DXFHeaderSectionGenerator" />
-       <typehandler name="TABLES" 		class="org.kabeja.dxf.generator.section.DXFTablesSectionGenerator" />  
- 	   <typehandler name="LAYER"        class="org.kabeja.dxf.generator.table.DXFLayerTableGenerator"/>
- 	   <typehandler name="LTYPE"        class="org.kabeja.dxf.generator.table.DXFLineTypeTableGenerator" />
+        <typehandler name="ENTITIES" 	class="org.kabeja.dxf.generator.section.DXFEntitiesSectionGenerator" />
+        <typehandler name="BLOCKS" 		class="org.kabeja.dxf.generator.section.DXFBlocksSectionGenerator" />
+        <typehandler name="HEADER" 		class="org.kabeja.dxf.generator.section.DXFHeaderSectionGenerator" />
+        <typehandler name="TABLES" 		class="org.kabeja.dxf.generator.section.DXFTablesSectionGenerator" />  
+ 	    <typehandler name="LAYER"        class="org.kabeja.dxf.generator.table.DXFLayerTableGenerator"/>
+ 	    <typehandler name="LTYPE"        class="org.kabeja.dxf.generator.table.DXFLineTypeTableGenerator" />
 		<typehandler name="STYLE"    	class="org.kabeja.dxf.generator.table.DXFStyleTableGenerator"/>
+        <typehandler name="APPID"    	class="org.kabeja.dxf.generator.table.DXFAppIdTableGenerator"/>
 <!--		FIXME: VPORT was causing problems on AutoCAD 2014, this is a workaround		-->
 <!--		<typehandler name="VPORT"    class="org.kabeja.dxf.generator.entities.DXFViewportGenerator"/>-->
 	</typehandlers>

@@ -47,6 +47,7 @@ import org.kabeja.objects.ImageDefObject;
  */
 public class ImageFilter extends AbstractPostProcessor {
 
+    @Override
     public void process(DraftDocument doc, Map<String, Object> context) throws ProcessorException {
      for(Layer l :doc.getLayers()){
 

@@ -62,17 +62,21 @@ public class DXFPlotsettingsHandler extends AbstractDXFObjectHandler {
     public final static int GROUPCODE_STANDARD_SCALE_TYPE = 75;
     protected PlotSettings plotSettings;
 
+    @Override
     public void endObject() {
     }
 
+    @Override
     public DraftObject getDXFObject() {
         return this.plotSettings;
     }
 
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_PLOTSETTINGS;
     }
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         double[] m;
 
@@ -202,6 +206,7 @@ public class DXFPlotsettingsHandler extends AbstractDXFObjectHandler {
         }
     }
 
+    @Override
     public void startObject() {
         this.plotSettings = new PlotSettings();
     }

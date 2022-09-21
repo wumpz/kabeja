@@ -20,7 +20,6 @@ import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 /**
@@ -38,6 +37,7 @@ public class Shape extends Entity {
 
 
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         bounds.setValid(false);
@@ -46,6 +46,7 @@ public class Shape extends Entity {
     }
 
 
+    @Override
     public Type<Shape> getType() {
         return Type.TYPE_SHAPE;
     }
@@ -134,6 +135,7 @@ public class Shape extends Entity {
         this.scaleFactor = scaleFactor;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -143,6 +145,7 @@ public class Shape extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
         
        this.setInsertPoint(context.transform(this.getInsertPoint()));
@@ -157,6 +160,6 @@ public class Shape extends Entity {
      */
     @Override
     public void toWcs() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

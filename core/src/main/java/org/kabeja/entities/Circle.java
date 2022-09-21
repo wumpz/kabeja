@@ -73,6 +73,7 @@ public class Circle extends Entity {
         return center;
     }
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         ParametricPlane plane = new ParametricPlane(this.getExtrusion());
@@ -85,10 +86,12 @@ public class Circle extends Entity {
         return bounds;
     }
 
+    @Override
     public Type<Circle> getType() {
         return Type.TYPE_CIRCLE;
     }
 
+    @Override
     public double getLength() {
         return 2 * Math.PI * this.radius;
     }
@@ -110,6 +113,7 @@ public class Circle extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
     
         this.setCenterPoint(context.transform(this.getCenterPoint()));

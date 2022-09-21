@@ -32,7 +32,7 @@ import org.kabeja.util.Constants;
 
 
 public class PolylineQueue {
-    private List<DraftEntity> elements = new ArrayList<DraftEntity>();
+    private List<DraftEntity> elements = new ArrayList<>();
     private Point3D startPoint;
     private Point3D endPoint;
     private double radius = Constants.POINT_CONNECTION_RADIUS;

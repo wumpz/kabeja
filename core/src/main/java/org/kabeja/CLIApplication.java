@@ -46,6 +46,7 @@ public class CLIApplication implements Application{
 	
 	
 	
+    @Override
     public void start(Map<String, String> properties) {
     	//setup application
     	if(properties.containsKey("pp")){
@@ -79,6 +80,7 @@ public class CLIApplication implements Application{
         
     }
 
+    @Override
     public void stop() {
       //not needed
         
@@ -155,7 +157,7 @@ public class CLIApplication implements Application{
             if(index >-1&& index+1<extension.length()){
             	extension = extension.substring(index+1);
             }
-		    this.processorManager.process(new FileInputStream(f), extension, new HashMap<String, Object>(), pipeline, new FileOutputStream(output));
+		    this.processorManager.process(new FileInputStream(f), extension, new HashMap<>(), pipeline, new FileOutputStream(output));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -32,6 +32,7 @@ import org.kabeja.common.Type;
  */
 public class VisibilityFilter extends AbstractPostProcessor {
 
+    @Override
 	public void process(DraftDocument doc, Map<String,Object> context)
 			throws ProcessorException {
 		Iterator<Layer> i = doc.getLayers().iterator();
@@ -58,6 +59,7 @@ public class VisibilityFilter extends AbstractPostProcessor {
 		}
 	}
 
+    @Override
 	public void setProperties(Map<String,Object> properties) {
 
 	}

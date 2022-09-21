@@ -39,6 +39,7 @@ public class Solid extends Entity {
     public Solid() {
     }
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         ParametricPlane plane = new ParametricPlane(this.getExtrusion());
@@ -110,10 +111,12 @@ public class Solid extends Entity {
         this.point4 = point4;
     }
 
+    @Override
     public Type<?> getType() {
         return Type.TYPE_SOLID;
     }
 
+    @Override
     public double getLength() {
         double length = 0.0;
         length += MathUtils.distance(this.point1, this.point2);
@@ -143,6 +146,7 @@ public class Solid extends Entity {
     }
 
     
+    @Override
     public void transform(TransformContext context) {
         
        

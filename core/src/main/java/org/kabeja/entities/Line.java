@@ -67,6 +67,7 @@ public class Line extends Entity {
         return start;
     }
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         bounds.addToBounds(this.end);
@@ -75,16 +76,19 @@ public class Line extends Entity {
         return bounds;
     }
 
+    @Override
     public Type<Line> getType() {
         return Type.TYPE_LINE;
     }
 
+    @Override
     public double getLength() {
         return MathUtils.distance(this.start, this.end);
     }
     
 
     
+    @Override
     public void transform(TransformContext context) {   
         this.setStartPoint(context.transform(this.getStartPoint()));
         this.setEndPoint(context.transform(this.getEndPoint()));

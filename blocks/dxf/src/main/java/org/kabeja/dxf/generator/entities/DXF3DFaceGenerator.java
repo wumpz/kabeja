@@ -31,6 +31,7 @@ import org.kabeja.util.Constants;
 public class DXF3DFaceGenerator  extends AbstractDXFEntityGenerator {
 
 
+    @Override
 	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
 		Solid solid = (Solid) entity;
 		

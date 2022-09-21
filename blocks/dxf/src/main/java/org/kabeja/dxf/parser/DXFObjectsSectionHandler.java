@@ -39,6 +39,7 @@ public class DXFObjectsSectionHandler extends AbstractSectionHandler
      *
      * @see de.miethxml.kabeja.parser.DXFSectionHandler#endSection()
      */
+    @Override
     public void endSection() {
         this.endObject();
     }
@@ -48,6 +49,7 @@ public class DXFObjectsSectionHandler extends AbstractSectionHandler
      *
      * @see de.miethxml.kabeja.parser.DXFSectionHandler#getSectionKey()
      */
+    @Override
     public String getSectionKey() {
         return SECTION_KEY;
     }
@@ -58,6 +60,7 @@ public class DXFObjectsSectionHandler extends AbstractSectionHandler
      * @see de.miethxml.kabeja.parser.DXFSectionHandler#parseGroup(int,
      *      de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) throws ParseException {
         if (groupCode == OBJECT_START) {
             this.endObject();
@@ -80,6 +83,7 @@ public class DXFObjectsSectionHandler extends AbstractSectionHandler
      *
      * @see de.miethxml.kabeja.parser.DXFSectionHandler#startSection()
      */
+    @Override
     public void startSection() {
         this.parseObject = false;
     }
@@ -89,6 +93,7 @@ public class DXFObjectsSectionHandler extends AbstractSectionHandler
      *
      * @see de.miethxml.kabeja.parser.Handler#releaseDXFDocument()
      */
+    @Override
     public void releaseDocument() {
         this.doc = null;
     }
@@ -96,6 +101,7 @@ public class DXFObjectsSectionHandler extends AbstractSectionHandler
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.HandlerManager#addHandler(de.miethxml.kabeja.parser.Handler)
      */
+    @Override
     public void addHandler(DXFHandler handler) {
         DXFObjectHandler h = (DXFObjectHandler) handler;
         h.setDocument(this.doc);

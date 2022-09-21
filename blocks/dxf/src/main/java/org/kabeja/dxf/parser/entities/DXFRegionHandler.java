@@ -37,6 +37,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.AbstractEntityHandler#getDXFEntityName()
      */
+    @Override
     public String getDXFEntityType() {
         // TODO Auto-generated method stub
         return Constants.ENTITY_TYPE_REGION;
@@ -47,6 +48,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#startDXFEntity()
      */
+    @Override
     public void startDXFEntity() {
         region = new Region();
         region.setDocument(doc);
@@ -58,6 +60,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#parseGroup(int,
      *      de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case DATA:
@@ -79,6 +82,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#getDXFEntity()
      */
+    @Override
     public Entity getDXFEntity() {
         return region;
     }
@@ -88,6 +92,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#endDXFEntity()
      */
+    @Override
     public void endDXFEntity() {
         checkBuffer();
     }
@@ -97,6 +102,7 @@ public class DXFRegionHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#isFollowSequence()
      */
+    @Override
     public boolean isFollowSequence() {
         return false;
     }

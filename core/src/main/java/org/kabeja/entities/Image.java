@@ -27,7 +27,6 @@ import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
 import org.kabeja.objects.ImageDefObject;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 /**
@@ -44,12 +43,13 @@ public class Image extends Entity {
     protected double brightness;
     protected double contrast;
     protected double fade;
-    protected List<Point3D> clipBoundary = new ArrayList<Point3D>();
+    protected List<Point3D> clipBoundary = new ArrayList<>();
     protected boolean clipping = false;
     protected boolean rectangularClipping = false;
     protected boolean polygonalClipping = false;
 
    
+    @Override
     public Bounds getBounds() {
         Bounds b = new Bounds();
         ImageDefObject imageDef = (ImageDefObject) this.doc.getObjectByID(this.getImageDefObjectID());
@@ -65,6 +65,7 @@ public class Image extends Entity {
         return b;
     }
 
+    @Override
     public Type<Image> getType() {
         return Type.TYPE_IMAGE;
     }
@@ -248,6 +249,7 @@ public class Image extends Entity {
         this.polygonalClipping = !rectangularClipping;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -256,6 +258,7 @@ public class Image extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
        
     }
@@ -268,6 +271,6 @@ public class Image extends Entity {
      */
     @Override
     public void toWcs() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

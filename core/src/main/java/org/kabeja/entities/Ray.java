@@ -33,6 +33,7 @@ public class Ray extends Entity {
     protected Vector direction = new Vector();
 
 
+    @Override
     public Bounds getBounds() {
         // we will only add the base point
         //the end is infinite
@@ -43,6 +44,7 @@ public class Ray extends Entity {
     }
 
 
+    @Override
     public Type<? extends DraftEntity> getType() {
         return Type.TYPE_RAY;
     }
@@ -75,6 +77,7 @@ public class Ray extends Entity {
         this.direction = direction;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -83,6 +86,7 @@ public class Ray extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
         
     }

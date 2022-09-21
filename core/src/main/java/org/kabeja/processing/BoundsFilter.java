@@ -32,12 +32,12 @@ public class BoundsFilter extends AbstractPostProcessor {
 	public final static String PROPERTY_HEIGHT = "boundsfilter.height";
 	public final static String PROPERTY_PROCESS = "boundsfilter.process";
 
+    @Override
 	public void process(DraftDocument doc, Map<String, Object> context)
 			throws ProcessorException {
 		if (this.properties.containsKey(PROPERTY_PROCESS)
 				&& Boolean.valueOf(
-						(String) this.properties.get(PROPERTY_PROCESS))
-						.booleanValue()) {
+                        (String) this.properties.get(PROPERTY_PROCESS))) {
 			Bounds bounds = new Bounds();
 
 			if (this.properties.containsKey(PROPERTY_X)) {

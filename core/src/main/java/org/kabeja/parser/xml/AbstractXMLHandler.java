@@ -22,7 +22,7 @@ import java.util.Map;
 public abstract class AbstractXMLHandler implements XMLHandler{
 	
 	
-	protected Map<String, String> properties = new HashMap<String, String>();
+	protected Map<String, String> properties = new HashMap<>();
 	
 
 

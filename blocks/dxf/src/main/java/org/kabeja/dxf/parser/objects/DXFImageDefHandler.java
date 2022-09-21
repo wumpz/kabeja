@@ -35,6 +35,7 @@ public class DXFImageDefHandler extends AbstractDXFObjectHandler {
      *
      * @see de.miethxml.kabeja.parser.objects.DXFObjectHandler#getObjectType()
      */
+    @Override
     public String getObjectType() {
         return Constants.OBJECT_TYPE_IMAGEDEF;
     }
@@ -44,6 +45,7 @@ public class DXFImageDefHandler extends AbstractDXFObjectHandler {
      *
      * @see de.miethxml.kabeja.parser.objects.DXFObjectHandler#startObject()
      */
+    @Override
     public void startObject() {
         imageDef = new ImageDefObject();
         imageDef.setDocument(this.doc);
@@ -54,6 +56,7 @@ public class DXFImageDefHandler extends AbstractDXFObjectHandler {
      *
      * @see de.miethxml.kabeja.parser.objects.DXFObjectHandler#endObject()
      */
+    @Override
     public void endObject() {
         // TODO Auto-generated method stub
     }
@@ -63,6 +66,7 @@ public class DXFImageDefHandler extends AbstractDXFObjectHandler {
      *
      * @see de.miethxml.kabeja.parser.objects.DXFObjectHandler#getDXFObject()
      */
+    @Override
     public DraftObject getDXFObject() {
         // TODO Auto-generated method stub
         return imageDef;
@@ -74,6 +78,7 @@ public class DXFImageDefHandler extends AbstractDXFObjectHandler {
      * @see de.miethxml.kabeja.parser.objects.DXFObjectHandler#parseGroup(int,
      *      de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_FILENAME:

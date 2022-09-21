@@ -37,6 +37,7 @@ public abstract class AbstractDXFObjectHandler implements DXFObjectHandler {
      *
      * @see de.miethxml.kabeja.parser.Handler#releaseDXFDocument()
      */
+    @Override
     public void releaseDocument() {
         doc = null;
     }
@@ -46,6 +47,7 @@ public abstract class AbstractDXFObjectHandler implements DXFObjectHandler {
      *
      * @see de.miethxml.kabeja.parser.Handler#setDXFDocument(de.miethxml.kabeja.dxf.DXFDocument)
      */
+    @Override
     public void setDocument(DraftDocument doc) {
         this.doc = doc;
     }

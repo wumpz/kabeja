@@ -70,7 +70,7 @@ public class SAXDXFGenerationContextBuilder extends org.xml.sax.helpers.DefaultH
 
 	protected DXFProfile currentProfile;
 
-	protected Map<String,Object> references = new HashMap<String,Object>();
+	protected Map<String,Object> references = new HashMap<>();
 
 	protected DXFGeneratorManagerImpl manager;
 	
@@ -88,11 +88,7 @@ public class SAXDXFGenerationContextBuilder extends org.xml.sax.helpers.DefaultH
 
 			saxparser.setContentHandler(this);
 			saxparser.parse(new InputSource(in));
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} catch (ParserConfigurationException e) {
+		} catch (SAXException | IOException | ParserConfigurationException e) {
 			e.printStackTrace();
 		}
 
@@ -105,6 +101,7 @@ public class SAXDXFGenerationContextBuilder extends org.xml.sax.helpers.DefaultH
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
 	 * java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
+    @Override
 	public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {
      
 		try {

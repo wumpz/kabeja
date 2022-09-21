@@ -18,7 +18,6 @@ package org.kabeja.entities;
 
 import org.kabeja.common.Type;
 import org.kabeja.util.Constants;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -32,6 +31,7 @@ public class Attrib extends Text {
 	
 	private static final int LAZY_INDEX_PROMPT=10;
 	
+    @Override
 	public Type<?> getType() {
 		return Type.TYPE_ATTRIB;
 	}
@@ -79,6 +79,7 @@ public class Attrib extends Text {
 		this.tag = tag;
 	}
 
+    @Override
 	public boolean isVisibile() {
 
 		if (this.isBlockEntity()) {
@@ -106,7 +107,7 @@ public class Attrib extends Text {
 	 */
 	@Override
 	public void toWcs() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 }

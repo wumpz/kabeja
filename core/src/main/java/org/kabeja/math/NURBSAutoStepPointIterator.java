@@ -20,16 +20,19 @@ import java.util.Iterator;
 
 
 public class NURBSAutoStepPointIterator implements Iterator<Point3D>{
+    @Override
     public boolean hasNext() {
         // TODO Auto-generated method stub
         return false;
     }
 
+    @Override
     public Point3D next() {
         // TODO Auto-generated method stub
         return null;
     }
 
+    @Override
     public void remove() {
         // TODO Auto-generated method stub
     }

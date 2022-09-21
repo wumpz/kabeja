@@ -57,8 +57,8 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
     private String dtd;
     private int indent = 0;
     private boolean parent = false;
-    private ArrayList<Boolean> textContentList = new ArrayList<Boolean>();
-    protected HashMap<String, String> rootxmlns = new HashMap<String, String>();
+    private ArrayList<Boolean> textContentList = new ArrayList<>();
+    protected HashMap<String, String> rootxmlns = new HashMap<>();
     protected boolean gzip = false;
 
     public SAXPrettyOutputter(OutputStream output, String encoding) {
@@ -77,6 +77,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
         this.encoding = DEFAULT_ENCODING;
     }
 
+    @Override
     public void characters(char[] ch, int start, int length)
         throws SAXException {
         try {
@@ -90,14 +91,14 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
                 this.out.write(enc, start, enc.length);
 
                 // textNode in this context
-                textContentList.set(textContentList.size() - 1,
-                    new Boolean(true));
+                textContentList.set(textContentList.size() - 1, true);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
     public void endDocument() throws SAXException {
         try {
             this.out.flush();
@@ -109,6 +110,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
         }
     }
 
+    @Override
     public void endElement(String namespaceURI, String localName, String qName)
         throws SAXException {
         try {
@@ -119,7 +121,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
                 Boolean b = (Boolean) textContentList.remove(textContentList.size() -
                         1);
 
-                if (b.booleanValue()) {
+                if (b) {
                     this.out.write("</" + qName + ">");
                 } else {
                     // there was no textNode we can create a new line
@@ -137,23 +139,29 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
         parent = false;
     }
 
+    @Override
     public void endPrefixMapping(String prefix) throws SAXException {
     }
 
+    @Override
     public void ignorableWhitespace(char[] ch, int start, int length)
         throws SAXException {
     }
 
+    @Override
     public void processingInstruction(String target, String data)
         throws SAXException {
     }
 
+    @Override
     public void setDocumentLocator(Locator locator) {
     }
 
+    @Override
     public void skippedEntity(String name) throws SAXException {
     }
 
+    @Override
     public void startDocument() throws SAXException {
         indent = 0;
 
@@ -169,6 +177,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
         }
     }
 
+    @Override
     public void startElement(String namespaceURI, String localName,
         String qName, Attributes atts) throws SAXException {
         this.indent++;
@@ -219,9 +228,10 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
         }
 
         // no text in this context now
-        this.textContentList.add(Boolean.valueOf(false));
+        this.textContentList.add(false);
     }
 
+    @Override
     public void startPrefixMapping(String prefix, String uri)
         throws SAXException {
     }
@@ -283,6 +293,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
      *
      * @see org.kabeja.xml.SAXSerializer#getMimeType()
      */
+    @Override
     public String getMimeType() {
         return MIMETYPE;
     }
@@ -292,6 +303,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
      *
      * @see org.kabeja.xml.SAXSerializer#getSuffix()
      */
+    @Override
     public String getSuffix() {
         if (gzip) {
             return SUFFIX_GZIP;
@@ -305,6 +317,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
      *
      * @see org.kabeja.xml.SAXSerializer#setOutput(java.io.OutputStream)
      */
+    @Override
     public void setOutput(OutputStream out) {
         OutputStream bout = null;
 
@@ -326,6 +339,7 @@ public class SAXPrettyOutputter extends AbstractSAXSerializer
      *
      * @see org.kabeja.xml.SAXSerializer#setProperties(java.util.Map)
      */
+    @Override
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
 

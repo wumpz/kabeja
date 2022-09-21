@@ -42,7 +42,7 @@ public class Loader {
     public static final String OPTION_CLASSES_FOLDER="-classes";
     public String mainClass = "org.kabeja.Main";
 
-    private Set<String> classpathEntries = new HashSet<String>();
+    private Set<String> classpathEntries = new HashSet<>();
     
     
     
@@ -79,7 +79,7 @@ public class Loader {
     }
 
     protected URL[] getClasspath() {
-        List<URL> urls = new ArrayList<URL>();
+        List<URL> urls = new ArrayList<>();
 
          Iterator<String> i = this.classpathEntries.iterator();
          while(i.hasNext()){
@@ -89,11 +89,10 @@ public class Loader {
                 if (f.isDirectory() && f.exists()) {
                     File[] files = f.listFiles();
 
-                    for (int x = 0; x < files.length; x++) {
-                        String name = files[x].getName().toLowerCase();
-
+                    for (File file : files) {
+                        String name = file.getName().toLowerCase();
                         if (name.endsWith(".jar") || name.endsWith(".zip")) {
-                            urls.add(files[x].toURI().toURL());
+                            urls.add(file.toURI().toURL());
                         }
                     }
                 }
@@ -108,7 +107,7 @@ public class Loader {
     }
 
     protected String[] parseMainClass(String[] args) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
 
         for (int i = 0; i < args.length; i++) {
             if (OPTION_MAIN_CLASS.equals(args[i]) && ((i + 1) < args.length)) {

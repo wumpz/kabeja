@@ -39,13 +39,13 @@ import org.kabeja.xml.SAXSerializer;
  */
 public class ProcessingManager {
 	
-    private Map<String, SAXFilter> saxfilters = new HashMap<String, SAXFilter>();
-    private Map<String, SAXSerializer> saxserializers = new HashMap<String, SAXSerializer>();
-    private Map<String, PostProcessor> postprocessors = new HashMap<String, PostProcessor>();
-    private Map<String, ProcessPipeline> pipelines = new HashMap<String, ProcessPipeline>();
-    private Map<String, SAXGenerator> saxgenerators = new HashMap<String, SAXGenerator>();
-    private Map<String, Parser> parsers = new HashMap<String, Parser>();
-    private Map<String, Generator> generators = new HashMap<String, Generator>();
+    private Map<String, SAXFilter> saxfilters = new HashMap<>();
+    private Map<String, SAXSerializer> saxserializers = new HashMap<>();
+    private Map<String, PostProcessor> postprocessors = new HashMap<>();
+    private Map<String, ProcessPipeline> pipelines = new HashMap<>();
+    private Map<String, SAXGenerator> saxgenerators = new HashMap<>();
+    private Map<String, Parser> parsers = new HashMap<>();
+    private Map<String, Generator> generators = new HashMap<>();
   
     
 
@@ -126,7 +126,7 @@ public class ProcessingManager {
 
         if (parser != null) {
             try {
-                DraftDocument doc = parser.parse(stream, new HashMap<String, Object>());
+                DraftDocument doc = parser.parse(stream, new HashMap<>());
                 this.process(doc, context, pipeline, out);
             } catch (ParseException e) {
                 throw new ProcessorException(e);

@@ -30,26 +30,13 @@
  */
 package org.kabeja.dxf.parser;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.kabeja.DraftDocument;
 import org.kabeja.dxf.parser.filter.DXFStreamFilter;
 import org.kabeja.parser.ParseException;
 import org.kabeja.parser.Parser;
-import org.kabeja.tools.CodePageParser;
-import org.kabeja.tools.IOUtils;
+
+import java.io.*;
+import java.util.*;
 
 
 /**
@@ -64,12 +51,15 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
     private final static String SECTION_END = "ENDSEC";
     private final static String END_STREAM = "EOF";
     private final static int COMMAND_CODE = 0;
-    public static final String DEFAULT_ENCODING = "";
+    public static final String UTF_8_ENCODING = "UTF-8";
+    public static final String DEFAULT_ENCODING = UTF_8_ENCODING;
+    public static final int CHAR_BUFFER_SIZE = 81920; // Experimental value. Works fine on Windows 10 and Windows Server
+
     protected DraftDocument doc;
-    protected Map<String,DXFSectionHandler> handlers = new HashMap<String,DXFSectionHandler>();
+    protected Map<String,DXFSectionHandler> handlers = new HashMap<>();
     protected DXFSectionHandler currentHandler;
     private String line;
-    protected List<DXFStreamFilter> streamFilters = new ArrayList<DXFStreamFilter>();
+    protected List<DXFStreamFilter> streamFilters = new ArrayList<>();
     protected DXFHandler filter;
 
     // some parse flags
@@ -81,6 +71,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
 
 
 
+    @Override
 	public DraftDocument parse(InputStream in, Map properties)
 			throws ParseException {
 		
@@ -89,6 +80,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
 	}
 
 
+    @Override
     public void parse(InputStream input, DraftDocument doc,Map properties)
         throws ParseException {
     	this.doc=doc;
@@ -98,40 +90,18 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         parse = false;
 
         //initialize 
-       String encoding = null;
-       if(properties.containsKey(DraftDocument.PROPERTY_ENCODING)){
-    	   encoding = (String)properties.get(DraftDocument.PROPERTY_ENCODING);
-       }else{
-    	   encoding = DEFAULT_ENCODING;
-       }
+        String encoding;
+        if (properties.containsKey(DraftDocument.PROPERTY_ENCODING)) {
+            encoding = (String) properties.get(DraftDocument.PROPERTY_ENCODING);
+        } else {
+            encoding = UTF_8_ENCODING;
+        }
         
         doc.setProperty(DraftDocument.PROPERTY_ENCODING, encoding);
         //the StreamFilters
         this.buildFilterChain();
 
-        BufferedReader in = null;
-
-        try {
-            if ("".equals(encoding)) {
-                BufferedInputStream buf = new BufferedInputStream(input);
-                buf.mark(9000);
-
-                try {
-                    BufferedReader r = new BufferedReader(new InputStreamReader(
-                                buf));
-                    CodePageParser p = new CodePageParser();
-                    encoding = p.parseEncoding(r);
-                    buf.reset();
-
-                    in = new BufferedReader(new InputStreamReader(buf, encoding));
-                } catch (IOException e1) {
-                    buf.reset();
-                    in = new BufferedReader(new InputStreamReader(buf));
-                }
-            } else {
-                in = new BufferedReader(new InputStreamReader(input, encoding));
-            }
-
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(input, encoding), CHAR_BUFFER_SIZE)) {
             key = true;
             sectionstarts = false;
             DXFValue value;
@@ -159,15 +129,10 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
             throw new ParseException(e.toString());
         } catch (IOException ioe) {
             throw new ParseException(ioe.toString());
-        } finally {
-            try {
-                in.close();
-            } catch (IOException ex) {
-                // Nothing to do
-            }
         }
     }
 
+    @Override
     public void parseGroup(int keyCode, DXFValue value)
         throws ParseException {
         try {
@@ -215,6 +180,7 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         handlers.put(handler.getSectionKey(), handler);
     }
 
+    @Override
     public void addHandler(DXFHandler handler) {
         addDXFSectionHandler((DXFSectionHandler) handler);
     }
@@ -224,18 +190,17 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
      *
      * @see org.kabeja.parser.Parser#releaseDXFDocument()
      */
+    @Override
     public void releaseDocument() {
         this.doc = null;
 
-        Iterator i = handlers.values().iterator();
-
-        while (i.hasNext()) {
-            DXFHandler handler = (DXFHandler) i.next();
+        for (DXFHandler handler : handlers.values()) {
             handler.releaseDocument();
         }
     }
 
 
+    @Override
     public boolean supportedExtension(String extension) {
         return extension.toLowerCase().equals(EXTENSION);
     }
@@ -265,12 +230,14 @@ public class DXFParser implements DXFHandlerManager, Parser, DXFHandler {
         this.filter = handler;
     }
 
+    @Override
     public String getName() {
         return PARSER_NAME;
     }
 
 
 
+    @Override
 	public void setDocument(DraftDocument doc) {
 		this.doc = doc;
 		

@@ -25,7 +25,6 @@ import org.kabeja.entities.util.Utils;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
@@ -106,11 +105,13 @@ public class Text extends Entity {
 
 
 
+    @Override
     public void setDocument(DraftDocument doc) {
         super.setDocument(doc);
     }
 
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
 
@@ -344,6 +345,7 @@ public class Text extends Entity {
         }
     }
 
+    @Override
     public Type<? extends DraftEntity> getType() {
         return Type.TYPE_TEXT;
     }
@@ -438,10 +440,12 @@ public class Text extends Entity {
         return aPoint;
     }
 
+    @Override
     public boolean isOmitLineType() {
         return true;
     }
 
+    @Override
     public double getLength() {
         return 0;
     }
@@ -466,6 +470,7 @@ public class Text extends Entity {
      * @throws CloneNotSupportedException 
      */
     
+    @Override
     public void transform(TransformContext context) {
 
             this.setInsertPoint(context.transform(this.getInsertPoint()));
@@ -483,7 +488,7 @@ public class Text extends Entity {
      */
     @Override
     public void toWcs(){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     
     

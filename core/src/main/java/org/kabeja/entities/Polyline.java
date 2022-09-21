@@ -40,7 +40,7 @@ import org.kabeja.math.Vector;
 public class Polyline extends Entity {
 	
     protected static final double QUARTER_CIRCLE_ANGLE = Math.tan(0.39269908169872414D);
-    protected List<Vertex> vertices = new ArrayList<Vertex>();
+    protected List<Vertex> vertices = new ArrayList<>();
     protected double startWidth = 0.0;
     protected double endWidth = 0.0;
     protected boolean constantWidth = true;
@@ -52,6 +52,7 @@ public class Polyline extends Entity {
     protected Point3D elevation = new Point3D(0,0,0);
 
   
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
 
@@ -162,6 +163,7 @@ public class Polyline extends Entity {
     }
 
 
+    @Override
     public Type<Polyline> getType() {
         return Type.TYPE_POLYLINE;
     }
@@ -491,6 +493,7 @@ public class Polyline extends Entity {
         return (this.surefaceType == 8) && ((this.flags & 4) == 4);
     }
 
+    @Override
     public double getLength() {
         double length = 0.0;
 
@@ -643,7 +646,7 @@ public class Polyline extends Entity {
         } else {
             Vertex[][] points = new Vertex[this.surefaceDensityRows][this.surefaceDensityColumns];
             Iterator<Vertex> vi = this.vertices.iterator();
-            List<Vertex> appVertices = new ArrayList<Vertex>();
+            List<Vertex> appVertices = new ArrayList<>();
 
             while (vi.hasNext()) {
                 Vertex v = (Vertex) vi.next();
@@ -715,6 +718,7 @@ public class Polyline extends Entity {
 	}
 
 
+    @Override
 	public void setDocument(DraftDocument doc) {
 		
 		super.setDocument(doc);
@@ -728,6 +732,7 @@ public class Polyline extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
       
     }

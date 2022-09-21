@@ -53,7 +53,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
         this.hatchBounds = hatch.getBounds();
         this.length = pattern.getLength();
 
-        this.boundaryEdges = new ArrayList<ParametricLine>();
+        this.boundaryEdges = new ArrayList<>();
 
         // edge 0
         Point3D start = new Point3D(this.hatchBounds.getMinimumX(),
@@ -91,6 +91,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
         this.initialize();
     }
 
+    @Override
     public boolean hasNext() {
         return this.currentWalkingStep <= this.walkingLength;
     }
@@ -209,13 +210,14 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
         return v;
     }
 
+    @Override
     public HatchLineSegment next() {
         Point3D p = this.patternLine.getPointAt(this.currentWalkingStep);
         ParametricLine line = new ParametricLine(p, this.v);
 
         // get the next intersection of
         Iterator<ParametricLine> i = this.boundaryEdges.iterator();
-        List<Point3D> points = new ArrayList<Point3D>();
+        List<Point3D> points = new ArrayList<>();
 
         while (i.hasNext()) {
             ParametricLine edge = (ParametricLine) i.next();
@@ -257,6 +259,7 @@ public class HatchLineIterator implements Iterator<HatchLineSegment>{
         return segment;
     }
 
+    @Override
     public void remove() {
         // we do nothing here
     }

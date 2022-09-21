@@ -29,6 +29,7 @@ public abstract class AbstractSectionHandler implements DXFSectionHandler {
     /* (non-Javadoc)
      * @see org.dxf2svg.parser.SectionHandler#setDXFDocument(org.dxf2svg.xml.DXFDocument)
      */
+    @Override
     public void setDocument(DraftDocument doc) {
         this.doc = doc;
     }

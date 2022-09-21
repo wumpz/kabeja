@@ -17,6 +17,7 @@ package org.kabeja.math;
 
 public class GaussSolver implements Solver {
 
+    @Override
 	public double[] solve(double[][] matrix, double[] b) {
 	
 		if (matrix.length == matrix[0].length) {
@@ -50,12 +51,12 @@ public class GaussSolver implements Solver {
 	
 	
 	public static void printMatrix(double[][] matrix){
-		for (int j = 0; j < matrix.length; j++) {
-			for (int h = 0; h < matrix[j].length; h++) {
-				System.out.print(", " + matrix[j][h]);
-			}
-			System.out.println();
-		}
+        for (double[] matrix1 : matrix) {
+            for (int h = 0; h < matrix1.length; h++) {
+                System.out.print(", " + matrix1[h]);
+            }
+            System.out.println();
+        }
 	}
 
 	

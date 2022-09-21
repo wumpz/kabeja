@@ -112,6 +112,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#endDXFEntity()
      */
+    @Override
     public void endDXFEntity() {
         // this.linePattern.setPattern(this.parameters);
         if (this.pattern != null) {
@@ -124,6 +125,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#getDXFEntity()
      */
+    @Override
     public Entity getDXFEntity() {
         return hatch;
     }
@@ -133,6 +135,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
      *
      * @see org.dxf2svg.parser.entities.DXFEntityHandler#getDXFEntityName()
      */
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_HATCH;
     }
@@ -156,6 +159,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
      *
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#isFollowSequence()
      */
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
@@ -175,6 +179,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
      * @see de.miethxml.kabeja.parser.entities.DXFEntityHandler#parseGroup(int,
      *      de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) throws ParseException {
         switch (groupCode) {
         case GROUPCODE_BOUNDARY_LOOP_COUNT:
@@ -302,6 +307,10 @@ public class DXFHatchHandler extends AbstractEntityHandler {
             // This should be the end of a boundary entity
             break;
 
+        case GROUPCODE_PATTERN_ANGLE:
+            this.hatch.setPatternAngle(value.getDoubleValue());
+            break;
+            
         case GROUPCODE_PATTERN_LINE_ANGLE:
             // set the previus parsed line data
             this.parseBoundary = false;
@@ -394,6 +403,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void setDocument(DraftDocument doc) {
         super.setDocument(doc);
 
@@ -405,6 +415,7 @@ public class DXFHatchHandler extends AbstractEntityHandler {
         }
     }
 
+    @Override
     public void startDXFEntity() {
         this.hatch = new Hatch();
         this.pattern = new HatchPattern();

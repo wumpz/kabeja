@@ -118,7 +118,7 @@ public class Utils {
     }
 
     public static void reversePolyline(Polyline pline) {
-        ArrayList<Vertex> list = new ArrayList<Vertex>();
+        ArrayList<Vertex> list = new ArrayList<>();
         double bulge = 0;
         int size = pline.getVertexCount();
 
@@ -177,7 +177,7 @@ public class Utils {
      */
 
     public static Iterator<Layer> sortedLayersByZIndexIterator(Iterator<Layer> i) {
-        TreeSet<Layer> set = new TreeSet<Layer>(new LayerComparator());
+        TreeSet<Layer> set = new TreeSet<>(new LayerComparator());
         while (i.hasNext()) {
             set.add(i.next());
         }
@@ -239,7 +239,7 @@ public class Utils {
 
     public static long parseIDString(String id){
     	try{
-    	  return Long.decode("#"+id).longValue();
+    	  return Long.decode("#"+id);
     	}catch(Exception e){
     		return -1;
     	}

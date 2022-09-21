@@ -68,7 +68,7 @@ public class Viewport extends Entity {
     private boolean grid;
     private boolean active = false;
     private int renderMode;
-    private Set<String> frozenLayerSet = new HashSet<String>();
+    private Set<String> frozenLayerSet = new HashSet<>();
 
     /**
      * @return Returns the backClippingPlane.
@@ -348,6 +348,7 @@ public class Viewport extends Entity {
         this.active = active;
     }
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
 
@@ -361,11 +362,13 @@ public class Viewport extends Entity {
         return bounds;
     }
 
+    @Override
     public double getLength() {
         // TODO Auto-generated method stub
         return 0;
     }
 
+    @Override
     public Type<Viewport> getType() {
         return Type.TYPE_VIEWPORT;
     }
@@ -575,6 +578,7 @@ public class Viewport extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
        
     }

@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class TextDocument {
 
-	protected List<StyledTextParagraph> paragraphs = new ArrayList<StyledTextParagraph>();
+	protected List<StyledTextParagraph> paragraphs = new ArrayList<>();
 
 	/**
 	 * Return the pure text content.

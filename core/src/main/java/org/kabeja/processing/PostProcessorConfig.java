@@ -25,7 +25,7 @@ import java.util.Map;
  *
  */
 public class PostProcessorConfig {
-    private Map<String, Object> properties = new HashMap<String, Object>();
+    private Map<String, Object> properties = new HashMap<>();
     private String postProcessorName;
 
     public PostProcessorConfig(Map<String, Object> properties) {

@@ -33,6 +33,7 @@ import org.kabeja.math.Bounds;
  */
 public class ViewportFilter extends AbstractPostProcessor {
 
+    @Override
     public void process(DraftDocument doc, Map<String,Object> context) throws ProcessorException {
         Viewport viewport = null;
         Iterator<Viewport> i = doc.getViewports().iterator();

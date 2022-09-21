@@ -29,6 +29,7 @@ import org.kabeja.math.Bounds;
  *
  */
 public class XLine extends Ray {
+    @Override
     public Bounds getBounds() {
         //the xline is a infinite straight line
         //so we omit the bounds
@@ -38,6 +39,7 @@ public class XLine extends Ray {
         return bounds;
     }
 
+    @Override
     public  Type<? extends DraftEntity> getType() {
         return Type.TYPE_XLINE;
     }

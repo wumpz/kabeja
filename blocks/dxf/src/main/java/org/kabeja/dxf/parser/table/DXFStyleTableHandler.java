@@ -40,6 +40,7 @@ public class DXFStyleTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#endParsing()
      */
+    @Override
     public void endParsing() {
         doc.addStyle(style);
     }
@@ -47,6 +48,7 @@ public class DXFStyleTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#getTableKey()
      */
+    @Override
     public String getTableType() {
         // TODO Auto-generated method stub
         return TABLE_KEY;
@@ -55,6 +57,7 @@ public class DXFStyleTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#parseGroup(int, de.miethxml.kabeja.parser.DXFValue)
      */
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_NAME:
@@ -107,6 +110,7 @@ public class DXFStyleTableHandler extends AbstractTableHandler {
     /* (non-Javadoc)
      * @see de.miethxml.kabeja.parser.table.DXFTableHandler#startParsing()
      */
+    @Override
     public void startParsing() {
         style = new Style();
     }

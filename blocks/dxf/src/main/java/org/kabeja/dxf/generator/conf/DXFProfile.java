@@ -26,7 +26,7 @@ import java.util.Map;
 public class DXFProfile {
 
     protected String name="";
-    protected Map<String,DXFType> types = new HashMap<String,DXFType>();
+    protected Map<String,DXFType> types = new HashMap<>();
     
     public DXFProfile(String name){
         this.name=name;

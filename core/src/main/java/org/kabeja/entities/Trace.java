@@ -18,7 +18,6 @@ package org.kabeja.entities;
 
 import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 /**
@@ -27,6 +26,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class Trace extends Solid {
 
+    @Override
     public Type<? extends DraftEntity> getType() {
         return Type.TYPE_TRACE;
     }
@@ -39,6 +39,6 @@ public class Trace extends Solid {
      */
     @Override
     public void toWcs() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

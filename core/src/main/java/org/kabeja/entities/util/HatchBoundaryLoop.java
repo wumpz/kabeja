@@ -30,7 +30,7 @@ import org.kabeja.math.Bounds;
  *
  */
 public class HatchBoundaryLoop {
-    private List<DraftEntity> edges = new ArrayList<DraftEntity>();
+    private List<DraftEntity> edges = new ArrayList<>();
     private boolean outermost = true;
 
     /**

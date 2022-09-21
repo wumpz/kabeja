@@ -61,23 +61,28 @@ public class DXFDimensionHandler extends AbstractEntityHandler {
     
     protected Dimension dimension;
 
+    @Override
     public void endDXFEntity() {
     }
 
+    @Override
     public Entity getDXFEntity() {
         return dimension;
     }
 
   
+    @Override
     public String getDXFEntityType() {
         return Constants.ENTITY_TYPE_DIMENSION;
     }
 
+    @Override
     public boolean isFollowSequence() {
         return false;
     }
 
 
+    @Override
     public void parseGroup(int groupCode, DXFValue value) {
         switch (groupCode) {
         case GROUPCODE_TEXT_POINT_X:
@@ -241,6 +246,7 @@ public class DXFDimensionHandler extends AbstractEntityHandler {
     }
 
 
+    @Override
     public void startDXFEntity() {
         dimension = new Dimension();
         dimension.setDocument(doc);

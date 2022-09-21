@@ -89,6 +89,7 @@ public class Point extends Entity {
         this.p.setZ(z);
     }
 
+    @Override
     public Bounds getBounds() {
         Bounds bounds = new Bounds();
         bounds.addToBounds(p);
@@ -96,6 +97,7 @@ public class Point extends Entity {
         return bounds;
     }
 
+    @Override
     public Type<Point> getType() {
         return Type.TYPE_POINT;
     }
@@ -108,6 +110,7 @@ public class Point extends Entity {
         this.p = p;
     }
 
+    @Override
     public double getLength() {
         // a point has no length
         return 0;
@@ -131,6 +134,7 @@ public class Point extends Entity {
      * Not implemented yet
      */
     
+    @Override
     public void transform(TransformContext context) {
         
     }
