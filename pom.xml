@@ -109,6 +109,17 @@
                 </configuration>
                 <version>2.3.1</version>
             </plugin>
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.16.0</version>
+                <configuration>
+                    <pushRemote>false</pushRemote>
+                    <mvnExecutable>${M2_HOME}/bin/mvn</mvnExecutable>
+                    <skipTestProject>true</skipTestProject>
+                    <skipFeatureVersion>true</skipFeatureVersion>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
