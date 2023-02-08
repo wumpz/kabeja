@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-clean install and deploy to oscar nexus release</actionName>
+            <displayName>clean install and deploy to oscar nexus release</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>deploy</goal>
+                <goal>-DaltDeploymentRepository=oscar-releases::default::http://oscar.secure-gajamatrix.de:8091/repository/maven-releases/</goal>
+            </goals>
+        </action>
+    </actions>

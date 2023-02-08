@@ -376,6 +376,13 @@ public class Constants {
     public static final String SUBCLASS_MARKER_ENTITY_3DFACE="AcDbFace";
     public static final String SUBCLASS_MARKER_ENTITY_ARC="AcDbArc";
     public static final String SUBCLASS_MARKER_ENTITY_POLYLINE="AcDbPolyline";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH="AcDbHatch";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH_BOUNDARY="AcDbHatchBoundary";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH_EDGE_POLYLINE="AcDbHatchEdgePolyline";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH_EDGE_LINE="AcDbHatchEdgeLine";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH_EDGE_ARC="AcDbHatchEdgeArc";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH_EDGE_ELLIPSE="AcDbHatchEdgeEllipse";
+    public static final String SUBCLASS_MARKER_ENTITY_HATCH_EDGE_SPLINE="AcDbHatchEdgeSpline";
     public static final String SUBCLASS_MARKER_ENTITY_CIRCLE="AcDbCircle";
     public static final String SUBCLASS_MARKER_ENTITY_ELLIPSE="AcDbEllipse";
     public static final String SUBCLASS_MARKER_ENTITY_LINE="AcDbLine";

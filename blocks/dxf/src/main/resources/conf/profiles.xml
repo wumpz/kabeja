@@ -69,6 +69,18 @@
 				<subtype id="acdbpolyline" name="AcDbPolyline" groupCodes="62,48,62,66,10,20,30,70,370" />
 				<subtype id="acdbvertex" name="AcDbVertex" groupCodes="0,8,6,67,62,48,60,62,10,20,30,42,370" />
 			</type>
+            
+            <type name="HATCH">
+				<subtype ref-id="acdbentity" />
+				<subtype id="acdbhatch" name="AcDbHatch" groupCodes="10,20,30,210,220,230,2,70,63,71,91,75,76,52,41,73,77,78,47,98,11,99,450,451,452,453,460," />
+                <subtype id="acdbhatchboundary" name="AcDbHatchBoundary" groupCodes="92,93,72,97,330" />  <!-- normal boundary --> 
+                <subtype id="acdbhatchedgepolyline" name="AcDbHatchBoundaryPolyline" groupCodes="92,97,330,72,73,93,10,20,42" />   <!-- polyline boundary -->
+                <subtype id="acdbhatchedgeline" name="AcDbHatchEdgeLine" groupCodes="10,20,11,21" />
+                <subtype id="acdbhatchedgearc" name="AcDbHatchEdgeArc" groupCodes="10,20,40,50,51,73" />
+                <subtype id="acdbhatchedgeellipse" name="AcDbHatchEdgeEllipse" groupCodes="10,20,11,21,40,50,51,73" />
+                <subtype id="acdbhatchedgespline" name="AcDbHatchEdgeSpline" groupCodes="95,73,74,95,96,40,10,20,42" />
+			</type>
+            
 			<!--+
 			    | all section types which should be generated
 			    | for this profile
@@ -102,7 +114,7 @@
 
 			<type name="LTYPE">
 			     <subtype id="acdbltypeentry" name="AcDbLTypeEntry" groupCodes="0,2,70,3,72,73,40,30000"/>
-			</type>
+			</type>           
 
 			<type name="ENTITIES"/>
 		</profile>
@@ -121,6 +133,7 @@
         <typehandler name="MTEXT"       class="org.kabeja.dxf.generator.entities.DXFMTextGenerator" />
         <typehandler name="POINT" 		class="org.kabeja.dxf.generator.entities.DXFPointGenerator" />
         <typehandler name="POLYLINE" 	class="org.kabeja.dxf.generator.entities.DXFPolylineGenerator" />
+        <typehandler name="HATCH"    	class="org.kabeja.dxf.generator.entities.DXFHatchGenerator" />
         <typehandler name="SOLID" 		class="org.kabeja.dxf.generator.entities.DXFSolidGenerator" />
         <typehandler name="TEXT" 		class="org.kabeja.dxf.generator.entities.DXFTextGenerator" />
         <typehandler name="TRACE" 		class="org.kabeja.dxf.generator.entities.DXFTraceGenerator" />
