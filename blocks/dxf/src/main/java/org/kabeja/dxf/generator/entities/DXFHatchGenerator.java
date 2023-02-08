@@ -15,12 +15,14 @@
  ***************************************************************************** */
 package org.kabeja.dxf.generator.entities;
 
+import java.util.logging.Logger;
 import org.kabeja.common.DraftEntity;
+import org.kabeja.dxf.generator.DXFGenerationConstants;
 import org.kabeja.dxf.generator.DXFGenerationContext;
 import org.kabeja.dxf.generator.DXFOutput;
 import org.kabeja.dxf.generator.conf.DXFSubType;
 import org.kabeja.entities.Hatch;
-import org.kabeja.entities.Vertex;
+import org.kabeja.entities.Polyline;
 import org.kabeja.entities.util.HatchBoundaryLoop;
 import org.kabeja.io.GenerationException;
 import org.kabeja.util.Constants;
@@ -37,26 +39,32 @@ public class DXFHatchGenerator extends AbstractDXFEntityGenerator {
         if (subtype.getName().equals(Constants.SUBCLASS_MARKER_ENTITY_HATCH)) {
             for (int groupCode : subtype.getGroupCodes()) {
                 switch (groupCode) {
+                    case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
+                        output.output(100, Constants.SUBCLASS_MARKER_ENTITY_HATCH);
+                        break;
                     case 10:
-                        output.output(10, 0);
+                        output.output(10, 0.0);
                         break;
                     case 20:
-                        output.output(20, 0);
+                        output.output(20, 0.0);
                         break;
                     case 30:
                         output.output(30, hatch.getElevationPoint().getZ());
                         break;
+                    case 210:
+                        output.output(210, 0.0);
+                        break;
                     case 220:
-                        output.output(220, 0);
+                        output.output(220, 0.0);
                         break;
                     case 230:
-                        output.output(230, 0);
+                        output.output(230, 0.0);
                         break;
                     case 240:
                         output.output(240, 1);
                         break;
                     case 2:
-                        output.output(2, hatch.getHatchPatternID());
+                        output.output(2,  "".equals(hatch.getHatchPatternID())?"SOLID":hatch.getHatchPatternID());
                         break;
                     case 70:
                         output.output(70, hatch.isSolid() ? 1 : 0);
@@ -66,9 +74,30 @@ public class DXFHatchGenerator extends AbstractDXFEntityGenerator {
                         break;
                     case 91:
                         output.output(91, hatch.getBoundaryPathCount());
-                        System.out.println("using profile " + context.getAttribute(DXFGenerationContext.ATTRIBUTE_PROFILE));
                         for (HatchBoundaryLoop boundary : hatch.getBoundaryLoops()) {
-                            System.out.println("edge output not yet implemented");
+                          boolean isPolyline = (boundary.getEdgeCount() == 1 && boundary.getBoundaryEdges().get(0) instanceof Polyline);
+                          int flag = 1    //external 
+                              | (boundary.isOutermost()?16:0)
+                              | (isPolyline?2:0); 
+                          output.output(92, flag);
+                          
+                          if (isPolyline ) {
+                            for (var edge : boundary.getBoundaryEdges()) {
+                              Polyline pline = (Polyline) edge;
+                              output.output(72, 0);
+                              output.output(73, pline.isClosed()?1:0); 
+                              output.output(93, pline.getVertexCount());
+                              for (var vertex : pline.getVertices()) {
+                                output.output(10, vertex.getPoint().getX());
+                                output.output(20, vertex.getPoint().getY());
+                              }
+                              output.output(42, 0);
+                            }
+                          } else {
+                            LOG.warning("only polyline boundary edges are implemented");
+                          }
+                          
+                          output.output(97, 0);
                         }
                         break;
                     case 75:
@@ -121,4 +150,5 @@ public class DXFHatchGenerator extends AbstractDXFEntityGenerator {
             }
         }
     }
+  private static final Logger LOG = Logger.getLogger(DXFHatchGenerator.class.getName());
 }
