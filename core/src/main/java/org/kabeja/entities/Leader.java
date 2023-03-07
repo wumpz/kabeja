@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,306 +18,281 @@ package org.kabeja.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- *
  */
 public class Leader extends Entity {
-    protected String styleName = "";
-    protected double arrowHeadSize = 0.0;
-    protected double textGap;
-    protected double scaleFactor;
-    protected double textWidth;
-    protected double textHeight;
-    protected List<Point3D> coordinates = new ArrayList<>();
-    protected int pathType = 0;
-    protected int creationType = 0;
-    protected int hooklineDirecton = 0;
-    protected boolean hookline = false;
-    protected Point3D horizontalDirection = new Point3D();
-    protected Point3D lastOffsetText = new Point3D();
-    protected Point3D lastOffsetInsertion = new Point3D();
-    protected boolean arrowEnabled = false;
-    protected String textID = "";
+  protected String styleName = "";
+  protected double arrowHeadSize = 0.0;
+  protected double textGap;
+  protected double scaleFactor;
+  protected double textWidth;
+  protected double textHeight;
+  protected List<Point3D> coordinates = new ArrayList<>();
+  protected int pathType = 0;
+  protected int creationType = 0;
+  protected int hooklineDirecton = 0;
+  protected boolean hookline = false;
+  protected Point3D horizontalDirection = new Point3D();
+  protected Point3D lastOffsetText = new Point3D();
+  protected Point3D lastOffsetInsertion = new Point3D();
+  protected boolean arrowEnabled = false;
+  protected String textID = "";
 
-    /**
-     * @return Returns the textID.
-     */
-    public String getTextID() {
-        return textID;
-    }
+  /**
+   * @return Returns the textID.
+   */
+  public String getTextID() {
+    return textID;
+  }
 
-    /**
-     * @param textID
-     *            The textID to set.
-     */
-    public void setTextID(String textID) {
-        this.textID = textID;
-    }
+  /**
+   * @param textID The textID to set.
+   */
+  public void setTextID(String textID) {
+    this.textID = textID;
+  }
 
+  @Override
+  public Bounds getBounds() {
+    Bounds bounds = new Bounds();
+    bounds.setValid(false);
 
-    @Override
-    public Bounds getBounds() {
-        Bounds bounds = new Bounds();
-        bounds.setValid(false);
+    return bounds;
+  }
 
-        return bounds;
-    }
+  @Override
+  public Type<Leader> getType() {
+    return Type.TYPE_LEADER;
+  }
 
+  /**
+   * @return Returns the arrowHeadSize.
+   */
+  public double getArrowHeadSize() {
+    return arrowHeadSize;
+  }
 
-    @Override
-    public Type<Leader> getType() {
-        return Type.TYPE_LEADER;
-    }
+  /**
+   * @param arrowHeadSize The arrowHeadSize to set.
+   */
+  public void setArrowHeadSize(double arrowHeadSize) {
+    this.arrowHeadSize = arrowHeadSize;
+  }
 
-    /**
-     * @return Returns the arrowHeadSize.
-     */
-    public double getArrowHeadSize() {
-        return arrowHeadSize;
-    }
+  /**
+   * @return Returns the creationType.
+   */
+  public int getCreationType() {
+    return creationType;
+  }
 
-    /**
-     * @param arrowHeadSize
-     *            The arrowHeadSize to set.
-     */
-    public void setArrowHeadSize(double arrowHeadSize) {
-        this.arrowHeadSize = arrowHeadSize;
-    }
+  /**
+   * @param creationType The creationType to set.
+   */
+  public void setCreationType(int creationType) {
+    this.creationType = creationType;
+  }
 
-    /**
-     * @return Returns the creationType.
-     */
-    public int getCreationType() {
-        return creationType;
-    }
+  /**
+   * @return Returns the hookline.
+   */
+  public boolean isHookline() {
+    return hookline;
+  }
 
-    /**
-     * @param creationType
-     *            The creationType to set.
-     */
-    public void setCreationType(int creationType) {
-        this.creationType = creationType;
-    }
+  /**
+   * @param hookline The hookline to set.
+   */
+  public void setHookline(boolean hookline) {
+    this.hookline = hookline;
+  }
 
-    /**
-     * @return Returns the hookline.
-     */
-    public boolean isHookline() {
-        return hookline;
-    }
+  /**
+   * @return Returns the hooklineDirecton.
+   */
+  public int getHooklineDirecton() {
+    return hooklineDirecton;
+  }
 
-    /**
-     * @param hookline
-     *            The hookline to set.
-     */
-    public void setHookline(boolean hookline) {
-        this.hookline = hookline;
-    }
+  /**
+   * @param hooklineDirecton The hooklineDirecton to set.
+   */
+  public void setHooklineDirecton(int hooklineDirecton) {
+    this.hooklineDirecton = hooklineDirecton;
+  }
 
-    /**
-     * @return Returns the hooklineDirecton.
-     */
-    public int getHooklineDirecton() {
-        return hooklineDirecton;
-    }
+  /**
+   * @return Returns the horizontalDirection.
+   */
+  public Point3D getHorizontalDirection() {
+    return horizontalDirection;
+  }
 
-    /**
-     * @param hooklineDirecton
-     *            The hooklineDirecton to set.
-     */
-    public void setHooklineDirecton(int hooklineDirecton) {
-        this.hooklineDirecton = hooklineDirecton;
-    }
+  /**
+   * @param horizontalDirection The horizontalDirection to set.
+   */
+  public void setHorizontalDirection(Point3D horizontalDirection) {
+    this.horizontalDirection = horizontalDirection;
+  }
 
-    /**
-     * @return Returns the horizontalDirection.
-     */
-    public Point3D getHorizontalDirection() {
-        return horizontalDirection;
-    }
+  /**
+   * @return Returns the lastOffsetInsertion.
+   */
+  public Point3D getLastOffsetInsertion() {
+    return lastOffsetInsertion;
+  }
 
-    /**
-     * @param horizontalDirection
-     *            The horizontalDirection to set.
-     */
-    public void setHorizontalDirection(Point3D horizontalDirection) {
-        this.horizontalDirection = horizontalDirection;
-    }
+  /**
+   * @param lastOffsetInsertion The lastOffsetInsertion to set.
+   */
+  public void setLastOffsetInsertion(Point3D lastOffsetInsertion) {
+    this.lastOffsetInsertion = lastOffsetInsertion;
+  }
 
-    /**
-     * @return Returns the lastOffsetInsertion.
-     */
-    public Point3D getLastOffsetInsertion() {
-        return lastOffsetInsertion;
-    }
+  /**
+   * @return Returns the lastOffsetText.
+   */
+  public Point3D getLastOffsetText() {
+    return lastOffsetText;
+  }
 
-    /**
-     * @param lastOffsetInsertion
-     *            The lastOffsetInsertion to set.
-     */
-    public void setLastOffsetInsertion(Point3D lastOffsetInsertion) {
-        this.lastOffsetInsertion = lastOffsetInsertion;
-    }
+  /**
+   * @param lastOffsetText The lastOffsetText to set.
+   */
+  public void setLastOffsetText(Point3D lastOffsetText) {
+    this.lastOffsetText = lastOffsetText;
+  }
 
-    /**
-     * @return Returns the lastOffsetText.
-     */
-    public Point3D getLastOffsetText() {
-        return lastOffsetText;
-    }
+  /**
+   * @return Returns the pathType.
+   */
+  public int getPathType() {
+    return pathType;
+  }
 
-    /**
-     * @param lastOffsetText
-     *            The lastOffsetText to set.
-     */
-    public void setLastOffsetText(Point3D lastOffsetText) {
-        this.lastOffsetText = lastOffsetText;
-    }
+  /**
+   * @param pathType The pathType to set.
+   */
+  public void setPathType(int pathType) {
+    this.pathType = pathType;
+  }
 
-    /**
-     * @return Returns the pathType.
-     */
-    public int getPathType() {
-        return pathType;
-    }
+  /**
+   * @return Returns the scaleFactor.
+   */
+  public double getScaleFactor() {
+    return scaleFactor;
+  }
 
-    /**
-     * @param pathType
-     *            The pathType to set.
-     */
-    public void setPathType(int pathType) {
-        this.pathType = pathType;
-    }
+  /**
+   * @param scaleFactor The scaleFactor to set.
+   */
+  public void setScaleFactor(double scaleFactor) {
+    this.scaleFactor = scaleFactor;
+  }
 
-    /**
-     * @return Returns the scaleFactor.
-     */
-    public double getScaleFactor() {
-        return scaleFactor;
-    }
+  /**
+   * @return Returns the styleName.
+   */
+  public String getStyleNameID() {
+    return styleName;
+  }
 
-    /**
-     * @param scaleFactor
-     *            The scaleFactor to set.
-     */
-    public void setScaleFactor(double scaleFactor) {
-        this.scaleFactor = scaleFactor;
-    }
+  /**
+   * @param styleName The styleName to set.
+   */
+  public void setStyleNameID(String styleName) {
+    this.styleName = styleName;
+  }
 
-    /**
-     * @return Returns the styleName.
-     */
-    public String getStyleNameID() {
-        return styleName;
-    }
+  /**
+   * @return Returns the textGap.
+   */
+  public double getTextGap() {
+    return textGap;
+  }
 
-    /**
-     * @param styleName
-     *            The styleName to set.
-     */
-    public void setStyleNameID(String styleName) {
-        this.styleName = styleName;
-    }
+  /**
+   * @param textGap The textGap to set.
+   */
+  public void setTextGap(double textGap) {
+    this.textGap = textGap;
+  }
 
-    /**
-     * @return Returns the textGap.
-     */
-    public double getTextGap() {
-        return textGap;
-    }
+  /**
+   * @return Returns the textHeight.
+   */
+  public double getTextHeight() {
+    return textHeight;
+  }
 
-    /**
-     * @param textGap
-     *            The textGap to set.
-     */
-    public void setTextGap(double textGap) {
-        this.textGap = textGap;
-    }
+  /**
+   * @param textHeight The textHeight to set.
+   */
+  public void setTextHeight(double textHeight) {
+    this.textHeight = textHeight;
+  }
 
-    /**
-     * @return Returns the textHeight.
-     */
-    public double getTextHeight() {
-        return textHeight;
-    }
+  /**
+   * @return Returns the textWidth.
+   */
+  public double getTextWidth() {
+    return textWidth;
+  }
 
-    /**
-     * @param textHeight
-     *            The textHeight to set.
-     */
-    public void setTextHeight(double textHeight) {
-        this.textHeight = textHeight;
-    }
+  /**
+   * @param textWidth The textWidth to set.
+   */
+  public void setTextWidth(double textWidth) {
+    this.textWidth = textWidth;
+  }
 
-    /**
-     * @return Returns the textWidth.
-     */
-    public double getTextWidth() {
-        return textWidth;
-    }
+  public void addCoordinate(Point3D vertex) {
+    coordinates.add(vertex);
+  }
 
-    /**
-     * @param textWidth
-     *            The textWidth to set.
-     */
-    public void setTextWidth(double textWidth) {
-        this.textWidth = textWidth;
-    }
+  public int getCoordinateCount() {
+    return this.coordinates.size();
+  }
 
-    public void addCoordinate(Point3D vertex) {
-        coordinates.add(vertex);
-    }
+  public Point3D getCoordinateAt(int index) {
+    return (Point3D) this.coordinates.get(index);
+  }
 
-    public int getCoordinateCount() {
-        return this.coordinates.size();
-    }
+  public List<Point3D> getCoordinates() {
+    return this.coordinates;
+  }
 
-    public Point3D getCoordinateAt(int index) {
-        return (Point3D) this.coordinates.get(index);
-    }
+  /**
+   * @return Returns the arrowEnabled.
+   */
+  public boolean isArrowEnabled() {
+    return arrowEnabled;
+  }
 
-    public List<Point3D> getCoordinates() {
-        return this.coordinates;
-    }
+  /**
+   * @param arrowEnabled The arrowEnabled to set.
+   */
+  public void setArrowEnabled(boolean arrowEnabled) {
+    this.arrowEnabled = arrowEnabled;
+  }
 
-    /**
-     * @return Returns the arrowEnabled.
-     */
-    public boolean isArrowEnabled() {
-        return arrowEnabled;
-    }
+  public boolean isSplinePath() {
+    return this.pathType == 1;
+  }
 
-    /**
-     * @param arrowEnabled
-     *            The arrowEnabled to set.
-     */
-    public void setArrowEnabled(boolean arrowEnabled) {
-        this.arrowEnabled = arrowEnabled;
-    }
+  @Override
+  public double getLength() {
+    return 0;
+  }
 
-    public boolean isSplinePath() {
-        return this.pathType == 1;
-    }
-
-    @Override
-    public double getLength() {
-         return 0;
-    }
-    
-    /**
-     * Not implemented yet
-     */
-    
-    @Override
-    public void transform(TransformContext context) {
-       
-    }
+  /** Not implemented yet */
+  @Override
+  public void transform(TransformContext context) {}
 }

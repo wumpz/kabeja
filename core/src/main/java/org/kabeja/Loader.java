@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,116 +28,101 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>simon.mieth@gmx.de</a>
- *
  */
 public class Loader {
-	
-	
-	
-    public static final String OPTION_MAIN_CLASS="-main";
-    public static final String OPTION_LIB_FOLDER="-lib";
-    public static final String OPTION_CLASSES_FOLDER="-classes";
-    public String mainClass = "org.kabeja.Main";
 
-    private Set<String> classpathEntries = new HashSet<>();
-    
-    
-    
-    
-    public Loader() {
-    	//default classpath relative to this 
-		this.classpathEntries.add("lib");
-		this.classpathEntries.add("classes");
+  public static final String OPTION_MAIN_CLASS = "-main";
+  public static final String OPTION_LIB_FOLDER = "-lib";
+  public static final String OPTION_CLASSES_FOLDER = "-classes";
+  public String mainClass = "org.kabeja.Main";
 
-	}
+  private Set<String> classpathEntries = new HashSet<>();
 
-	public static void main(String[] args) {
-        Loader l = new Loader();
-        l.launch(args);
+  public Loader() {
+    // default classpath relative to this
+    this.classpathEntries.add("lib");
+    this.classpathEntries.add("classes");
+  }
+
+  public static void main(String[] args) {
+    Loader l = new Loader();
+    l.launch(args);
+  }
+
+  public void launch(String[] args) {
+    args = parseMainClass(args);
+
+    URLClassLoader cl = new URLClassLoader(getClasspath());
+
+    try {
+      Class clazz = cl.loadClass(this.mainClass);
+      Object obj = clazz.newInstance();
+
+      // init the project
+      Method method = clazz.getDeclaredMethod("main", new Class[] {args.getClass()});
+      method.invoke(obj, new Object[] {args});
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 
-    public void launch(String[] args) {
-        args = parseMainClass(args);
+  protected URL[] getClasspath() {
+    List<URL> urls = new ArrayList<>();
 
-        URLClassLoader cl = new URLClassLoader(getClasspath());
+    Iterator<String> i = this.classpathEntries.iterator();
+    while (i.hasNext()) {
+      File f = new File((String) i.next());
 
-        try {
-            Class clazz = cl.loadClass(this.mainClass);
-            Object obj = clazz.newInstance();
-      
-            
-            // init the project
-            Method method = clazz.getDeclaredMethod("main",
-                    new Class[] { args.getClass() });
-            method.invoke(obj, new Object[] { args });
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
-    }
+      try {
+        if (f.isDirectory() && f.exists()) {
+          File[] files = f.listFiles();
 
-    protected URL[] getClasspath() {
-        List<URL> urls = new ArrayList<>();
-
-         Iterator<String> i = this.classpathEntries.iterator();
-         while(i.hasNext()){
-            File f = new File((String)i.next());
-
-            try {
-                if (f.isDirectory() && f.exists()) {
-                    File[] files = f.listFiles();
-
-                    for (File file : files) {
-                        String name = file.getName().toLowerCase();
-                        if (name.endsWith(".jar") || name.endsWith(".zip")) {
-                            urls.add(file.toURI().toURL());
-                        }
-                    }
-                }
-
-                urls.add(f.toURI().toURL());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+          for (File file : files) {
+            String name = file.getName().toLowerCase();
+            if (name.endsWith(".jar") || name.endsWith(".zip")) {
+              urls.add(file.toURI().toURL());
             }
+          }
         }
 
-        return (URL[]) urls.toArray(new URL[urls.size()]);
+        urls.add(f.toURI().toURL());
+      } catch (MalformedURLException e) {
+        e.printStackTrace();
+      }
     }
 
-    protected String[] parseMainClass(String[] args) {
-        List<String> list = new ArrayList<>();
+    return (URL[]) urls.toArray(new URL[urls.size()]);
+  }
 
-        for (int i = 0; i < args.length; i++) {
-            if (OPTION_MAIN_CLASS.equals(args[i]) && ((i + 1) < args.length)) {
-                i++;
-                this.mainClass = args[i];
-            }else if(OPTION_LIB_FOLDER.equals(args[i])){
-            	i++;
-            	this.addPathEntries(args[i]);
-            }else if(OPTION_CLASSES_FOLDER.equals(args[i])){
-            	i++;
-            	this.addPathEntries(args[i]);
-            }else {
-                list.add(args[i]);
-            }
-        }
-        
-        return (String[]) list.toArray(new String[list.size()]);
+  protected String[] parseMainClass(String[] args) {
+    List<String> list = new ArrayList<>();
+
+    for (int i = 0; i < args.length; i++) {
+      if (OPTION_MAIN_CLASS.equals(args[i]) && ((i + 1) < args.length)) {
+        i++;
+        this.mainClass = args[i];
+      } else if (OPTION_LIB_FOLDER.equals(args[i])) {
+        i++;
+        this.addPathEntries(args[i]);
+      } else if (OPTION_CLASSES_FOLDER.equals(args[i])) {
+        i++;
+        this.addPathEntries(args[i]);
+      } else {
+        list.add(args[i]);
+      }
     }
-    
-    
- 
-    
-    
-    protected void addPathEntries(String path){
-    	StringTokenizer st = new StringTokenizer(path,":");
-    
-    	while(st.hasMoreElements()){
-    		String el = (String)st.nextElement();
-    		this.classpathEntries.add(el);
-    	}
+
+    return (String[]) list.toArray(new String[list.size()]);
+  }
+
+  protected void addPathEntries(String path) {
+    StringTokenizer st = new StringTokenizer(path, ":");
+
+    while (st.hasMoreElements()) {
+      String el = (String) st.nextElement();
+      this.classpathEntries.add(el);
     }
-    
+  }
 }

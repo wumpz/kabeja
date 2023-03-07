@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,105 +21,100 @@ import org.kabeja.entities.Ellipse;
 import org.kabeja.entities.Entity;
 import org.kabeja.util.Constants;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de">Simon Mieth</a>
- *
- *
- *
  */
 public class DXFEllipseHandler extends AbstractEntityHandler {
-   
-    public final static int RATIO = 40;
-    public final static int START_PARAMETER = 41;
-    public final static int END_PARAMTER = 42;
-    public static final int COUNTERCLOCKWISE = 73;
-    private Ellipse ellipse;
 
-    @Override
-    public void endDXFEntity() {
+  public static final int RATIO = 40;
+  public static final int START_PARAMETER = 41;
+  public static final int END_PARAMTER = 42;
+  public static final int COUNTERCLOCKWISE = 73;
+  private Ellipse ellipse;
+
+  @Override
+  public void endDXFEntity() {}
+
+  @Override
+  public Entity getDXFEntity() {
+    return ellipse;
+  }
+
+  @Override
+  public String getDXFEntityType() {
+    return Constants.ENTITY_TYPE_ELLIPSE;
+  }
+
+  @Override
+  public boolean isFollowSequence() {
+    return false;
+  }
+
+  @Override
+  public void parseGroup(int groupCode, DXFValue value) {
+
+    switch (groupCode) {
+      case GROUPCODE_START_X:
+        ellipse.getCenterPoint().setX(value.getDoubleValue());
+
+        break;
+
+      case GROUPCODE_START_Y:
+        ellipse.getCenterPoint().setY(value.getDoubleValue());
+
+        break;
+
+      case GROUPCODE_START_Z:
+        ellipse.getCenterPoint().setZ(value.getDoubleValue());
+
+        break;
+
+      case END_X:
+        ellipse.getMajorAxisDirection().setX(value.getDoubleValue());
+
+        break;
+
+      case END_Y:
+        ellipse.getMajorAxisDirection().setY(value.getDoubleValue());
+
+        break;
+
+      case END_Z:
+        ellipse.getMajorAxisDirection().setZ(value.getDoubleValue());
+
+        break;
+
+      case RATIO:
+        ellipse.setRatio(value.getDoubleValue());
+
+        break;
+
+      case START_PARAMETER:
+        ellipse.setStartParameter(value.getDoubleValue());
+
+        break;
+
+      case END_PARAMTER:
+        ellipse.setEndParameter(value.getDoubleValue());
+
+        break;
+
+      case COUNTERCLOCKWISE:
+        ellipse.setCounterClockwise(value.getBooleanValue());
+
+        break;
+
+      default:
+        super.parseCommonProperty(groupCode, value, ellipse);
+
+        break;
     }
+  }
 
-    @Override
-    public Entity getDXFEntity() {
-        return ellipse;
-    }
+  @Override
+  public void startDXFEntity() {
 
-    @Override
-    public String getDXFEntityType() {
-        return Constants.ENTITY_TYPE_ELLIPSE;
-    }
-
-    @Override
-    public boolean isFollowSequence() {
-        return false;
-    }
-
-    @Override
-    public void parseGroup(int groupCode, DXFValue value) {
-     
-        switch (groupCode) {
-        case GROUPCODE_START_X:
-            ellipse.getCenterPoint().setX(value.getDoubleValue());
-
-            break;
-
-        case GROUPCODE_START_Y:
-            ellipse.getCenterPoint().setY(value.getDoubleValue());
-
-            break;
-
-        case GROUPCODE_START_Z:
-            ellipse.getCenterPoint().setZ(value.getDoubleValue());
-
-            break;
-
-        case END_X:
-            ellipse.getMajorAxisDirection().setX(value.getDoubleValue());
-
-            break;
-
-        case END_Y:
-            ellipse.getMajorAxisDirection().setY(value.getDoubleValue());
-
-            break;
-
-        case END_Z:
-            ellipse.getMajorAxisDirection().setZ(value.getDoubleValue());
-
-            break;
-
-        case RATIO:
-            ellipse.setRatio(value.getDoubleValue());
-
-            break;
-
-        case START_PARAMETER:
-            ellipse.setStartParameter(value.getDoubleValue());
-
-            break;
-
-        case END_PARAMTER:
-            ellipse.setEndParameter(value.getDoubleValue());
-
-            break;
-
-        case COUNTERCLOCKWISE:
-            ellipse.setCounterClockwise(value.getBooleanValue());
-
-            break;
-
-        default:
-            super.parseCommonProperty(groupCode, value, ellipse);
-
-            break;
-        }
-    }
-
-    @Override
-    public void startDXFEntity() {
-      
-        ellipse = new Ellipse();
-        ellipse.setDocument(doc);
-    }
+    ellipse = new Ellipse();
+    ellipse.setDocument(doc);
+  }
 }

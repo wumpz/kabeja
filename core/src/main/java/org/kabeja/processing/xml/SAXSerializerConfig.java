@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,34 +19,32 @@ package org.kabeja.processing.xml;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de">Simon Mieth</a>
- *
  */
 public class SAXSerializerConfig {
-    private Map<String, String> properties = new HashMap<>();
-    private String saxSerializerName;
+  private Map<String, String> properties = new HashMap<>();
+  private String saxSerializerName;
 
-    public Map<String, String> getProperties() {
-        return this.properties;
-    }
+  public Map<String, String> getProperties() {
+    return this.properties;
+  }
 
-    public void addProperty(String name, String value) {
-        this.properties.put(name, value);
-    }
+  public void addProperty(String name, String value) {
+    this.properties.put(name, value);
+  }
 
-    /**
-     * @return Returns the filterName.
-     */
-    public String getSAXSerializerName() {
-        return saxSerializerName;
-    }
+  /**
+   * @return Returns the filterName.
+   */
+  public String getSAXSerializerName() {
+    return saxSerializerName;
+  }
 
-    /**
-     * @param filterName The filterName to set.
-     */
-    public void setSAXSerializerName(String filterName) {
-        this.saxSerializerName = filterName;
-    }
+  /**
+   * @param filterName The filterName to set.
+   */
+  public void setSAXSerializerName(String filterName) {
+    this.saxSerializerName = filterName;
+  }
 }

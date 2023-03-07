@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,70 +16,64 @@
 
 package org.kabeja.dxf.parser;
 
-
 /**
  * This is a helper class, which convert to different output formats.
- * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
  *
+ * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
  */
 public final class DXFValue {
-    private String value;
-    private int integerValue = Integer.MAX_VALUE;
+  private String value;
+  private int integerValue = Integer.MAX_VALUE;
 
-    /**
-     *
-     */
-    public DXFValue() {
-        super();
+  /** */
+  public DXFValue() {
+    super();
+  }
+
+  public DXFValue(String value) {
+    setValue(value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  /**
+   * @param value The value to set.
+   */
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+  public double getDoubleValue() {
+    return Double.parseDouble(value);
+  }
+
+  public int getIntegerValue() {
+    return Integer.parseInt(value.trim());
+  }
+
+  /**
+   * Convert the DXF value to boolean 0 -> true 1 -> false
+   *
+   * @return
+   */
+  public boolean getBooleanValue() {
+    // 0 -> true
+    // else -> false
+    return (getIntegerValue() == 0) ? true : false;
+  }
+
+  @Override
+  public String toString() {
+    return value;
+  }
+
+  public boolean isBitSet(int pos) {
+    if (this.integerValue == Integer.MAX_VALUE) {
+      this.integerValue = getIntegerValue();
     }
-    
 
-
-    public DXFValue(String value) {
-        setValue(value);
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    /**
-     * @param value The value to set.
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public double getDoubleValue() {
-        return Double.parseDouble(value);
-    }
-
-    public int getIntegerValue() {
-        return Integer.parseInt(value.trim());
-    }
-
-    /**
-     * Convert the DXF value to boolean
-     * 0 -> true
-     * 1 -> false
-     * @return
-     */
-    public boolean getBooleanValue() {
-        //0 -> true
-        //else -> false
-        return (getIntegerValue() == 0) ? true : false;
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    public boolean isBitSet(int pos) {
-        if (this.integerValue == Integer.MAX_VALUE) {
-            this.integerValue = getIntegerValue();
-        }
-
-        return (this.integerValue & pos) == pos;
-    }
+    return (this.integerValue & pos) == pos;
+  }
 }

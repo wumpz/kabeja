@@ -20,32 +20,30 @@ import org.kabeja.DraftDocument;
 import org.kabeja.common.Layer;
 import org.kabeja.parser.ParseException;
 
-
 public class DXFStreamFrozenLayerFilter extends DXFStreamLayerFilter {
-    private final DraftDocument doc;
+  private final DraftDocument doc;
 
-    private boolean layersInitialized = false;
+  private boolean layersInitialized = false;
 
-    public DXFStreamFrozenLayerFilter(DraftDocument doc) {
-        this.doc = doc;
+  public DXFStreamFrozenLayerFilter(DraftDocument doc) {
+    this.doc = doc;
+  }
+
+  @Override
+  protected void startEntity(String type) throws ParseException {
+    super.startEntity(type);
+
+    if (!layersInitialized) {
+      initializeLayers();
+      layersInitialized = true;
     }
+  }
 
-
-    @Override
-    protected void startEntity(String type) throws ParseException {
-        super.startEntity(type);
-
-        if (!layersInitialized) {
-            initializeLayers();
-            layersInitialized = true;
-        }
+  private void initializeLayers() {
+    for (Layer layer : doc.getLayers()) {
+      if (layer.isFrozen()) {
+        exclude.add(layer.getName());
+      }
     }
-
-    private void initializeLayers() {
-        for (Layer layer : doc.getLayers()) {
-            if (layer.isFrozen()) {
-                exclude.add(layer.getName());
-            }
-        }
-    }
+  }
 }

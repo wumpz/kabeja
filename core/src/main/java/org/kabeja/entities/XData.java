@@ -1,27 +1,25 @@
 package org.kabeja.entities;
 
-/**
- * Created by Veronika Zwickenpflug on 30.12.2016.
- */
+/** Created by Veronika Zwickenpflug on 30.12.2016. */
 public class XData {
 
-    private final String applicationName;
+  private final String applicationName;
 
-    private String xDataString;
+  private String xDataString;
 
-    public XData(String applicationName) {
-        this.applicationName = applicationName;
-    }
+  public XData(String applicationName) {
+    this.applicationName = applicationName;
+  }
 
-    public String getXDataString() {
-        return xDataString;
-    }
+  public String getXDataString() {
+    return xDataString;
+  }
 
-    public void setxDataString(String xDataString) {
-        this.xDataString = xDataString;
-    }
+  public void setxDataString(String xDataString) {
+    this.xDataString = xDataString;
+  }
 
-    public String getApplicationName() {
-        return applicationName;
-    }
+  public String getApplicationName() {
+    return applicationName;
+  }
 }

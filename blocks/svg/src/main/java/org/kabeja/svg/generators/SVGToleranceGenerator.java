@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,6 @@
 package org.kabeja.svg.generators;
 
 import java.util.Map;
-
 import org.kabeja.common.DraftEntity;
 import org.kabeja.entities.Tolerance;
 import org.kabeja.entities.util.DimensionStyle;
@@ -27,20 +26,18 @@ import org.kabeja.util.Constants;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
-
 public class SVGToleranceGenerator extends AbstractSVGSAXGenerator {
-    public void toSAX(ContentHandler handler, Map svgContext, DraftEntity entity,
-        TransformContext transformContext) throws SAXException {
-        //TODO implement the SVG tolerance generator
-        Tolerance tolerance = (Tolerance) entity;
-        DimensionStyle style = tolerance.getDocument()
-                                           .getDimensionStyle(tolerance.getStyleID());
+  public void toSAX(
+      ContentHandler handler, Map svgContext, DraftEntity entity, TransformContext transformContext)
+      throws SAXException {
+    // TODO implement the SVG tolerance generator
+    Tolerance tolerance = (Tolerance) entity;
+    DimensionStyle style = tolerance.getDocument().getDimensionStyle(tolerance.getStyleID());
 
-        double angle = MathUtils.getAngle(tolerance.getXaxisDirection(),
-                Constants.DEFAULT_X_AXIS_VECTOR);
-        double textHeight = style.getDoubleProperty(DimensionStyle.PROPERTY_DIMTXT);
-        double scale = style.getDoubleProperty(DimensionStyle.PROPERTY_DIMSCALE,
-                1.0);
-        textHeight *= scale;
-    }
+    double angle =
+        MathUtils.getAngle(tolerance.getXaxisDirection(), Constants.DEFAULT_X_AXIS_VECTOR);
+    double textHeight = style.getDoubleProperty(DimensionStyle.PROPERTY_DIMTXT);
+    double scale = style.getDoubleProperty(DimensionStyle.PROPERTY_DIMSCALE, 1.0);
+    textHeight *= scale;
+  }
 }

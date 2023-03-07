@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,23 +30,24 @@ import org.kabeja.util.Constants;
 
 public class DXFTraceGenerator extends DXFSolidGenerator {
 
-    @Override
-	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
-		Trace trace = (Trace) entity;
-		for (int groupCode : subtype.getGroupCodes()) {
-			switch (groupCode) {
-			case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER_1:
-				out.output(100, Constants.SUBCLASS_MARKER_ENTITY_TRACE);
-				break;
-			default:
-				super.generateSubType(subtype, entity, out, context);
-			}
-		}
-	}
+  @Override
+  protected void generateSubType(
+      DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context)
+      throws GenerationException {
+    Trace trace = (Trace) entity;
+    for (int groupCode : subtype.getGroupCodes()) {
+      switch (groupCode) {
+        case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER_1:
+          out.output(100, Constants.SUBCLASS_MARKER_ENTITY_TRACE);
+          break;
+        default:
+          super.generateSubType(subtype, entity, out, context);
+      }
+    }
+  }
 
-    @Override
-	public String getDXFEntityType() {
-		return Constants.ENTITY_TYPE_TRACE;
-	}
-
+  @Override
+  public String getDXFEntityType() {
+    return Constants.ENTITY_TYPE_TRACE;
+  }
 }

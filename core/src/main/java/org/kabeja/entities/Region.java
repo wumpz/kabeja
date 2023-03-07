@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,80 +18,65 @@ package org.kabeja.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.TransformContext;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- *
  */
 public class Region extends Entity {
-    protected List<String> acisData = new ArrayList<>();
+  protected List<String> acisData = new ArrayList<>();
 
-    /**
-     *
-     *
-     * @return always invalid bounds
-     */
-    @Override
-    public Bounds getBounds() {
-        Bounds bounds = new Bounds();
-        bounds.setValid(false);
+  /**
+   * @return always invalid bounds
+   */
+  @Override
+  public Bounds getBounds() {
+    Bounds bounds = new Bounds();
+    bounds.setValid(false);
 
-        return bounds;
-    }
+    return bounds;
+  }
 
-    /**
-     *
-     *
-     * @see org.kabeja.entities.Entity#getType()
-     */
-    @Override
-    public Type<?> getType() {
-        return Type.TYPE_REGION;
-    }
+  /**
+   * @see org.kabeja.entities.Entity#getType()
+   */
+  @Override
+  public Type<?> getType() {
+    return Type.TYPE_REGION;
+  }
 
-    /**
-     * The ACIS commands as a list of lines
-     *
-     * @return the list
-     */
-    public List<String> getACISDATA() {
-        return acisData;
-    }
+  /**
+   * The ACIS commands as a list of lines
+   *
+   * @return the list
+   */
+  public List<String> getACISDATA() {
+    return acisData;
+  }
 
-    public void appendACISDATA(String data) {
-        acisData.add(data);
-    }
+  public void appendACISDATA(String data) {
+    acisData.add(data);
+  }
 
-    /**
-     * This entity is only a container of ACIS data.
-     *
-     * @return always 0
-     */
-    @Override
-    public double getLength() {
-        return 0;
-    }
-    
-    
-    /**
-     * Not implemented yet
-     */
-    
-    @Override
-    public void transform(TransformContext context) {
-        
-    }
+  /**
+   * This entity is only a container of ACIS data.
+   *
+   * @return always 0
+   */
+  @Override
+  public double getLength() {
+    return 0;
+  }
 
-    /**
-     * Does not need to be implemented, as Region is a non-planar entity.
-     */
-    @Override
-    public void toWcs() {
-        super.toWcs();
-    }
+  /** Not implemented yet */
+  @Override
+  public void transform(TransformContext context) {}
+
+  /** Does not need to be implemented, as Region is a non-planar entity. */
+  @Override
+  public void toWcs() {
+    super.toWcs();
+  }
 }
