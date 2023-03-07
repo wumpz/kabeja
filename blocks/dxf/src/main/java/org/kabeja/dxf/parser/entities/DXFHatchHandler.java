@@ -303,8 +303,13 @@ public class DXFHatchHandler extends AbstractEntityHandler {
         case GROUPCODE_HATCH_STYLE:
             this.parseBoundary = false;
             this.endBoundaryElement();
+            this.hatch.setHatchStyle(value.getIntegerValue());
 
             // This should be the end of a boundary entity
+            break;
+            
+        case GROUPCODE_PATTERN_TYPE:
+            this.hatch.setPatternType(value.getIntegerValue());
             break;
 
         case GROUPCODE_PATTERN_ANGLE:
