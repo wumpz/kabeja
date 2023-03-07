@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,28 +14,26 @@
  * limitations under the License.
  ******************************************************************************/
 /*
- Copyright 2005 Simon Mieth
+Copyright 2005 Simon Mieth
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 package org.kabeja.inkscape;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.kabeja.DraftDocument;
-
 import org.kabeja.dxf.parser.DXFParserBuilder;
 import org.kabeja.inkscape.xml.SAXInkscapeLayerFilter;
 import org.kabeja.parser.Parser;
@@ -51,111 +49,101 @@ import org.kabeja.xml.SAXPrettyOutputter;
 import org.kabeja.xml.SAXSerializer;
 
 /**
- * This is a CLI wrapper for kabeja to imitate the behavior of the native
- * Inscape dxf2svg import filter
+ * This is a CLI wrapper for kabeja to imitate the behavior of the native Inscape dxf2svg import
+ * filter
  */
 public class DXFImportFilter {
 
-	public final static String PARAM_POLYLINE_CONNECT = "polyline.connect";
+  public static final String PARAM_POLYLINE_CONNECT = "polyline.connect";
 
-	protected boolean connectPolylines = true;
+  protected boolean connectPolylines = true;
 
-	public void importFile(String[] args) {
-		try {
-			Map properties = null;
-			String file = "";
-			if (args.length > 1) {
-				properties = parseParameters(args);
-				file = args[args.length - 1];
-			} else {
-				properties = new HashMap();
-				file = args[0];
+  public void importFile(String[] args) {
+    try {
+      Map properties = null;
+      String file = "";
+      if (args.length > 1) {
+        properties = parseParameters(args);
+        file = args[args.length - 1];
+      } else {
+        properties = new HashMap();
+        file = args[0];
+      }
+      // parse the dxf file
+      Parser parser = DXFParserBuilder.createDefaultParser();
 
-			}
-			// parse the dxf file
-			Parser parser = DXFParserBuilder.createDefaultParser();
+      DraftDocument doc = parser.parse(new FileInputStream(file), new HashMap<String, Object>());
 
-			DraftDocument doc = parser.parse(new FileInputStream(file),new HashMap<String,Object> ());
+      Map noprops = new HashMap();
 
+      // connect all entities, where possible
+      if (properties.containsKey(PARAM_POLYLINE_CONNECT)
+          && Boolean.getBoolean((String) properties.get(PARAM_POLYLINE_CONNECT))) {
+        PostProcessor pp = new PolylineConverter();
+        pp.setProperties(noprops);
+        pp.process(doc, noprops);
+      }
 
-			
+      PostProcessor pp = new LayerFilter();
+      pp.setProperties(properties);
+      pp.process(doc, noprops);
 
-			Map noprops = new HashMap();
+      // the processing and svg conversion
+      SAXGenerator generator = new SVGGenerator();
+      generator.setProperties(properties);
 
-			// connect all entities, where possible
-			if (properties.containsKey(PARAM_POLYLINE_CONNECT)
-					&& Boolean.getBoolean((String) properties
-							.get(PARAM_POLYLINE_CONNECT))) {
-				PostProcessor pp = new PolylineConverter();
-				pp.setProperties(noprops);
-				pp.process(doc, noprops);
-			}
+      // remove the root group
+      SAXFilter filter1 = new RootLayerFilter();
+      filter1.setProperties(properties);
 
-			PostProcessor pp = new LayerFilter();
-			pp.setProperties(properties);
-			pp.process(doc, noprops);
+      // fix problems width percent width values
+      SAXFilter filter2 = new StyleAttributeFilter();
+      filter2.setProperties(properties);
 
-			
-			// the processing and svg conversion
-			SAXGenerator generator = new SVGGenerator();
-			generator.setProperties(properties);
+      // add inkscape layer attributes
+      SAXFilter filter3 = new SAXInkscapeLayerFilter();
 
-			// remove the root group
-			SAXFilter filter1 = new RootLayerFilter();
-			filter1.setProperties(properties);
+      // output goes to stdout
+      SAXSerializer serializer = new SAXPrettyOutputter();
+      serializer.setOutput(System.out);
+      serializer.setProperties(properties);
 
-			// fix problems width percent width values
-			SAXFilter filter2 = new StyleAttributeFilter();
-			filter2.setProperties(properties);
+      // chain the filters
+      filter1.setContentHandler(filter2);
+      filter2.setContentHandler(filter3);
+      filter3.setContentHandler(serializer);
 
-			// add inkscape layer attributes
-			SAXFilter filter3 = new SAXInkscapeLayerFilter();
+      // setup the process pipeline
+      // and start the generation
 
-			// output goes to stdout
-			SAXSerializer serializer = new SAXPrettyOutputter();
-			serializer.setOutput(System.out);
-			serializer.setProperties(properties);
+      generator.generate(doc, filter1, new HashMap());
 
-			// chain the filters
-			filter1.setContentHandler(filter2);
-			filter2.setContentHandler(filter3);
-			filter3.setContentHandler(serializer);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
-			// setup the process pipeline
-			// and start the generation
+  public static void main(String[] args) {
 
-			generator.generate(doc, filter1, new HashMap());
+    if (args.length >= 1) {
+      DXFImportFilter filter = new DXFImportFilter();
+      filter.importFile(args);
+    }
+  }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+  protected Map parseParameters(String[] args) {
 
-	public static void main(String[] args) {
+    Map map = new HashMap();
+    for (int i = 0; i < args.length; i++) {
 
-		if (args.length >= 1) {
-			DXFImportFilter filter = new DXFImportFilter();
-			filter.importFile(args);
-		}
-	}
+      if (args[i].startsWith("--")) {
+        int pos = args[i].indexOf('=');
+        String param = args[i].substring(2, pos);
+        String value = args[i].substring(pos + 1);
+        map.put(param, value);
+      }
+    }
 
-	protected Map parseParameters(String[] args) {
-
-		Map map = new HashMap();
-		for (int i = 0; i < args.length; i++) {
-
-			if (args[i].startsWith("--")) {
-				int pos = args[i].indexOf('=');
-				String param = args[i].substring(2, pos);
-				String value = args[i].substring(pos + 1);
-				map.put(param, value);
-
-			}
-
-		}
-
-		return map;
-
-	}
-
+    return map;
+  }
 }

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,38 +29,33 @@ import org.kabeja.util.Constants;
 
 public class DXFEntitiesSectionGenerator implements DXFSectionGenerator {
 
-    @Override
-	public String getSectionName() {
-		return Constants.SECTION_ENTITIES;
-	}
+  @Override
+  public String getSectionName() {
+    return Constants.SECTION_ENTITIES;
+  }
 
-    @Override
-	public void generate(DXFOutput output, DraftDocument doc,
-			DXFGenerationContext dxfContext, DXFProfile profile)
-			throws GenerationException {
-		// iterate over all layers
+  @Override
+  public void generate(
+      DXFOutput output, DraftDocument doc, DXFGenerationContext dxfContext, DXFProfile profile)
+      throws GenerationException {
+    // iterate over all layers
 
-		for (Layer layer : doc.getLayers()) {
-			// get all entity types of the layer
-			for (Type<?> type : layer.getEntityTypes()) {
-				// check if have a generator for the type
-				if (dxfContext.getDXFGeneratorManager().hasDXFEntityGenerator(
-						type.getHandle())
-						&& profile.hasDXFType(type.getHandle())) {
-					DXFEntityGenerator generator = dxfContext
-							.getDXFGeneratorManager().getDXFEntityGenerator(
-									type.getHandle());
+    for (Layer layer : doc.getLayers()) {
+      // get all entity types of the layer
+      for (Type<?> type : layer.getEntityTypes()) {
+        // check if have a generator for the type
+        if (dxfContext.getDXFGeneratorManager().hasDXFEntityGenerator(type.getHandle())
+            && profile.hasDXFType(type.getHandle())) {
+          DXFEntityGenerator generator =
+              dxfContext.getDXFGeneratorManager().getDXFEntityGenerator(type.getHandle());
 
-					for (DraftEntity entity : layer.getEntitiesByType(type)) {
-						// output the entity
-						//generator.generate(output, entity, dxfContext, profile.getDXFType(type));
-						generator.generate(output, entity, dxfContext,profile.getDXFType(type.getHandle()));
-					}
-
-				}
-			}
-
-		}
-	}
-
+          for (DraftEntity entity : layer.getEntitiesByType(type)) {
+            // output the entity
+            // generator.generate(output, entity, dxfContext, profile.getDXFType(type));
+            generator.generate(output, entity, dxfContext, profile.getDXFType(type.getHandle()));
+          }
+        }
+      }
+    }
+  }
 }

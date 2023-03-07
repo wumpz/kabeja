@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,39 +17,26 @@
 package org.kabeja.dxf.parser.filter;
 
 import java.util.Map;
-
 import org.kabeja.DraftDocument;
 import org.kabeja.dxf.parser.DXFHandler;
 
-
 public abstract class AbstractDXFStreamFilter implements DXFStreamFilter {
-    protected Map properties;
-    protected DXFHandler handler;
+  protected Map properties;
+  protected DXFHandler handler;
 
-    @Override
-    public void setProperties(Map properties) {
-        this.properties = properties;
-    }
+  @Override
+  public void setProperties(Map properties) {
+    this.properties = properties;
+  }
 
-    @Override
-    public void setDXFHandler(DXFHandler handler) {
-        this.handler = handler;
-    }
-    
+  @Override
+  public void setDXFHandler(DXFHandler handler) {
+    this.handler = handler;
+  }
 
+  @Override
+  public void releaseDocument() {}
 
-    @Override
-    public void releaseDocument() {
-       
-        
-    }
-
-
-    @Override
-    public void setDocument(DraftDocument doc) {
-        
-        
-    }
-    
-    
+  @Override
+  public void setDocument(DraftDocument doc) {}
 }

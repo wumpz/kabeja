@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,93 +18,79 @@ package org.kabeja.dxf.generator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 import org.kabeja.dxf.generator.conf.DXFProfile;
 
 public class DXFGeneratorManagerImpl implements DXFGeneratorManager {
 
-    protected Map entityGenerators = new HashMap();
-    protected Map sectionGenerators = new HashMap();
-    protected Map tableGenerators = new HashMap();
-    protected Map profiles = new HashMap();
-	
-	
-	
-	
-    @Override
-	public DXFEntityGenerator getDXFEntityGenerator(String entityType) {
-		return (DXFEntityGenerator)this.entityGenerators.get(entityType);
-	}
+  protected Map entityGenerators = new HashMap();
+  protected Map sectionGenerators = new HashMap();
+  protected Map tableGenerators = new HashMap();
+  protected Map profiles = new HashMap();
 
-    @Override
-	public DXFSectionGenerator getDXFSectionGenerator(String section) {	
-		return (DXFSectionGenerator)this.sectionGenerators.get(section);
-	}
+  @Override
+  public DXFEntityGenerator getDXFEntityGenerator(String entityType) {
+    return (DXFEntityGenerator) this.entityGenerators.get(entityType);
+  }
 
-    @Override
-	public boolean hasDXFEntityGenerator(String entityType) {
-		return this.entityGenerators.containsKey(entityType);
-	}
+  @Override
+  public DXFSectionGenerator getDXFSectionGenerator(String section) {
+    return (DXFSectionGenerator) this.sectionGenerators.get(section);
+  }
 
-    @Override
-	public boolean hasDXFSectionGenerator(String section) {
-		return this.sectionGenerators.containsKey(section);
-	}
-	
+  @Override
+  public boolean hasDXFEntityGenerator(String entityType) {
+    return this.entityGenerators.containsKey(entityType);
+  }
 
+  @Override
+  public boolean hasDXFSectionGenerator(String section) {
+    return this.sectionGenerators.containsKey(section);
+  }
 
+  /* (non-Javadoc)
+   * @see org.kabeja.dxf.generator.DXFGeneratorManager#hasDXFTableGenerator(java.lang.String)
+   */
+  @Override
+  public boolean hasDXFTableGenerator(String tableType) {
+    return this.tableGenerators.containsKey(tableType);
+  }
 
-	/* (non-Javadoc)
-	 * @see org.kabeja.dxf.generator.DXFGeneratorManager#hasDXFTableGenerator(java.lang.String)
-	 */
-    @Override
-	public boolean hasDXFTableGenerator(String tableType) {
-		return this.tableGenerators.containsKey(tableType);
-	}
+  /* (non-Javadoc)
+   * @see org.kabeja.dxf.generator.DXFGeneratorManager#getDXFTableGenerator(java.lang.String)
+   */
+  @Override
+  public DXFTableGenerator getDXFTableGenerator(String tableType) {
+    return (DXFTableGenerator) this.tableGenerators.get(tableType);
+  }
 
-	/* (non-Javadoc)
-	 * @see org.kabeja.dxf.generator.DXFGeneratorManager#getDXFTableGenerator(java.lang.String)
-	 */
-    @Override
-	public DXFTableGenerator getDXFTableGenerator(String tableType) {
-		return (DXFTableGenerator)this.tableGenerators.get(tableType);
-	}
-	
-	
-	
-   public void addHandler(String key,Object obj){
-	   if(obj instanceof DXFTableGenerator){
-		   this.tableGenerators.put(key,(DXFTableGenerator)obj);
-	   }else if(obj instanceof DXFEntityGenerator){
-		   this.entityGenerators.put(key, (DXFEntityGenerator)obj);
-	   }else if(obj instanceof DXFSectionGenerator){
-		   this.sectionGenerators.put(key,(DXFSectionGenerator)obj);
-	   }
-   }
+  public void addHandler(String key, Object obj) {
+    if (obj instanceof DXFTableGenerator) {
+      this.tableGenerators.put(key, (DXFTableGenerator) obj);
+    } else if (obj instanceof DXFEntityGenerator) {
+      this.entityGenerators.put(key, (DXFEntityGenerator) obj);
+    } else if (obj instanceof DXFSectionGenerator) {
+      this.sectionGenerators.put(key, (DXFSectionGenerator) obj);
+    }
+  }
 
-/* (non-Javadoc)
- * @see org.kabeja.dxf.generator.DXFGeneratorManager#getDXFProfile(java.lang.String)
- */
-    @Override
-    public DXFProfile getDXFProfile(String name) {
-	   return (DXFProfile) this.profiles.get(name);
-}
-	
-	
+  /* (non-Javadoc)
+   * @see org.kabeja.dxf.generator.DXFGeneratorManager#getDXFProfile(java.lang.String)
+   */
+  @Override
+  public DXFProfile getDXFProfile(String name) {
+    return (DXFProfile) this.profiles.get(name);
+  }
 
-public void addDXFProfile(DXFProfile profile){
-    this.profiles.put(profile.getName(),profile);
-}
+  public void addDXFProfile(DXFProfile profile) {
+    this.profiles.put(profile.getName(), profile);
+  }
 
-   
+  public Set getDXFProfileNames() {
+    return this.profiles.keySet();
+  }
 
-public Set getDXFProfileNames() {
-        return this.profiles.keySet();
-}
-
-    @Override
-    public boolean hasDXFProfile(String name){
-	return this.profiles.containsKey(name);
-}
-   
+  @Override
+  public boolean hasDXFProfile(String name) {
+    return this.profiles.containsKey(name);
+  }
 }

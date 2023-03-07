@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,55 +30,56 @@ import org.kabeja.util.Constants;
 
 public class DXFLineGenerator extends AbstractDXFEntityGenerator {
 
-    @Override
-	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
-		Line line = (Line) entity;
-		for (int groupCode : subtype.getGroupCodes()) {
-			switch (groupCode) {
-				case 10:
-					out.output(10, line.getStartPoint().getX());
-					break;
-				case 20:
-					out.output(20, line.getStartPoint().getY());
-					break;
-				case 30:
-					out.output(30, line.getStartPoint().getZ());
-					break;
-				case 11:
-					out.output(11, line.getEndPoint().getX());
-					break;
-				case 21:
-					out.output(21, line.getEndPoint().getY());
-					break;
-				case 31:
-					out.output(31, line.getEndPoint().getZ());
-					break;
-				case 39:
-					out.output(39, line.getThickness());
-					break;
-				case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
-					out.output(100, Constants.SUBCLASS_MARKER_ENTITY_LINE);
-					break;
-				case 62:
-					out.output(62, line.getColor());
-					break;
-				case 370:
-					int lineWeight = line.getLineWeight();
-					if (lineWeight != 0) {
-						out.output(370, lineWeight);
-					}
-					break;
+  @Override
+  protected void generateSubType(
+      DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context)
+      throws GenerationException {
+    Line line = (Line) entity;
+    for (int groupCode : subtype.getGroupCodes()) {
+      switch (groupCode) {
+        case 10:
+          out.output(10, line.getStartPoint().getX());
+          break;
+        case 20:
+          out.output(20, line.getStartPoint().getY());
+          break;
+        case 30:
+          out.output(30, line.getStartPoint().getZ());
+          break;
+        case 11:
+          out.output(11, line.getEndPoint().getX());
+          break;
+        case 21:
+          out.output(21, line.getEndPoint().getY());
+          break;
+        case 31:
+          out.output(31, line.getEndPoint().getZ());
+          break;
+        case 39:
+          out.output(39, line.getThickness());
+          break;
+        case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
+          out.output(100, Constants.SUBCLASS_MARKER_ENTITY_LINE);
+          break;
+        case 62:
+          out.output(62, line.getColor());
+          break;
+        case 370:
+          int lineWeight = line.getLineWeight();
+          if (lineWeight != 0) {
+            out.output(370, lineWeight);
+          }
+          break;
 
-				default:
-					super.outputCommonGroupCode(groupCode, line, out);
-					break;
-			}
-		}
-	}
+        default:
+          super.outputCommonGroupCode(groupCode, line, out);
+          break;
+      }
+    }
+  }
 
-	public String getDXFEntityType() {
+  public String getDXFEntityType() {
 
-		return Constants.ENTITY_TYPE_LINE;
-	}
-
+    return Constants.ENTITY_TYPE_LINE;
+  }
 }

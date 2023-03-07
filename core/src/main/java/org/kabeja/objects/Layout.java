@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,124 +34,123 @@ import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.Vector;
 
-
 public class Layout extends PlotSettings {
-	
-    protected Bounds limits = new Bounds();
-    protected Point3D insertPoint = new Point3D();
-    protected Bounds extent = new Bounds();
-    protected Point3D originUCS = new Point3D();
-    protected Vector xAxisUCS = new Vector(1.0, 0.0, 0.0);
-    protected Vector yAxisUCS = new Vector(0.0, 1.0, 0.0);
-    protected double elevation;
-    protected int tabOrder;
-    protected int orthographicTypeOfUCS;
-    protected String paperSpaceBlockID;
-    protected String lastActiveViewportID;
-    protected String namedUCSID;
-    protected String baseUCSID;
 
-    public Bounds getLimits() {
-        return limits;
-    }
+  protected Bounds limits = new Bounds();
+  protected Point3D insertPoint = new Point3D();
+  protected Bounds extent = new Bounds();
+  protected Point3D originUCS = new Point3D();
+  protected Vector xAxisUCS = new Vector(1.0, 0.0, 0.0);
+  protected Vector yAxisUCS = new Vector(0.0, 1.0, 0.0);
+  protected double elevation;
+  protected int tabOrder;
+  protected int orthographicTypeOfUCS;
+  protected String paperSpaceBlockID;
+  protected String lastActiveViewportID;
+  protected String namedUCSID;
+  protected String baseUCSID;
 
-    public void setLimits(Bounds limits) {
-        this.limits = limits;
-    }
+  public Bounds getLimits() {
+    return limits;
+  }
 
-    public Point3D getInsertPoint() {
-        return insertPoint;
-    }
+  public void setLimits(Bounds limits) {
+    this.limits = limits;
+  }
 
-    public void setInsertPoint(Point3D insertPoint) {
-        this.insertPoint = insertPoint;
-    }
+  public Point3D getInsertPoint() {
+    return insertPoint;
+  }
 
-    public Bounds getExtent() {
-        return extent;
-    }
+  public void setInsertPoint(Point3D insertPoint) {
+    this.insertPoint = insertPoint;
+  }
 
-    public void setExtent(Bounds extent) {
-        this.extent = extent;
-    }
+  public Bounds getExtent() {
+    return extent;
+  }
 
-    public Point3D getOriginUCS() {
-        return originUCS;
-    }
+  public void setExtent(Bounds extent) {
+    this.extent = extent;
+  }
 
-    public void setOriginUCS(Point3D originUCS) {
-        this.originUCS = originUCS;
-    }
+  public Point3D getOriginUCS() {
+    return originUCS;
+  }
 
-    public Vector getXAxisUCS() {
-        return xAxisUCS;
-    }
+  public void setOriginUCS(Point3D originUCS) {
+    this.originUCS = originUCS;
+  }
 
-    public void setXAxisUCS(Vector axisUCS) {
-        xAxisUCS = axisUCS;
-    }
+  public Vector getXAxisUCS() {
+    return xAxisUCS;
+  }
 
-    public Vector getYAxisUCS() {
-        return yAxisUCS;
-    }
+  public void setXAxisUCS(Vector axisUCS) {
+    xAxisUCS = axisUCS;
+  }
 
-    public void setYAxisUCS(Vector axisUCS) {
-        yAxisUCS = axisUCS;
-    }
+  public Vector getYAxisUCS() {
+    return yAxisUCS;
+  }
 
-    public double getElevation() {
-        return elevation;
-    }
+  public void setYAxisUCS(Vector axisUCS) {
+    yAxisUCS = axisUCS;
+  }
 
-    public void setElevation(double elevation) {
-        this.elevation = elevation;
-    }
+  public double getElevation() {
+    return elevation;
+  }
 
-    public int getTabOrder() {
-        return tabOrder;
-    }
+  public void setElevation(double elevation) {
+    this.elevation = elevation;
+  }
 
-    public void setTabOrder(int tabOrder) {
-        this.tabOrder = tabOrder;
-    }
+  public int getTabOrder() {
+    return tabOrder;
+  }
 
-    public int getOrthographicTypeOfUCS() {
-        return orthographicTypeOfUCS;
-    }
+  public void setTabOrder(int tabOrder) {
+    this.tabOrder = tabOrder;
+  }
 
-    public void setOrthographicTypeOfUCS(int orthographicTypeOfUCS) {
-        this.orthographicTypeOfUCS = orthographicTypeOfUCS;
-    }
+  public int getOrthographicTypeOfUCS() {
+    return orthographicTypeOfUCS;
+  }
 
-    public String getPaperSpaceBlockID() {
-        return paperSpaceBlockID;
-    }
+  public void setOrthographicTypeOfUCS(int orthographicTypeOfUCS) {
+    this.orthographicTypeOfUCS = orthographicTypeOfUCS;
+  }
 
-    public void setPaperSpaceBlockID(String paperSpaceBlockID) {
-        this.paperSpaceBlockID = paperSpaceBlockID;
-    }
+  public String getPaperSpaceBlockID() {
+    return paperSpaceBlockID;
+  }
 
-    public String getLastActiveViewportID() {
-        return lastActiveViewportID;
-    }
+  public void setPaperSpaceBlockID(String paperSpaceBlockID) {
+    this.paperSpaceBlockID = paperSpaceBlockID;
+  }
 
-    public void setLastActiveViewportID(String lastActiveViewportID) {
-        this.lastActiveViewportID = lastActiveViewportID;
-    }
+  public String getLastActiveViewportID() {
+    return lastActiveViewportID;
+  }
 
-    public String getNamedUCSID() {
-        return namedUCSID;
-    }
+  public void setLastActiveViewportID(String lastActiveViewportID) {
+    this.lastActiveViewportID = lastActiveViewportID;
+  }
 
-    public void setNamedUCSID(String namedUCSID) {
-        this.namedUCSID = namedUCSID;
-    }
+  public String getNamedUCSID() {
+    return namedUCSID;
+  }
 
-    public String getBaseUCSID() {
-        return baseUCSID;
-    }
+  public void setNamedUCSID(String namedUCSID) {
+    this.namedUCSID = namedUCSID;
+  }
 
-    public void setBaseUCSID(String baseUCSID) {
-        this.baseUCSID = baseUCSID;
-    }
+  public String getBaseUCSID() {
+    return baseUCSID;
+  }
+
+  public void setBaseUCSID(String baseUCSID) {
+    this.baseUCSID = baseUCSID;
+  }
 }

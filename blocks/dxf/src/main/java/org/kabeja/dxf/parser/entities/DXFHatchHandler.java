@@ -32,7 +32,6 @@ package org.kabeja.dxf.parser.entities;
 
 import java.util.Hashtable;
 import java.util.Iterator;
-
 import org.kabeja.DraftDocument;
 import org.kabeja.dxf.parser.DXFValue;
 import org.kabeja.entities.Entity;

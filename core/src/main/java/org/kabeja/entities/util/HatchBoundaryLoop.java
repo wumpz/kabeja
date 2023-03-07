@@ -19,7 +19,6 @@ package org.kabeja.entities.util;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.kabeja.common.DraftEntity;
 import org.kabeja.entities.Entity;
 import org.kabeja.math.Bounds;
@@ -27,13 +26,13 @@ import org.kabeja.math.Bounds;
 public class HatchBoundaryLoop {
   private final List<DraftEntity> edges = new ArrayList<>();
 
-  private int boundaryPathTypeFlag = BoundaryPathType.BOUNDARY_PATH_TYPE_FLAG_DEFAULT.id();
+  private int boundaryPathTypeFlag = BoundaryPathType.DEFAULT.id();
 
-  public boolean getBoundaryPathTypeFlag(BoundaryPathType type) {
+  public boolean isBoundaryPathType(BoundaryPathType type) {
     return (boundaryPathTypeFlag & type.id()) != 0;
   }
 
-  public void setBoundaryPathTypeFlag(BoundaryPathType type) {
+  public void setBoundaryPathType(BoundaryPathType type) {
     boundaryPathTypeFlag |= type.id();
   }
 
@@ -86,12 +85,12 @@ public class HatchBoundaryLoop {
   }
 
   public enum BoundaryPathType {
-    BOUNDARY_PATH_TYPE_FLAG_DEFAULT(0),
-    BOUNDARY_PATH_TYPE_FLAG_EXTERNAL(1),
-    BOUNDARY_PATH_TYPE_FLAG_POLYLINE(2),
-    BOUNDARY_PATH_TYPE_FLAG_DERIVED(4),
-    BOUNDARY_PATH_TYPE_FLAG_TEXTBOX(8),
-    BOUNDARY_PATH_TYPE_FLAG_OUTERMOST(16);
+    DEFAULT(0),
+    EXTERNAL(1),
+    POLYLINE(2),
+    DERIVED(4),
+    TEXTBOX(8),
+    OUTERMOST(16);
 
     private final int id;
 

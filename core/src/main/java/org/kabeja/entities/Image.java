@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,256 +21,239 @@ package org.kabeja.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.Point3D;
 import org.kabeja.math.TransformContext;
 import org.kabeja.objects.ImageDefObject;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- *
  */
 public class Image extends Entity {
-    protected Point3D insertPoint = new Point3D();
-    protected Point3D vectorV = new Point3D();
-    protected Point3D vectorU = new Point3D();
-    protected double imageSizeAlongU;
-    protected double imageSizeAlongV;
-    protected long imageDefID=-1;
-    protected double brightness;
-    protected double contrast;
-    protected double fade;
-    protected List<Point3D> clipBoundary = new ArrayList<>();
-    protected boolean clipping = false;
-    protected boolean rectangularClipping = false;
-    protected boolean polygonalClipping = false;
+  protected Point3D insertPoint = new Point3D();
+  protected Point3D vectorV = new Point3D();
+  protected Point3D vectorU = new Point3D();
+  protected double imageSizeAlongU;
+  protected double imageSizeAlongV;
+  protected long imageDefID = -1;
+  protected double brightness;
+  protected double contrast;
+  protected double fade;
+  protected List<Point3D> clipBoundary = new ArrayList<>();
+  protected boolean clipping = false;
+  protected boolean rectangularClipping = false;
+  protected boolean polygonalClipping = false;
 
-   
-    @Override
-    public Bounds getBounds() {
-        Bounds b = new Bounds();
-        ImageDefObject imageDef = (ImageDefObject) this.doc.getObjectByID(this.getImageDefObjectID());
+  @Override
+  public Bounds getBounds() {
+    Bounds b = new Bounds();
+    ImageDefObject imageDef = (ImageDefObject) this.doc.getObjectByID(this.getImageDefObjectID());
 
-        if (imageDef != null) {
-            b.addToBounds(this.insertPoint);
-            b.addToBounds(insertPoint.getX() + imageSizeAlongU,
-                insertPoint.getY() + imageSizeAlongV, this.insertPoint.getZ());
-        } else {
-            b.setValid(false);
-        }
-
-        return b;
+    if (imageDef != null) {
+      b.addToBounds(this.insertPoint);
+      b.addToBounds(
+          insertPoint.getX() + imageSizeAlongU,
+          insertPoint.getY() + imageSizeAlongV,
+          this.insertPoint.getZ());
+    } else {
+      b.setValid(false);
     }
 
-    @Override
-    public Type<Image> getType() {
-        return Type.TYPE_IMAGE;
-    }
+    return b;
+  }
 
-    public Point3D getInsertPoint() {
-        return insertPoint;
-    }
+  @Override
+  public Type<Image> getType() {
+    return Type.TYPE_IMAGE;
+  }
 
-    public void setInsertPoint(Point3D p) {
-        this.insertPoint = p;
-    }
+  public Point3D getInsertPoint() {
+    return insertPoint;
+  }
 
-    public void setImageDefObjectID(long id) {
-        this.imageDefID = id;
-    }
+  public void setInsertPoint(Point3D p) {
+    this.insertPoint = p;
+  }
 
-    public long getImageDefObjectID() {
-        return this.imageDefID;
-    }
+  public void setImageDefObjectID(long id) {
+    this.imageDefID = id;
+  }
 
-    /**
-     * @return Returns the imageSizeAlongU.
-     */
-    public double getImageSizeAlongU() {
-        return imageSizeAlongU;
-    }
+  public long getImageDefObjectID() {
+    return this.imageDefID;
+  }
 
-    /**
-     * @param imageSizeAlongU
-     *            The imageSizeAlongU to set.
-     */
-    public void setImageSizeAlongU(double imageSizeAlongU) {
-        this.imageSizeAlongU = imageSizeAlongU;
-    }
+  /**
+   * @return Returns the imageSizeAlongU.
+   */
+  public double getImageSizeAlongU() {
+    return imageSizeAlongU;
+  }
 
-    /**
-     * @return Returns the imageSizeAlongV.
-     */
-    public double getImageSizeAlongV() {
-        return imageSizeAlongV;
-    }
+  /**
+   * @param imageSizeAlongU The imageSizeAlongU to set.
+   */
+  public void setImageSizeAlongU(double imageSizeAlongU) {
+    this.imageSizeAlongU = imageSizeAlongU;
+  }
 
-    /**
-     * @param imageSizeAlongV
-     *            The imageSizeAlongV to set.
-     */
-    public void setImageSizeAlongV(double imageSizeAlongV) {
-        this.imageSizeAlongV = imageSizeAlongV;
-    }
+  /**
+   * @return Returns the imageSizeAlongV.
+   */
+  public double getImageSizeAlongV() {
+    return imageSizeAlongV;
+  }
 
-    /**
-     * @return Returns the vectorU.
-     */
-    public Point3D getVectorU() {
-        return vectorU;
-    }
+  /**
+   * @param imageSizeAlongV The imageSizeAlongV to set.
+   */
+  public void setImageSizeAlongV(double imageSizeAlongV) {
+    this.imageSizeAlongV = imageSizeAlongV;
+  }
 
-    /**
-     * @param vectorU
-     *            The vectorU to set.
-     */
-    public void setVectorU(Point3D vectorU) {
-        this.vectorU = vectorU;
-    }
+  /**
+   * @return Returns the vectorU.
+   */
+  public Point3D getVectorU() {
+    return vectorU;
+  }
 
-    /**
-     * @return Returns the vectorV.
-     */
-    public Point3D getVectorV() {
-        return vectorV;
-    }
+  /**
+   * @param vectorU The vectorU to set.
+   */
+  public void setVectorU(Point3D vectorU) {
+    this.vectorU = vectorU;
+  }
 
-    /**
-     * @param vectorV
-     *            The vectorV to set.
-     */
-    public void setVectorV(Point3D vectorV) {
-        this.vectorV = vectorV;
-    }
+  /**
+   * @return Returns the vectorV.
+   */
+  public Point3D getVectorV() {
+    return vectorV;
+  }
 
-    /**
-     * @return Returns the brightness.
-     */
-    public double getBrightness() {
-        return brightness;
-    }
+  /**
+   * @param vectorV The vectorV to set.
+   */
+  public void setVectorV(Point3D vectorV) {
+    this.vectorV = vectorV;
+  }
 
-    /**
-     * @param brightness
-     *            The brightness to set.
-     */
-    public void setBrightness(double brightness) {
-        this.brightness = brightness;
-    }
+  /**
+   * @return Returns the brightness.
+   */
+  public double getBrightness() {
+    return brightness;
+  }
 
-    /**
-     * @return Returns the clipping.
-     */
-    public boolean isClipping() {
-        return clipping;
-    }
+  /**
+   * @param brightness The brightness to set.
+   */
+  public void setBrightness(double brightness) {
+    this.brightness = brightness;
+  }
 
-    /**
-     * @param clipping
-     *            The clipping to set.
-     */
-    public void setClipping(boolean clipping) {
-        this.clipping = clipping;
-    }
+  /**
+   * @return Returns the clipping.
+   */
+  public boolean isClipping() {
+    return clipping;
+  }
 
-    /**
-     * @return Returns the contrast.
-     */
-    public double getContrast() {
-        return contrast;
-    }
+  /**
+   * @param clipping The clipping to set.
+   */
+  public void setClipping(boolean clipping) {
+    this.clipping = clipping;
+  }
 
-    /**
-     * @param contrast
-     *            The contrast to set.
-     */
-    public void setContrast(double contrast) {
-        this.contrast = contrast;
-    }
+  /**
+   * @return Returns the contrast.
+   */
+  public double getContrast() {
+    return contrast;
+  }
 
-    /**
-     * @return Returns the fade.
-     */
-    public double getFade() {
-        return fade;
-    }
+  /**
+   * @param contrast The contrast to set.
+   */
+  public void setContrast(double contrast) {
+    this.contrast = contrast;
+  }
 
-    /**
-     * @param fade
-     *            The fade to set.
-     */
-    public void setFade(double fade) {
-        this.fade = fade;
-    }
+  /**
+   * @return Returns the fade.
+   */
+  public double getFade() {
+    return fade;
+  }
 
-    /**
-     * @return Returns the clipBoundary.
-     */
-    public List<Point3D> getClipBoundary() {
-        return clipBoundary;
-    }
+  /**
+   * @param fade The fade to set.
+   */
+  public void setFade(double fade) {
+    this.fade = fade;
+  }
 
-    public void addClippingPoint(Point3D p) {
-        clipBoundary.add(p);
-    }
+  /**
+   * @return Returns the clipBoundary.
+   */
+  public List<Point3D> getClipBoundary() {
+    return clipBoundary;
+  }
 
-    /**
-     * @return Returns the polygonalClipping.
-     */
-    public boolean isPolygonalClipping() {
-        return polygonalClipping;
-    }
+  public void addClippingPoint(Point3D p) {
+    clipBoundary.add(p);
+  }
 
-    /**
-     * @param polygonalClipping
-     *            The polygonalClipping to set.
-     */
-    public void setPolygonalClipping(boolean polygonalClipping) {
-        this.polygonalClipping = polygonalClipping;
-        this.rectangularClipping = !polygonalClipping;
-    }
+  /**
+   * @return Returns the polygonalClipping.
+   */
+  public boolean isPolygonalClipping() {
+    return polygonalClipping;
+  }
 
-    /**
-     * @return Returns the rectangularClipping.
-     */
-    public boolean isRectangularClipping() {
-        return rectangularClipping;
-    }
+  /**
+   * @param polygonalClipping The polygonalClipping to set.
+   */
+  public void setPolygonalClipping(boolean polygonalClipping) {
+    this.polygonalClipping = polygonalClipping;
+    this.rectangularClipping = !polygonalClipping;
+  }
 
-    /**
-     * @param rectangularClipping
-     *            The rectangularClipping to set.
-     */
-    public void setRectangularClipping(boolean rectangularClipping) {
-        this.rectangularClipping = rectangularClipping;
-        this.polygonalClipping = !rectangularClipping;
-    }
+  /**
+   * @return Returns the rectangularClipping.
+   */
+  public boolean isRectangularClipping() {
+    return rectangularClipping;
+  }
 
-    @Override
-    public double getLength() {
-        return 0;
-    }
-    
-    /**
-     * Not implemented yet
-     */
-    
-    @Override
-    public void transform(TransformContext context) {
-       
-    }
+  /**
+   * @param rectangularClipping The rectangularClipping to set.
+   */
+  public void setRectangularClipping(boolean rectangularClipping) {
+    this.rectangularClipping = rectangularClipping;
+    this.polygonalClipping = !rectangularClipping;
+  }
 
-    /**
-     * @ToDo: implement this method
-     *
-     * This is a planar entity, therefore this method should be implemented,
-     * otherwise OCS-coordinates will be used regardless of calling this method.
-     */
-    @Override
-    public void toWcs() {
-        throw new UnsupportedOperationException();
-    }
+  @Override
+  public double getLength() {
+    return 0;
+  }
+
+  /** Not implemented yet */
+  @Override
+  public void transform(TransformContext context) {}
+
+  /**
+   * @ToDo: implement this method
+   *
+   * <p>This is a planar entity, therefore this method should be implemented, otherwise
+   * OCS-coordinates will be used regardless of calling this method.
+   */
+  @Override
+  public void toWcs() {
+    throw new UnsupportedOperationException();
+  }
 }
