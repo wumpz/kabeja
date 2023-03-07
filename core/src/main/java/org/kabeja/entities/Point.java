@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,130 +20,117 @@ import org.kabeja.common.Type;
 import org.kabeja.math.Bounds;
 import org.kabeja.math.TransformContext;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- *
  */
 public class Point extends Entity {
-	
-    protected org.kabeja.math.Point3D p = new org.kabeja.math.Point3D();
-    protected double angle=0.0;
 
+  protected org.kabeja.math.Point3D p = new org.kabeja.math.Point3D();
+  protected double angle = 0.0;
 
-    public Point(double x, double y, double z) {
-    	this(new  org.kabeja.math.Point3D(x,y,z));
-    }
+  public Point(double x, double y, double z) {
+    this(new org.kabeja.math.Point3D(x, y, z));
+  }
 
-    public Point(org.kabeja.math.Point3D p) {
-    	super();
-        this.p = p;
-    }
-    
-    public Point(){
-        this(new  org.kabeja.math.Point3D());
-    }
+  public Point(org.kabeja.math.Point3D p) {
+    super();
+    this.p = p;
+  }
 
-    /**
-     * @return Returns the x.
-     */
-    public double getX() {
-        return this.p.getX();
-    }
+  public Point() {
+    this(new org.kabeja.math.Point3D());
+  }
 
-    /**
-     * @param x
-     *            The x to set.
-     */
-    public void setX(double x) {
-        this.p.setX(x);
-    }
+  /**
+   * @return Returns the x.
+   */
+  public double getX() {
+    return this.p.getX();
+  }
 
-    /**
-     * @return Returns the y.
-     */
-    public double getY() {
-        return this.p.getY();
-    }
+  /**
+   * @param x The x to set.
+   */
+  public void setX(double x) {
+    this.p.setX(x);
+  }
 
-    /**
-     * @param y
-     *            The y to set.
-     */
-    public void setY(double y) {
-        this.p.setY(y);
-    }
+  /**
+   * @return Returns the y.
+   */
+  public double getY() {
+    return this.p.getY();
+  }
 
-    /**
-     * @return Returns the z.
-     */
-    public double getZ() {
-        return this.p.getZ();
-    }
+  /**
+   * @param y The y to set.
+   */
+  public void setY(double y) {
+    this.p.setY(y);
+  }
 
-    /**
-     * @param z
-     *            The z to set.
-     */
-    public void setZ(double z) {
-        this.p.setZ(z);
-    }
+  /**
+   * @return Returns the z.
+   */
+  public double getZ() {
+    return this.p.getZ();
+  }
 
-    @Override
-    public Bounds getBounds() {
-        Bounds bounds = new Bounds();
-        bounds.addToBounds(p);
+  /**
+   * @param z The z to set.
+   */
+  public void setZ(double z) {
+    this.p.setZ(z);
+  }
 
-        return bounds;
-    }
+  @Override
+  public Bounds getBounds() {
+    Bounds bounds = new Bounds();
+    bounds.addToBounds(p);
 
-    @Override
-    public Type<Point> getType() {
-        return Type.TYPE_POINT;
-    }
+    return bounds;
+  }
 
-    public  org.kabeja.math.Point3D getPoint() {
-        return this.p;
-    }
+  @Override
+  public Type<Point> getType() {
+    return Type.TYPE_POINT;
+  }
 
-    public void setPoint(org.kabeja.math.Point3D p) {
-        this.p = p;
-    }
+  public org.kabeja.math.Point3D getPoint() {
+    return this.p;
+  }
 
-    @Override
-    public double getLength() {
-        // a point has no length
-        return 0;
-    }
+  public void setPoint(org.kabeja.math.Point3D p) {
+    this.p = p;
+  }
 
-    /**
-     * @return the angle
-     */
-    public double getAngle() {
-        return angle;
-    }
+  @Override
+  public double getLength() {
+    // a point has no length
+    return 0;
+  }
 
-    /**
-     * @param angle the angle to set
-     */
-    public void setAngle(double angle) {
-        this.angle = angle;
-    }
+  /**
+   * @return the angle
+   */
+  public double getAngle() {
+    return angle;
+  }
 
-    /**
-     * Not implemented yet
-     */
-    
-    @Override
-    public void transform(TransformContext context) {
-        
-    }
+  /**
+   * @param angle the angle to set
+   */
+  public void setAngle(double angle) {
+    this.angle = angle;
+  }
 
-    /**
-     * Does not need to be implemented, as Point is a non-planar entity.
-     */
-    @Override
-    public void toWcs() {
-        super.toWcs();
-    }
+  /** Not implemented yet */
+  @Override
+  public void transform(TransformContext context) {}
+
+  /** Does not need to be implemented, as Point is a non-planar entity. */
+  @Override
+  public void toWcs() {
+    super.toWcs();
+  }
 }

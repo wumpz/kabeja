@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,74 +22,61 @@ import org.kabeja.entities.Entity;
 import org.kabeja.math.Point3D;
 import org.kabeja.util.Constants;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de">Simon Mieth</a>
- *
  */
 public class DXFCircleHandler extends AbstractEntityHandler {
 
-    public final static int RADIUS = 40;
-    private Circle circle;
+  public static final int RADIUS = 40;
+  private Circle circle;
 
+  @Override
+  public Entity getDXFEntity() {
+    return circle;
+  }
 
+  @Override
+  public String getDXFEntityType() {
+    return Constants.ENTITY_TYPE_CIRCLE;
+  }
 
+  @Override
+  public void parseGroup(int groupCode, DXFValue value) {
+    switch (groupCode) {
+      case GROUPCODE_START_X:
+        circle.getCenterPoint().setX(value.getDoubleValue());
 
-    @Override
-    public Entity getDXFEntity() {
-        return circle;
+        break;
+
+      case GROUPCODE_START_Y:
+        circle.getCenterPoint().setY(value.getDoubleValue());
+
+        break;
+
+      case RADIUS:
+        circle.setRadius(value.getDoubleValue());
+
+        break;
+
+      default:
+        super.parseCommonProperty(groupCode, value, circle);
+
+        break;
     }
+  }
 
+  @Override
+  public void startDXFEntity() {
+    circle = new Circle();
+    circle.setCenterPoint(new Point3D());
+    circle.setDocument(doc);
+  }
 
-    @Override
-    public String getDXFEntityType() {
-        return Constants.ENTITY_TYPE_CIRCLE;
-    }
+  @Override
+  public boolean isFollowSequence() {
+    return false;
+  }
 
-
-    @Override
-    public void parseGroup(int groupCode, DXFValue value) {
-        switch (groupCode) {
-        case GROUPCODE_START_X:
-            circle.getCenterPoint().setX(value.getDoubleValue());
-
-            break;
-
-        case GROUPCODE_START_Y:
-            circle.getCenterPoint().setY(value.getDoubleValue());
-
-            break;
-
-        case RADIUS:
-            circle.setRadius(value.getDoubleValue());
-
-            break;
-
-        default:
-            super.parseCommonProperty(groupCode, value, circle);
-
-            break;
-        }
-    }
-
-
-    @Override
-    public void startDXFEntity() {
-        circle = new Circle();
-        circle.setCenterPoint(new Point3D());
-        circle.setDocument(doc);
-    }
-
-
-    @Override
-    public boolean isFollowSequence() {
-        return false;
-    }
-
-
-    @Override
-    public void endDXFEntity() {
-   
-        
-    }
+  @Override
+  public void endDXFEntity() {}
 }

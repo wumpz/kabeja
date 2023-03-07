@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,75 +30,74 @@ import org.kabeja.util.Constants;
 
 public class DXFSolidGenerator extends AbstractDXFEntityGenerator {
 
-    @Override
-	protected void generateSubType(DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context) throws GenerationException {
-		Solid solid = (Solid) entity;
-		
-		if(subtype.getName().equals(Constants.SUBCLASS_MARKER_ENTITY_SOLID)){
-		
-		  for (int groupCode : subtype.getGroupCodes()) {
-			switch (groupCode) {
+  @Override
+  protected void generateSubType(
+      DXFSubType subtype, DraftEntity entity, DXFOutput out, DXFGenerationContext context)
+      throws GenerationException {
+    Solid solid = (Solid) entity;
 
-			case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
-				out.output(100, Constants.SUBCLASS_MARKER_ENTITY_SOLID);
-				break;
+    if (subtype.getName().equals(Constants.SUBCLASS_MARKER_ENTITY_SOLID)) {
 
-			case 10:
-				out.output(10, solid.getPoint1().getX());
-				break;
-			case 20:
-				out.output(20, solid.getPoint1().getY());
-				break;
-			case 30:
-				out.output(30, solid.getPoint1().getZ());
-				break;
-			case 11:
-				out.output(11, solid.getPoint2().getX());
-				break;
-			case 21:
-				out.output(21, solid.getPoint2().getY());
-				break;
-			case 31:
-				out.output(31, solid.getPoint2().getZ());
-				break;
-			case 12:
-				out.output(12, solid.getPoint3().getX());
-				break;
-			case 22:
-				out.output(22, solid.getPoint3().getY());
-				break;
-			case 32:
-				out.output(32, solid.getPoint3().getZ());
-				break;
-			case 13:
-				out.output(13, solid.getPoint4().getX());
-				break;
-			case 23:
-				out.output(23, solid.getPoint4().getY());
-				break;
-			case 33:
-				out.output(33, solid.getPoint4().getZ());
-				break;
-			case 39:
-				out.output(39, solid.getThickness());
-				break;
-			case 370:
-				int lineWeight = solid.getLineWeight();
-				if (lineWeight != 0) {
-					out.output(370, lineWeight);
-				}
-			break;
-			default:
-				outputCommonGroupCode(groupCode, entity, out);
-				break;
-			}
-		  }
-		}
+      for (int groupCode : subtype.getGroupCodes()) {
+        switch (groupCode) {
+          case DXFGenerationConstants.DXF_ENITY_TYPE_SUBCLASS_MARKER:
+            out.output(100, Constants.SUBCLASS_MARKER_ENTITY_SOLID);
+            break;
 
-	}
+          case 10:
+            out.output(10, solid.getPoint1().getX());
+            break;
+          case 20:
+            out.output(20, solid.getPoint1().getY());
+            break;
+          case 30:
+            out.output(30, solid.getPoint1().getZ());
+            break;
+          case 11:
+            out.output(11, solid.getPoint2().getX());
+            break;
+          case 21:
+            out.output(21, solid.getPoint2().getY());
+            break;
+          case 31:
+            out.output(31, solid.getPoint2().getZ());
+            break;
+          case 12:
+            out.output(12, solid.getPoint3().getX());
+            break;
+          case 22:
+            out.output(22, solid.getPoint3().getY());
+            break;
+          case 32:
+            out.output(32, solid.getPoint3().getZ());
+            break;
+          case 13:
+            out.output(13, solid.getPoint4().getX());
+            break;
+          case 23:
+            out.output(23, solid.getPoint4().getY());
+            break;
+          case 33:
+            out.output(33, solid.getPoint4().getZ());
+            break;
+          case 39:
+            out.output(39, solid.getThickness());
+            break;
+          case 370:
+            int lineWeight = solid.getLineWeight();
+            if (lineWeight != 0) {
+              out.output(370, lineWeight);
+            }
+            break;
+          default:
+            outputCommonGroupCode(groupCode, entity, out);
+            break;
+        }
+      }
+    }
+  }
 
-	public String getDXFEntityType() {
-		return Constants.ENTITY_TYPE_SOLID;
-	}
-
+  public String getDXFEntityType() {
+    return Constants.ENTITY_TYPE_SOLID;
+  }
 }

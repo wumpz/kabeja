@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.kabeja.Application;
 import org.kabeja.processing.ProcessingManager;
 import org.kabeja.tools.Component;
@@ -30,103 +29,101 @@ import org.kabeja.ui.ServiceManager;
 import org.kabeja.ui.Serviceable;
 import org.kabeja.ui.Startable;
 
-
 public class ServiceContainer implements ServiceManager, Application {
-   
-	protected List components = new ArrayList();
-    protected ProcessingManager manager;
 
-    public ServiceContainer() {
-        this.addComponent(this);
-    }
+  protected List components = new ArrayList();
+  protected ProcessingManager manager;
 
-    public void addComponent(Component c) {
-        this.components.add(c);
-    }
+  public ServiceContainer() {
+    this.addComponent(this);
+  }
 
-    public Component[] getServiceComponents(String service) {
-        List l = this.getServiceComponentsByServiceField(service);
-        return (Component[])l.toArray(new Component[l.size()]);
-    }
+  public void addComponent(Component c) {
+    this.components.add(c);
+  }
 
-    protected List getServiceComponentsByServiceField(String service) {
-        List list = new ArrayList();
-        Iterator i = this.components.iterator();
+  public Component[] getServiceComponents(String service) {
+    List l = this.getServiceComponentsByServiceField(service);
+    return (Component[]) l.toArray(new Component[l.size()]);
+  }
 
-        try {
-            Class serviceClass = this.getClass().getClassLoader()
-                                     .loadClass(service);
+  protected List getServiceComponentsByServiceField(String service) {
+    List list = new ArrayList();
+    Iterator i = this.components.iterator();
 
-            while (i.hasNext()) {
-                Object obj = i.next();
+    try {
+      Class serviceClass = this.getClass().getClassLoader().loadClass(service);
 
-                if (serviceClass.isInstance(obj)) {
-                    list.add(obj);
-                }
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+      while (i.hasNext()) {
+        Object obj = i.next();
+
+        if (serviceClass.isInstance(obj)) {
+          list.add(obj);
         }
-
-        return list;
+      }
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
     }
 
-    public void setupComponents() {
-       
-        Iterator i = this.components.iterator();
+    return list;
+  }
 
-        while (i.hasNext()) {
-            Object obj = i.next();
+  public void setupComponents() {
 
-            if (obj instanceof Serviceable) {
-                ((Serviceable) obj).setServiceManager(this);
-            }
-        }
+    Iterator i = this.components.iterator();
 
-        ApplicationMenuBar mbar = ((ApplicationMenuBar) this.getServiceComponents(ApplicationMenuBar.SERVICE)[0]);
-        mbar.setAction(ApplicationMenuBar.MENU_ID_FILE,
-            new OpenProcessingAction(this));
+    while (i.hasNext()) {
+      Object obj = i.next();
+
+      if (obj instanceof Serviceable) {
+        ((Serviceable) obj).setServiceManager(this);
+      }
     }
 
-    public void start(Map properties) {
-        this.setupComponents();
+    ApplicationMenuBar mbar =
+        ((ApplicationMenuBar) this.getServiceComponents(ApplicationMenuBar.SERVICE)[0]);
+    mbar.setAction(ApplicationMenuBar.MENU_ID_FILE, new OpenProcessingAction(this));
+  }
 
-        Iterator i = this.components.iterator();
+  public void start(Map properties) {
+    this.setupComponents();
 
-        while (i.hasNext()) {
-            Object obj = i.next();
+    Iterator i = this.components.iterator();
 
-            if (obj instanceof Startable) {
-                ((Startable) obj).start();
-            }
-        }
+    while (i.hasNext()) {
+      Object obj = i.next();
+
+      if (obj instanceof Startable) {
+        ((Startable) obj).start();
+      }
+    }
+  }
+
+  public void stop() {
+    Iterator i = this.components.iterator();
+
+    while (i.hasNext()) {
+      Object obj = i.next();
+
+      if (obj instanceof Startable) {
+        ((Startable) obj).stop();
+      }
     }
 
-    public void stop() {
-        Iterator i = this.components.iterator();
+    System.exit(0);
+  }
 
-        while (i.hasNext()) {
-            Object obj = i.next();
+  public void setProcessingManager(ProcessingManager manager) {
+    this.manager = manager;
 
-            if (obj instanceof Startable) {
-                ((Startable) obj).stop();
-            }
-        }
+    Iterator i = this.components.iterator();
 
-        System.exit(0);
+    while (i.hasNext()) {
+      Object obj = i.next();
+
+      if (obj instanceof ProcessingUIComponent) {
+        ((ProcessingUIComponent) obj).setProcessingManager(manager);
+      }
     }
-
-    public void setProcessingManager(ProcessingManager manager) {
-        this.manager = manager;
-
-        Iterator i = this.components.iterator();
-
-        while (i.hasNext()) {
-            Object obj = i.next();
-
-            if (obj instanceof ProcessingUIComponent) {
-                ((ProcessingUIComponent) obj).setProcessingManager(manager);
-            }
-        }
-    }
+  }
 }

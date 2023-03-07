@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,25 +14,24 @@
  * limitations under the License.
  ******************************************************************************/
 /*
- Copyright 2005 Simon Mieth
+Copyright 2005 Simon Mieth
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 package org.kabeja.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.kabeja.common.Type;
 import org.kabeja.entities.util.HatchBoundaryLoop;
 import org.kabeja.math.Bounds;
@@ -41,360 +40,342 @@ import org.kabeja.math.TransformContext;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- * 
  */
 public class Hatch extends Entity {
-	private String name = "";
-	@SuppressWarnings("unused")
-	private boolean solid = false;
-	private int associativityFlag = 0;
-	private int boundaryPathCount = 0;
-	private int hatchStyle = 0;
-	private int patternType = 0;
-	private double patternAngle = 0.0;
-	private double patternScaleSpacing = 1.0;
-	private boolean boundaryAnnotation = false;
-	private boolean patternDouble = false;
-	private int definationLinesCount = 0;
-	private double pixelSize = 0.0;
-	private int seedPointCount = 0;
-	private double offsetVector = 0.0;
-	private int degenerateBoundaryPathCount = 0;
-	private boolean gradientHatch = false;
-	private Point3D elevationPoint = new Point3D();
-	private List<HatchBoundaryLoop> boundaries = new ArrayList<>();
-	private String patternID = "";
-	private double patternScale;
 
-	public Hatch() {
-	}
+  public static final int HATCH_PATTERN_TYPE_USER_DEFINED = 0;
+  public static final int HATCH_PATTERN_TYPE_PREDEFINED = 1;
+  public static final int HATCH_PATTERN_TYPE_CUSTOM = 2;
 
-	/**
-	 * @return Returns the associativityFlag.
-	 */
-	public int getAssociativityFlag() {
-		return associativityFlag;
-	}
+  private String name = "";
 
-	/**
-	 * @param associativityFlag
-	 *            The associativityFlag to set.
-	 */
-	public void setAssociativityFlag(int associativityFlag) {
-		this.associativityFlag = associativityFlag;
-	}
+  @SuppressWarnings("unused")
+  private boolean solid = false;
 
-	/**
-	 * @return Returns the boundaryAnnotation.
-	 */
-	public boolean isBoundaryAnnotation() {
-		return boundaryAnnotation;
-	}
+  private int associativityFlag = 0;
+  private int boundaryPathCount = 0;
+  private int hatchStyle = 0;
+  private int patternType = 0;
+  private double patternAngle = 0.0;
+  private double patternScaleSpacing = 1.0;
+  private boolean boundaryAnnotation = false;
+  private boolean patternDouble = false;
+  private int definationLinesCount = 0;
+  private double pixelSize = 0.0;
+  private int seedPointCount = 0;
+  private double offsetVector = 0.0;
+  private int degenerateBoundaryPathCount = 0;
+  private boolean gradientHatch = false;
+  private Point3D elevationPoint = new Point3D();
+  private List<HatchBoundaryLoop> boundaries = new ArrayList<>();
+  private String patternID = "";
+  private double patternScale;
 
-	/**
-	 * @param boundaryAnnotation
-	 *            The boundaryAnnotation to set.
-	 */
-	public void setBoundaryAnnotation(boolean boundaryAnnotation) {
-		this.boundaryAnnotation = boundaryAnnotation;
-	}
+  public Hatch() {}
 
-	/**
-	 * @return Returns the boundaryPathCount.
-	 */
-	public int getBoundaryPathCount() {
-		return boundaryPathCount;
-	}
+  /**
+   * @return Returns the associativityFlag.
+   */
+  public int getAssociativityFlag() {
+    return associativityFlag;
+  }
 
-	/**
-	 * @param boundaryPathCount
-	 *            The boundaryPathCount to set.
-	 */
-	public void setBoundaryPathCount(int boundaryPathCount) {
-		this.boundaryPathCount = boundaryPathCount;
-	}
+  /**
+   * @param associativityFlag The associativityFlag to set.
+   */
+  public void setAssociativityFlag(int associativityFlag) {
+    this.associativityFlag = associativityFlag;
+  }
 
-	/**
-	 * @return Returns the definationLinesCount.
-	 */
-	public int getDefinationLinesCount() {
-		return definationLinesCount;
-	}
+  /**
+   * @return Returns the boundaryAnnotation.
+   */
+  public boolean isBoundaryAnnotation() {
+    return boundaryAnnotation;
+  }
 
-	/**
-	 * @param definationLinesCount
-	 *            The definationLinesCount to set.
-	 */
-	public void setDefinationLinesCount(int definationLinesCount) {
-		this.definationLinesCount = definationLinesCount;
-	}
+  /**
+   * @param boundaryAnnotation The boundaryAnnotation to set.
+   */
+  public void setBoundaryAnnotation(boolean boundaryAnnotation) {
+    this.boundaryAnnotation = boundaryAnnotation;
+  }
 
-	/**
-	 * @return Returns the degenerateBoundaryPathCount.
-	 */
-	public int getDegenerateBoundaryPathCount() {
-		return degenerateBoundaryPathCount;
-	}
+  /**
+   * @return Returns the boundaryPathCount.
+   */
+  public int getBoundaryPathCount() {
+    return boundaryPathCount;
+  }
 
-	/**
-	 * @param degenerateBoundaryPathCount
-	 *            The degenerateBoundaryPathCount to set.
-	 */
-	public void setDegenerateBoundaryPathCount(int degenerateBoundaryPathCount) {
-		this.degenerateBoundaryPathCount = degenerateBoundaryPathCount;
-	}
+  /**
+   * @param boundaryPathCount The boundaryPathCount to set.
+   */
+  public void setBoundaryPathCount(int boundaryPathCount) {
+    this.boundaryPathCount = boundaryPathCount;
+  }
 
-	/**
-	 * @return Returns the gradientHatch.
-	 */
-	public boolean isGradientHatch() {
-		return gradientHatch;
-	}
+  /**
+   * @return Returns the definationLinesCount.
+   */
+  public int getDefinationLinesCount() {
+    return definationLinesCount;
+  }
 
-	/**
-	 * @param gradientHatch
-	 *            The gradientHatch to set.
-	 */
-	public void setGradientHatch(boolean gradientHatch) {
-		this.gradientHatch = gradientHatch;
-	}
+  /**
+   * @param definationLinesCount The definationLinesCount to set.
+   */
+  public void setDefinationLinesCount(int definationLinesCount) {
+    this.definationLinesCount = definationLinesCount;
+  }
 
-	/**
-	 * @return Returns the hatchStyle.
-	 */
-	public int getHatchStyle() {
-		return hatchStyle;
-	}
+  /**
+   * @return Returns the degenerateBoundaryPathCount.
+   */
+  public int getDegenerateBoundaryPathCount() {
+    return degenerateBoundaryPathCount;
+  }
 
-	/**
-	 * @param hatchStyle
-	 *            The hatchStyle to set.
-	 */
-	public void setHatchStyle(int hatchStyle) {
-		this.hatchStyle = hatchStyle;
-	}
+  /**
+   * @param degenerateBoundaryPathCount The degenerateBoundaryPathCount to set.
+   */
+  public void setDegenerateBoundaryPathCount(int degenerateBoundaryPathCount) {
+    this.degenerateBoundaryPathCount = degenerateBoundaryPathCount;
+  }
 
-	/**
-	 * @return Returns the name.
-	 */
-	public String getName() {
-		return name;
-	}
+  /**
+   * @return Returns the gradientHatch.
+   */
+  public boolean isGradientHatch() {
+    return gradientHatch;
+  }
 
-	/**
-	 * @param name
-	 *            The name to set.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+  /**
+   * @param gradientHatch The gradientHatch to set.
+   */
+  public void setGradientHatch(boolean gradientHatch) {
+    this.gradientHatch = gradientHatch;
+  }
 
-	/**
-	 * @return Returns the offsetVector.
-	 */
-	public double getOffsetVector() {
-		return offsetVector;
-	}
+  /**
+   * @return Returns the hatchStyle.
+   */
+  public int getHatchStyle() {
+    return hatchStyle;
+  }
 
-	/**
-	 * @param offsetVector
-	 *            The offsetVector to set.
-	 */
-	public void setOffsetVector(double offsetVector) {
-		this.offsetVector = offsetVector;
-	}
+  /**
+   * @param hatchStyle The hatchStyle to set.
+   */
+  public void setHatchStyle(int hatchStyle) {
+    this.hatchStyle = hatchStyle;
+  }
 
-	/**
-	 * @return Returns the patternAngle.
-	 */
-	public double getPatternAngle() {
-		return patternAngle;
-	}
+  /**
+   * @return Returns the name.
+   */
+  public String getName() {
+    return name;
+  }
 
-	/**
-	 * @param patternAngle
-	 *            The patternAngle to set.
-	 */
-	public void setPatternAngle(double patternAngle) {
-		this.patternAngle = patternAngle;
-	}
+  /**
+   * @param name The name to set.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	/**
-	 * @return Returns the patternDouble.
-	 */
-	public boolean isPatternDouble() {
-		return patternDouble;
-	}
+  /**
+   * @return Returns the offsetVector.
+   */
+  public double getOffsetVector() {
+    return offsetVector;
+  }
 
-	/**
-	 * @param patternDouble
-	 *            The patternDouble to set.
-	 */
-	public void setPatternDouble(boolean patternDouble) {
-		this.patternDouble = patternDouble;
-	}
+  /**
+   * @param offsetVector The offsetVector to set.
+   */
+  public void setOffsetVector(double offsetVector) {
+    this.offsetVector = offsetVector;
+  }
 
-	/**
-	 * @return Returns the patternScaleSpacing.
-	 */
-	public double getPatternScaleSpacing() {
-		return patternScaleSpacing;
-	}
+  /**
+   * @return Returns the patternAngle.
+   */
+  public double getPatternAngle() {
+    return patternAngle;
+  }
 
-	/**
-	 * @param patternScaleSpacing
-	 *            The patternScaleSpacing to set.
-	 */
-	public void setPatternScaleSpacing(double patternScaleSpacing) {
-		this.patternScaleSpacing = patternScaleSpacing;
-	}
+  /**
+   * @param patternAngle The patternAngle to set.
+   */
+  public void setPatternAngle(double patternAngle) {
+    this.patternAngle = patternAngle;
+  }
 
-	/**
-	 * @return Returns the patternType.
-	 */
-	public int getPatternType() {
-		return patternType;
-	}
+  /**
+   * @return Returns the patternDouble.
+   */
+  public boolean isPatternDouble() {
+    return patternDouble;
+  }
 
-	/**
-	 * @param patternType
-	 *            The patternType to set.
-	 */
-	public void setPatternType(int patternType) {
-		this.patternType = patternType;
-	}
+  /**
+   * @param patternDouble The patternDouble to set.
+   */
+  public void setPatternDouble(boolean patternDouble) {
+    this.patternDouble = patternDouble;
+  }
 
-	/**
-	 * @return Returns the pixelSize.
-	 */
-	public double getPixelSize() {
-		return pixelSize;
-	}
+  /**
+   * @return Returns the patternScaleSpacing.
+   */
+  public double getPatternScaleSpacing() {
+    return patternScaleSpacing;
+  }
 
-	/**
-	 * @param pixelSize
-	 *            The pixelSize to set.
-	 */
-	public void setPixelSize(double pixelSize) {
-		this.pixelSize = pixelSize;
-	}
+  /**
+   * @param patternScaleSpacing The patternScaleSpacing to set.
+   */
+  public void setPatternScaleSpacing(double patternScaleSpacing) {
+    this.patternScaleSpacing = patternScaleSpacing;
+  }
 
-	/**
-	 * @return Returns the seedPointCount.
-	 */
-	public int getSeedPointCount() {
-		return seedPointCount;
-	}
+  /**
+   * @return Returns the patternType.
+   */
+  public int getPatternType() {
+    return patternType;
+  }
 
-	/**
-	 * @param seedPointCount
-	 *            The seedPointCount to set.
-	 */
-	public void setSeedPointCount(int seedPointCount) {
-		this.seedPointCount = seedPointCount;
-	}
+  /**
+   * @param patternType The patternType to set.
+   */
+  public void setPatternType(int patternType) {
+    this.patternType = patternType;
+  }
 
-	/**
-	 * @return Returns the solid.
-	 */
-	public boolean isSolid() {
-		return this.flags == 1;
-	}
+  /**
+   * @return Returns the pixelSize.
+   */
+  public double getPixelSize() {
+    return pixelSize;
+  }
 
-	/**
-	 * @param solid
-	 *            The solid to set.
-	 */
-	public void setSolid(boolean solid) {
-		this.solid = solid;
-	}
+  /**
+   * @param pixelSize The pixelSize to set.
+   */
+  public void setPixelSize(double pixelSize) {
+    this.pixelSize = pixelSize;
+  }
 
-	public void addBoundaryLoop(HatchBoundaryLoop loop) {
-		this.boundaries.add(loop);
-	}
+  /**
+   * @return Returns the seedPointCount.
+   */
+  public int getSeedPointCount() {
+    return seedPointCount;
+  }
 
-	public List<HatchBoundaryLoop> getBoundaryLoops() {
-		return this.boundaries;
-	}
+  /**
+   * @param seedPointCount The seedPointCount to set.
+   */
+  public void setSeedPointCount(int seedPointCount) {
+    this.seedPointCount = seedPointCount;
+  }
 
-    @Override
-	public Bounds getBounds() {
-		Bounds bounds = new Bounds();
+  /**
+   * @return Returns the solid.
+   */
+  public boolean isSolid() {
+    return this.flags == 1;
+  }
 
-		for (HatchBoundaryLoop loop : this.boundaries) {
-			Bounds b = loop.getBounds();
-			if (b.isValid()) {
-				bounds.addToBounds(b);
-			}
-		}
-		return bounds;
-	}
+  /**
+   * @param solid The solid to set.
+   */
+  public void setSolid(boolean solid) {
+    this.solid = solid;
+  }
 
-	/**
-	 * @return Returns the elevationPoint.
-	 */
-	public Point3D getElevationPoint() {
-		return elevationPoint;
-	}
+  public void addBoundaryLoop(HatchBoundaryLoop loop) {
+    this.boundaries.add(loop);
+  }
 
-	/**
-	 * @param elevationPoint
-	 *            The elevationPoint to set.
-	 */
-	public void setElevationPoint(Point3D elevationPoint) {
-		this.elevationPoint = elevationPoint;
-	}
+  public List<HatchBoundaryLoop> getBoundaryLoops() {
+    return this.boundaries;
+  }
 
-    @Override
-	public Type<Hatch> getType() {
-		return Type.TYPE_HATCH;
-	}
+  @Override
+  public Bounds getBounds() {
+    Bounds bounds = new Bounds();
 
-	/**
-	 * @return Returns the ID of the pattern (also called pattern name).
-	 */
-	public String getHatchPatternID() {
-		return this.patternID;
-	}
+    for (HatchBoundaryLoop loop : this.boundaries) {
+      Bounds b = loop.getBounds();
+      if (b.isValid()) {
+        bounds.addToBounds(b);
+      }
+    }
+    return bounds;
+  }
 
-	/**
-	 * @param patternID
-	 *            The patternID to set.
-	 */
-	public void setHatchPatternID(String patternID) {
-		this.patternID = patternID;
-	}
+  /**
+   * @return Returns the elevationPoint.
+   */
+  public Point3D getElevationPoint() {
+    return elevationPoint;
+  }
 
-    @Override
-	public double getLength() {
-		return 0;
-	}
+  /**
+   * @param elevationPoint The elevationPoint to set.
+   */
+  public void setElevationPoint(Point3D elevationPoint) {
+    this.elevationPoint = elevationPoint;
+  }
 
-	public double getPatternScale() {
-		return patternScale;
-	}
+  @Override
+  public Type<Hatch> getType() {
+    return Type.TYPE_HATCH;
+  }
 
-	public void setPatternScale(double patternScale) {
-		this.patternScale = patternScale;
-	}
+  /**
+   * @return Returns the ID of the pattern (also called pattern name).
+   */
+  public String getHatchPatternID() {
+    return this.patternID;
+  }
 
-	/**
-	 * Not implemented yet
-	 */
+  /**
+   * @param patternID The patternID to set.
+   */
+  public void setHatchPatternID(String patternID) {
+    this.patternID = patternID;
+  }
 
-    @Override
-	public void transform(TransformContext context) {
+  @Override
+  public double getLength() {
+    return 0;
+  }
 
-	}
+  public double getPatternScale() {
+    return patternScale;
+  }
 
-	/**
-	 * @ToDo: implement this method
-	 *
-	 * This is a planar entity, therefore this method should be implemented,
-	 * otherwise OCS-coordinates will be used regardless of calling this method.
-	 */
-	@Override
-	public void toWcs() {
-		throw new UnsupportedOperationException();
-	}
+  public void setPatternScale(double patternScale) {
+    this.patternScale = patternScale;
+  }
+
+  /** Not implemented yet */
+  @Override
+  public void transform(TransformContext context) {}
+
+  /**
+   * @ToDo: implement this method
+   *
+   * <p>This is a planar entity, therefore this method should be implemented, otherwise
+   * OCS-coordinates will be used regardless of calling this method.
+   */
+  @Override
+  public void toWcs() {
+    throw new UnsupportedOperationException();
+  }
 }

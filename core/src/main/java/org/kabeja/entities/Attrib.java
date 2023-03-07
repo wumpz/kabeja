@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,93 +21,91 @@ import org.kabeja.util.Constants;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- * 
  */
 public class Attrib extends Text {
 
-	protected boolean blockAttribute = false;
-	protected String tag = "";
+  protected boolean blockAttribute = false;
+  protected String tag = "";
 
-	
-	private static final int LAZY_INDEX_PROMPT=10;
-	
-    @Override
-	public Type<?> getType() {
-		return Type.TYPE_ATTRIB;
-	}
+  private static final int LAZY_INDEX_PROMPT = 10;
 
-	public boolean isInvisible() {
-		return ((this.flags & 1) == 1);
-	}
+  @Override
+  public Type<?> getType() {
+    return Type.TYPE_ATTRIB;
+  }
 
-	public boolean isConstant() {
-		return ((this.flags & 2) == 2);
-	}
+  public boolean isInvisible() {
+    return ((this.flags & 1) == 1);
+  }
 
-	public boolean isVerifiable() {
-		return ((this.flags & 4) == 4);
-	}
+  public boolean isConstant() {
+    return ((this.flags & 2) == 2);
+  }
 
-	public boolean isPresent() {
-		return ((this.flags & 8) == 8);
-	}
+  public boolean isVerifiable() {
+    return ((this.flags & 4) == 4);
+  }
 
-	public boolean isBlockAttribute() {
-		return blockAttribute;
-	}
+  public boolean isPresent() {
+    return ((this.flags & 8) == 8);
+  }
 
-	public void setBlockAttribute(boolean blockAttribute) {
-		this.blockAttribute = blockAttribute;
-	}
+  public boolean isBlockAttribute() {
+    return blockAttribute;
+  }
 
-	public String getPrompt() {
-		if(this.lazyContainer.contains(LAZY_INDEX_PROMPT)){
-			return (String)this.lazyContainer.get(LAZY_INDEX_PROMPT);
-		}
-		return "";
-	}
+  public void setBlockAttribute(boolean blockAttribute) {
+    this.blockAttribute = blockAttribute;
+  }
 
-	public void setPrompt(String prompt) {		
-	    this.lazyContainer.set(prompt, LAZY_INDEX_PROMPT);
-	}
+  public String getPrompt() {
+    if (this.lazyContainer.contains(LAZY_INDEX_PROMPT)) {
+      return (String) this.lazyContainer.get(LAZY_INDEX_PROMPT);
+    }
+    return "";
+  }
 
-	public String getTag() {
-		return tag;
-	}
+  public void setPrompt(String prompt) {
+    this.lazyContainer.set(prompt, LAZY_INDEX_PROMPT);
+  }
 
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
+  public String getTag() {
+    return tag;
+  }
 
-    @Override
-	public boolean isVisibile() {
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
 
-		if (this.isBlockEntity()) {
-			if (!this.isConstant()) {
-				return false;
-			} else if (this.isInvisible()) {
-				return false;
-			} else if (this.doc.getHeader().hasVariable(
-					Constants.HEADER_VARIABLE_ATTMODE)
-					&& this.doc.getHeader().getVariable(
-							Constants.HEADER_VARIABLE_ATTMODE)
-							.getIntegerValue("70") == 0) {
-				return false;
-			}
-		}
+  @Override
+  public boolean isVisibile() {
 
-		return true;
-	}
+    if (this.isBlockEntity()) {
+      if (!this.isConstant()) {
+        return false;
+      } else if (this.isInvisible()) {
+        return false;
+      } else if (this.doc.getHeader().hasVariable(Constants.HEADER_VARIABLE_ATTMODE)
+          && this.doc
+                  .getHeader()
+                  .getVariable(Constants.HEADER_VARIABLE_ATTMODE)
+                  .getIntegerValue("70")
+              == 0) {
+        return false;
+      }
+    }
 
-	/**
-	 * @ToDo: implement this method
-	 *
-	 * This is a planar entity, therefore this method should be implemented,
-	 * otherwise OCS-coordinates will be used regardless of calling this method.
-	 */
-	@Override
-	public void toWcs() {
-		throw new UnsupportedOperationException();
-	}
+    return true;
+  }
 
+  /**
+   * @ToDo: implement this method
+   *
+   * <p>This is a planar entity, therefore this method should be implemented, otherwise
+   * OCS-coordinates will be used regardless of calling this method.
+   */
+  @Override
+  public void toWcs() {
+    throw new UnsupportedOperationException();
+  }
 }

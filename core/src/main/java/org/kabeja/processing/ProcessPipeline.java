@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,115 +22,106 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.kabeja.DraftDocument;
 import org.kabeja.processing.helper.MergeMap;
 import org.kabeja.processing.xml.SAXFilterConfig;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de">Simon Mieth</a>
- * 
  */
 public class ProcessPipeline {
-	
-	private ProcessingManager manager;
-	private List<PostProcessorConfig> postProcessorConfigs = new ArrayList<>();
-	private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<>();
-	private Generator generator;
-	private Map<String, Object> generatorProperties = new HashMap<>();
-	private String name;
-	private String description = "";
 
-	public void process(DraftDocument doc, Map<String, Object> context, OutputStream out)
-			throws ProcessorException {
-		
+  private ProcessingManager manager;
+  private List<PostProcessorConfig> postProcessorConfigs = new ArrayList<>();
+  private List<SAXFilterConfig> saxFilterConfigs = new ArrayList<>();
+  private Generator generator;
+  private Map<String, Object> generatorProperties = new HashMap<>();
+  private String name;
+  private String description = "";
 
-		// postprocess
-		Iterator<PostProcessorConfig> i = this.postProcessorConfigs.iterator();
+  public void process(DraftDocument doc, Map<String, Object> context, OutputStream out)
+      throws ProcessorException {
 
-		while (i.hasNext()) {
-			PostProcessorConfig ppc = (PostProcessorConfig) i.next();
-			PostProcessor pp = this.manager.getPostProcessor(ppc
-					.getPostProcessorName());
+    // postprocess
+    Iterator<PostProcessorConfig> i = this.postProcessorConfigs.iterator();
 
-			// backup the default props
-			Map<String, Object> oldProps = pp.getProperties();
-			// setup the pipepine props
-			pp.setProperties(new MergeMap<>(ppc.getProperties(), context));
-			pp.process(doc, context);
-			// restore the default props
-			pp.setProperties(oldProps);
-		}
+    while (i.hasNext()) {
+      PostProcessorConfig ppc = (PostProcessorConfig) i.next();
+      PostProcessor pp = this.manager.getPostProcessor(ppc.getPostProcessorName());
 
-	}
+      // backup the default props
+      Map<String, Object> oldProps = pp.getProperties();
+      // setup the pipepine props
+      pp.setProperties(new MergeMap<>(ppc.getProperties(), context));
+      pp.process(doc, context);
+      // restore the default props
+      pp.setProperties(oldProps);
+    }
+  }
 
-	/**
-	 * @return Returns the manager.
-	 */
-	public ProcessingManager getProcessorManager() {
-		return manager;
-	}
+  /**
+   * @return Returns the manager.
+   */
+  public ProcessingManager getProcessorManager() {
+    return manager;
+  }
 
-	/**
-	 * @param manager
-	 *            The manager to set.
-	 */
-	public void setProcessorManager(ProcessingManager manager) {
-		this.manager = manager;
-	}
+  /**
+   * @param manager The manager to set.
+   */
+  public void setProcessorManager(ProcessingManager manager) {
+    this.manager = manager;
+  }
 
-	/**
-	 * @return Returns the name.
-	 */
-	public String getName() {
-		return name;
-	}
+  /**
+   * @return Returns the name.
+   */
+  public String getName() {
+    return name;
+  }
 
-	/**
-	 * @param name
-	 *            The name to set.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+  /**
+   * @param name The name to set.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void prepare() {
-	}
+  public void prepare() {}
 
-	public List<PostProcessorConfig> getPostProcessorConfigs() {
-		return this.postProcessorConfigs;
-	}
+  public List<PostProcessorConfig> getPostProcessorConfigs() {
+    return this.postProcessorConfigs;
+  }
 
-	public void addSAXFilterConfig(SAXFilterConfig config) {
-		this.saxFilterConfigs.add(config);
-	}
+  public void addSAXFilterConfig(SAXFilterConfig config) {
+    this.saxFilterConfigs.add(config);
+  }
 
-	public void addPostProcessorConfig(PostProcessorConfig config) {
-		this.postProcessorConfigs.add(config);
-	}
+  public void addPostProcessorConfig(PostProcessorConfig config) {
+    this.postProcessorConfigs.add(config);
+  }
 
+  public void setGeneratorProperties(Map<String, Object> generatorProperties) {
+    this.generatorProperties = generatorProperties;
+  }
 
-	public void setGeneratorProperties(Map<String, Object> generatorProperties) {
-		this.generatorProperties = generatorProperties;
-	}
+  public Map<String, Object> getSAXGeneratorProperties(Map<String, Object> generatorProperties) {
+    return this.generatorProperties;
+  }
 
-	public Map<String, Object> getSAXGeneratorProperties(Map<String, Object> generatorProperties) {
-		return this.generatorProperties;
-	}
+  public void setGenerator(Generator generator) {
+    this.generator = generator;
+  }
 
-	public void setGenerator(Generator generator) {
-		this.generator = generator;
-	}
+  public Generator getGenerator() {
+    return this.generator;
+  }
 
-	public Generator getGenerator() {
-		return this.generator;
-	}
+  public String getDescription() {
+    return this.description;
+  }
 
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }

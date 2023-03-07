@@ -20,50 +20,47 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Map;
-
 import org.kabeja.dxf.generator.conf.SAXDXFGenerationContextBuilder;
 import org.kabeja.processing.Generator;
 import org.kabeja.processing.InstanceFactory;
 
-public class DXFGeneratorFactory  implements InstanceFactory{
+public class DXFGeneratorFactory implements InstanceFactory {
 
-	private String DEFAULT_PROFILES_FILE="/conf/profiles.xml";
+  private String DEFAULT_PROFILES_FILE = "/conf/profiles.xml";
 
-	protected static DXFGenerationContext getDXFGenerationContext(
-            InputStream in) {
-        SAXDXFGenerationContextBuilder builder = new SAXDXFGenerationContextBuilder();
-        return builder.buildDXFGenerationContext(in);
+  protected static DXFGenerationContext getDXFGenerationContext(InputStream in) {
+    SAXDXFGenerationContextBuilder builder = new SAXDXFGenerationContextBuilder();
+    return builder.buildDXFGenerationContext(in);
+  }
+
+  public static Generator createStreamGenerator(InputStream config) {
+
+    DXFGenerationContext context = getDXFGenerationContext(config);
+
+    DXFGenerator generator = new DXFGenerator(context);
+
+    return generator;
+  }
+
+  @Override
+  public Object createInstance(Map properties) {
+    final InputStream in;
+    File f = new File(DEFAULT_PROFILES_FILE);
+
+    try {
+      if (f.exists()) {
+        in = new FileInputStream(f);
+      } else {
+        in = DXFGeneratorFactory.class.getResourceAsStream(DEFAULT_PROFILES_FILE);
+      }
+
+      final Generator streamGenerator = createStreamGenerator(in);
+      streamGenerator.setProperties(properties);
+
+      return streamGenerator;
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return null;
     }
-
-    public static Generator createStreamGenerator(InputStream config) {
-
-        DXFGenerationContext context = getDXFGenerationContext(config);
-
-        DXFGenerator generator = new DXFGenerator(context);
-
-        return generator;
-    }
-
-    @Override
-	public Object createInstance(Map properties) {
-		final InputStream in;
-		File f = new File(DEFAULT_PROFILES_FILE);
-
-		try {
-			if (f.exists()) {
-				in = new FileInputStream(f);
-			} else {
-				in = DXFGeneratorFactory.class.getResourceAsStream(DEFAULT_PROFILES_FILE);
-			}
-
-			final Generator streamGenerator = createStreamGenerator(in);
-			streamGenerator.setProperties(properties);
-
-			return streamGenerator;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
+  }
 }

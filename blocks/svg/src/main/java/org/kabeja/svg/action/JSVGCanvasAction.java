@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,15 +17,13 @@
 package org.kabeja.svg.action;
 
 import javax.swing.Action;
-
 import org.apache.batik.swing.JSVGCanvas;
-
 
 /**
  * This interface describes an Action, which could act ont the given JSVGCanvas
- * @author simon
  *
+ * @author simon
  */
 public interface JSVGCanvasAction extends Action, ViewerAction {
-    public void setJSVGCanvas(JSVGCanvas canvas);
+  public void setJSVGCanvas(JSVGCanvas canvas);
 }

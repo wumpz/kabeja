@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2010 Simon Mieth
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,26 +19,24 @@ package org.kabeja.entities;
 import org.kabeja.common.DraftEntity;
 import org.kabeja.common.Type;
 
-
 /**
  * @author <a href="mailto:simon.mieth@gmx.de>Simon Mieth</a>
- *
  */
 public class Trace extends Solid {
 
-    @Override
-    public Type<? extends DraftEntity> getType() {
-        return Type.TYPE_TRACE;
-    }
+  @Override
+  public Type<? extends DraftEntity> getType() {
+    return Type.TYPE_TRACE;
+  }
 
-    /**
-     * @ToDo: implement this method
-     *
-     * This is a planar entity, therefore this method should be implemented,
-     * otherwise OCS-coordinates will be used regardless of calling this method.
-     */
-    @Override
-    public void toWcs() {
-        throw new UnsupportedOperationException();
-    }
+  /**
+   * @ToDo: implement this method
+   *
+   * <p>This is a planar entity, therefore this method should be implemented, otherwise
+   * OCS-coordinates will be used regardless of calling this method.
+   */
+  @Override
+  public void toWcs() {
+    throw new UnsupportedOperationException();
+  }
 }
