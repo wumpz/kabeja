@@ -44,6 +44,11 @@ import org.kabeja.math.TransformContext;
  * 
  */
 public class Hatch extends Entity {
+  
+  public static final int HATCH_PATTERN_TYPE_USER_DEFINED = 0;
+  public static final int HATCH_PATTERN_TYPE_PREDEFINED = 1;
+  public static final int HATCH_PATTERN_TYPE_CUSTOM = 2;
+  
 	private String name = "";
 	@SuppressWarnings("unused")
 	private boolean solid = false;

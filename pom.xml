@@ -31,23 +31,13 @@
 
     <developers>
         <developer>
-            <id>simijhag</id>
-            <name>Simon Mieth</name>
-            <email>simon.mieth@gmx.de</email>
+            <id>tw</id>
+            <name>Tobias Warneke</name>
+            <email>t.warneke@gmx.net</email>
             <roles>
                 <role>Admin</role>
                 <role>Developer</role>
             </roles>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>michele</id>
-            <name>Michele Franzin</name>
-            <email>michele.franzin@gmail.com</email>
-            <roles>
-                <role>Developer</role>
-            </roles>
-            <timezone>+1</timezone>
         </developer>
     </developers>
 
@@ -120,6 +110,26 @@
                     <skipFeatureVersion>true</skipFeatureVersion>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.34.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>apply</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <java>
+                        <googleJavaFormat>
+                            <style>GOOGLE</style>
+                        </googleJavaFormat>
+                    </java>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -133,17 +143,9 @@
     <reporting>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <source>1.5</source>
-                    <verbose>false</verbose>
-                    <links>
-                        <link>
-                            http://download.oracle.com/javase/1.5.0/docs/api/
-                        </link>
-                    </links>
-                </configuration>
-                <version>2.7</version>
+                <version>3.4.0</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
