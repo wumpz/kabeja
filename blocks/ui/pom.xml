@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.kabeja</groupId>
         <artifactId>tfly-kabeja</artifactId>
-        <version>0.6-SNAPSHOT</version>
+        <version>0.5.9</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
    
