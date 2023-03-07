@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import org.kabeja.DraftDocument;
 import org.kabeja.entities.Entity;
+import org.kabeja.entities.XData;
 import org.kabeja.entities.util.Utils;
 import org.kabeja.math.Bounds;
 import org.kabeja.util.Constants;
@@ -45,6 +46,7 @@ public class Layer {
   private int lineWeight = 0;
   private String plotStyle = "";
   private int zIndex = 0;
+  private List<XData> xDataList = new ArrayList<>();
 
   protected static final int BIT_PLOTTABLE = 0;
   protected static final int BIT_OWN_LINETYPE = 1;
@@ -314,5 +316,19 @@ public class Layer {
 
   public boolean hasLineType() {
     return Utils.isBitEnabled(this.bitField, BIT_OWN_LINETYPE);
+  }
+
+  public void addXData(String applicationName) {
+    xDataList.add(new XData(applicationName));
+  }
+
+  public void setXDataString(String xDataString) {
+    if (!xDataList.isEmpty()) {
+      xDataList.get(xDataList.size() - 1).setxDataString(xDataString);
+    }
+  }
+
+  public List<XData> getXDataList() {
+    return xDataList;
   }
 }

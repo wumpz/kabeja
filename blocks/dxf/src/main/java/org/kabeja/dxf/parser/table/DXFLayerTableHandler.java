@@ -16,6 +16,9 @@
 
 package org.kabeja.dxf.parser.table;
 
+import static org.kabeja.dxf.parser.entities.AbstractEntityHandler.XDATA_APPLICATION_NAME;
+import static org.kabeja.dxf.parser.entities.AbstractEntityHandler.XDATA_LONG;
+
 import org.kabeja.common.Layer;
 import org.kabeja.common.LineType;
 import org.kabeja.dxf.parser.DXFValue;
@@ -102,6 +105,12 @@ public class DXFLayerTableHandler extends AbstractTableHandler {
         break;
       case GROUPCODE_LAYER_PLOTTINGFLAG:
         layer.setPlottable(!value.getBooleanValue());
+        break;
+      case XDATA_LONG:
+        layer.setXDataString(value.getValue());
+        break;
+      case XDATA_APPLICATION_NAME:
+        layer.addXData(value.getValue());
         break;
     }
   }

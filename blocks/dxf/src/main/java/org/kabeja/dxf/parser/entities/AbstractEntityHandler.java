@@ -56,6 +56,7 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
 
   public static final int XDATA_STRING = 1000;
   public static final int XDATA_APPLICATION_NAME = 1001;
+  public static final int XDATA_LONG = 1071;
 
   public static final int GROUPCODE_OWNER = 330;
   protected DraftDocument doc;

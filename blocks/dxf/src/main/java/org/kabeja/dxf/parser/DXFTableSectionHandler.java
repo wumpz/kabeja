@@ -16,8 +16,9 @@
 
 package org.kabeja.dxf.parser;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import org.kabeja.dxf.parser.table.DXFTableHandler;
 import org.kabeja.parser.ParseException;
 
@@ -31,7 +32,7 @@ public class DXFTableSectionHandler extends AbstractSectionHandler implements DX
   public final int TABLE_CODE = 0;
   private String table = "";
   private DXFTableHandler handler;
-  private Hashtable handlers = new Hashtable();
+  private final Map<String, DXFTableHandler> handlers = new HashMap<>();
   private boolean parse = false;
 
   public DXFTableSectionHandler() {}
