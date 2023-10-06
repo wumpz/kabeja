@@ -378,15 +378,6 @@ public class Constants {
 
   public static final int GROUPCODE_HANDLE = 5;
 
-  public static final String SUBCLASS_MARKER_ENTITY = "AcDbEntity";
-  public static final String SUBCLASS_MARKER_ENTITY_3DFACE = "AcDbFace";
-  public static final String SUBCLASS_MARKER_ENTITY_ARC = "AcDbArc";
-  public static final String SUBCLASS_MARKER_ENTITY_POLYLINE = "AcDbPolyline";
-  public static final String SUBCLASS_MARKER_ENTITY_CIRCLE = "AcDbCircle";
-  public static final String SUBCLASS_MARKER_ENTITY_ELLIPSE = "AcDbEllipse";
-  public static final String SUBCLASS_MARKER_ENTITY_LINE = "AcDbLine";
-  public static final String SUBCLASS_MARKER_ENTITY_LWPOLYLINE = "AcDbPolyline";
-
   public static final String SUBCLASS_MARKER_ENTITY_TEXT = "AcDbText";
   public static final String SUBCLASS_MARKER_ENTITY_ATTRIB_DEF = "AcDbAttributeDefinition";
   public static final String SUBCLASS_MARKER_ENTITY_INSERT = "AcDbBlockReference";
