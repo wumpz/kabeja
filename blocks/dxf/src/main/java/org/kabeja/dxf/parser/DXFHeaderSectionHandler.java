@@ -25,6 +25,7 @@ import org.kabeja.common.Variable;
  */
 public class DXFHeaderSectionHandler implements DXFSectionHandler {
   public static final int VARIABLE_CODE = 9;
+  public static final int VARIABLE_CODE_COMMENT = 999;
   private final String sectionKey = "HEADER";
   private DraftDocument doc;
   private Variable variable = null;
@@ -54,6 +55,8 @@ public class DXFHeaderSectionHandler implements DXFSectionHandler {
     if (groupCode == VARIABLE_CODE) {
       variable = new Variable(value.getValue());
       doc.getHeader().setVariable(variable);
+    } else if (groupCode == VARIABLE_CODE_COMMENT) {
+      // comments are skipped
     } else {
       // handle the current mode
       parse(groupCode, value);
