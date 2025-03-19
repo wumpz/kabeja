@@ -177,12 +177,12 @@ public class Arc extends Entity {
   public Point3D getPointAt(double angle) {
     // the local part
     double x = this.radius * Math.cos(Math.toRadians(angle));
-    double y = radius * Math.sin(Math.toRadians(angle));
+    double y = this.radius * Math.sin(Math.toRadians(angle));
 
     // the wcs part
     ParametricPlane plane =
         new ParametricPlane(
-            this.center,
+            this.getExtrusion().transformOcsToWcs(this.center),
             this.getExtrusion().getDirectionX(),
             this.getExtrusion().getDirectionY(),
             this.getExtrusion().getNormal());
@@ -199,7 +199,7 @@ public class Arc extends Entity {
   private Point3D getPointRelativeToCenter(double angle) {
     double x = radius * Math.cos(Math.toRadians(angle));
     double y = radius * Math.sin(Math.toRadians(angle));
-    double z = this.center.getZ();
+    double z = 0;
 
     return new Point3D(x, y, z);
   }

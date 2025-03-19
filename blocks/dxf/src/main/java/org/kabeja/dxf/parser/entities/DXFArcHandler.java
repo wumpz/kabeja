@@ -94,6 +94,11 @@ public class DXFArcHandler extends AbstractEntityHandler {
 
         break;
 
+      case GROUPCODE_START_Z:
+        arc.getCenterPoint().setZ(value.getDoubleValue());
+
+        break;
+
       case RADIUS:
         arc.setRadius(value.getDoubleValue());
 
