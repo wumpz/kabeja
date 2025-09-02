@@ -187,10 +187,12 @@ public class DXFInsertHandler extends AbstractEntityHandler {
 
   protected void addParsedAttribute() {
 
-    this.attribHandler.endDXFEntity();
-    Attrib attrib = (Attrib) this.attribHandler.getDXFEntity();
-    attrib.setDocument(this.doc);
-    attrib.setBlockAttribute(true);
-    this.insert.addAttribute(attrib);
+    if (this.attribHandler != null) {
+      this.attribHandler.endDXFEntity();
+      Attrib attrib = (Attrib) this.attribHandler.getDXFEntity();
+      attrib.setDocument(this.doc);
+      attrib.setBlockAttribute(true);
+      this.insert.addAttribute(attrib);
+    }
   }
 }
