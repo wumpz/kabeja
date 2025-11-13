@@ -63,6 +63,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
           endEntity();
           // check for reuse
           if (handler.getDXFEntityType().equals(value.getValue())) {
+            handler.resetEmbeddedObjectMode();
             handler.startDXFEntity();
             parseEntity = true;
             return;
@@ -74,6 +75,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
         // get handler for the new entity
         handler = (DXFEntityHandler) handlers.get(value.getValue());
         handler.setDocument(this.doc);
+        handler.resetEmbeddedObjectMode();
         handler.startDXFEntity();
         parseEntity = true;
       } else {
