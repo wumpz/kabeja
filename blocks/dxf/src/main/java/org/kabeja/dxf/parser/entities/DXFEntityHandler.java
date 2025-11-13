@@ -38,24 +38,32 @@ public interface DXFEntityHandler extends DXFHandler {
   /**
    * @return the DXFEntity name (LINE,POLYLINE,TEXT,...)
    */
-  public abstract String getDXFEntityType();
+  String getDXFEntityType();
 
   /** Will called if the entity block starts. */
-  public abstract void startDXFEntity();
+  void startDXFEntity();
 
   /**
    * Called after endDXFEntity.
    *
    * @return the parsed Entity
    */
-  public abstract Entity getDXFEntity();
+  Entity getDXFEntity();
 
   /** Will called if the entity block ends. */
-  public abstract void endDXFEntity();
+  void endDXFEntity();
 
   /**
    * @return true if the this DXFEntityHandler have to parse the following entities (like POLYLINE),
    *     otherwise false (like TEXT,LINE).
    */
-  public abstract boolean isFollowSequence();
+  boolean isFollowSequence();
+
+  /**
+   * @return true if this DXFEntityHandler is within an embedded object block.
+   */
+  boolean isEmbeddedObjectMode();
+
+  /** resume normal group code handling and officially leave embedded object mode */
+  void resetEmbeddedObjectMode();
 }
