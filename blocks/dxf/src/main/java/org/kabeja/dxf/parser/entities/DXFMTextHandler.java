@@ -73,6 +73,9 @@ public class DXFMTextHandler extends AbstractEntityHandler {
 
   @Override
   public void parseGroup(int groupCode, DXFValue value) {
+    // at the moment embedded objects are simply ignored
+    if (isEmbeddedObjectMode()) return;
+
     switch (groupCode) {
       case TEXT_VALUE:
         String part = value.getValue();

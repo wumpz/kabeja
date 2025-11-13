@@ -21,9 +21,9 @@ import org.kabeja.parser.ParseException;
 
 public interface DXFHandler {
 
-  public void parseGroup(int groupCode, DXFValue value) throws ParseException;
+  void parseGroup(int groupCode, DXFValue value) throws ParseException;
 
-  public void setDocument(DraftDocument doc);
+  void setDocument(DraftDocument doc);
 
-  public void releaseDocument();
+  void releaseDocument();
 }
