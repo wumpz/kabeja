@@ -53,6 +53,8 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
   public static final int GROUPCODE_TEXT = 1;
   public static final int GROUPCODE_ROTATION_ANGLE = 50;
   public static final int GROUPCODE_MODELSPACE = 67;
+	
+	public static final int GROUPCODE_EMBEDDED_OBJECT = 101;
 
   public static final int XDATA_STRING = 1000;
   public static final int XDATA_APPLICATION_NAME = 1001;
@@ -67,13 +69,28 @@ public abstract class AbstractEntityHandler implements DXFEntityHandler {
   @Override
   public void setDocument(DraftDocument doc) {
     this.doc = doc;
-  }
-
-  protected void parseCommonProperty(int groupCode, DXFValue value, Entity entity) {
-    switch (groupCode) {
+  }	
+	
+	private boolean embeddedObjectMode = false;
+	
+	@Override
+	public boolean isEmbeddedObjectMode() {
+		return embeddedObjectMode;
+	}
+	
+	@Override
+	public void resetEmbeddedObjectMode() {
+		this.embeddedObjectMode = false;
+	}
+	
+	protected void parseCommonProperty(int groupCode, DXFValue value, Entity entity) {
+		switch (groupCode) {
+			case GROUPCODE_EMBEDDED_OBJECT: 
+				embeddedObjectMode = true;
+				break; 
+				
       case ELEMENT_REFERENCE:
         entity.setID(Utils.parseIDString(value.getValue()));
-
         break;
 
       case LAYER_NAME:

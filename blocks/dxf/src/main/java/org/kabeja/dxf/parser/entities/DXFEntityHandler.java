@@ -58,4 +58,14 @@ public interface DXFEntityHandler extends DXFHandler {
    *     otherwise false (like TEXT,LINE).
    */
   public abstract boolean isFollowSequence();
+	
+	/**
+	 * @return true if this DXFEntityHandler is within an embedded object block.
+	 */
+	boolean isEmbeddedObjectMode();
+
+	/**
+	 * resume normal group code handling and officially leave embedded object mode
+	 */
+	void resetEmbeddedObjectMode();
 }
