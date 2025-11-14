@@ -66,4 +66,11 @@ public interface DXFEntityHandler extends DXFHandler {
 
   /** resume normal group code handling and officially leave embedded object mode */
   void resetEmbeddedObjectMode();
+
+  /**
+   * Can block group processing entirely for a entity. This is used to block e.g. embeddedObjects.
+   */
+  public default boolean processGroups() {
+    return !isEmbeddedObjectMode();
+  }
 }
