@@ -13,6 +13,6 @@
     <parent>
         <groupId>org.kabeja</groupId>
         <artifactId>tfly-kabeja</artifactId>
-        <version>0.6.1</version>
+        <version>0.7-SNAPSHOT</version>
     </parent>
 </project>
