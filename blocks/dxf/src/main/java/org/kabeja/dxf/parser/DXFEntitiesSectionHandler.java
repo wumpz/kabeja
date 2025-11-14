@@ -57,7 +57,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
       if (parseEntity) {
         if (handler.isFollowSequence()) {
           // there is a sequence like polyline
-          handler.parseGroup(groupCode, value);
+          if (handler.processGroups()) handler.parseGroup(groupCode, value);
           return;
         } else {
           endEntity();
@@ -84,7 +84,7 @@ public class DXFEntitiesSectionHandler extends AbstractSectionHandler
       }
     } else if (parseEntity) {
       // handler.setDXFDocument(this.doc);
-      handler.parseGroup(groupCode, value);
+      if (handler.processGroups()) handler.parseGroup(groupCode, value);
     }
   }
 
